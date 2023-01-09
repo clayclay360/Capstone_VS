@@ -6,9 +6,8 @@ public class Main : MonoBehaviour
 {
     [Header("Variables")]
     public RecipeManager[] recipeManager;
-    public int currentMainRecipe;
+    public int currentMainOrder;
     
-    public string[] orderNames;
     public bool startingOrders;
     public float maxTimeInBetweenOrders, minTimeInBetweenOrders;
     public static int currentNumberOfSides;
@@ -19,6 +18,8 @@ public class Main : MonoBehaviour
     public static Dictionary<int, Plate> Order = new Dictionary<int, Plate>();
     public int orderNumber;
 
+    private Recipe mainRecipe, sideRecipeOne, sideRecipeTwo;
+
     private float timeInBetweenOrders;
     private int maxOrdersOfSides;
 
@@ -27,16 +28,14 @@ public class Main : MonoBehaviour
         GameManager.gameStarted = true;
     }
 
-    //public IEnumerator GameLoop()
-    //{
-    //    while (GameManager.gameStarted)
-    //    {
-    //        if (GameManager.currentLevel == 0)
-    //        {
-    //            //recipeManager[GameManager.currentLevel].mainRecipes[currentMainRecipe];
-    //        }
-    //    }
-    //}
+    IEnumerator MainOrder()
+    {
+        while (GameManager.gameStarted)
+        {
+            mainRecipe = recipeManager[GameManager.currentLevel].mainRecipes[currentMainOrder];
+            yield return null;
+        }
+    }
 
     IEnumerator SideOrders()
     {
@@ -48,11 +47,28 @@ public class Main : MonoBehaviour
             {
                 timeInBetweenOrders = Random.Range(minTimeInBetweenOrders, maxTimeInBetweenOrders);
 
-                int orderIndex = Random.Range(0, 2);
+                int orderIndex = Random.Range(0, recipeManager[GameManager.currentLevel].sideRecipes.Length);
 
                 currentNumberOfSides++;
                 yield return new WaitForSeconds(timeInBetweenOrders);
             }
+        }
+    }
+
+    public void OrderComplete(string orderName)
+    {
+        //check to see which order this is
+        if(orderName == mainRecipe.Name)
+        {
+
+        }
+        else if (orderName == sideRecipeOne.Name)
+        {
+
+        }
+        else if(orderName == sideRecipeTwo.Name)
+        {
+
         }
     }
 }

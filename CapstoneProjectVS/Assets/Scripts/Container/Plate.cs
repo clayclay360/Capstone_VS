@@ -61,16 +61,12 @@ public class Plate : Item
                         {
                             Debug.Log("Order Complete");
                             GameManager.rating += .2f;
-                            OrderManager.currentOrders--;
-                            OrderManager.Order.Remove(orderNumber);
                             Destroy(gameObject);
                         }
                         else
                         {
                             Debug.Log("Wrong Order");
                             GameManager.rating -= .2f;
-                            OrderManager.currentOrders--;
-                            OrderManager.Order.Remove(orderNumber);
                             Destroy(gameObject);
                         }
                         if (orderName.Contains("Omelet"))
@@ -130,8 +126,6 @@ public class Plate : Item
             sliderTimer.value = maxTime - orderTime;
         }
 
-        OrderManager.currentOrders--;
-        OrderManager.Order.Remove(orderNumber);
         menuOrder.RemoveOrder(orderName);
         Destroy(gameObject);
     }
