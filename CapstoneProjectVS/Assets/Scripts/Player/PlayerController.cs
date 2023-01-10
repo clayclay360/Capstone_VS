@@ -158,7 +158,6 @@ public class PlayerController : MonoBehaviour
         Vector2 rotateVal = value.Get<Vector2>();
         rotateVec = new Vector3(rotateVal.x,0,rotateVal.y);
         rightAnalogMagnitude = rotateVec.magnitude;
-        
     }
 
     public void PlayerMovement() 
