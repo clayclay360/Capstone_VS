@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class Plate : Item
     public string orderName;
     public float timer;
     public int orderNumber;
+    public Transform placement;
     public Slider sliderTimer;
     Bacon baconRespawn;
     Egg eggRespawn;
@@ -45,88 +47,33 @@ public class Plate : Item
         
         switch (item)
         {
+            case PlayerController.ItemInMainHand.empty:
+                Interaction = "Grab Plate";
+                if (chef.isInteracting)
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
             case PlayerController.ItemInMainHand.pan:
-
-                Interaction = orderName;
-                sliderTimer.gameObject.SetActive(true);
-                Menu menuOrder = GameObject.Find("MenuWindow").GetComponentInChildren<Menu>();
-
                 if (chef.hand[0].GetComponent<Pan>() != null && chef.hand[0].GetComponent<Pan>().Occupied && chef.hand[0].GetComponent<Pan>().foodInPan.status == Status.cooked)
                 {
                     Interaction = "Place food on plate";
                     if (chef.isInteracting)
                     {
-                        //if whether the order is coorect or not
-                        if(orderName == chef.hand[0].GetComponent<Pan>().foodInPan.Name)
-                        {
-                            Debug.Log("Order Complete");
-                            GameManager.rating += .2f;
-                            Destroy(gameObject);
-                        }
-                        else
-                        {
-                            Debug.Log("Wrong Order");
-                            GameManager.rating -= .2f;
-                            Destroy(gameObject);
-                        }
-                        if (orderName.Contains("Omelet"))
-                        {
-                            eggRespawn.Respawn();
-                        }
-                        else if (orderName.Contains("Bacon"))
-                        {
-                            baconRespawn.Respawn();
-                        }
-
-                        menuOrder.RemoveOrder(orderName);
-
+                        Pan pan = chef.hand[0].GetComponent<Pan>();
                         foodOnPlate = chef.hand[0].GetComponent<Pan>().foodInPan;
                         foodOnPlate.toolItemIsOccupying = this;
                         foodOnPlate.gameObject.transform.parent = transform;
                         foodOnPlate.gameObject.transform.localPosition = new Vector3(0, .15f, 0);
-                        chef.hand[0].GetComponent<Pan>().foodInPan = null;
-                        chef.hand[0].GetComponent<Pan>().Occupied = false;
-                        chef.hand[0].GetComponent<Pan>().CheckIfDirty();
+                        Occupied = true;
+                        pan.foodInPan = null;
+                        pan.Occupied = false;
+                        pan.CheckIfDirty();
                         chef.isInteracting = false;
-
-                        //Checkcompletion
-                        //GameManager.Instance.CheckLevelCompletion(foodOnPlate);
+                        Interaction = "";
                     }
                 }
-                else if(chef.inventoryFull)
-                    {
-                        Interaction = "Hands Full";
-                        return;
-                    }
-                break;
-            default:
-                Interaction = orderName;
-                sliderTimer.gameObject.SetActive(true);
                 break;
         }
-    }
-
-    public void StartTimer()
-    {
-        StartCoroutine(Timer());
-    }
-
-    public IEnumerator Timer()
-    {
-        sliderTimer.maxValue = timer;
-        float maxTime = sliderTimer.maxValue;
-        float currentTime = Time.unscaledTime;
-        float orderTime = 0;
-        sliderTimer.value = maxTime;
-
-        while (maxTime - orderTime > 0)
-        {
-            orderTime = Time.unscaledTime - currentTime;
-            yield return null;
-            sliderTimer.value = maxTime - orderTime;
-        }
-
-        menuOrder.RemoveOrder(orderName);
-        Destroy(gameObject);
     }
 }
