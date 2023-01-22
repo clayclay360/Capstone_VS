@@ -46,11 +46,6 @@ public class Item : MonoBehaviour, IInteractable<PlayerController.ItemInMainHand
         isActive = true;
     }
 
-    public void Start()
-    {
-
-    }
-
     //Function to manage dishes and stuff getting dirty. currUses and usesUntilDirty
     //should be set from the Awake() or Start() functions of the individual items
     public void CheckIfDirty()

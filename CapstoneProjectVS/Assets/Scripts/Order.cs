@@ -6,31 +6,40 @@ using UnityEngine.UI;
 public class Order : MonoBehaviour
 {
     public bool Complete;
+    public int Rating;
 
-    public Text orderNameText;
-    public Slider sliderTimer;
+    public Text Name;
+    public Slider TImer;
+
+    private Main main;
+
+    public void Start()
+    {
+        main = FindObjectOfType<Main>();
+    }
 
     public void AssignOrder(string name, int time)
     {
-        orderNameText.text = name;
-        sliderTimer.maxValue = time;
+        Name.text = name;
+        TImer.maxValue = time;
         StartCoroutine(Timer());
     }
 
     IEnumerator Timer()
     {
-        float maxTime = sliderTimer.maxValue;
+        float maxTime = TImer.maxValue;
         float currentTime = Time.unscaledTime;
         float orderTime = 0;
-        sliderTimer.value = maxTime;
+        TImer.value = maxTime;
 
         while(maxTime - orderTime > 0)
         {
             orderTime = Time.unscaledTime - currentTime;
             yield return null;
-            sliderTimer.value = maxTime - orderTime;
+            TImer.value = maxTime - orderTime;
         }
 
+        main.OrderComplete(Name.text);
         Destroy(gameObject);
     }
 }
