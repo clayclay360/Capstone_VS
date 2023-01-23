@@ -509,6 +509,7 @@ public class PlayerController : MonoBehaviour
         readyToInteract = false;
         isInteracting = false;
 
+        //if player leaves order window deactivate window ui
         if(other.gameObject.GetComponent<OrderWindow>() != null)
         {
             main.orderWindowUI.SetActive(false);
