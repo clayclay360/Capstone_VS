@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isInteracting;
     private bool readyToInteract;
+    private Main main;
 
     //comment
 
@@ -125,6 +126,8 @@ public class PlayerController : MonoBehaviour
         passEgg = GameObject.Find("Egg").GetComponentInChildren<Egg>();
         passSpatula = GameObject.Find("Spatula").GetComponentInChildren<Spatula>();
         passPages = GameObject.Find("Pages").GetComponentInChildren<CookBookPages>();
+
+        main = FindObjectOfType<Main>();
     }
 
     public void Update()
@@ -505,6 +508,11 @@ public class PlayerController : MonoBehaviour
         interactionText.text = "";
         readyToInteract = false;
         isInteracting = false;
+
+        if(other.gameObject.GetComponent<OrderWindow>() != null)
+        {
+            main.orderWindowUI.SetActive(false);
+        }
 
         if (other.gameObject.tag == "CookBook")
         {

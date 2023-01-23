@@ -18,6 +18,9 @@ public class Main : MonoBehaviour
     public static Dictionary<int, Plate> Order = new Dictionary<int, Plate>();
     public int orderNumber;
 
+    [Header("UI")]
+    public GameObject orderWindowUI;
+
     [HideInInspector]
     public Recipe mainRecipe, sideRecipeOne, sideRecipeTwo;
     private GameObject mainOrder, sideOrderOne, sideOrderTwo;
@@ -49,9 +52,8 @@ public class Main : MonoBehaviour
     {
         while (GameManager.gameStarted)
         {
+            //while the game started spawn a maximum of 2 side orders
             yield return new WaitForSeconds(2);
-
-            Debug.Log("Spawning Order");
 
             if (maxOrdersOfSides > currentNumberOfSides)
             {

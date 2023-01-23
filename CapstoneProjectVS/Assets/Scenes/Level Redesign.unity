@@ -3637,7 +3637,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 250, y: 135}
+  m_CellSize: {x: 250, y: 175}
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -5023,7 +5023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &594075719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5043,8 +5043,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 964, y: 913}
-  m_SizeDelta: {x: 800, y: 200}
+  m_AnchoredPosition: {x: 1000, y: 0}
+  m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &594075720
 MonoBehaviour:
@@ -12323,10 +12323,10 @@ RectTransform:
   m_Father: {fileID: 594075719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59.75287, y: 63.14032}
-  m_SizeDelta: {x: 441.4448, y: 56.7508}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -0.0000076293945, y: -49.6}
+  m_SizeDelta: {x: 441.4448, y: 56.750793}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304852929
 MonoBehaviour:
@@ -12355,7 +12355,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -13442,6 +13442,7 @@ MonoBehaviour:
   sideOrderWindow: {fileID: 437498137}
   mainOrderWindow: {fileID: 2010183705}
   orderNumber: 0
+  orderWindowUI: {fileID: 594075718}
   mainRecipe:
     Name: 
     Steps: []
@@ -20954,7 +20955,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 250, y: 135}
+  m_CellSize: {x: 250, y: 175}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

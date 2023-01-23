@@ -7,6 +7,7 @@ public class OrderWindow : Item
     private Plate plate;
     private Main main;
 
+
     public void Start()
     {
         
@@ -15,6 +16,7 @@ public class OrderWindow : Item
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController chef)
     {
         main = FindObjectOfType<Main>();
+        main.orderWindowUI.SetActive(true);
 
         switch (item)
         {
