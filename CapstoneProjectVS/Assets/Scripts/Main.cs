@@ -15,7 +15,7 @@ public class Main : MonoBehaviour
     [Header("Orders")]
     public GameObject orderPrefab;
     public Transform sideOrderWindow, mainOrderWindow;
-    public static Dictionary<int, Plate> Order = new Dictionary<int, Plate>();
+    //public static Dictionary<int, Plate> Order = new Dictionary<int, Plate>();
     public int orderNumber;
 
     [Header("UI")]
