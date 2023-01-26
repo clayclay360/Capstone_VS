@@ -7,11 +7,14 @@ TagManager:
   - Knife
   - Interactable
   - Obstacle
+  - JumpPoints
+  - Climbable
+  - CounterTop
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - StopsMovement
   - Water
   - UI
   - 
