@@ -50,7 +50,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""GamePad"",
                     ""id"": ""9b3b8244-281c-43fc-b5a2-ba3fb9b47b61"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -105,7 +105,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""GamePad"",
                     ""id"": ""51b36f47-e654-404a-bf49-9e3c883b6c14"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

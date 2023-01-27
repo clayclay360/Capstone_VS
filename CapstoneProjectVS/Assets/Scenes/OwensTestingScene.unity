@@ -574,6 +574,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3453872193097704957, guid: 2314388477fcda44b915fbbbce6802da, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 428192264}
+    - target: {fileID: 3453872193097704957, guid: 2314388477fcda44b915fbbbce6802da, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 674308152}
+    - target: {fileID: 3453872193097704957, guid: 2314388477fcda44b915fbbbce6802da, type: 3}
+      propertyPath: movingSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453872193097704957, guid: 2314388477fcda44b915fbbbce6802da, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 2109343488}
+    - target: {fileID: 3453872193097704957, guid: 2314388477fcda44b915fbbbce6802da, type: 3}
+      propertyPath: rotatingSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3533505856482459123, guid: 2314388477fcda44b915fbbbce6802da, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -972,6 +992,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!95 &674308152 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6666133079928596205, guid: 2314388477fcda44b915fbbbce6802da, type: 3}
+  m_PrefabInstance: {fileID: 550691429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1186422152
 GameObject:
   m_ObjectHideFlags: 0
