@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     [Header("Animator")]
     public Animator animator;
 
+    [Header("Interaction")]
+    public float maxRange;
+
     void Awake()
     {
         playerCamera.transform.position = gameObject.transform.position + camOffset;
@@ -116,4 +119,9 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.position = gameObject.transform.position + camOffset;
     }
     #endregion
+
+    public void OnInteract()
+    {
+        Debug.Log("Player Interacted");
+    }
 }
