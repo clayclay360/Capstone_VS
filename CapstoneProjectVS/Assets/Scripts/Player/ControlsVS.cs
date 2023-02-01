@@ -44,6 +44,15 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d2921f6-08f6-4cf6-b302-8175a748508b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -156,6 +165,17 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd4e35bb-885e-499f-bf0e-94db330dfcff"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -178,6 +198,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS = asset.FindActionMap("Player Controls VS", throwIfNotFound: true);
         m_PlayerControlsVS_Move = m_PlayerControlsVS.FindAction("Move", throwIfNotFound: true);
         m_PlayerControlsVS_Look = m_PlayerControlsVS.FindAction("Look", throwIfNotFound: true);
+        m_PlayerControlsVS_Interact = m_PlayerControlsVS.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -239,12 +260,14 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     private IPlayerControlsVSActions m_PlayerControlsVSActionsCallbackInterface;
     private readonly InputAction m_PlayerControlsVS_Move;
     private readonly InputAction m_PlayerControlsVS_Look;
+    private readonly InputAction m_PlayerControlsVS_Interact;
     public struct PlayerControlsVSActions
     {
         private @ControlsVS m_Wrapper;
         public PlayerControlsVSActions(@ControlsVS wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerControlsVS_Move;
         public InputAction @Look => m_Wrapper.m_PlayerControlsVS_Look;
+        public InputAction @Interact => m_Wrapper.m_PlayerControlsVS_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControlsVS; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -260,6 +283,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnLook;
+                @Interact.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerControlsVSActionsCallbackInterface = instance;
             if (instance != null)
@@ -270,6 +296,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -287,5 +316,6 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
