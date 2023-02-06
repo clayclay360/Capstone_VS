@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     [Header("Interaction")]
-    public float maxRange;
+    public bool readyToInteract;
 
     void Awake()
     {
@@ -123,5 +123,13 @@ public class PlayerController : MonoBehaviour
     public void OnInteract()
     {
         Debug.Log("Player Interacted");
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.GetComponent<Interactable>() != null)
+        {
+            Debug.Log("Interact Ready");
+        }
     }
 }
