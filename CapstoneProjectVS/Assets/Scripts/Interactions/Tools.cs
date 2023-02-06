@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tools : Interactable
+public class Tools : Interactable, ICollectable
 {
     [Header("Variables")]
     public bool isDirty;
@@ -11,6 +11,7 @@ public class Tools : Interactable
 
     public GameObject cleanModel;
     public GameObject dirtyModel;
+
     public virtual void isDirtied()
     {
         timesUsed += 1;
@@ -35,5 +36,8 @@ public class Tools : Interactable
         }
     }
 
-
+    public void Collect()
+    {
+        throw new System.NotImplementedException();
+    }
 }

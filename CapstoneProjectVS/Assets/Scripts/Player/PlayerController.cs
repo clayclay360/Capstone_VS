@@ -1,12 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using System;
-using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,7 +22,10 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     [Header("Interaction")]
-    public bool readyToInteract;
+    public bool canInteract;
+    public bool canCollect;
+    //Inventory
+    private Dictionary<int, ICollectable> inventory = new Dictionary<int, ICollectable>();
 
     void Awake()
     {
@@ -125,11 +122,30 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player Interacted");
     }
 
+    //player is ready to interact
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.GetComponent<Interactable>() != null)
         {
-            Debug.Log("Interact Ready");
+            canInteract = true;
+
+            if(other.gameObject.GetComponent<ICollectable>() != null)
+            {
+                if (inventory.Count >= 2)
+                {
+                    //If the player's inventory isn't full then they can collect
+                    canCollect = true;
+                }
+            }
+        }
+    }
+
+    //player is not ready to interact
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<Interactable>() != null)
+        {
+            canInteract = false;
         }
     }
 }
