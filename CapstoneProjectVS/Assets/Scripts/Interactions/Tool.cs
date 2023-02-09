@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tools : Interactable, ICollectable
+public class Tool : Item, ICollectable, IInteractable
 {
     [Header("Variables")]
     public bool isDirty;
     public int useBeforeDirty;
     public int timesUsed;
-
+    public int containerSize;
+    [Header("Models")]
     public GameObject cleanModel;
     public GameObject dirtyModel;
 
@@ -36,8 +37,13 @@ public class Tools : Interactable, ICollectable
         }
     }
 
-    public void Collect()
+    public virtual void Collect()
     {
-        throw new System.NotImplementedException();
+        
+    }
+
+    public virtual void Interact(Item itemInMainHand)
+    {
+        
     }
 }

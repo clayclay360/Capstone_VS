@@ -8166,7 +8166,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4647432269454624998, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
   m_PrefabInstance: {fileID: 1848023182}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1048870815
+--- !u!114 &1048870813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8175,14 +8175,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1048870812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28fb7c5b1fa15a244ba25c513a23b805, type: 3}
+  m_Script: {fileID: 11500000, guid: 7adf5c5434e57ac4294e9dcd99220d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Pan
   canInteract: 0
   isDirty: 0
   useBeforeDirty: 0
   timesUsed: 0
+  containerSize: 1
   cleanModel: {fileID: 0}
   dirtyModel: {fileID: 0}
 --- !u!4 &1141128693 stripped
