@@ -1,12 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using System;
-using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,7 +22,11 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     [Header("Interaction")]
-    public float maxRange;
+    public bool canInteract;
+    public bool canCollect;
+    //Inventory
+    private Dictionary<int, Item> inventory = new Dictionary<int, Item>();
+    private GameObject interactableObject;
 
     void Awake()
     {
@@ -123,5 +121,46 @@ public class PlayerController : MonoBehaviour
     public void OnInteract()
     {
         Debug.Log("Player Interacted");
+        
+        //check if the player is near a interactable object, if the interactable is a tool
+        if (interactableObject != null && interactableObject.GetComponent<Tool>() != null)
+        {
+            Tool tool = interactableObject.GetComponent<Tool>();
+
+            if(tool.containerSize > 0)
+            {
+                tool.Interact(inventory[0]);
+            }
+        }
+    }
+
+    //player is ready to interact
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.GetComponent<Item>() != null)
+        {
+            canInteract = true;
+            interactableObject = other.gameObject;
+
+            if(other.gameObject.GetComponent<ICollectable>() != null)
+            {
+                if (inventory.Count >= 2)
+                {
+                    //If the player's inventory isn't full then they can collect
+                    canCollect = true;
+                    interactableObject = other.gameObject;
+                }
+            }
+        }
+    }
+
+    //player is not ready to interact
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<Item>() != null)
+        {
+            canInteract = false;
+            interactableObject = null;
+        }
     }
 }
