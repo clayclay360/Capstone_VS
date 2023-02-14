@@ -25,13 +25,16 @@ public class PlayerController : MonoBehaviour
     public bool canInteract;
     public bool canCollect;
     //Inventory
-    private Dictionary<int, Item> inventory = new Dictionary<int, Item>();
+    public Dictionary<int, Item> inventory = new Dictionary<int, Item>();
     private GameObject interactableObject;
 
     void Awake()
     {
         playerCamera.transform.position = gameObject.transform.position + camOffset;
         playerCamera.transform.eulerAngles = camRotation;
+
+        inventory.Add(0, null);
+        inventory.Add(1, null);
     }
 
     #region movement
@@ -126,11 +129,9 @@ public class PlayerController : MonoBehaviour
         if (interactableObject != null && interactableObject.GetComponent<Tool>() != null)
         {
             Tool tool = interactableObject.GetComponent<Tool>();
+            Debug.Log("This is a Tool");
 
-            if(tool.containerSize > 0)
-            {
-                tool.Interact(inventory[0]);
-            }
+            tool.Interact(inventory[0], this);
         }
     }
 
