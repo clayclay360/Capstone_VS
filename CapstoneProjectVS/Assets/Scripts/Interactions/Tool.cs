@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tool : Item, ICollectable, IInteractable
+public class Tool : Item, IInteractable
 {
     [Header("Variables")]
     public bool isDirty;
@@ -37,12 +37,7 @@ public class Tool : Item, ICollectable, IInteractable
         }
     }
 
-    public virtual void Collect()
-    {
-        
-    }
-
-    public virtual void Interact(Item itemInMainHand)
+    public virtual void Interact(Item itemInMainHand, PlayerController player)
     {
         
     }

@@ -1,25 +1,26 @@
+using UnityEngine;
+
 public class Pan : Tool
 {
-    public override void Interact(Item itemInMainHand)
+    public override void Interact(Item itemInMainHand, PlayerController player)
     {
-        switch (itemInMainHand.Name)
+        //check to see if there's anything in the mainhand
+        if(itemInMainHand != null)
         {
-            case "spatula":
-                break;
-            case "egg":
-                break;
-            case "bacon":
-                break;
-            case "butter":
-                break;
-            default:
-                Collect();
-                break;
+            if(itemInMainHand.GetComponent<Spatula>() != null)
+            {
+                //do nothing
+            }
+            else
+            {
+                //second hand is empty
+                Collect(player);
+            }
         }
-    }
-
-    public override void Collect()
-    {
-
+        else
+        {
+            //main hand is empty
+            Collect(player);
+        }
     }
 }

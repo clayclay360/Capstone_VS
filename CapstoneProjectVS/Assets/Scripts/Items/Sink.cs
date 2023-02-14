@@ -114,4 +114,8 @@ public class Sink : Utilities, IUtility, IInteractable
         }
     }
 
+    public void Interact(Item item, PlayerController player)
+    {
+        throw new System.NotImplementedException();
+    }
 }

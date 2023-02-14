@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class Spatula : Tool
 {
-    public override void Interact(Item itemInMainHand)
+    public override void Interact(Item itemInMainHand, PlayerController player)
     {
-        switch (itemInMainHand.Name)
+        //check to see if there's anything in the mainhand
+        if (itemInMainHand != null)
         {
-            case "pan":
-                break;
-            default:
-                Collect();
-                break;
+            if (itemInMainHand.GetComponent<Pan>() != null)
+            {
+                //do nothing
+            }
+            else
+            {
+                //second hand is empty
+                Collect(player);
+            }
         }
-    }
-
-    public override void Collect()
-    {
-
+        else
+        {
+            //main hand is empty
+            Collect(player);
+        }
     }
 }
