@@ -25,10 +25,10 @@ public class RatController : MonoBehaviour
     public bool isScared;
     
 
-    int health = 2;
-    GameObject ratInventory;
+    public int health = 2;
+    public GameObject ratInventory;
     //Dictionary<GameObject, bool> currActiveTargets;
-    GameObject closestPlayer;
+    public GameObject closestPlayer;
 
     // Start is called before the first frame update
     void Start()
