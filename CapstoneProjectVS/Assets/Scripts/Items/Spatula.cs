@@ -9,9 +9,10 @@ public class Spatula : Tool
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
         {
+            //if pan is in main hand
             if (itemInMainHand.GetComponent<Pan>() != null)
             {
-                //do nothing
+                Collect(player);
             }
             else
             {

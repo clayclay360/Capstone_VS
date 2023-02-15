@@ -6,6 +6,7 @@ public class Tool : Item, IInteractable
 {
     [Header("Variables")]
     public bool isDirty;
+    public bool isHot;
     public int useBeforeDirty;
     public int timesUsed;
     public int containerSize;

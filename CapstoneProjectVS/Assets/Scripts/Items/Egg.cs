@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+
+public class Egg : Item, IInteractable, ICollectable
+{
+    public void Interact(Item itemInMainHand, PlayerController player)
+    {
+        //check to see if there's anything in the mainhand
+        if (itemInMainHand != null)
+        {
+            //if spatula is in main hand
+            if (itemInMainHand.GetComponent<Spatula>() != null)
+            {
+                Collect(player);
+            }
+            //if pan is in main hand
+            else if(itemInMainHand.GetComponent<Pan>() != null)
+            {
+                Pan pan = itemInMainHand.GetComponent<Pan>();
+
+                if(pan.itemsInPan.Count >= pan.containerSize)
+                {
+                    
+                }
+            }
+            else
+            {
+                //second hand is empty
+                Collect(player);
+            }
+        }
+        else
+        {
+            //main hand is empty
+            Collect(player);
+        }
+    }
+}
