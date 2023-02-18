@@ -7,7 +7,7 @@ public class Sink : Utilities, IUtility, IInteractable
     private Tool dishBeingCleaned;
     public Tool[] sinkInv = { null, null, null };
     //private bool[] isInvSlotEmpty = { true, true, true };
-    public void Interact(Item item)
+    public void Interact(Item item, PlayerController player)
     {
         //Pick up item
         if (item == null)
@@ -31,7 +31,6 @@ public class Sink : Utilities, IUtility, IInteractable
         {
             Debug.LogWarning("No empty sink slots?");
         }
-        
     }
 
     public void ratInteraction(RatController rat)
@@ -114,8 +113,5 @@ public class Sink : Utilities, IUtility, IInteractable
         }
     }
 
-    public void Interact(Item item, PlayerController player)
-    {
-        throw new System.NotImplementedException();
-    }
+
 }
