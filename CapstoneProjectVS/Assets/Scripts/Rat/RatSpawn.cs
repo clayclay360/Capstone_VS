@@ -22,7 +22,7 @@ public class RatSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SpawnRat();
+        SpawnRat();
     }
 
     // Update is called once per frame
