@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
-public class Egg : Item, IInteractable, ICollectable
+public class Egg : Ingredients, IInteractable
 {
-    public void Interact(Item itemInMainHand, PlayerController player)
+    public enum State { shell, omelet, scrambled};
+    public State state;
+    public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
@@ -18,12 +19,7 @@ public class Egg : Item, IInteractable, ICollectable
             //if pan is in main hand
             else if(itemInMainHand.GetComponent<Pan>() != null)
             {
-                Pan pan = itemInMainHand.GetComponent<Pan>();
-
-                if(pan.itemsInPan.Count >= pan.containerSize)
-                {
-                    
-                }
+                Collect(player);
             }
             else
             {

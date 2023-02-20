@@ -10,29 +10,25 @@ public interface ICollectable
 public interface IInteractable
 {
     public void Interact(Item item, PlayerController player);
+    public void CanInteract(bool condition);
 }
 
-public class Item : MonoBehaviour, ICollectable
+public class Item : MonoBehaviour, IInteractable
 {
     [Header("Info")]
     public string Name;
     public bool canInteract;
 
-    public virtual void Collect(PlayerController player)
+    public void Update()
     {
-        //check to see which inventory is empty
-        if (player.inventory[0] == null)
+        CanInteract(canInteract);
+    }
+    public virtual void Interact(Item item, PlayerController player){}
+    public virtual void CanInteract(bool condition)
+    {
+        if(GetComponent<Collider>() != null)
         {
-            player.inventory[0] = this;
+            GetComponent<Collider>().enabled = condition;
         }
-        else
-        {
-            player.inventory[1] = this;
-        }
-
-        //temporary
-        gameObject.SetActive(false);
-        Debug.Log("Inventory 1: " + player.inventory[0] + " Inventory 2: " + player.inventory[1]);
-
     }
 }

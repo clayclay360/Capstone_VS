@@ -122,16 +122,15 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     public void OnInteract()
-    {
-        Debug.Log("Player Interacted");
-        
-        //check if the player is near a interactable object, if the interactable is a tool
-        if (interactableObject != null && interactableObject.GetComponent<Tool>() != null)
+    {        
+        //check if the player is near a interactable object
+        if (interactableObject != null)
         {
-            Tool tool = interactableObject.GetComponent<Tool>();
-            Debug.Log("This is a Tool");
-
-            tool.Interact(inventory[0], this);
+            if (interactableObject.GetComponent<IInteractable>() != null)
+            {
+                Item item = interactableObject.GetComponent<Item>();
+                item.Interact(inventory[0], this);
+            }
         }
     }
 
