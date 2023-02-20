@@ -113,5 +113,8 @@ public class Sink : Utilities, IUtility, IInteractable
         }
     }
 
-
+    public void CanInteract(bool condition)
+    {
+        throw new System.NotImplementedException();
+    }
 }

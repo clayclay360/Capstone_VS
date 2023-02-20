@@ -6,6 +6,11 @@ public class TrashCan : Utilities, IUtility, IInteractable
 {
     public Item trashItem;
 
+    public void CanInteract(bool condition)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Interact(Item item, PlayerController player)
     {
         trashItem = item;

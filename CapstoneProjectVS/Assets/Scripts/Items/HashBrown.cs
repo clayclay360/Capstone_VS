@@ -2,28 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HashBrown : Item, IInteractable, ICollectable
+public class HashBrown : Item, ICollectable
 {
 
     public HashBrown()
     {
 
     }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-     public void Interact(Item itemInMainHand, PlayerController player)
+     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
@@ -56,4 +42,8 @@ public class HashBrown : Item, IInteractable, ICollectable
         }
     }
 
+    public void Collect(PlayerController player)
+    {
+        throw new System.NotImplementedException();
+    }
 }
