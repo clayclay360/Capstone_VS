@@ -7,6 +7,13 @@ public class Ingredients : Item, ICollectable
     public enum CookingStatus { uncooked, cooked, spoiled, burnt };
     public CookingStatus cookingStatus;
 
+    [Header("Icons")]
+    public Sprite main;
+    public Sprite uncooked;
+    public Sprite cooked;
+    public Sprite spoiled;
+    public Sprite burnt;
+
     Dictionary<string, GameObject[]> needNume = new Dictionary<string, GameObject[]>(); // this variable needs a name
 
     public virtual void Collect(PlayerController player)

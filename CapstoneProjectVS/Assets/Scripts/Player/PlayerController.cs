@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,11 +23,32 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     [Header("Interaction")]
+    public Text interactionText;
     public bool canInteract;
     public bool canCollect;
     //Inventory
+    public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown };
+    public ItemInMainHand itemInMainHand;
     public Dictionary<int, Item> inventory = new Dictionary<int, Item>();
     private GameObject interactableObject;
+    [Header("Inventory")]
+    public Text Inv1;
+    public Text Inv2;
+
+    [Header("Icons")]
+    public Image[] Icon;
+    public Sprite EggIcon;
+    public Sprite BaconIcon;
+    public Sprite PanIcon;
+    public Sprite SpatulaIcon;
+    public Sprite HashBrownIcon;
+
+    [Header("Prefabs")]
+    public GameObject pan;
+    public GameObject spatula;
+    public GameObject egg;
+    public GameObject bacon;
+    public GameObject hashbrown;
 
     void Awake()
     {
@@ -37,10 +59,19 @@ public class PlayerController : MonoBehaviour
         inventory.Add(1, null);
     }
 
+    public void Update()
+    {
+        foreach(Image img in Icon)
+        {
+            img.GetComponent<Image>();
+        }
+    }
+
     #region movement
     void FixedUpdate()
     {
         PlayerMovement();
+        Icons();
     }
 
     //Collects input from the controller
@@ -120,6 +151,21 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.position = gameObject.transform.position + camOffset;
     }
     #endregion
+
+    public void Icons()
+    {
+        for(int i = 0; Icon.Length > i; i++)
+        {
+            if (inventory[i] != null)
+            {
+                switch (inventory[i])
+                {
+                    //case Ingredients.CookingStatus.uncooked;
+                    //    Icon[i].sprite = inventory[i].clea;
+                }
+            }
+        }
+    }
 
     public void OnInteract()
     {        
