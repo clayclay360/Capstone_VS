@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
-public class HashBrown : Item, ICollectable
+public class HashBrown : Ingredients, IInteractable
 {
-
     public HashBrown()
     {
-
+        Name = "HashBrown";
+        cookingStatus = CookingStatus.uncooked;
+        
     }
-     public override void Interact(Item itemInMainHand, PlayerController player)
+
+    public void Update()
+    {
+        GetState(cookingStatus);
+
+        
+    }
+    public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
@@ -40,6 +49,11 @@ public class HashBrown : Item, ICollectable
             //main hand is empty
             Collect(player);
         }
+    }
+
+    public void GetState(CookingStatus cookingStatus)
+    {
+
     }
 
     public void Collect(PlayerController player)

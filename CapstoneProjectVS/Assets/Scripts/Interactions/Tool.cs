@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Tool : Item, ICollectable
 {
+    public enum Status { clean, dirty}
+    public Status status;
+
     [Header("Variables")]
     public bool isDirty;
     public bool isHot;
@@ -13,6 +16,11 @@ public class Tool : Item, ICollectable
     [Header("Models")]
     public GameObject cleanModel;
     public GameObject dirtyModel;
+
+    [Header("Icons")]
+    public Sprite main;
+    public Sprite clean;
+    public Sprite dirty;
 
     public virtual void isDirtied()
     {
