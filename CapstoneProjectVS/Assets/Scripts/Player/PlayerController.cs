@@ -158,14 +158,17 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory[i] != null)
             {
-                switch (inventory[i])
+                switch (inventory[i].main)
                 {
-                    //case Ingredients.CookingStatus.uncooked;
-                    //    Icon[i].sprite = inventory[i].clea;
+                    default:
+                        Icon[i].sprite = inventory[i].main;
+                        break;
                 }
             }
         }
     }
+
+   
 
     public void OnInteract()
     {        

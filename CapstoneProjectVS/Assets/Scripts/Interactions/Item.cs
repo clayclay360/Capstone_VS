@@ -19,6 +19,15 @@ public class Item : MonoBehaviour, IInteractable
     public string Name;
     public bool canInteract;
 
+    [Header("Icons")]
+    public Sprite main;
+    //public Sprite clean;
+    //public Sprite dirty;
+    //public Sprite uncooked;
+    //public Sprite cooked;
+    //public Sprite burnt;
+    //public Sprite spoiled;
+
     public void Update()
     {
         CanInteract(canInteract);
@@ -30,5 +39,7 @@ public class Item : MonoBehaviour, IInteractable
         {
             GetComponent<Collider>().enabled = condition;
         }
+
+
     }
 }
