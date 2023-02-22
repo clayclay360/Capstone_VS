@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -494,7 +494,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20744
+  m_Name: pb_Mesh20752
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1259,27 +1259,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497871821}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &516629845 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-  m_PrefabInstance: {fileID: 2557686711724537349}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &516629846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516629845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 107f00baa63f68041a80f5db4793e57a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Egg
-  canInteract: 1
-  cookingStatus: 0
-  state: 0
 --- !u!1 &528264486
 GameObject:
   m_ObjectHideFlags: 0
@@ -7752,6 +7731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Spatula
   canInteract: 1
+  main: {fileID: 21300000, guid: 7e4a83e662e32d0438417f424b543562, type: 3}
+  status: 0
   isDirty: 0
   isHot: 0
   useBeforeDirty: 0
@@ -7759,6 +7740,8 @@ MonoBehaviour:
   containerSize: 0
   cleanModel: {fileID: 0}
   dirtyModel: {fileID: 0}
+  clean: {fileID: 21300000, guid: 355852363e81dd344a7d94437130b04a, type: 3}
+  dirty: {fileID: 21300000, guid: b7a54e67829b0964e826ceb9dd474695, type: 3}
 --- !u!1 &925612678
 GameObject:
   m_ObjectHideFlags: 0
@@ -8177,6 +8160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Pan
   canInteract: 1
+  main: {fileID: 21300000, guid: 2e52286bee8dd184781f26f3014d3669, type: 3}
+  status: 0
   isDirty: 0
   isHot: 0
   useBeforeDirty: 0
@@ -8184,6 +8169,9 @@ MonoBehaviour:
   containerSize: 1
   cleanModel: {fileID: 0}
   dirtyModel: {fileID: 0}
+  clean: {fileID: 21300000, guid: 490158298ade0ee4faa4c431930b4673, type: 3}
+  dirty: {fileID: 21300000, guid: efef6f7249c64544eb01ac1a4116e760, type: 3}
+  state: 0
 --- !u!4 &1141128693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4647432269454624999, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
@@ -9266,7 +9254,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20458
+  m_Name: pb_Mesh20464
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20616,22 +20604,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2557686710460750971, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2557686710460750971, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627609362790912808, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-      propertyPath: despawnTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627609362790912808, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-      propertyPath: selfReference
+    - target: {fileID: 516629846, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      propertyPath: main
       value: 
-      objectReference: {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      objectReference: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
+    - target: {fileID: 516629846, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      propertyPath: burnt
+      value: 
+      objectReference: {fileID: 21300000, guid: 796635796bafd864c9c2f27b810aefb9, type: 3}
+    - target: {fileID: 516629846, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      propertyPath: cooked
+      value: 
+      objectReference: {fileID: 21300000, guid: 9924d759f259d9a43a0ff1246af2f5d3, type: 3}
+    - target: {fileID: 516629846, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      propertyPath: spoiled
+      value: 
+      objectReference: {fileID: 21300000, guid: ded5ef5ad09b1f04886b700339d4dce5, type: 3}
+    - target: {fileID: 516629846, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      propertyPath: uncooked
+      value: 
+      objectReference: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
     - target: {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
       propertyPath: m_Name
       value: Egg
@@ -20680,9 +20672,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9193496973303149576, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-    - {fileID: 4627609362790912808, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
 --- !u!1001 &3807997087144990166
 PrefabInstance:

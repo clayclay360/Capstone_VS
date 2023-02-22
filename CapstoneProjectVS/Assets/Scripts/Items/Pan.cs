@@ -4,7 +4,8 @@ using UnityEngine;
 public class Pan : Tool
 {
     public Dictionary<int, Item> itemsInPan = new Dictionary<int, Item>();
-
+    public enum State { cold, hot}
+    public State state;
 
     public override void Interact(Item itemInMainHand, PlayerController player)
     {

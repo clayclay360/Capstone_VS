@@ -18,7 +18,7 @@ public class Tool : Item, ICollectable
     public GameObject dirtyModel;
 
     [Header("Icons")]
-    public Sprite main;
+    //public Sprite main;
     public Sprite clean;
     public Sprite dirty;
 
