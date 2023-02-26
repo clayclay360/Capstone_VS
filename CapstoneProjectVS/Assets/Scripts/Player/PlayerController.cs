@@ -168,6 +168,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void CheckInventory()
+    {
+        if (inventory[0] != null)
+        {
+            Inv1.text= inventory[0].name;
+        }
+        else
+        {
+            Inv1.text = "";
+        }
+
+        if (inventory[1] != null)
+        {
+            Inv2.text = inventory[1].name;
+        }
+        else
+        {
+            Inv2.text = "";
+        }
+    }
+
    
 
     public void OnInteract()
@@ -179,6 +200,7 @@ public class PlayerController : MonoBehaviour
             {
                 Item item = interactableObject.GetComponent<Item>();
                 item.Interact(inventory[0], this);
+                
             }
         }
     }
@@ -198,6 +220,7 @@ public class PlayerController : MonoBehaviour
                     //If the player's inventory isn't full then they can collect
                     canCollect = true;
                     interactableObject = other.gameObject;
+                    Inv1.text = inventory[0].Name;
                 }
             }
         }

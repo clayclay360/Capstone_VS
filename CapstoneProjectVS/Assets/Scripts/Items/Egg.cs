@@ -7,6 +7,11 @@ public class Egg : Ingredients, IInteractable
     public enum State { shell, omelet, scrambled};
     public State state;
 
+    public Egg()
+    {
+        Name = "Egg";
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
