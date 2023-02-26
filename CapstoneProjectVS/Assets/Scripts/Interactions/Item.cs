@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ICollectable
 {
-    public void Collect(PlayerController player);
+    public void Collect(PlayerController player = null, RatController rat = null);
 }
 
 public interface IInteractable

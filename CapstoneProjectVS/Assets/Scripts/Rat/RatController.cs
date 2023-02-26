@@ -14,7 +14,7 @@ public class RatController : MonoBehaviour
     public GameObject currTarget;
     public GameObject spawnHole; //where the rat spawned from
     private float distToPlayer;
-    private bool objectiveComplete = false;
+    public bool objectiveComplete = false;
 
     //Behavior
     public enum Braveness {Timid, Normal, Brave, Reckless};
@@ -39,7 +39,7 @@ public class RatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DistToPlayer();
+        //DistToPlayer();
         Movement();
     }
 
@@ -84,16 +84,27 @@ public class RatController : MonoBehaviour
         }
         else if (!objectiveComplete)
         {
-            if (Vector2.Distance(currTarget.transform.position, transform.position) <= 2.0f)
+            if (Vector2.Distance(currTarget.transform.position, transform.position) <= 0.625f)
             {
                 navAgent.isStopped = true;
-                AttackTarget();
+                //if (collidingObject)
+                //{
+                    AttackTarget();
+                //}
             }
 
         }
         //The rat despawns when close to the vent and has completed its objective
         else if (Vector3.Distance(spawnHole.transform.position, transform.position) <= 1.0f)//DESPAWN
         {
+            //check if the rat is holding an item
+            if(ratInventory != null)
+            {
+                //temporary
+                ratInventory.transform.position = transform.position;
+                ratInventory.SetActive(true);
+                ratInventory = null;
+            }
             Debug.Log("Destroying " + this);
             Destroy(gameObject);
         }
@@ -101,14 +112,30 @@ public class RatController : MonoBehaviour
 
     private void AttackTarget()
     {
-        //THIS IS ALL PLACEHOLDER
-        scareTimer += Time.deltaTime;
-        if (scareTimer >= scareTime)
+        //check if target is a utility
+        if(currTarget.GetComponent<IUtility>() != null)
         {
-            scareTimer = 0f;
-            navAgent.SetDestination(spawnHole.transform.position);
-            navAgent.isStopped = false;
+            Utilities interactionCheck = currTarget.GetComponent<Utilities>();
+            IUtility utility = currTarget.GetComponent<IUtility>();
+            //check if the rat can interact with this utility
+            if (interactionCheck.doesHaveRatInteraction)
+            {
+                utility.ratInteraction(this);
+                objectiveComplete = true;
+                currTarget = spawnHole;
+                navAgent.SetDestination(currTarget.transform.position);
+                navAgent.isStopped = false;
+            }
+        }
+        //check if target is a tool or ingredient
+        else if(currTarget.GetComponent<ICollectable>() != null)
+        {
+            ICollectable collectableItem = currTarget.GetComponent<ICollectable>();
+            collectableItem.Collect(null, this);
             objectiveComplete = true;
+            currTarget = spawnHole;
+            navAgent.SetDestination(currTarget.transform.position);
+            navAgent.isStopped = false;
         }
     }
 }

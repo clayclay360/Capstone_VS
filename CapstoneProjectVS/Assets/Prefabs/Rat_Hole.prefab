@@ -47,8 +47,10 @@ MonoBehaviour:
   rat: {fileID: 3925160640252809347, guid: c09f61a16260d2e44b7edc9407a3355d, type: 3}
   ratSpawnLoc: {fileID: 2444297263577614845}
   targetList:
-  - {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-  - {fileID: 2051176884005050769, guid: b1be64a2035c71a4e94c4d78d70aa61b, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerList: []
   spawnTimer: 0
   canSpawn: 1
