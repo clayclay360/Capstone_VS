@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Tool : Item, ICollectable
+public class Tool : Item, ICollectable, ICookable
 {
+
     public enum Status { clean, dirty}
+    [Header("Status")]
     public Status status;
 
     [Header("Variables")]
@@ -17,8 +20,7 @@ public class Tool : Item, ICollectable
     public GameObject cleanModel;
     public GameObject dirtyModel;
 
-    [Header("Icons")]
-    //public Sprite main;
+    [Header("Sprites")]
     public Sprite clean;
     public Sprite dirty;
 
@@ -61,5 +63,29 @@ public class Tool : Item, ICollectable
         gameObject.SetActive(false);
         Debug.Log("Inventory 1: " + player.inventory[0] + " Inventory 2: " + player.inventory[1]);
 
+    }
+
+    public void CookingCheck(GameObject cookingCheck, float cookTime)
+    {
+        // reset everything
+        cookingCheck.SetActive(true); // display cooking check
+        CookingCheckScript cookingCheckScript = cookingCheck.GetComponent<CookingCheckScript>(); // get cooking script
+        foreach (Image img in cookingCheckScript.img)
+        {
+            img.gameObject.SetActive(false); // disable check images
+        }
+        cookingCheckScript.progressSlider.value = 0; // value equal zero
+        StartCoroutine(Timer(cookTime, 0,0,cookingCheckScript.progressSlider));
+    }
+    public IEnumerator Timer(float cookTime, float progressMeter, float progressMeterMax, Slider progressSlider)
+    {
+        float deltaTime = Time.unscaledTime;
+
+        while (progressMeter < progressMeterMax)
+        {
+            progressMeter = (Time.unscaledTime - deltaTime) / cookTime;
+            progressSlider.value = progressMeter;
+            yield return null;
+        }
     }
 }

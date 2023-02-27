@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Egg : Ingredients, IInteractable
 {
-    public enum State { shell, omelet, scrambled};
+    public enum State {shell, yoked, omelet, scrambled};
+    
+    [Header("State")] 
     public State state;
+
+    [Header("Models")]
+    public GameObject shellModel;
+    public GameObject omeletModel;
+    public GameObject scrambledModel;
+    public GameObject yokedModel;
 
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
@@ -32,6 +40,25 @@ public class Egg : Ingredients, IInteractable
         {
             //main hand is empty
             Collect(player);
+        }
+    }
+
+    public virtual void SwitchModel(State currentState)
+    {
+        switch (currentState)
+        {
+            case State.yoked:
+                shellModel.SetActive(false);
+                yokedModel.SetActive(true);
+                break;
+            case State.omelet:
+                yokedModel.SetActive(false);
+                omeletModel.SetActive(true);
+                break;
+            case State.scrambled:
+                yokedModel.SetActive(false);
+                scrambledModel.SetActive(true);
+                break;
         }
     }
 }
