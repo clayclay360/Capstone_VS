@@ -10,7 +10,7 @@ public class RatController : MonoBehaviour
     public float speed;
     public NavMeshAgent navAgent;
 
-    public GameObject[] targetList;
+    public List<GameObject> targetList;
     public GameObject currTarget;
     public GameObject spawnHole; //where the rat spawned from
     private float distToPlayer;
@@ -40,6 +40,7 @@ public class RatController : MonoBehaviour
     void Update()
     {
         //DistToPlayer();
+        CheckTarget();
         Movement();
     }
 
@@ -51,22 +52,57 @@ public class RatController : MonoBehaviour
 
     private void AssignTarget()
     {
+        //Get target list from spawnhole
+        targetList.Clear();
+        targetList.AddRange(spawnHole.GetComponent<RatSpawn>().targetList);
         //Check that our list is valid
-        if (targetList.Length == 0)
+        if (targetList.Count == 0)
         {
             Debug.LogError("Rat target list is empty!");
             return;
         }
+        //Remove any items from the list that aren't valid targets
+        List<GameObject> removeList = new List<GameObject>();
+        foreach(GameObject target in targetList)
+        {
+            if(target.GetComponent<Item>() != null && !target.GetComponent<Item>().isValidTarget)
+            {
+                removeList.Add(target);
+            }
+            else if(target.GetComponent<Utilities>() != null && !target.GetComponent<Utilities>().isValidTarget)
+            {
+                removeList.Add(target);
+            }
+        }
+        foreach(GameObject item in removeList)
+        {
+            if (targetList.Contains(item))
+            {
+                targetList.Remove(item);
+            }
+        }
         //Assign a target from the target list
-        int randTargetNum = Random.Range(0, targetList.Length);
+        int randTargetNum = Random.Range(0, targetList.Count);
         currTarget = targetList[randTargetNum];
         navAgent.SetDestination(currTarget.transform.position);
         Debug.Log(currTarget);
 
     }
 
+    private void CheckTarget()
+    {
+        if (!objectiveComplete)
+        {
+            //if currTarget is not valid, assign new target
+            if (!currTarget.activeInHierarchy || (!currTarget.GetComponent<Item>().isValidTarget && !currTarget.GetComponent<Utilities>().isValidTarget))
+            {
+                AssignTarget();
+            }
+        }
+    }
+
     /// <summary>
-    /// Logic for rat m,ovement. If the rat is scared, it runs from its source of fear.
+    /// Logic for rat movement. If the rat is scared, it runs from its source of fear.
     /// If the rat has not completed its objective, it moves towards it.
     /// If the rat has completed its objective, it returns to its spawn hole and despawns.
     /// </summary>
@@ -87,10 +123,7 @@ public class RatController : MonoBehaviour
             if (Vector2.Distance(currTarget.transform.position, transform.position) <= 0.625f)
             {
                 navAgent.isStopped = true;
-                //if (collidingObject)
-                //{
-                    AttackTarget();
-                //}
+                AttackTarget();
             }
 
         }
@@ -103,6 +136,14 @@ public class RatController : MonoBehaviour
                 //temporary
                 ratInventory.transform.position = transform.position;
                 ratInventory.SetActive(true);
+                if (ratInventory.GetComponent<Ingredients>() != null)
+                {
+                    ratInventory.GetComponent<Ingredients>().isValidTarget = true;
+                }
+                else if (ratInventory.GetComponent<Tool>() != null)
+                {
+                    ratInventory.GetComponent<Tool>().isValidTarget = true;
+                }
                 ratInventory = null;
             }
             Debug.Log("Destroying " + this);
@@ -133,6 +174,16 @@ public class RatController : MonoBehaviour
             ICollectable collectableItem = currTarget.GetComponent<ICollectable>();
             collectableItem.Collect(null, this);
             objectiveComplete = true;
+            //set item to spoiled if ingredient
+            if(currTarget.GetComponent<Ingredients>() != null)
+            {
+                currTarget.GetComponent<Ingredients>().cookingStatus = Ingredients.CookingStatus.spoiled;
+            }
+            //set item to dirty if tool
+            else if (currTarget.GetComponent<Tool>() != null)
+            {
+                currTarget.GetComponent<Tool>().status = Tool.Status.dirty;
+            }
             currTarget = spawnHole;
             navAgent.SetDestination(currTarget.transform.position);
             navAgent.isStopped = false;

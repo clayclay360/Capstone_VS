@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: HashBrown
   canInteract: 1
+  isValidTarget: 1
   main: {fileID: 0}
   cookingStatus: 0
   uncooked: {fileID: 0}

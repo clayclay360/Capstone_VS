@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -477,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 707307500}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[4]
       value: 
@@ -7017,14 +7017,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1352716762, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
-      propertyPath: selfReference
-      value: 
-      objectReference: {fileID: 9031513021252998085, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
-    - target: {fileID: 2242809337484976740, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5626260943346204731, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -7085,9 +7077,7 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1352716762, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
-    - {fileID: 2242809337484976740, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
 --- !u!1001 &597165123
 PrefabInstance:
@@ -8023,6 +8013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Spatula
   canInteract: 1
+  isValidTarget: 1
   main: {fileID: 21300000, guid: 7e4a83e662e32d0438417f424b543562, type: 3}
   status: 0
   isDirty: 0
@@ -8309,18 +8300,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 849393840}
     m_Modifications:
-    - target: {fileID: 4647432269454624993, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
-      propertyPath: cookTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647432269454624993, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
-      propertyPath: overCookTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647432269454624993, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
-      propertyPath: selfReference
-      value: 
-      objectReference: {fileID: 4647432269454624998, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
     - target: {fileID: 4647432269454624998, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
       propertyPath: m_Name
       value: Pan
@@ -8472,6 +8451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Pan
   canInteract: 1
+  isValidTarget: 1
   main: {fileID: 21300000, guid: 2e52286bee8dd184781f26f3014d3669, type: 3}
   status: 0
   isDirty: 0
@@ -20282,8 +20262,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4647432269454624993, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
 --- !u!1 &1854599337
 GameObject:
@@ -21454,6 +21433,14 @@ PrefabInstance:
       propertyPath: uncooked
       value: 
       objectReference: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
+    - target: {fileID: 516629846, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516629846, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
+      propertyPath: isValidTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
       propertyPath: m_Name
       value: Egg

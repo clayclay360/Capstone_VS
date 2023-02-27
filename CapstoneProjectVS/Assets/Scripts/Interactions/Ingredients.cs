@@ -45,5 +45,6 @@ public class Ingredients : Item, ICollectable
             gameObject.SetActive(false);
             Debug.Log(rat.name + " collected: " + gameObject.name);
         }
+        isValidTarget = false;
     }
 }

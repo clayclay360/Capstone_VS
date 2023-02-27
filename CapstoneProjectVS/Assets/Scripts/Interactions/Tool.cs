@@ -73,5 +73,6 @@ public class Tool : Item, ICollectable
             gameObject.SetActive(false);
             Debug.Log(rat.name + " collected: " + gameObject.name);
         }
+        isValidTarget = false;
     }
 }

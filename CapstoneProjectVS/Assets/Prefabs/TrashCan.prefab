@@ -43,22 +43,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3832381486221213659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11b7c82a53ea7c14e952f6a81897f421, type: 3}
+  m_Script: {fileID: 11500000, guid: e59b395861475774bbb5cdbcafbb60c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 0
-  itemNeed: 0
-  itemGive: 0
-  Name: Trash Can
-  Height: 0
-  On: 0
-  Off: 0
-  Occupied: 0
-  Interaction: 
-  eggPrefab: {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-  spatulaPrefab: {fileID: 9031513021252998085, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
-  panPrefab: {fileID: 4647432269454624998, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
-  pr: {fileID: 5513519558026752523}
+  Name: 
+  canInteract: 1
+  doesHaveRatInteraction: 1
+  isValidTarget: 1
+  trashItem: {fileID: 0}
 --- !u!65 &21931889
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,7 +73,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 904301156118443745}
-  - component: {fileID: 5513519558026752523}
   m_Layer: 0
   m_Name: PrefabReferences
   m_TagString: Untagged
@@ -103,24 +94,6 @@ Transform:
   m_Father: {fileID: 841177211169960695}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5513519558026752523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062224765608073827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1cac9f87abaab74d9e4278f126669c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefabs:
-  - {fileID: 4647432269454624998, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
-  - {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
-  - {fileID: 2051176884005050769, guid: b1be64a2035c71a4e94c4d78d70aa61b, type: 3}
-  - {fileID: 9031513021252998085, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
-  - {fileID: 4110198402601966224, guid: bb1a6c702029d294597173b9f87700b0, type: 3}
 --- !u!1001 &5945746569363051711
 PrefabInstance:
   m_ObjectHideFlags: 0

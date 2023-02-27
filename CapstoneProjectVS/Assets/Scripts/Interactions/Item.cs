@@ -18,6 +18,7 @@ public class Item : MonoBehaviour, IInteractable
     [Header("Info")]
     public string Name;
     public bool canInteract;
+    public bool isValidTarget;
 
     [Header("Icons")]
     public Sprite main;

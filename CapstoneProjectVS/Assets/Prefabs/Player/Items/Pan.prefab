@@ -417,7 +417,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4647432269454624999}
   - component: {fileID: 4647432269454624992}
-  - component: {fileID: 4647432269454624993}
   m_Layer: 0
   m_Name: Pan
   m_TagString: Interactable
@@ -456,60 +455,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4647432269454624993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4647432269454624998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 897c29b110fd29243bb361588a6489a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Pan
-  Type: Tool
-  despawnTime: 0
-  status: 3
-  cleanSelf: {fileID: 8513058480441860697}
-  dirtySelf: {fileID: 2878929718374001812}
-  selfReference: {fileID: 4647432269454624998}
-  canRespawn: 1
-  startPosition: {x: 0, y: 0, z: 0}
-  startRotation: {x: 0, y: 0, z: 0, w: 0}
-  Occupied: 0
-  prone: 0
-  isActive: 0
-  isTarget: 0
-  Interaction: 
-  utilityItemIsOccupying: {fileID: 0}
-  toolItemIsOccupying: {fileID: 0}
-  usesUntilDirty: 0
-  currUses: 0
-  counterInUse: {fileID: 0}
-  canCheck: 1
-  progressSlider: {fileID: 4647432270931860574}
-  completeMark:
-  - {fileID: 4647432269923717153}
-  - {fileID: 4647432269052304603}
-  checkMark: {fileID: 21300000, guid: 1fe9d26d37e055b4db435b75952c8938, type: 3}
-  xMark: {fileID: 21300000, guid: 93ae138b5a3468f4b85090993673e481, type: 3}
-  cooking: 0
-  state: 0
-  cookTime: 0.0007
-  overCookTime: 0
-  cookOffset: 0.05
-  progressMeterMin: 0
-  progressMeterMax: 1
-  interactionMeterStart:
-  - 0.2
-  - 0.6
-  interactionMeterEnd:
-  - 0.4
-  - 0.8
-  placement: {fileID: 4647432269182586747}
-  foodInPan: {fileID: 0}
 --- !u!1 &4647432269516697575
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,11 +818,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b67370c927eee2144a98d0d1a04036bf, type: 3}
---- !u!1 &2878929718374001812 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1386106527838982754, guid: b67370c927eee2144a98d0d1a04036bf, type: 3}
-  m_PrefabInstance: {fileID: 3803417258211819254}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4908181857251285880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8130456090198730126, guid: b67370c927eee2144a98d0d1a04036bf, type: 3}
@@ -944,11 +884,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a72de402fcf795b4a84c8cd88e4220a2, type: 3}
---- !u!1 &8513058480441860697 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3916595192695765667, guid: a72de402fcf795b4a84c8cd88e4220a2, type: 3}
-  m_PrefabInstance: {fileID: 4647432270276139258}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6491837537980357995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1903154428872131985, guid: a72de402fcf795b4a84c8cd88e4220a2, type: 3}

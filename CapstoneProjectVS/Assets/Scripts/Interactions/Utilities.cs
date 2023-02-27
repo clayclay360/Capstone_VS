@@ -13,4 +13,5 @@ public class Utilities : MonoBehaviour
     public string Name;
     public bool canInteract;
     public bool doesHaveRatInteraction;
+    public bool isValidTarget;
 }

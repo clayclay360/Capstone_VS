@@ -91,9 +91,11 @@ public class Sink : Utilities, IUtility, IInteractable
         {
             if (!sinkInv[i])
             {
+                isValidTarget = true;
                 return false;
             }
         }
+        isValidTarget = false;
         return true;
     }
 
