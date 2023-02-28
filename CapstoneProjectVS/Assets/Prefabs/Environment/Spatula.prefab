@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5845323697461641057}
   - component: {fileID: 1352716761}
-  - component: {fileID: 1352716762}
-  - component: {fileID: 2242809337484976740}
   m_Layer: 0
   m_Name: Spatula
   m_TagString: Interactable
@@ -36,51 +34,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
 --- !u!135 &1352716761
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9031513021252998085}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.25, z: 0}
---- !u!114 &1352716762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9031513021252998085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f94828c46b344b4a8c4db2a13342d86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Spatula
-  Type: Tool
-  despawnTime: 0
-  status: 3
-  cleanSelf: {fileID: 5626260943346204731}
-  dirtySelf: {fileID: 4284445408655221864}
-  selfReference: {fileID: 9031513021252998085}
-  canRespawn: 1
-  startPosition: {x: 0, y: 0, z: 0}
-  startRotation: {x: 0, y: 0, z: 0, w: 0}
-  Occupied: 0
-  prone: 0
-  isActive: 0
-  isTarget: 0
-  Interaction: 
-  utilityItemIsOccupying: {fileID: 0}
-  toolItemIsOccupying: {fileID: 0}
-  usesUntilDirty: 0
-  currUses: 0
-  counterInUse: {fileID: 0}
---- !u!135 &2242809337484976740
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,11 +107,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec4e0157dd48aff46b35633ebf0852c8, type: 3}
---- !u!1 &5626260943346204731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec4e0157dd48aff46b35633ebf0852c8, type: 3}
-  m_PrefabInstance: {fileID: 4815781031082933610}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4998905599694363265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec4e0157dd48aff46b35633ebf0852c8, type: 3}
@@ -225,11 +173,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b5192908890fa49b9f5ff3468a354d, type: 3}
---- !u!1 &4284445408655221864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5580794868122233131, guid: b5b5192908890fa49b9f5ff3468a354d, type: 3}
-  m_PrefabInstance: {fileID: 8504941497279122755}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1802585043855215752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7999394279982170571, guid: b5b5192908890fa49b9f5ff3468a354d, type: 3}

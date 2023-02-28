@@ -10,7 +10,7 @@ public interface ICookable
 }
 public interface ICollectable
 {
-    public void Collect(PlayerController player);
+    public void Collect(PlayerController player = null, RatController rat = null);
 }
 
 public interface IInteractable
@@ -24,6 +24,7 @@ public class Item : MonoBehaviour, IInteractable
     [Header("Info")]
     public string Name;
     public bool canInteract;
+    public bool isValidTarget;
 
     [Header("Icons")]
     public Sprite main;

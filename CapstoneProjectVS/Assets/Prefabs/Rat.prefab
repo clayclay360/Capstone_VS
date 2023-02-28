@@ -46,14 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  ratHoleSpawn: {fileID: 0}
   navAgent: {fileID: 8485352049709398998}
   targetList: []
   currTarget: {fileID: 0}
+  spawnHole: {fileID: 0}
+  objectiveComplete: 0
   ratBraveness: 0
   scareDistance: 0
-  scareTimer: 0
+  scareTime: 0
   isScared: 0
+  health: 2
+  ratInventory: {fileID: 0}
+  closestPlayer: {fileID: 0}
 --- !u!195 &8485352049709398998
 NavMeshAgent:
   m_ObjectHideFlags: 0

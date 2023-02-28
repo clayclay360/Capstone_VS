@@ -6,7 +6,7 @@ public class RatSpawn : MonoBehaviour
 {
     public GameObject rat;
     public GameObject ratSpawnLoc;
-    public GameObject[] targetList;
+    public List<GameObject> targetList;
     public PlayerController[] playerList; //We'll add players to this list when they spawn
     private GameObject closestPlayer;
     private float distToPlayer;
@@ -37,7 +37,6 @@ public class RatSpawn : MonoBehaviour
         RatController ratScript = newRat.GetComponent<RatController>();
         ratScript.spawnHole = this.gameObject;
         AssignBraveness(ratScript);
-        AssignTargets(ratScript);
         Instantiate(newRat, ratSpawnLoc.transform.position, ratSpawnLoc.transform.rotation); 
     }
 
@@ -92,11 +91,6 @@ public class RatSpawn : MonoBehaviour
                 rat.ratBraveness = RatController.Braveness.Reckless;
                 break;
         }
-    }
-
-    public void AssignTargets(RatController rat)
-    {
-        rat.targetList = targetList;
     }
 
 }

@@ -8,8 +8,6 @@ public class HashBrown : Ingredients, IInteractable
     public HashBrown()
     {
         Name = "HashBrown";
-        cookingStatus = CookingStatus.uncooked;
-        
     }
 
     public void Update()

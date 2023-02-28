@@ -47,22 +47,35 @@ public class Tool : Item, ICollectable, ICookable
             cleanModel.SetActive(true);
         }
     }
-    public virtual void Collect(PlayerController player)
+    public virtual void Collect(PlayerController player = null, RatController rat = null)
     {
-        //check to see which inventory is empty
-        if (player.inventory[0] == null)
+        //check if player is trying to collect this item
+        if(player != null)
         {
-            player.inventory[0] = this;
+            //check to see which inventory is empty
+            if (player.inventory[0] == null)
+            {
+                player.inventory[0] = this;
+            }
+            else
+            {
+                player.inventory[1] = this;
+            }
+
+            //temporary
+            gameObject.SetActive(false);
+            Debug.Log("Inventory 1: " + player.inventory[0] + " Inventory 2: " + player.inventory[1]);
         }
-        else
+        //check if rat is trying to collect this item
+        else if(rat != null)
         {
-            player.inventory[1] = this;
+            rat.ratInventory = gameObject;
+
+            //temporary
+            gameObject.SetActive(false);
+            Debug.Log(rat.name + " collected: " + gameObject.name);
         }
-
-        //temporary
-        gameObject.SetActive(false);
-        Debug.Log("Inventory 1: " + player.inventory[0] + " Inventory 2: " + player.inventory[1]);
-
+        isValidTarget = false;
     }
 
     public void CookingCheck(GameObject cookingCheck, float cookTime)
