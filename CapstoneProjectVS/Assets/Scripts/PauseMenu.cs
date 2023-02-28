@@ -16,9 +16,6 @@ public class PauseMenu : MonoBehaviour
 
 
     public GameObject pauseMenuUI;
-    public GameObject divider;
-
-
     public static bool GameIsPaused = false;
 
 
@@ -29,7 +26,6 @@ public class PauseMenu : MonoBehaviour
         selectedButt = 0;
         axisLocked = false;
 
-
     }
 
 
@@ -38,18 +34,13 @@ public class PauseMenu : MonoBehaviour
     {
         if (gamepad.startButton.isPressed)
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Paused();
-                //CheckControls();
-            }
+            Paused();
         }
-
-
+        else
+        {
+            Resume();
+        }
+       
     }
 
 
@@ -113,20 +104,25 @@ public class PauseMenu : MonoBehaviour
 
     public void Paused()
     {
-        GameIsPaused = true;
-        Time.timeScale = 0;
-        CheckControls();
-        pauseMenuUI.SetActive(true);
-        divider.SetActive(false);
+        if (!GameIsPaused)
+        {
+            Time.timeScale = 0f;
+            GameIsPaused = true;
+            CheckControls();
+            pauseMenuUI.SetActive(true);
+        }
+       
     }
 
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1;
-        GameIsPaused = false;
-        divider.SetActive(true);
+        if(GameIsPaused)
+        {
+            Time.timeScale = 1f;
+            GameIsPaused = false;
+            pauseMenuUI.SetActive(false);
+        }
     }
 
 

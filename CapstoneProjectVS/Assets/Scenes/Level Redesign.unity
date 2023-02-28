@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -553,7 +553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00012207, y: 159.32}
+  m_AnchoredPosition: {x: -973, y: 348}
   m_SizeDelta: {x: 385.527, y: 159.318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236886362
@@ -644,7 +644,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21326
+  m_Name: pb_Mesh21300
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8145,7 +8145,6 @@ MonoBehaviour:
   quitButt: {fileID: 1727586780}
   howToPlayQuitButt: {fileID: 0}
   pauseMenuUI: {fileID: 1675623041}
-  divider: {fileID: 528264486}
 --- !u!1 &941259635
 GameObject:
   m_ObjectHideFlags: 0
@@ -9557,7 +9556,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21032
+  m_Name: pb_Mesh20954
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10147,7 +10146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -972.99994, y: 188.67993}
   m_SizeDelta: {x: 385.527, y: 159.318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1653719052
@@ -10562,7 +10561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -159.32}
+  m_AnchoredPosition: {x: -972.99994, y: 29.359924}
   m_SizeDelta: {x: 385.527, y: 159.318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1727586780
