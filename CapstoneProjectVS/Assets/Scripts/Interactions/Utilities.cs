@@ -7,11 +7,9 @@ public interface IUtility
 {
     public void ratInteraction(RatController rat);
 }
-public class Utilities : MonoBehaviour
-{
-    [Header("Info")]
-    public string Name;
-    public bool canInteract;
+public class Utilities : Item
+{ 
+    [Header("Rat Interaction")]
     public bool doesHaveRatInteraction;
     public bool isValidTarget;
 }

@@ -8,7 +8,6 @@ public class Ingredients : Item, ICollectable
     public CookingStatus cookingStatus;
 
     [Header("Icons")]
-    //public Sprite main;
     public Sprite uncooked;
     public Sprite cooked;
     public Sprite spoiled;

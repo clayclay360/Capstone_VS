@@ -1,7 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+public interface ICookable
+{
+    public void CookingCheck(GameObject cookingCheck, float cookTime);
+    IEnumerator Timer(float cookTime, float procressMeter, float maxProcressMeter, Slider progressSlider);
+}
 public interface ICollectable
 {
     public void Collect(PlayerController player = null, RatController rat = null);
@@ -22,12 +28,6 @@ public class Item : MonoBehaviour, IInteractable
 
     [Header("Icons")]
     public Sprite main;
-    //public Sprite clean;
-    //public Sprite dirty;
-    //public Sprite uncooked;
-    //public Sprite cooked;
-    //public Sprite burnt;
-    //public Sprite spoiled;
 
     public void Update()
     {
@@ -40,7 +40,5 @@ public class Item : MonoBehaviour, IInteractable
         {
             GetComponent<Collider>().enabled = condition;
         }
-
-
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,10 @@ public class Pan : Tool
 {
     public Dictionary<int, Item> itemsInPan = new Dictionary<int, Item>();
     public enum State { cold, hot}
+    [Header("State")]
     public State state;
+    [Header("CookingCheck")]
+    public GameObject cookingCheck;
 
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
@@ -33,9 +37,11 @@ public class Pan : Tool
                 {
                     itemsInPan.Add(itemsInPan.Count, egg); // add egg in the pan inventory.
                     egg.transform.position = transform.position; // put egg on pan
-                    egg.transform.parent = transform;
+                    egg.transform.parent = transform; // have the pan be the parent of egg
                     egg.gameObject.SetActive(true); // display pan
                     egg.canInteract = false; // egg can't not be interacted
+                    egg.state = Egg.State.yoked; // change state
+                    egg.SwitchModel(Egg.State.yoked); // change model
                     player.inventory[0] = null; // item in main hand is null
                 }
             }
