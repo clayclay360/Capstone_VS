@@ -145,7 +145,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a74567a9980e14ba3b5ce4292d2021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img:
+  cookTime: 4
+  progressMeter: 0
+  progressMeterMin: 0
+  progressMeterMax: 1
+  interactionMeterStart:
+  - 0.2
+  - 0.6
+  interactionMeterEnd:
+  - 0.4
+  - 0.8
+  checkMark: {fileID: 21300000, guid: 1fe9d26d37e055b4db435b75952c8938, type: 3}
+  xMark: {fileID: 21300000, guid: 93ae138b5a3468f4b85090993673e481, type: 3}
+  spatula: {fileID: 21300000, guid: 18dd58a0021180a46abeb11072fafdd5, type: 3}
+  completeMark:
   - {fileID: 2116500727}
   - {fileID: 1472665090}
   progressSlider: {fileID: 451011035}
@@ -8512,7 +8525,6 @@ MonoBehaviour:
   dirtyModel: {fileID: 0}
   clean: {fileID: 21300000, guid: 490158298ade0ee4faa4c431930b4673, type: 3}
   dirty: {fileID: 21300000, guid: efef6f7249c64544eb01ac1a4116e760, type: 3}
-  state: 0
   cookingCheck: {fileID: 63919102}
 --- !u!4 &1141128693 stripped
 Transform:
@@ -20310,7 +20322,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4647432269173726667, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4647432269173726667, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
       propertyPath: m_AnchorMax.y
@@ -20365,12 +20377,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4647432269516697575, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
+      propertyPath: m_Name
+      value: CookingCheck
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647432269516697575, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4647432270931860572, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647432270931860574, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
+      propertyPath: m_Value
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}

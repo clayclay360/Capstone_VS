@@ -64,7 +64,6 @@ public class Tool : Item, ICollectable, ICookable
 
             //temporary
             gameObject.SetActive(false);
-            Debug.Log("Inventory 1: " + player.inventory[0] + " Inventory 2: " + player.inventory[1]);
         }
         //check if rat is trying to collect this item
         else if(rat != null)
@@ -83,22 +82,6 @@ public class Tool : Item, ICollectable, ICookable
         // reset everything
         cookingCheck.SetActive(true); // display cooking check
         CookingCheckScript cookingCheckScript = cookingCheck.GetComponent<CookingCheckScript>(); // get cooking script
-        foreach (Image img in cookingCheckScript.img)
-        {
-            img.gameObject.SetActive(false); // disable check images
-        }
-        cookingCheckScript.progressSlider.value = 0; // value equal zero
-        StartCoroutine(Timer(cookTime, 0,0,cookingCheckScript.progressSlider));
-    }
-    public IEnumerator Timer(float cookTime, float progressMeter, float progressMeterMax, Slider progressSlider)
-    {
-        float deltaTime = Time.unscaledTime;
-
-        while (progressMeter < progressMeterMax)
-        {
-            progressMeter = (Time.unscaledTime - deltaTime) / cookTime;
-            progressSlider.value = progressMeter;
-            yield return null;
-        }
+        cookingCheckScript.StartCooking();
     }
 }
