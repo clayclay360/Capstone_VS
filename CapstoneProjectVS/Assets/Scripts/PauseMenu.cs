@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 public class PauseMenu : MonoBehaviour
 {
     [Header("Controls")]
-    public const int PASBUTTNUM = 3; //Total number of menu buttons
-    public Button howToPlayButt, menuButt, quitButt, howToPlayQuitButt;
+    public const int PASBUTTNUM = 4; //Total number of menu buttons
+    public Button howToPlayButt, menuButt, quitButt, howToPlayQuitButt, resumeButt;
     private int selectedButt;
     private Gamepad gamepad;
     private bool axisLocked, controlMenuIsUp;
@@ -35,12 +35,7 @@ public class PauseMenu : MonoBehaviour
         if (gamepad.startButton.isPressed)
         {
             Paused();
-        }
-        else
-        {
-            Resume();
-        }
-       
+        }   
     }
 
 
@@ -89,7 +84,7 @@ public class PauseMenu : MonoBehaviour
         //Evoke the selected button if the controller button was pressed
         if (gamepad.buttonWest.wasPressedThisFrame)
         {
-            Button[] buttons = { menuButt, howToPlayButt, quitButt };
+            Button[] buttons = { menuButt, howToPlayButt, quitButt, resumeButt };
             buttons[selectedButt].onClick.Invoke();
             if (buttons[selectedButt] == howToPlayButt) //Sets state for controls menu
             {
@@ -104,25 +99,21 @@ public class PauseMenu : MonoBehaviour
 
     public void Paused()
     {
-        if (!GameIsPaused)
-        {
-            Time.timeScale = 0f;
+            Time.timeScale = 0;
             GameIsPaused = true;
             CheckControls();
             pauseMenuUI.SetActive(true);
-        }
        
     }
 
 
     public void Resume()
     {
-        if(GameIsPaused)
-        {
-            Time.timeScale = 1f;
+        
+            Time.timeScale = 1;
             GameIsPaused = false;
             pauseMenuUI.SetActive(false);
-        }
+        
     }
 
 
