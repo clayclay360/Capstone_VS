@@ -32,8 +32,6 @@ public class Ingredients : Item, ICollectable
 
             //temporary
             gameObject.SetActive(false);
-            Debug.Log("Inventory 1: " + player.inventory[0] + " Inventory 2: " + player.inventory[1]);
-
         }
         //check if a rat is trying to collect this item
         else if(rat != null)

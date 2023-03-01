@@ -53,6 +53,15 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchHand"",
+                    ""type"": ""Button"",
+                    ""id"": ""b22f517e-dc23-472c-b81c-10515f093759"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +185,28 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3811dd38-1d21-43ca-bbef-4c1e80ad66bf"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fb56d6e-fca8-412b-b8eb-058e8b41ba5a"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +230,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS_Move = m_PlayerControlsVS.FindAction("Move", throwIfNotFound: true);
         m_PlayerControlsVS_Look = m_PlayerControlsVS.FindAction("Look", throwIfNotFound: true);
         m_PlayerControlsVS_Interact = m_PlayerControlsVS.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerControlsVS_SwitchHand = m_PlayerControlsVS.FindAction("SwitchHand", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -261,6 +293,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControlsVS_Move;
     private readonly InputAction m_PlayerControlsVS_Look;
     private readonly InputAction m_PlayerControlsVS_Interact;
+    private readonly InputAction m_PlayerControlsVS_SwitchHand;
     public struct PlayerControlsVSActions
     {
         private @ControlsVS m_Wrapper;
@@ -268,6 +301,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerControlsVS_Move;
         public InputAction @Look => m_Wrapper.m_PlayerControlsVS_Look;
         public InputAction @Interact => m_Wrapper.m_PlayerControlsVS_Interact;
+        public InputAction @SwitchHand => m_Wrapper.m_PlayerControlsVS_SwitchHand;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControlsVS; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -286,6 +320,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
+                @SwitchHand.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
+                @SwitchHand.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
+                @SwitchHand.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
             }
             m_Wrapper.m_PlayerControlsVSActionsCallbackInterface = instance;
             if (instance != null)
@@ -299,6 +336,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @SwitchHand.started += instance.OnSwitchHand;
+                @SwitchHand.performed += instance.OnSwitchHand;
+                @SwitchHand.canceled += instance.OnSwitchHand;
             }
         }
     }
@@ -317,5 +357,6 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSwitchHand(InputAction.CallbackContext context);
     }
 }

@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
         inventory.Add(0, null);
         inventory.Add(1, null);
+        inventory.Add(2, null); // this is just for the player to be able to switch hand
     }
 
     public void Update()
@@ -189,7 +190,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+    //switch hands
+   public void OnSwitchHand()
+    {
+        Debug.Log("Inventory 1: " + inventory[0] + " Inventory 2: " + inventory[1]);
+        inventory[2] = inventory[0];
+        inventory[0] = inventory[1];
+        inventory[1] = inventory[2];
+    }
 
     public void OnInteract()
     {        
@@ -220,7 +228,7 @@ public class PlayerController : MonoBehaviour
                     //If the player's inventory isn't full then they can collect
                     canCollect = true;
                     interactableObject = other.gameObject;
-                    Inv1.text = inventory[0].Name;
+                    //Inv1.text = inventory[0].Name; // this is giving an error
                 }
             }
         }

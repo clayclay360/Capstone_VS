@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public interface ICookable
 {
     public void CookingCheck(GameObject cookingCheck, float cookTime);
-    IEnumerator Timer(float cookTime, float procressMeter, float maxProcressMeter, Slider progressSlider);
 }
 public interface ICollectable
 {

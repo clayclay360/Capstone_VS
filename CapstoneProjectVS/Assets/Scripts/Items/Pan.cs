@@ -5,9 +5,7 @@ using UnityEngine;
 public class Pan : Tool
 {
     public Dictionary<int, Item> itemsInPan = new Dictionary<int, Item>();
-    public enum State { cold, hot}
-    [Header("State")]
-    public State state;
+
     [Header("CookingCheck")]
     public GameObject cookingCheck;
 
@@ -28,7 +26,8 @@ public class Pan : Tool
                 //if Pan is not empty and is hot
                 if (itemsInPan.Count > 0 && isHot)
                 {
-
+                    Debug.Log("Sptula Used");
+                    cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
                 }
                 else
                 {
@@ -49,6 +48,11 @@ public class Pan : Tool
                     egg.state = Egg.State.yoked; // change state
                     egg.SwitchModel(Egg.State.yoked); // change model
                     player.inventory[0] = null; // item in main hand is null
+
+                    if (isHot)
+                    {
+                        CookingCheck(cookingCheck, 2); // start cooking // the cook time is 2 temporary
+                    }
                 }
             }
             else
