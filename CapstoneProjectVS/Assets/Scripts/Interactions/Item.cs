@@ -29,6 +29,8 @@ public class Item : MonoBehaviour, IInteractable
     [Header("Icons")]
     public Sprite main;
 
+    [HideInInspector]public string Interaction;
+
     public void Update()
     {
         CanInteract(canInteract);
