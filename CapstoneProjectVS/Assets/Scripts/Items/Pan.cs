@@ -11,6 +11,12 @@ public class Pan : Tool
     [Header("CookingCheck")]
     public GameObject cookingCheck;
 
+    public Pan()
+    {
+        Name = "Pan";
+        Interaction = "";
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand

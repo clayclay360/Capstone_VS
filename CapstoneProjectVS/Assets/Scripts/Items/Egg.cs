@@ -13,6 +13,12 @@ public class Egg : Ingredients, IInteractable
     public GameObject omeletModel;
     public GameObject scrambledModel;
     public GameObject yokedModel;
+
+    public Egg() 
+    {
+        Name = "Egg";
+        Interaction = "";
+    }
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand

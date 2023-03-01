@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Spatula : Tool
 {
+
+    public Spatula()
+    {
+        Name = "Spatula";
+        Interaction = "";
+    }
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
