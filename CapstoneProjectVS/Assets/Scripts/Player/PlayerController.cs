@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
     {
         if (inventory[0] != null)
         {
-            Inv1.text= inventory[0].name;
+            Inv1.text = inventory[0].name;
         }
         else
         {
@@ -228,7 +228,6 @@ public class PlayerController : MonoBehaviour
                     //If the player's inventory isn't full then they can collect
                     canCollect = true;
                     interactableObject = other.gameObject;
-                    //Inv1.text = inventory[0].Name; // this is giving an error
                 }
             }
         }
