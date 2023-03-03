@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public interface ICookable
 {
-    public void CookingCheck(GameObject cookingCheck, float cookTime);
+    public void CookingCheck(GameObject cookingCheck, float cookTime, Ingredients food);
 }
 public interface ICollectable
 {
