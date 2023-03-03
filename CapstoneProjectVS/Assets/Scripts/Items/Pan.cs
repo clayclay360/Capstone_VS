@@ -9,6 +9,8 @@ public class Pan : Tool
     [Header("CookingCheck")]
     public GameObject cookingCheck;
 
+    Egg egg;
+
     public Pan()
     {
         Name = "Pan";
@@ -36,7 +38,7 @@ public class Pan : Tool
             }
             else if(itemInMainHand.GetComponent<Egg>() != null)
             {
-                Egg egg = itemInMainHand.GetComponent<Egg>();
+                egg = itemInMainHand.GetComponent<Egg>();
 
                 if (itemsInPan.Count <= containerSize && egg.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and egg is not cooked
                 {
@@ -66,6 +68,15 @@ public class Pan : Tool
         {
             //main hand is empty
             Collect(player);
+        }
+    }
+
+    public void ChangeModelInPan()
+    {
+        if (itemsInPan.ContainsKey(0))
+        {
+            egg.state = Egg.State.omelet;
+            egg.SwitchModel(Egg.State.omelet);
         }
     }
 }

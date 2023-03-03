@@ -22,12 +22,15 @@ public class CookingCheckScript : MonoBehaviour
     private bool[] interactionAttemptReady;
     private enum Attempt { None, Failed, Completed };
     private Attempt[] attempt;
+    public GameObject panGO;
+    Pan panScript;
 
     private void Start()
     {
         attempt = new Attempt[interactionMeterEnd.Length];
         attempt[0] = Attempt.None;
         attempt[1] = Attempt.None;
+        panScript = panGO.GetComponent<Pan>();
     }
 
     public void ResetAttempts()
@@ -150,6 +153,7 @@ public class CookingCheckScript : MonoBehaviour
             yield return null;
         }
         progressSlider.gameObject.SetActive(false);
+        panScript.ChangeModelInPan();
         
         //cooking = false;
         //foodInPan.status = Status.cooked;
