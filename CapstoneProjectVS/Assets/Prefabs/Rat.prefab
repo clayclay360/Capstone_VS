@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 563883126387145933}
   - component: {fileID: 4345932197575402835}
   - component: {fileID: 8485352049709398998}
+  - component: {fileID: 2424608925886815708}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Untagged
@@ -58,6 +59,7 @@ MonoBehaviour:
   health: 2
   ratInventory: {fileID: 0}
   closestPlayer: {fileID: 0}
+  outline: {fileID: 2424608925886815708}
 --- !u!195 &8485352049709398998
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -80,6 +82,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2424608925886815708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925160640252809347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &7207575748676122511
 PrefabInstance:
   m_ObjectHideFlags: 0

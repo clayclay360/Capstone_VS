@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [Header("Animator")]
     public Animator animator;
 
+    [Header("Highlight")]
+    private Color highlightColor;
+
     [Header("Interaction")]
     public Text interactionText;
     public bool canInteract;
@@ -58,6 +61,8 @@ public class PlayerController : MonoBehaviour
         inventory.Add(0, null);
         inventory.Add(1, null);
         inventory.Add(2, null); // this is just for the player to be able to switch hand
+
+        AssignHighlightColor();
     }
 
     public void Update()
@@ -221,6 +226,14 @@ public class PlayerController : MonoBehaviour
             canInteract = true;
             interactableObject = other.gameObject;
 
+            //Change highlight of the object to the player color
+            if (other.TryGetComponent<Outline>(out Outline ol))
+            {
+                ol.enabled = true;
+                ol.OutlineColor = highlightColor;
+                ol.OutlineWidth = 3f;
+            }
+
             if(other.gameObject.GetComponent<ICollectable>() != null)
             {
                 if (inventory.Count >= 2)
@@ -240,6 +253,29 @@ public class PlayerController : MonoBehaviour
         {
             canInteract = false;
             interactableObject = null;
+
+            if (other.TryGetComponent<Outline>(out _))
+            {
+                other.GetComponent<Item>().ResetHighlight();
+            }
         }
+
+        
+    }
+
+    private void AssignHighlightColor()
+    {
+        //Player 1
+        if (GameManager.numberOfPlayers == 1)
+        {
+            highlightColor = Color.blue;
+        }
+        //Player 2
+        else if (GameManager.numberOfPlayers == 2)
+        {
+            highlightColor = Color.green;
+        }
+        else { Debug.Log($"Something is wrong with GameManager.numberOfPlayers! It is not 1 or 2, but {GameManager.numberOfPlayers}."); }
+        
     }
 }

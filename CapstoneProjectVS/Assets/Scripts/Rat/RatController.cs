@@ -30,6 +30,9 @@ public class RatController : MonoBehaviour
     //Dictionary<GameObject, bool> currActiveTargets;
     public GameObject closestPlayer;
 
+    //Outline
+    [SerializeField] private Outline outline;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -189,4 +192,21 @@ public class RatController : MonoBehaviour
             navAgent.isStopped = false;
         }
     }
+
+    private void UpdateOutline()
+    {
+        if (ratInventory != null)
+        {
+            outline.OutlineColor = Color.red;
+            outline.OutlineWidth = 3f;
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+        }
+        else
+        {
+            outline.OutlineColor = Color.black;
+            outline.OutlineWidth = 1f;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
+    }
+
 }
