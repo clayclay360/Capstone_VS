@@ -8,7 +8,6 @@ public class Pan : Tool
 
     [Header("CookingCheck")]
     public GameObject cookingCheck;
-
     public Pan()
     {
         Name = "Pan";
@@ -23,8 +22,8 @@ public class Pan : Tool
             //if spatula is in main hand
             if(itemInMainHand.GetComponent<Spatula>() != null)
             {
-                //if Pan is not empty and is hot
-                if (itemsInPan.Count > 0 && isHot)
+                //if the ingredient in the pan is cooking
+                if (itemsInPan[0].GetComponent<Ingredients>().isCooking)
                 {
                     Debug.Log("Sptula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
@@ -51,7 +50,7 @@ public class Pan : Tool
 
                     if (isHot)
                     {
-                        CookingCheck(cookingCheck, 2); // start cooking // the cook time is 2 temporary
+                        //CookingCheck(cookingCheck, 2); // start cooking // the cook time is 2 temporary
                     }
                 }
             }

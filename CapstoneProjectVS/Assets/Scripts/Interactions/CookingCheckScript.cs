@@ -18,6 +18,8 @@ public class CookingCheckScript : MonoBehaviour
     public Image[] completeMark;
     public Slider progressSlider;
 
+    public Ingredients food { get; set; }
+
     private int interactionIndex = 0;
     private bool[] interactionAttemptReady;
     private enum Attempt { None, Failed, Completed };
@@ -150,11 +152,12 @@ public class CookingCheckScript : MonoBehaviour
             yield return null;
         }
         progressSlider.gameObject.SetActive(false);
+        food.isCooking = false;
         
         //cooking = false;
         //foodInPan.status = Status.cooked;
 
-        ////CHeck if the player failed all attempts if so, food is burnt
+        ////Check if the player failed all attempts if so, food is burnt
         //for (int i = 0; i < attempt.Length; i++)
         //{
         //    if (attempt[i] == Attempt.Completed)

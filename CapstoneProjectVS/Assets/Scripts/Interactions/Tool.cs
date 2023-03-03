@@ -77,11 +77,12 @@ public class Tool : Item, ICollectable, ICookable
         isValidTarget = false;
     }
 
-    public void CookingCheck(GameObject cookingCheck, float cookTime)
+    public void CookingCheck(GameObject cookingCheck, float cookTime, Ingredients food)
     {
         // reset everything
         cookingCheck.SetActive(true); // display cooking check
         CookingCheckScript cookingCheckScript = cookingCheck.GetComponent<CookingCheckScript>(); // get cooking script
+        cookingCheckScript.food = food;
         cookingCheckScript.StartCooking();
     }
 }
