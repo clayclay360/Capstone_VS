@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public Text interactionText;
     public bool canInteract;
     public bool canCollect;
+    public bool isInteracting;
     //Inventory
     public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown };
     public ItemInMainHand itemInMainHand;
@@ -77,6 +78,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         PlayerMovement();
+        CheckInventory();
+        //GetNameInMain();
         Icons();
     }
 
@@ -205,7 +208,15 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnInteract()
-    {        
+    {
+        if (canInteract)
+        {
+            isInteracting = true;
+        }
+        else
+        {
+            isInteracting = false;
+        }
         //check if the player is near a interactable object
         if (interactableObject != null)
         {
@@ -225,6 +236,8 @@ public class PlayerController : MonoBehaviour
         {
             canInteract = true;
             interactableObject = other.gameObject;
+            other.gameObject.GetComponent<Item>().CheckHand(itemInMainHand, this);
+            interactionText.text = other.gameObject.GetComponent<Item>().Interaction;
 
             //Change highlight of the object to the player color
             if (other.TryGetComponent<Outline>(out Outline ol))
@@ -241,6 +254,7 @@ public class PlayerController : MonoBehaviour
                     //If the player's inventory isn't full then they can collect
                     canCollect = true;
                     interactableObject = other.gameObject;
+                    interactionText.text = other.gameObject.GetComponent<Item>().Interaction;
                 }
             }
         }
