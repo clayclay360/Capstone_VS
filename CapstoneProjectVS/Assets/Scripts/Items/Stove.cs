@@ -22,6 +22,7 @@ public class Stove : Utilities
                 pan.itemsInPan[0].GetComponent<Ingredients>().isCooking = true; // food is cooking
                 player.inventory[0] = null; // item in main hand is null
                 canInteract = false;
+                isValidTarget = true;
 
                 if (pan.itemsInPan.Count > 0)
                 {

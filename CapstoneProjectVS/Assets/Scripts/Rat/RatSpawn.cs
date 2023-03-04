@@ -91,6 +91,7 @@ public class RatSpawn : MonoBehaviour
                 rat.ratBraveness = RatController.Braveness.Reckless;
                 break;
         }
+        
     }
 
 }

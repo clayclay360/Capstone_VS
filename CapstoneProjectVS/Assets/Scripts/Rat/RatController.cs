@@ -23,6 +23,7 @@ public class RatController : MonoBehaviour
     public float scareTime; //The actual time for how long the rat is scared
     private float scareTimer; //The incrementing timer for the rats
     public bool isScared;
+    public GameObject scareObject; //The object that is scaring the rat
     
 
     public int health = 2;
@@ -42,7 +43,7 @@ public class RatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //DistToPlayer();
+        DistToPlayer();
         CheckTarget();
         Movement();
     }
@@ -50,7 +51,15 @@ public class RatController : MonoBehaviour
     public void DistToPlayer()
     {
         closestPlayer = GameObject.Find("PlayerControler");
-        distToPlayer = Vector3.Distance(closestPlayer.transform.position, transform.position);
+        if(closestPlayer != null)
+        {
+            distToPlayer = Vector3.Distance(closestPlayer.transform.position, transform.position);
+            if(distToPlayer <= scareDistance)
+            {
+                isScared = true;
+                scareObject = closestPlayer;
+            }
+        }
     }
 
     private void AssignTarget()
@@ -101,6 +110,34 @@ public class RatController : MonoBehaviour
             {
                 AssignTarget();
             }
+            //if target is valid and rat is not scared, make sure rat is moving towards target
+            else if (!isScared)
+            {
+                navAgent.SetDestination(currTarget.transform.position);
+            }
+        }
+    }
+
+    public void SetBraveness(Braveness braveness)
+    {
+        switch (braveness)
+        {
+            case (Braveness.Timid):
+                scareDistance = 4;
+                scareTime = 20;
+                break;
+            case (Braveness.Normal):
+                scareDistance = 2;
+                scareTime = 10;
+                break;
+            case (Braveness.Brave):
+                scareDistance = 1;
+                scareTime = 5;
+                break;
+            case (Braveness.Reckless):
+                scareDistance = 0;
+                scareTime = 0;
+                break;
         }
     }
 
@@ -113,7 +150,15 @@ public class RatController : MonoBehaviour
     {
         if (isScared)
         {
-            navAgent.enabled = false; //We will make the rats move away from the closest player/source of fear
+            Vector3 dirToScareObject = (transform.position - scareObject.transform.position).normalized; //Get the direction to the source of fear
+            Vector3 newDestination = transform.position + dirToScareObject; //Find a point in the opposite direction
+            if(!NavMesh.SamplePosition(newDestination, out NavMeshHit hit, 0, NavMesh.AllAreas)) //Check if the point is within the NavMesh
+            {
+                //if it's not
+                NavMesh.SamplePosition(newDestination, out NavMeshHit hit1, 10, NavMesh.AllAreas);
+                newDestination = hit1.position; //Find the closest point that's on the navmesh
+            }
+            navAgent.SetDestination(newDestination); //Make the rat go to that point
             scareTimer += Time.deltaTime;
             if (scareTimer >= scareTime)
             {
