@@ -42,6 +42,57 @@ public class HashBrown : Ingredients, IInteractable
         }
     }
 
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player) 
+    {
+        switch (item)
+        {
+            case PlayerController.ItemInMainHand.empty:
+                Interaction = "Grab Potato";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.pan:
+                Interaction = "Grab Potato";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.spatula:
+                Interaction = "Grab Potato";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.egg:
+                Interaction = "Grab Potato";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.bacon:
+                Interaction = "Grab Potato";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+        }
+    }
 
     //public void Collect(PlayerController player)
     //{

@@ -16,6 +16,8 @@ public interface IInteractable
 {
     public void Interact(Item item, PlayerController player);
     public void CanInteract(bool condition);
+
+    public void CheckHand(PlayerController.ItemInMainHand item, PlayerController player);
 }
 
 public class Item : MonoBehaviour, IInteractable
@@ -44,7 +46,7 @@ public class Item : MonoBehaviour, IInteractable
 
     }
 
-
+    public virtual void CheckHand(PlayerController.ItemInMainHand item, PlayerController player) { }
 
     public virtual void Interact(Item item, PlayerController player){}
     public virtual void CanInteract(bool condition)
