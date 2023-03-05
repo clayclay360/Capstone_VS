@@ -54,6 +54,7 @@ MonoBehaviour:
   objectiveComplete: 0
   ratBraveness: 0
   scareDistance: 0
+  scareIgnoreDistance: 0
   scareTime: 0
   isScared: 0
   scareObject: {fileID: 0}
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 1
+  outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
