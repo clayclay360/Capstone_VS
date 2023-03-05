@@ -19,7 +19,8 @@ public class RatController : MonoBehaviour
     //Behavior
     public enum Braveness {Timid, Normal, Brave, Reckless};
     public Braveness ratBraveness;
-    public float scareDistance;
+    public float scareDistance; //How close an object has to be to the rat to scare it
+    public float scareIgnoreDistance;  //How close the rat has to be to its destination to ignore something that's scaring it
     public float scareTime; //The actual time for how long the rat is scared
     private float scareTimer; //The incrementing timer for the rats
     public bool isScared;
@@ -123,8 +124,8 @@ public class RatController : MonoBehaviour
         switch (braveness)
         {
             case (Braveness.Timid):
-                scareDistance = 4;
-                scareTime = 20;
+                scareDistance = 3;
+                scareTime = 15;
                 break;
             case (Braveness.Normal):
                 scareDistance = 2;
@@ -150,15 +151,15 @@ public class RatController : MonoBehaviour
     {
         if (isScared)
         {
-            Vector3 dirToScareObject = (transform.position - scareObject.transform.position).normalized; //Get the direction to the source of fear
-            Vector3 newDestination = transform.position + dirToScareObject; //Find a point in the opposite direction
-            if(!NavMesh.SamplePosition(newDestination, out NavMeshHit hit, 0, NavMesh.AllAreas)) //Check if the point is within the NavMesh
+            //temporary
+            if(navAgent.destination == currTarget.transform.position || Vector3.Distance(navAgent.destination, transform.position) < 0.1)  //if the rat hasn't already abandoned its target or has reached its destination
             {
-                //if it's not
-                NavMesh.SamplePosition(newDestination, out NavMeshHit hit1, 10, NavMesh.AllAreas);
-                newDestination = hit1.position; //Find the closest point that's on the navmesh
+                Vector3 randomPoint = Random.insideUnitSphere * 10; //Get a random point within a 10 unit sphere of the rat
+                Vector3 newDestination = transform.position + randomPoint; //Add the random point to the rat's curret position
+                NavMesh.SamplePosition(newDestination, out NavMeshHit hit, 10, NavMesh.AllAreas); //Find the closest point on the navmesh to the new destination
+                newDestination = hit.position; //set the rat's new destination to that point
+                navAgent.SetDestination(newDestination); //Make the rat go to the new destination
             }
-            navAgent.SetDestination(newDestination); //Make the rat go to that point
             scareTimer += Time.deltaTime;
             if (scareTimer >= scareTime)
             {
