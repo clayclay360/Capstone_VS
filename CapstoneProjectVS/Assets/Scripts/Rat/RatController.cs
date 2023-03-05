@@ -250,7 +250,7 @@ public class RatController : MonoBehaviour
         else
         {
             outline.OutlineColor = Color.black;
-            outline.OutlineWidth = 1f;
+            outline.OutlineWidth = 2f;
             outline.OutlineMode = Outline.Mode.OutlineVisible;
         }
     }
