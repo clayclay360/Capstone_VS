@@ -523,6 +523,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+--- !u!1 &155064528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1707365726603931764, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+  m_PrefabInstance: {fileID: 155064527}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &181771156
 GameObject:
   m_ObjectHideFlags: 0
@@ -9816,6 +9821,11 @@ PrefabInstance:
       objectReference: {fileID: 707307500}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+--- !u!1 &1413942881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1707365726603931764, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+  m_PrefabInstance: {fileID: 1413942880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1436518257
 Mesh:
   m_ObjectHideFlags: 0
@@ -10882,6 +10892,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputManager: {fileID: 1709128253}
+  spawnHoles:
+  - {fileID: 1413942881}
+  - {fileID: 155064528}
 --- !u!1 &1727586778
 GameObject:
   m_ObjectHideFlags: 0

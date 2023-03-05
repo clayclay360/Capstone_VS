@@ -30,6 +30,7 @@ public class RatController : MonoBehaviour
     public int health = 2;
     public GameObject ratInventory;
     //Dictionary<GameObject, bool> currActiveTargets;
+    public List<GameObject> playerList;
     public GameObject closestPlayer;
 
     //Outline
@@ -44,17 +45,35 @@ public class RatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckPlayers();
         DistToPlayer();
         CheckTarget();
         Movement();
     }
 
+    public void CheckPlayers()
+    {
+        RatSpawn spawnScript = spawnHole.GetComponent<RatSpawn>();
+        if(playerList != spawnScript.playerList)
+        {
+            playerList.Clear();
+            playerList.AddRange(spawnScript.playerList);
+        }
+    }
+
     public void DistToPlayer()
     {
-        closestPlayer = GameObject.Find("PlayerControler");
-        if(closestPlayer != null)
+        if(playerList.Count != 0)
         {
-            distToPlayer = Vector3.Distance(closestPlayer.transform.position, transform.position);
+            distToPlayer = 100;
+            foreach(GameObject player in playerList)
+            {
+                if(Vector3.Distance(player.transform.position, transform.position) < distToPlayer)
+                {
+                    closestPlayer = player;
+                    distToPlayer = Vector3.Distance(player.transform.position, transform.position);
+                }
+            }
             if(distToPlayer <= scareDistance)
             {
                 isScared = true;

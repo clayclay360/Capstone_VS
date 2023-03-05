@@ -64,6 +64,12 @@ public class PlayerController : MonoBehaviour
         inventory.Add(2, null); // this is just for the player to be able to switch hand
 
         AssignHighlightColor();
+
+        RatSpawn[] holeList = FindObjectsOfType<RatSpawn>();
+        foreach(RatSpawn hole in holeList)
+        {
+            hole.playerList.Add(gameObject);
+        }
     }
 
     public void Update()
