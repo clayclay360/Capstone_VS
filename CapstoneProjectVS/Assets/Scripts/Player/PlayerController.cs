@@ -30,6 +30,14 @@ public class PlayerController : MonoBehaviour
     public bool canInteract;
     public bool canCollect;
     public bool isInteracting;
+
+    [Header("Knife Throw")]
+    public GameObject knifePrefab;
+    public Transform knifeSpawnTransform;
+    public float power;
+    public float throwCooldown;
+    public bool readyToThrow;
+
     //Inventory
     public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown };
     public ItemInMainHand itemInMainHand;
@@ -296,6 +304,34 @@ public class PlayerController : MonoBehaviour
             highlightColor = Color.green;
         }
         else { Debug.Log($"Something is wrong with GameManager.numberOfPlayers! It is not 1 or 2, but {GameManager.numberOfPlayers}."); }
-        
+
     }
+
+    public void OnKnifeThrow()
+    {
+        if ((inventory[0] == null || inventory[1] == null) && readyToThrow)
+        {
+            readyToThrow = false;
+
+            // instantiate object to throw
+            GameObject projectile = Instantiate(knifePrefab, knifeSpawnTransform.position, transform.rotation);
+
+            // get rigidbody component
+            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+            // calculate direction
+            KnifeScript kscript = projectile.GetComponent<KnifeScript>();
+
+            kscript.forward = transform.forward;
+
+            // implement throwCooldown
+            Invoke("ResetThrow", throwCooldown);
+        }
+    }
+
+    public void ResetThrow()
+    {
+        readyToThrow = true;
+    }
+
 }

@@ -953,6 +953,36 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1481934586716005025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2879450013449916220}
+  m_Layer: 2
+  m_Name: KnifeSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2879450013449916220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481934586716005025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.958, z: 0.408}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8313516844159529846}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1579462260310649435
 GameObject:
   m_ObjectHideFlags: 0
@@ -3311,6 +3341,7 @@ Transform:
   m_Children:
   - {fileID: 1375695163305785195}
   - {fileID: 803261266131530165}
+  - {fileID: 2879450013449916220}
   m_Father: {fileID: 6666133080602006406}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3333,6 +3364,11 @@ MonoBehaviour:
   canInteract: 0
   canCollect: 0
   isInteracting: 0
+  knifePrefab: {fileID: 432155490203820227, guid: 1421fc372dd76bb4c9a94f63854079a6, type: 3}
+  knifeSpawnTransform: {fileID: 2879450013449916220}
+  power: 0
+  throwCooldown: 0.5
+  readyToThrow: 1
   itemInMainHand: 0
   Inv1: {fileID: 6908257094897905726}
   Inv2: {fileID: 500344026017519532}
@@ -3349,9 +3385,6 @@ MonoBehaviour:
   egg: {fileID: 9193496973303149577, guid: 4b6cea0282efc264eb14a07d727cd304, type: 3}
   bacon: {fileID: 0}
   hashbrown: {fileID: 0}
-  spawnHoles:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &8313516844159529844
 MonoBehaviour:
   m_ObjectHideFlags: 0
