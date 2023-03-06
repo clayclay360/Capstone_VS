@@ -19,16 +19,22 @@ public class RatController : MonoBehaviour
     //Behavior
     public enum Braveness {Timid, Normal, Brave, Reckless};
     public Braveness ratBraveness;
-    public float scareDistance;
+    public float scareDistance; //How close an object has to be to the rat to scare it
+    public float scareIgnoreDistance;  //How close the rat has to be to its destination to ignore something that's scaring it
     public float scareTime; //The actual time for how long the rat is scared
     private float scareTimer; //The incrementing timer for the rats
     public bool isScared;
+    public GameObject scareObject; //The object that is scaring the rat
     
 
     public int health = 2;
     public GameObject ratInventory;
     //Dictionary<GameObject, bool> currActiveTargets;
+    public List<GameObject> playerList;
     public GameObject closestPlayer;
+
+    //Outline
+    [SerializeField] private Outline outline;
 
     // Start is called before the first frame update
     void Start()
@@ -39,15 +45,41 @@ public class RatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //DistToPlayer();
+        CheckPlayers();
+        DistToPlayer();
         CheckTarget();
         Movement();
     }
 
+    public void CheckPlayers()
+    {
+        RatSpawn spawnScript = spawnHole.GetComponent<RatSpawn>();
+        if(playerList != spawnScript.playerList)
+        {
+            playerList.Clear();
+            playerList.AddRange(spawnScript.playerList);
+        }
+    }
+
     public void DistToPlayer()
     {
-        closestPlayer = GameObject.Find("PlayerControler");
-        distToPlayer = Vector3.Distance(closestPlayer.transform.position, transform.position);
+        if(playerList.Count != 0)
+        {
+            distToPlayer = 100;
+            foreach(GameObject player in playerList)
+            {
+                if(Vector3.Distance(player.transform.position, transform.position) < distToPlayer)
+                {
+                    closestPlayer = player;
+                    distToPlayer = Vector3.Distance(player.transform.position, transform.position);
+                }
+            }
+            if(distToPlayer <= scareDistance)
+            {
+                isScared = true;
+                scareObject = closestPlayer;
+            }
+        }
     }
 
     private void AssignTarget()
@@ -98,6 +130,34 @@ public class RatController : MonoBehaviour
             {
                 AssignTarget();
             }
+            //if target is valid and rat is not scared, make sure rat is moving towards target
+            else if (!isScared)
+            {
+                navAgent.SetDestination(currTarget.transform.position);
+            }
+        }
+    }
+
+    public void SetBraveness(Braveness braveness)
+    {
+        switch (braveness)
+        {
+            case (Braveness.Timid):
+                scareDistance = 3;
+                scareTime = 15;
+                break;
+            case (Braveness.Normal):
+                scareDistance = 2;
+                scareTime = 10;
+                break;
+            case (Braveness.Brave):
+                scareDistance = 1;
+                scareTime = 5;
+                break;
+            case (Braveness.Reckless):
+                scareDistance = 0;
+                scareTime = 0;
+                break;
         }
     }
 
@@ -110,7 +170,15 @@ public class RatController : MonoBehaviour
     {
         if (isScared)
         {
-            navAgent.enabled = false; //We will make the rats move away from the closest player/source of fear
+            //temporary
+            if(navAgent.destination == currTarget.transform.position || Vector3.Distance(navAgent.destination, transform.position) < 0.1)  //if the rat hasn't already abandoned its target or has reached its destination
+            {
+                Vector3 randomPoint = Random.insideUnitSphere * 10; //Get a random point within a 10 unit sphere of the rat
+                Vector3 newDestination = transform.position + randomPoint; //Add the random point to the rat's curret position
+                NavMesh.SamplePosition(newDestination, out NavMeshHit hit, 10, NavMesh.AllAreas); //Find the closest point on the navmesh to the new destination
+                newDestination = hit.position; //set the rat's new destination to that point
+                navAgent.SetDestination(newDestination); //Make the rat go to the new destination
+            }
             scareTimer += Time.deltaTime;
             if (scareTimer >= scareTime)
             {
@@ -189,4 +257,21 @@ public class RatController : MonoBehaviour
             navAgent.isStopped = false;
         }
     }
+
+    private void UpdateOutline()
+    {
+        if (ratInventory != null)
+        {
+            outline.OutlineColor = Color.red;
+            outline.OutlineWidth = 3f;
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+        }
+        else
+        {
+            outline.OutlineColor = Color.black;
+            outline.OutlineWidth = 2f;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+        }
+    }
+
 }

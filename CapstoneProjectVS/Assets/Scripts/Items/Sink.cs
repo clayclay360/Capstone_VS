@@ -7,7 +7,7 @@ public class Sink : Utilities, IUtility, IInteractable
     private Tool dishBeingCleaned;
     public Tool[] sinkInv = { null, null, null };
     //private bool[] isInvSlotEmpty = { true, true, true };
-    public void Interact(Item item, PlayerController player)
+    public override void Interact(Item item, PlayerController player)
     {
         //Pick up item
         if (item == null)
@@ -115,7 +115,7 @@ public class Sink : Utilities, IUtility, IInteractable
         }
     }
 
-    public void CanInteract(bool condition)
+    public override void CanInteract(bool condition)
     {
         throw new System.NotImplementedException();
     }
