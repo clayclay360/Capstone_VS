@@ -62,6 +62,15 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KnifeThrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""9130cc36-9e10-41f6-be86-f4b7356e9118"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -207,6 +216,17 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce0274a2-59d5-4f8c-9f34-24c807b4c210"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KnifeThrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -231,6 +251,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS_Look = m_PlayerControlsVS.FindAction("Look", throwIfNotFound: true);
         m_PlayerControlsVS_Interact = m_PlayerControlsVS.FindAction("Interact", throwIfNotFound: true);
         m_PlayerControlsVS_SwitchHand = m_PlayerControlsVS.FindAction("SwitchHand", throwIfNotFound: true);
+        m_PlayerControlsVS_KnifeThrow = m_PlayerControlsVS.FindAction("KnifeThrow", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -294,6 +315,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControlsVS_Look;
     private readonly InputAction m_PlayerControlsVS_Interact;
     private readonly InputAction m_PlayerControlsVS_SwitchHand;
+    private readonly InputAction m_PlayerControlsVS_KnifeThrow;
     public struct PlayerControlsVSActions
     {
         private @ControlsVS m_Wrapper;
@@ -302,6 +324,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_PlayerControlsVS_Look;
         public InputAction @Interact => m_Wrapper.m_PlayerControlsVS_Interact;
         public InputAction @SwitchHand => m_Wrapper.m_PlayerControlsVS_SwitchHand;
+        public InputAction @KnifeThrow => m_Wrapper.m_PlayerControlsVS_KnifeThrow;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControlsVS; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -323,6 +346,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @SwitchHand.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
                 @SwitchHand.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
                 @SwitchHand.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
+                @KnifeThrow.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnKnifeThrow;
+                @KnifeThrow.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnKnifeThrow;
+                @KnifeThrow.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnKnifeThrow;
             }
             m_Wrapper.m_PlayerControlsVSActionsCallbackInterface = instance;
             if (instance != null)
@@ -339,6 +365,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @SwitchHand.started += instance.OnSwitchHand;
                 @SwitchHand.performed += instance.OnSwitchHand;
                 @SwitchHand.canceled += instance.OnSwitchHand;
+                @KnifeThrow.started += instance.OnKnifeThrow;
+                @KnifeThrow.performed += instance.OnKnifeThrow;
+                @KnifeThrow.canceled += instance.OnKnifeThrow;
             }
         }
     }
@@ -358,5 +387,6 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnSwitchHand(InputAction.CallbackContext context);
+        void OnKnifeThrow(InputAction.CallbackContext context);
     }
 }

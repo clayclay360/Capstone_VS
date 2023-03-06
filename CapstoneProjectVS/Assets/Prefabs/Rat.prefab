@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4345932197575402835}
   - component: {fileID: 8485352049709398998}
   - component: {fileID: 2424608925886815708}
+  - component: {fileID: 7899704245700478181}
   m_Layer: 0
   m_Name: Rat
   m_TagString: Untagged
@@ -60,6 +61,7 @@ MonoBehaviour:
   scareObject: {fileID: 0}
   health: 2
   ratInventory: {fileID: 0}
+  playerList: []
   closestPlayer: {fileID: 0}
   outline: {fileID: 2424608925886815708}
 --- !u!195 &8485352049709398998
@@ -102,6 +104,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!65 &7899704245700478181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925160640252809347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35217562, y: 0.40239304, z: 0.69378245}
+  m_Center: {x: -0.03242354, y: 0.29880348, z: 0.019894794}
 --- !u!1001 &7207575748676122511
 PrefabInstance:
   m_ObjectHideFlags: 0

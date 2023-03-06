@@ -57,14 +57,19 @@ public class Pan : Tool
             else
             {
                 //second hand is empty
-                Collect(player);
-                Debug.Log("Pan is here");
+                if (!itemsInPan[0].GetComponent<Ingredients>().isCooking)
+                {
+                    Collect(player);
+                }
             }
         }
         else
         {
             //main hand is empty
-            Collect(player);
+            if (!itemsInPan[0].GetComponent<Ingredients>().isCooking)
+            {
+                Collect(player);
+            }
         }
     }
 }
