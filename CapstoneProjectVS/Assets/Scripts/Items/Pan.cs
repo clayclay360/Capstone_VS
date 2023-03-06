@@ -11,6 +11,7 @@ public class Pan : Tool
 
     Egg egg;
     Toast toast;
+    HashBrown hashBrown;
 
     public Pan()
     {
@@ -76,7 +77,29 @@ public class Pan : Tool
                 {
                     CookingCheck(cookingCheck, 2, toast); // start cooking // the cook time is 2 temporary
                 }
+
             }
+            else if (itemInMainHand.GetComponent<HashBrown>() != null)
+            {
+                hashBrown = itemInMainHand.GetComponent<HashBrown>();
+
+                if(itemsInPan.Count <= containerSize && hashBrown.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and hashbornw is not cooked
+                {
+                    itemsInPan.Add(itemsInPan.Count, hashBrown); // adde hashbrown to pan inventory
+                    hashBrown.transform.position = transform.position; // put hashbrown on pan
+                    hashBrown.transform.parent = transform; // make hashbrown child of pan
+                    toast.gameObject.SetActive(true); // display hashbrown
+                    hashBrown.canInteract = false; // make hashbrown uninteractable
+                    player.inventory[0] = null; // item in main hand null
+                }
+
+                if (isHot)
+                {
+                    CookingCheck(cookingCheck, 2, hashBrown); // start cooking // the cook time is 2 temporary
+                }
+            }
+           
+
             else
             {
                 //second hand is empty
