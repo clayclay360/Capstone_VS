@@ -153,7 +153,13 @@ public class CookingCheckScript : MonoBehaviour
             yield return null;
         }
         progressSlider.gameObject.SetActive(false);
-        panScript.ChangeModelInPan();
+        if (interactionIndex == 0)
+        {
+            panScript.ChangeModelInPan(true);
+        } else if (interactionIndex > 0)
+        {
+            panScript.ChangeModelInPan(false);
+        }
         
         //cooking = false;
         //foodInPan.status = Status.cooked;

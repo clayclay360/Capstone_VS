@@ -13,15 +13,22 @@ public class Toast : Ingredients, IInteractable
     public GameObject toastModel;
 
     // Start is called before the first frame update
-    void Start()
+    public Toast()
     {
-
+        Name = "Toast";
+        Interaction = "";
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (canInteract == false)
+        {
+            GetComponent<Collider>().enabled = false;
+        } else
+        {
+            GetComponent<Collider>().enabled = true;
+        }
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)
