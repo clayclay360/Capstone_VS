@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public bool readyToThrow;
 
     //Inventory
-    public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown };
+    public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown, toast };
     public ItemInMainHand itemInMainHand;
     public Dictionary<int, Item> inventory = new Dictionary<int, Item>();
     private GameObject interactableObject;

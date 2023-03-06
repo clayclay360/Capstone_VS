@@ -18,18 +18,19 @@ public class CookingCheckScript : MonoBehaviour
     public Image[] completeMark;
     public Slider progressSlider;
 
-    public Ingredients food { get; set; }
-
     private int interactionIndex = 0;
     private bool[] interactionAttemptReady;
     private enum Attempt { None, Failed, Completed };
     private Attempt[] attempt;
+    public GameObject panGO;
+    Pan panScript;
 
     private void Start()
     {
         attempt = new Attempt[interactionMeterEnd.Length];
         attempt[0] = Attempt.None;
         attempt[1] = Attempt.None;
+        panScript = panGO.GetComponent<Pan>();
     }
 
     public void ResetAttempts()
@@ -152,12 +153,18 @@ public class CookingCheckScript : MonoBehaviour
             yield return null;
         }
         progressSlider.gameObject.SetActive(false);
-        food.isCooking = false;
+        if (interactionIndex == 0)
+        {
+            panScript.ChangeModelInPan(true);
+        } else if (interactionIndex > 0)
+        {
+            panScript.ChangeModelInPan(false);
+        }
         
         //cooking = false;
         //foodInPan.status = Status.cooked;
 
-        ////Check if the player failed all attempts if so, food is burnt
+        ////CHeck if the player failed all attempts if so, food is burnt
         //for (int i = 0; i < attempt.Length; i++)
         //{
         //    if (attempt[i] == Attempt.Completed)

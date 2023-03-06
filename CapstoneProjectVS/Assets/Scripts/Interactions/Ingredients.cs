@@ -45,4 +45,14 @@ public class Ingredients : Item, ICollectable
         }
         isValidTarget = false;
     }
+
+    public void ChangeToCooked()
+    {
+        cookingStatus = CookingStatus.cooked;
+    }
+
+    public void ChangeToBurnt()
+    {
+        cookingStatus = CookingStatus.burnt;
+    }
 }

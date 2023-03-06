@@ -8,6 +8,10 @@ public class Pan : Tool
 
     [Header("CookingCheck")]
     public GameObject cookingCheck;
+
+    Egg egg;
+    Toast toast;
+
     public Pan()
     {
         Name = "Pan";
@@ -22,8 +26,8 @@ public class Pan : Tool
             //if spatula is in main hand
             if(itemInMainHand.GetComponent<Spatula>() != null)
             {
-                //if the ingredient in the pan is cooking
-                if (itemsInPan[0].GetComponent<Ingredients>().isCooking)
+                //if Pan is not empty and is hot
+                if (itemsInPan.Count > 0 && isHot)
                 {
                     Debug.Log("Sptula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
@@ -35,7 +39,7 @@ public class Pan : Tool
             }
             else if(itemInMainHand.GetComponent<Egg>() != null)
             {
-                Egg egg = itemInMainHand.GetComponent<Egg>();
+                egg = itemInMainHand.GetComponent<Egg>();
 
                 if (itemsInPan.Count <= containerSize && egg.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and egg is not cooked
                 {
@@ -50,8 +54,27 @@ public class Pan : Tool
 
                     if (isHot)
                     {
-                        //CookingCheck(cookingCheck, 2); // start cooking // the cook time is 2 temporary
+                        CookingCheck(cookingCheck, 2, egg); // start cooking // the cook time is 2 temporary
                     }
+                }
+            }
+            else if(itemInMainHand.GetComponent<Toast>() != null)
+            {
+                toast = itemInMainHand.GetComponent<Toast>();
+
+                if (itemsInPan.Count <= containerSize && toast.cookingStatus == Ingredients.CookingStatus.uncooked)// if pan is not full and toast is not toasted
+                {
+                    itemsInPan.Add(itemsInPan.Count, toast); // add toast to pan inventory
+                    toast.transform.position = transform.position; // put toast on pan
+                    toast.transform.parent = transform; // make toast child of pan
+                    toast.gameObject.SetActive(true); // display toast
+                    toast.canInteract = false; // make toast uninteractable
+                    player.inventory[0] = null; // item in main hand null
+                }
+
+                if (isHot)
+                {
+                    CookingCheck(cookingCheck, 2, toast); // start cooking // the cook time is 2 temporary
                 }
             }
             else
@@ -69,6 +92,39 @@ public class Pan : Tool
             if (!itemsInPan[0].GetComponent<Ingredients>().isCooking)
             {
                 Collect(player);
+            }
+        }
+    }
+
+    public void ChangeModelInPan(bool isBurnt)
+    {
+        if (isBurnt) //if isBurnt is true, make cookingStatus burnt
+        {
+            if (itemsInPan[0] == egg) //if the pan contains the egg gameobject, change the state and model to omelet
+            {
+                egg.state = Egg.State.omelet;
+                egg.SwitchModel(Egg.State.omelet);
+                egg.ChangeToBurnt();
+            }
+            else if (itemsInPan[0] == toast) //if the pan contains the toast gameobject, change the state and model to toasted
+            {
+                toast.state = Toast.State.toasted;
+                toast.ChangeToBurnt();
+                //toast.SwitchModel(Toast.State.toasted);
+            }
+        } else //if isBurnt is false, make cookingStatus cooked
+        {
+            if (itemsInPan[0] == egg) //if the pan contains the egg gameobject, change the state and model to omelet
+            {
+                egg.state = Egg.State.omelet;
+                egg.SwitchModel(Egg.State.omelet);
+                egg.ChangeToCooked();
+            }
+            else if (itemsInPan[0] == toast) //if the pan contains the toast gameobject, change the state and model to toasted
+            {
+                toast.state = Toast.State.toasted;
+                toast.ChangeToCooked();
+                //toast.SwitchModel(Toast.State.toasted);
             }
         }
     }
