@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class HashBrown : Ingredients, IInteractable
 {
+    
     public HashBrown()
     {
         Name = "HashBrown";
@@ -18,25 +20,21 @@ public class HashBrown : Ingredients, IInteractable
             //if spatula is in main hand
             if (itemInMainHand.GetComponent<Spatula>() != null)
             {
-                Interaction = "Grab Potato";
                 Collect(player);
             }
             //if pan is in main hand
             else if(itemInMainHand.GetComponent<Pan>() != null)
             {
-                Interaction = "Grab Potato";
                 Collect(player);
             }
             else
             {
-                Interaction = "Grab Potato";
                 //second hand is empty
                 Collect(player);
             }
         }
         else
         {
-            Interaction = "Grab Potato";
             //main hand is empty
             Collect(player);
         }
@@ -93,6 +91,11 @@ public class HashBrown : Ingredients, IInteractable
                 break;
         }
     }
+
+    //public virtual void SwitchModel(State currentState)
+    //{
+
+    //}
 
     //public void Collect(PlayerController player)
     //{
