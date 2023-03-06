@@ -54,7 +54,7 @@ public class Pan : Tool
 
                     if (isHot)
                     {
-                        CookingCheck(cookingCheck, 2); // start cooking // the cook time is 2 temporary
+                        CookingCheck(cookingCheck, 2, egg); // start cooking // the cook time is 2 temporary
                     }
                 }
             }
@@ -70,6 +70,11 @@ public class Pan : Tool
                     toast.gameObject.SetActive(true); // display toast
                     toast.canInteract = false; // make toast uninteractable
                     player.inventory[0] = null; // item in main hand null
+                }
+
+                if (isHot)
+                {
+                    CookingCheck(cookingCheck, 2, toast); // start cooking // the cook time is 2 temporary
                 }
             }
             else
@@ -95,7 +100,6 @@ public class Pan : Tool
                 egg.state = Egg.State.omelet;
                 egg.SwitchModel(Egg.State.omelet);
                 egg.ChangeToBurnt();
-                Debug.Log(egg.cookingStatus);
             }
             else if (itemsInPan[0] == toast) //if the pan contains the toast gameobject, change the state and model to toasted
             {
@@ -110,7 +114,6 @@ public class Pan : Tool
                 egg.state = Egg.State.omelet;
                 egg.SwitchModel(Egg.State.omelet);
                 egg.ChangeToCooked();
-                Debug.Log(egg.cookingStatus);
             }
             else if (itemsInPan[0] == toast) //if the pan contains the toast gameobject, change the state and model to toasted
             {

@@ -82,7 +82,7 @@ public class Tool : Item, ICollectable, ICookable
         // reset everything
         cookingCheck.SetActive(true); // display cooking check
         CookingCheckScript cookingCheckScript = cookingCheck.GetComponent<CookingCheckScript>(); // get cooking script
-        cookingCheckScript.food = food;
+        //cookingCheckScript.food = food.GetComponent<Ingredients>();
         cookingCheckScript.StartCooking();
     }
 }
