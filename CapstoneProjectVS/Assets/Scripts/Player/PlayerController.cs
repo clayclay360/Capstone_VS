@@ -188,6 +188,10 @@ public class PlayerController : MonoBehaviour
                         break;
                 }
             }
+            else
+            {
+                Icon[i].sprite = null;
+            }
         }
     }
 
