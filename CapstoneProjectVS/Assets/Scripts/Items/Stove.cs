@@ -19,7 +19,6 @@ public class Stove : Utilities
                 pan.transform.parent = transform; // make pan child of stove
                 pan.gameObject.SetActive(true); // activate pan
                 pan.isHot = true; // pan is hot
-                pan.itemsInPan[0].GetComponent<Ingredients>().isCooking = true; // food is cooking
                 player.inventory[0] = null; // item in main hand is null
                 canInteract = false;
                 isValidTarget = true;
@@ -29,6 +28,7 @@ public class Stove : Utilities
                     if(pan.itemsInPan[0].GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.cooked)
                     {
                         pan.CookingCheck(pan.cookingCheck, 2, pan.itemsInPan[0].GetComponent<Ingredients>()); // start cooking check // the cook time is 2 temporary
+                        pan.itemsInPan[0].GetComponent<Ingredients>().isCooking = true; // food is cooking
                     }
                 }
             }

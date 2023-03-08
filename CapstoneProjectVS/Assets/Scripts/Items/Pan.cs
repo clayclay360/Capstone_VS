@@ -98,12 +98,10 @@ public class Pan : Tool
                     CookingCheck(cookingCheck, 2, hashBrown); // start cooking // the cook time is 2 temporary
                 }
             }
-           
-
             else
             {
                 //second hand is empty
-                if (!itemsInPan[0].GetComponent<Ingredients>().isCooking)
+                if (itemsInPan != null)
                 {
                     Collect(player);
                 }
@@ -112,43 +110,20 @@ public class Pan : Tool
         else
         {
             //main hand is empty
-            if (!itemsInPan[0].GetComponent<Ingredients>().isCooking)
+            if(!IsCookingFood())
             {
                 Collect(player);
             }
         }
     }
 
-    public void ChangeModelInPan(bool isBurnt)
+    // this function is to get information whether the pan is cooking for or not
+    public bool IsCookingFood()
     {
-        if (isBurnt) //if isBurnt is true, make cookingStatus burnt
+        if(itemsInPan[0].GetComponent<Ingredients>() != null && !itemsInPan[0].GetComponent<Ingredients>().isCooking)
         {
-            if (itemsInPan[0] == egg) //if the pan contains the egg gameobject, change the state and model to omelet
-            {
-                egg.state = Egg.State.omelet;
-                egg.SwitchModel(Egg.State.omelet);
-                egg.ChangeToBurnt();
-            }
-            else if (itemsInPan[0] == toast) //if the pan contains the toast gameobject, change the state and model to toasted
-            {
-                toast.state = Toast.State.toasted;
-                toast.ChangeToBurnt();
-                //toast.SwitchModel(Toast.State.toasted);
-            }
-        } else //if isBurnt is false, make cookingStatus cooked
-        {
-            if (itemsInPan[0] == egg) //if the pan contains the egg gameobject, change the state and model to omelet
-            {
-                egg.state = Egg.State.omelet;
-                egg.SwitchModel(Egg.State.omelet);
-                egg.ChangeToCooked();
-            }
-            else if (itemsInPan[0] == toast) //if the pan contains the toast gameobject, change the state and model to toasted
-            {
-                toast.state = Toast.State.toasted;
-                toast.ChangeToCooked();
-                //toast.SwitchModel(Toast.State.toasted);
-            }
+            return true;
         }
+        return false;
     }
 }

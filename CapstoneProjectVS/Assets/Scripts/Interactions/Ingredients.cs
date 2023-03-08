@@ -46,13 +46,8 @@ public class Ingredients : Item, ICollectable
         isValidTarget = false;
     }
 
-    public void ChangeToCooked()
+    public virtual void ChangeStatus()
     {
-        cookingStatus = CookingStatus.cooked;
-    }
 
-    public void ChangeToBurnt()
-    {
-        cookingStatus = CookingStatus.burnt;
     }
 }
