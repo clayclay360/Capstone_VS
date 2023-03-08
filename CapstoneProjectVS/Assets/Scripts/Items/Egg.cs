@@ -65,4 +65,11 @@ public class Egg : Ingredients, IInteractable
                 break;
         }
     }
+
+    // this is temporary for now
+    public override void ChangeStatus()
+    {
+        state = State.omelet;
+        SwitchModel(state);
+    }
 }
