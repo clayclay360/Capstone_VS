@@ -109,9 +109,11 @@ public class Pan : Tool
         }
         else
         {
+            Debug.Log("Collect");
             //main hand is empty
             if(!IsCookingFood())
             {
+                Debug.Log("GRAB ME!!!!!!");
                 Collect(player);
             }
         }
@@ -120,10 +122,19 @@ public class Pan : Tool
     // this function is to get information whether the pan is cooking for or not
     public bool IsCookingFood()
     {
-        if(itemsInPan[0].GetComponent<Ingredients>() != null && !itemsInPan[0].GetComponent<Ingredients>().isCooking)
+        if(itemsInPan.Count > 0)
         {
-            return true;
+            if (!itemsInPan[0].GetComponent<Ingredients>().isCooking)
+            {
+                // pan is not cooking food
+                return false;
+            }
         }
-        return false;
+        else
+        {
+            // pan empty
+            return false;
+        }
+        return true;
     }
 }
