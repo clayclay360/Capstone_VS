@@ -12,6 +12,7 @@ public class Pan : Tool
     Egg egg;
     Toast toast;
     HashBrown hashBrown;
+    Bacon bacon;
 
     public Pan()
     {
@@ -56,6 +57,25 @@ public class Pan : Tool
                     if (isHot)
                     {
                         CookingCheck(cookingCheck, 2, egg); // start cooking // the cook time is 2 temporary
+                    }
+                }
+            }
+            else if (itemInMainHand.GetComponent<Bacon>() != null)
+            {
+                bacon = itemInMainHand.GetComponent<Bacon>();
+
+                if (itemsInPan.Count <= containerSize && bacon.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and egg is not cooked
+                {
+                    itemsInPan.Add(itemsInPan.Count, bacon); // add bacon in the pan inventory.
+                    bacon.transform.position = transform.position; // put bacon on pan
+                    bacon.transform.parent = transform; // have the pan be the parent of bacon
+                    bacon.gameObject.SetActive(true); // display pan
+                    bacon.canInteract = false; // bacon can't not be interacted
+                    player.inventory[0] = null; // item in main hand is null
+
+                    if (isHot)
+                    {
+                        CookingCheck(cookingCheck, 2, bacon); // start cooking // the cook time is 2 temporary
                     }
                 }
             }
@@ -109,11 +129,9 @@ public class Pan : Tool
         }
         else
         {
-            Debug.Log("Collect");
             //main hand is empty
             if(!IsCookingFood())
             {
-                Debug.Log("GRAB ME!!!!!!");
                 Collect(player);
             }
         }
