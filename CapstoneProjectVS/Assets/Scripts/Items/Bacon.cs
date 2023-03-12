@@ -37,6 +37,58 @@ public class Bacon : Ingredients
         }
     }
 
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        switch (item)
+        {
+            case PlayerController.ItemInMainHand.empty:
+                Interaction = "Grab Bacon";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.pan:
+                Interaction = "Grab Bacon";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.spatula:
+                Interaction = "Grab Bacon";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.egg:
+                Interaction = "Grab Bacon";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+            case PlayerController.ItemInMainHand.hashbrown:
+                Interaction = "Grab Bacon";
+                if (player.isInteracting)
+                {
+                    player.canInteract = false;
+                    gameObject.SetActive(false);
+                    Interaction = "";
+                }
+                break;
+        }
+    }
+
     // this is temporary for now
     public override void ChangeStatus()
     {
