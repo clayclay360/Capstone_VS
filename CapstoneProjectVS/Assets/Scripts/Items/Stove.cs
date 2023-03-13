@@ -15,13 +15,13 @@ public class Stove : Utilities
             {
                 Pan pan = itemInMainHand.GetComponent<Pan>();
 
-                pan.transform.position = toolPlacement.position; // position pan            
-                pan.transform.parent = transform; // make pan child of stove
+                pan.transform.position = toolPlacement.position; // position pan
                 pan.gameObject.SetActive(true); // activate pan
+                pan.transform.parent = transform; // make pan child of stove
                 pan.isHot = true; // pan is hot
                 player.inventory[0] = null; // item in main hand is null
                 canInteract = false;
-                isValidTarget = true;
+                //isValidTarget = true;
 
                 if (pan.itemsInPan.Count > 0)
                 {
@@ -33,5 +33,28 @@ public class Stove : Utilities
                 }
             }
         }
+    }
+
+    public void ratInteraction(RatController rat)
+    {
+        if (GetComponentInChildren<Pan>() != null)
+        {
+            Pan panScript = GetComponentInChildren<Pan>();
+            GameObject pan = panScript.gameObject;
+            if(panScript.itemsInPan != null)
+            {
+                GameObject ingredient = pan.GetComponentInChildren<Ingredients>().gameObject;
+                ingredient.transform.SetParent(null);
+                rat.ratInventory = ingredient;
+                panScript.itemsInPan.Remove(panScript.itemsInPan.Count);
+                Debug.Log(panScript.itemsInPan);
+            }
+            else
+            {
+                rat.ratInventory = pan;
+                pan.transform.SetParent(rat.transform);
+            }
+        }
+
     }
 }
