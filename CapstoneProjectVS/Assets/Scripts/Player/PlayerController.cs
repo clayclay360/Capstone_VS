@@ -231,10 +231,6 @@ public class PlayerController : MonoBehaviour
         {
             isInteracting = true;
         }
-        else
-        {
-            isInteracting = false;
-        }
         //check if the player is near a interactable object
         if (interactableObject != null)
         {
@@ -283,6 +279,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Item>() != null)
         {
+            interactionText.text = "";
+            isInteracting = false;
             canInteract = false;
             interactableObject = null;
 
