@@ -45,6 +45,10 @@ public class RatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0)
+        {
+            Despawn();
+        }
         CheckPlayers();
         DistToPlayer();
         CheckTarget();
@@ -188,6 +192,7 @@ public class RatController : MonoBehaviour
         }
         else if (!objectiveComplete)
         {
+            Debug.Log(Vector2.Distance(currTarget.transform.position, transform.position));
             if (Vector2.Distance(currTarget.transform.position, transform.position) <= 0.625f)
             {
                 navAgent.isStopped = true;
@@ -198,24 +203,7 @@ public class RatController : MonoBehaviour
         //The rat despawns when close to the vent and has completed its objective
         else if (Vector3.Distance(spawnHole.transform.position, transform.position) <= 1.0f)//DESPAWN
         {
-            //check if the rat is holding an item
-            if(ratInventory != null)
-            {
-                //temporary
-                ratInventory.transform.position = transform.position;
-                ratInventory.SetActive(true);
-                if (ratInventory.GetComponent<Ingredients>() != null)
-                {
-                    ratInventory.GetComponent<Ingredients>().isValidTarget = true;
-                }
-                else if (ratInventory.GetComponent<Tool>() != null)
-                {
-                    ratInventory.GetComponent<Tool>().isValidTarget = true;
-                }
-                ratInventory = null;
-            }
-            Debug.Log("Destroying " + this);
-            Destroy(gameObject);
+            Despawn();
         }
     }
 
@@ -256,6 +244,28 @@ public class RatController : MonoBehaviour
             navAgent.SetDestination(currTarget.transform.position);
             navAgent.isStopped = false;
         }
+    }
+
+    private void Despawn()
+    {
+        //check if the rat is holding an item
+        if (ratInventory != null)
+        {
+            //temporary
+            ratInventory.transform.position = transform.position;
+            ratInventory.SetActive(true);
+            ratInventory.transform.SetParent(null);
+            if (ratInventory.GetComponent<Ingredients>() != null)
+            {
+                ratInventory.GetComponent<Ingredients>().isValidTarget = true;
+            }
+            else if (ratInventory.GetComponent<Tool>() != null)
+            {
+                ratInventory.GetComponent<Tool>().isValidTarget = true;
+            }
+            ratInventory = null;
+        }
+        Destroy(gameObject);
     }
 
     private void UpdateOutline()

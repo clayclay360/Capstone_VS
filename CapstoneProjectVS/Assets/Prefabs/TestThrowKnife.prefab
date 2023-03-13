@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c815162ccd05dc44db86eda34c0f77f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
   speed: 10
   forward: {x: 0, y: 0, z: 0}
 --- !u!1001 &17310230412888986
