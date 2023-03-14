@@ -27,16 +27,19 @@ public class Ingredients : Item, ICollectable
                 player.inventory[0] = this;
                 Interaction = "";
                 player.interactionText.text = "";
+                player.isInteracting = false;
+                gameObject.SetActive(false);
             }
-            else
+            else if (player.inventory[1] == null)
             {
                 player.inventory[1] = this;
                 Interaction = "";
                 player.interactionText.text = "";
+                player.isInteracting = false;
+                gameObject.SetActive(false);
             }
 
-            //temporary
-            gameObject.SetActive(false);
+            
         }
         //check if a rat is trying to collect this item
         else if(rat != null)
