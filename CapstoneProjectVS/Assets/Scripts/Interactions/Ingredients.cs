@@ -25,10 +25,14 @@ public class Ingredients : Item, ICollectable
             if (player.inventory[0] == null)
             {
                 player.inventory[0] = this;
+                Interaction = "";
+                player.interactionText.text = "";
             }
             else
             {
                 player.inventory[1] = this;
+                Interaction = "";
+                player.interactionText.text = "";
             }
 
             //temporary
