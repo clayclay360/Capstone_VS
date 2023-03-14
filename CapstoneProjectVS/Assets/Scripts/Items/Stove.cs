@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Stove : Utilities
 {
+    [Header("Stove Variables")]
     public Transform toolPlacement;
+    public bool isOccupied;
 
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
@@ -20,7 +22,9 @@ public class Stove : Utilities
                 pan.transform.parent = transform; // make pan child of stove
                 pan.isHot = true; // pan is hot
                 player.inventory[0] = null; // item in main hand is null
-                canInteract = false;
+                pan.stove = this;
+
+                isOccupied = true;
                 //isValidTarget = true;
 
                 if (pan.itemsInPan.Count > 0)
@@ -32,6 +36,26 @@ public class Stove : Utilities
                     }
                 }
             }
+        }
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        
+        // if the stove is occupied the player can no longer interact with it
+        canInteract = Interactivity();
+    }
+
+    public bool Interactivity()
+    {
+        if (isOccupied)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 

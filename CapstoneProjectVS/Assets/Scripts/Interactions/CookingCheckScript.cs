@@ -52,6 +52,7 @@ public class CookingCheckScript : MonoBehaviour
         progressSlider.maxValue = progressMeterMax;
         progressSlider.minValue = progressMeterMin;
         progressSlider.value = progressMeter;
+        food.isCooking = true;
         ResetAttempts();
         StartCoroutine(Cooking(cookTime));
     }
