@@ -137,6 +137,58 @@ public class Pan : Tool
         }
     }
 
+    //public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    //{
+    //    switch (item)
+    //    {
+    //        case PlayerController.ItemInMainHand.empty:
+    //            Interaction = "Grab Pan";
+    //            if (player.isInteracting)
+    //            {
+    //                player.canInteract = false;
+    //                gameObject.SetActive(false);
+    //                Interaction = "";
+    //            }
+    //            break;
+    //        case PlayerController.ItemInMainHand.hashbrown:
+    //            Interaction = "Grab Pan";
+    //            if (player.isInteracting)
+    //            {
+    //                player.canInteract = false;
+    //                gameObject.SetActive(false);
+    //                Interaction = "";
+    //            }
+    //            break;
+    //        case PlayerController.ItemInMainHand.spatula:
+    //            Interaction = "Grab Pan";
+    //            if (player.isInteracting)
+    //            {
+    //                player.canInteract = false;
+    //                gameObject.SetActive(false);
+    //                Interaction = "";
+    //            }
+    //            break;
+    //        case PlayerController.ItemInMainHand.egg:
+    //            Interaction = "Grab Pan";
+    //            if (player.isInteracting)
+    //            {
+    //                player.canInteract = false;
+    //                gameObject.SetActive(false);
+    //                Interaction = "";
+    //            }
+    //            break;
+    //        case PlayerController.ItemInMainHand.bacon:
+    //            Interaction = "Grab Pan";
+    //            if (player.isInteracting)
+    //            {
+    //                player.canInteract = false;
+    //                gameObject.SetActive(false);
+    //                Interaction = "";
+    //            }
+    //            break;
+    //    }
+    //}
+
     // this function is to get information whether the pan is cooking for or not
     public bool IsCookingFood()
     {
