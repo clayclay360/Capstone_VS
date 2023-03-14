@@ -320,9 +320,7 @@ public class PlayerController : MonoBehaviour
             {
                 other.GetComponent<Item>().ResetHighlight();
             }
-        }
-
-        
+        }        
     }
 
     private void AssignHighlightColor()
