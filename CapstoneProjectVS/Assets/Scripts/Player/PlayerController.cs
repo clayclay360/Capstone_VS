@@ -291,7 +291,7 @@ public class PlayerController : MonoBehaviour
 
             if(other.gameObject.GetComponent<ICollectable>() != null)
             {
-                if (inventory.Count >= 2)
+                if (inventory[0] != null || inventory[1] != null)
                 {
                     //If the player's inventory isn't full then they can collect
                     canCollect = true;
