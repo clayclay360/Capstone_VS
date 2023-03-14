@@ -3367,7 +3367,7 @@ MonoBehaviour:
   knifePrefab: {fileID: 432155490203820227, guid: 1421fc372dd76bb4c9a94f63854079a6, type: 3}
   knifeSpawnTransform: {fileID: 2879450013449916220}
   power: 0
-  throwCooldown: 0.5
+  throwCooldown: 0.3
   readyToThrow: 1
   itemInMainHand: 0
   Inv1: {fileID: 6908257094897905726}

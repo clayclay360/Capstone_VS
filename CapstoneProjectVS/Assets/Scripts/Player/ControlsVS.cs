@@ -198,7 +198,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3811dd38-1d21-43ca-bbef-4c1e80ad66bf"",
-                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -209,7 +209,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4fb56d6e-fca8-412b-b8eb-058e8b41ba5a"",
-                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -220,7 +220,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ce0274a2-59d5-4f8c-9f34-24c807b4c210"",
-                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
