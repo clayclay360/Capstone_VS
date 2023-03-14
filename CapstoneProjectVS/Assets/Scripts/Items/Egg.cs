@@ -122,6 +122,7 @@ public class Egg : Ingredients, IInteractable
     public override void ChangeStatus()
     {
         state = State.omelet;
+        cookingStatus = CookingStatus.cooked;
         SwitchModel(state);
     }
 }
