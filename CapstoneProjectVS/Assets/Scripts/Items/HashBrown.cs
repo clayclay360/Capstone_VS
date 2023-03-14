@@ -48,45 +48,52 @@ public class HashBrown : Ingredients, IInteractable
                 Interaction = "Grab Potato";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
+
                 }
                 break;
             case PlayerController.ItemInMainHand.pan:
                 Interaction = "Grab Potato";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
+                    
                 }
                 break;
             case PlayerController.ItemInMainHand.spatula:
                 Interaction = "Grab Potato";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
                 }
                 break;
             case PlayerController.ItemInMainHand.egg:
                 Interaction = "Grab Potato";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
                 }
                 break;
             case PlayerController.ItemInMainHand.bacon:
                 Interaction = "Grab Potato";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
                 }
                 break;
         }

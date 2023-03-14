@@ -56,10 +56,14 @@ public class Tool : Item, ICollectable, ICookable
             if (player.inventory[0] == null)
             {
                 player.inventory[0] = this;
+                Interaction = "";
+                player.interactionText.text = "";
             }
             else
             {
                 player.inventory[1] = this;
+                Interaction = "";
+                player.interactionText.text = "";
             }
 
             //temporary

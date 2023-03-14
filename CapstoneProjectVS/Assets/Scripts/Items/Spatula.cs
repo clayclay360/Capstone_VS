@@ -33,57 +33,62 @@ public class Spatula : Tool
         }
     }
 
-    //public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
-    //{
-    //    switch (item)
-    //    {
-    //        case PlayerController.ItemInMainHand.empty:
-    //            Interaction = "Grab Spatula";
-    //            if (player.isInteracting)
-    //            {
-    //                player.canInteract = false;
-    //                gameObject.SetActive(false);
-    //                Interaction = "";
-    //            }
-    //            break;
-    //        case PlayerController.ItemInMainHand.pan:
-    //            Interaction = "Grab Spatula";
-    //            if (player.isInteracting)
-    //            {
-    //                player.canInteract = false;
-    //                gameObject.SetActive(false);
-    //                Interaction = "";
-    //            }
-    //            break;
-    //        case PlayerController.ItemInMainHand.hashbrown:
-    //            Interaction = "Grab Spatula";
-    //            if (player.isInteracting)
-    //            {
-    //                player.canInteract = false;
-    //                gameObject.SetActive(false);
-    //                Interaction = "";
-    //            }
-    //            break;
-    //        case PlayerController.ItemInMainHand.egg:
-    //            Interaction = "Grab Spatula";
-    //            if (player.isInteracting)
-    //            {
-    //                player.canInteract = false;
-    //                gameObject.SetActive(false);
-    //                Interaction = "";
-    //            }
-    //            break;
-    //        case PlayerController.ItemInMainHand.bacon:
-    //            Interaction = "Grab Spatula";
-    //            if (player.isInteracting)
-    //            {
-    //                player.canInteract = false;
-    //                gameObject.SetActive(false);
-    //                Interaction = "";
-    //            }
-    //            break;
-    //    }
-    //}
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        switch (item)
+        {
+            case PlayerController.ItemInMainHand.empty:
+                Interaction = "Grab Spatula";
+                if (player.isInteracting)
+                {
+                    player.isInteracting = false;
+                    player.canInteract = false;
+                    Interaction = "";
+                    gameObject.SetActive(false);
+                }
+                break;
+            case PlayerController.ItemInMainHand.pan:
+                Interaction = "Grab Spatula";
+                if (player.isInteracting)
+                {
+                    player.isInteracting = false;
+                    player.canInteract = false;
+                    Interaction = "";
+                    gameObject.SetActive(false);
+                }
+                break;
+            case PlayerController.ItemInMainHand.hashbrown:
+                Interaction = "Grab Spatula";
+                if (player.isInteracting)
+                {
+                    player.isInteracting = false;
+                    player.canInteract = false;
+                    Interaction = "";
+                    gameObject.SetActive(false);
+                }
+                break;
+            case PlayerController.ItemInMainHand.egg:
+                Interaction = "Grab Spatula";
+                if (player.isInteracting)
+                {
+                    player.isInteracting = false;
+                    player.canInteract = false;
+                    Interaction = "";
+                    gameObject.SetActive(false);
+                }
+                break;
+            case PlayerController.ItemInMainHand.bacon:
+                Interaction = "Grab Spatula";
+                if (player.isInteracting)
+                {
+                    player.isInteracting = false;
+                    player.canInteract = false;
+                    Interaction = "";
+                    gameObject.SetActive(false);
+                }
+                break;
+        }
+    }
 
 
 }
