@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown, toast };
     public ItemInMainHand itemInMainHand;
     public Dictionary<int, Item> inventory = new Dictionary<int, Item>();
-    private GameObject interactableObject;
+    [SerializeField] private GameObject interactableObject;
     [Header("Inventory")]
     public Text Inv1;
     public Text Inv2;
@@ -213,12 +213,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory[i] != null)
             {
-                switch (inventory[i].main)
-                {
-                    default:
-                        Icon[i].sprite = inventory[i].main;
-                        break;
-                }
+                Icon[i].sprite = inventory[i].main;
             }
             else
             {
@@ -270,6 +265,7 @@ public class PlayerController : MonoBehaviour
             {
                 Item item = interactableObject.GetComponent<Item>();
                 item.Interact(inventory[0], this);
+                interactableObject = null;
                 
             }
         }
