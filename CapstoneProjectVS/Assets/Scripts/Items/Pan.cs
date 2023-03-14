@@ -9,6 +9,9 @@ public class Pan : Tool
     [Header("CookingCheck")]
     public GameObject cookingCheck;
 
+    [HideInInspector]
+    public Stove stove; // this variable is to get what stove the pan is occupying
+
     Egg egg;
     Toast toast;
     HashBrown hashBrown;
@@ -132,7 +135,15 @@ public class Pan : Tool
             //main hand is empty
             if(!IsCookingFood())
             {
+                // if the food is not cooking
                 Collect(player);
+
+                // if the pan is occupying a stove than set it to false
+                if(stove != null)
+                {
+                    stove.isOccupied = false;
+                    stove = null;
+                }
             }
         }
     }

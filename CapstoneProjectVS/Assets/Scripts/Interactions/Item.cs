@@ -35,7 +35,7 @@ public class Item : MonoBehaviour, IInteractable
 
     [HideInInspector]public string Interaction;
 
-    public void Update()
+    public virtual void Update()
     {
         CanInteract(canInteract);
     }

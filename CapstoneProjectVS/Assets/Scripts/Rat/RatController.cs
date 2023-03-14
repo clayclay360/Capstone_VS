@@ -121,7 +121,7 @@ public class RatController : MonoBehaviour
         int randTargetNum = Random.Range(0, targetList.Count);
         currTarget = targetList[randTargetNum];
         navAgent.SetDestination(currTarget.transform.position);
-        Debug.Log(currTarget);
+        //Debug.Log(currTarget);
 
     }
 
@@ -192,7 +192,7 @@ public class RatController : MonoBehaviour
         }
         else if (!objectiveComplete)
         {
-            Debug.Log(Vector2.Distance(currTarget.transform.position, transform.position));
+            //Debug.Log(Vector2.Distance(currTarget.transform.position, transform.position)); 
             if (Vector2.Distance(currTarget.transform.position, transform.position) <= 0.625f)
             {
                 navAgent.isStopped = true;

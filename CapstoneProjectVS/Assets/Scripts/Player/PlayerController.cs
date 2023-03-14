@@ -282,6 +282,7 @@ public class PlayerController : MonoBehaviour
         {
             canInteract = true;
             interactableObject = other.gameObject;
+            Debug.Log(interactableObject.GetComponent<Item>().Name);
             other.gameObject.GetComponent<Item>().CheckHand(itemInMainHand, this);
             interactionText.text = other.gameObject.GetComponent<Item>().Interaction;
 
