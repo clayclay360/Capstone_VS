@@ -128,6 +128,7 @@ public class Egg : Ingredients, IInteractable
     {
         state = State.omelet;
         cookingStatus = CookingStatus.cooked;
+        Name = "Omelet";
         SwitchModel(state);
     }
 }

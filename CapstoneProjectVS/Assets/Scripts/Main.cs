@@ -36,6 +36,8 @@ public class Main : MonoBehaviour
     public void StartGame()
     {
         GameManager.gameStarted = true;
+        sideRecipeOne = null;
+        sideRecipeTwo = null;
         StartCoroutine(SideOrders());
         MainOrder();
     }
