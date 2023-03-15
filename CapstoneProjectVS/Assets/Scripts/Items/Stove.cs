@@ -37,6 +37,7 @@ public class Stove : Utilities
                 }
             }
         }
+        player.isInteracting = false;
     }
 
     public override void Update()
