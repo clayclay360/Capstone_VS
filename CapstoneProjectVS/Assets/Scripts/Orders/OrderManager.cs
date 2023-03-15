@@ -16,8 +16,8 @@ public class OrderManager : Item
 
                 // if the food on the plate is a main or side order, than the order is complete
                 if (plate.foodOnPlate[0].Name == main.mainRecipe.Name ||
-                    plate.foodOnPlate[0].Name == main.sideRecipeOne.Name ||
-                    plate.foodOnPlate[0].Name == main.sideRecipeTwo.Name)
+                    plate.foodOnPlate[0].Name == main.sideRecipeTwo.Name||
+                    plate.foodOnPlate[0].Name == main.sideRecipeOne.Name)
                 {
                     main.OrderComplete(plate.foodOnPlate[0].Name);
                 }
