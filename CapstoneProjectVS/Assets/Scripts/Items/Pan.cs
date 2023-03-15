@@ -184,6 +184,7 @@ public class Pan : Tool
                 if (player.isInteracting)
                 {
                     player.canInteract = false;
+                    player.isInteracting = false;
                     gameObject.SetActive(false);
                     Interaction = "";
                 }

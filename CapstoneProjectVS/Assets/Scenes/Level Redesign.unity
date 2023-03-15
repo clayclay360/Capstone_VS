@@ -6986,7 +6986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &594075719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7433,6 +7433,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d1a45cad27ca94dbadff37e34ee6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
+  canInteract: 0
+  isValidTarget: 0
+  main: {fileID: 0}
+  outline: {fileID: 0}
+  Interaction: 
 --- !u!33 &651643510
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -9554,6 +9560,10 @@ PrefabInstance:
     - target: {fileID: 463261848171184591, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 741834894374719149, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
+      propertyPath: Name
+      value: Trash Can
       objectReference: {fileID: 0}
     - target: {fileID: 741834894374719149, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
       propertyPath: eggPrefab
