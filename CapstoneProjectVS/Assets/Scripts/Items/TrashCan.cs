@@ -6,11 +6,6 @@ public class TrashCan : Utilities, IUtility, IInteractable
 {
     public Item trashItem;
 
-    public override void CanInteract(bool condition)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void Interact(Item item, PlayerController player)
     {
         trashItem = item;
