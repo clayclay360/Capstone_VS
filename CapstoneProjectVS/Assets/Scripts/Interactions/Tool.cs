@@ -58,12 +58,16 @@ public class Tool : Item, ICollectable, ICookable
                 player.inventory[0] = this;
                 Interaction = "";
                 player.interactionText.text = "";
+                player.isInteracting = false;
+                gameObject.SetActive(false);
             }
-            else
+            else if (player.inventory[1] == null)
             {
                 player.inventory[1] = this;
                 Interaction = "";
                 player.interactionText.text = "";
+                player.isInteracting = false;
+                gameObject.SetActive(false);
             }
 
             //temporary

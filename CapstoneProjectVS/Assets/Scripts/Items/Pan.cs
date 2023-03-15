@@ -56,6 +56,8 @@ public class Pan : Tool
                     egg.state = Egg.State.yoked; // change state
                     egg.SwitchModel(Egg.State.yoked); // change model
                     player.inventory[0] = null; // item in main hand is null
+                    player.isInteracting = false; //player is no longer interacting
+                    player.canCollect = false; //player cannot collect items
 
                     if (isHot)
                     {
@@ -75,6 +77,8 @@ public class Pan : Tool
                     bacon.gameObject.SetActive(true); // display pan
                     bacon.canInteract = false; // bacon can't not be interacted
                     player.inventory[0] = null; // item in main hand is null
+                    player.isInteracting = false; //player is no longer interacting
+                    player.canCollect = false; //player cannot collect items
 
                     if (isHot)
                     {
@@ -94,6 +98,8 @@ public class Pan : Tool
                     toast.gameObject.SetActive(true); // display toast
                     toast.canInteract = false; // make toast uninteractable
                     player.inventory[0] = null; // item in main hand null
+                    player.isInteracting = false; //player is no longer interacting
+                    player.canCollect = false; //player cannot collect items
                 }
 
                 if (isHot)
@@ -114,6 +120,8 @@ public class Pan : Tool
                     toast.gameObject.SetActive(true); // display hashbrown
                     hashBrown.canInteract = false; // make hashbrown uninteractable
                     player.inventory[0] = null; // item in main hand null
+                    player.isInteracting = false; //player is no longer interacting
+                    player.canCollect = false; //player cannot collect items
                 }
 
                 if (isHot)
@@ -156,26 +164,28 @@ public class Pan : Tool
                 Interaction = "Grab Pan";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
                 }
                 break;
             case PlayerController.ItemInMainHand.hashbrown:
                 Interaction = "Grab Pan";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
                 }
                 break;
             case PlayerController.ItemInMainHand.spatula:
-                Interaction = "Grab Pan";
+                Interaction = "Use Spatula";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
                 }
                 break;
@@ -193,9 +203,10 @@ public class Pan : Tool
                 Interaction = "Grab Pan";
                 if (player.isInteracting)
                 {
+                    player.isInteracting = false;
                     player.canInteract = false;
-                    gameObject.SetActive(false);
                     Interaction = "";
+                    gameObject.SetActive(false);
                 }
                 break;
         }
