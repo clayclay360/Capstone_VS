@@ -15,6 +15,7 @@ public class Ingredients : Item, ICollectable
 
     public bool isBeingUsed;
     public Vector3 startLocation;
+    public GameObject counterTop;
 
     Dictionary<string, GameObject[]> needNume = new Dictionary<string, GameObject[]>(); // this variable needs a name
     public bool isCooking { get; set; }
@@ -70,5 +71,14 @@ public class Ingredients : Item, ICollectable
     public virtual void ChangeStatus()
     {
 
+    }
+
+    public void CheckCounterTop()
+    {
+        if (counterTop != null)
+        {
+            counterTop.GetComponent<CounterTop>().isOccupied = false;
+            counterTop = null;
+        }
     }
 }

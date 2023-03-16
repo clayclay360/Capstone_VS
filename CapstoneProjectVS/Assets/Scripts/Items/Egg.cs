@@ -28,22 +28,26 @@ public class Egg : Ingredients, IInteractable
             if (itemInMainHand.GetComponent<Spatula>() != null)
             {
                 Collect(player);
+                CheckCounterTop();
             }
             //if pan is in main hand
             else if (itemInMainHand.GetComponent<Pan>() != null)
             {
                 Collect(player);
+                CheckCounterTop();
             }
             else
             {
                 //second hand is empty
                 Collect(player);
+                CheckCounterTop();
             }
         }
         else
         {
             //main hand is empty
             Collect(player);
+            CheckCounterTop();
         }
     }
 
