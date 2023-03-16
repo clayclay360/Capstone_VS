@@ -19,17 +19,20 @@ public class Spatula : Tool
             if (itemInMainHand.GetComponent<Pan>() != null)
             {
                 Collect(player);
+                CheckCounterTop();
             }
             else
             {
                 //second hand is empty
                 Collect(player);
+                CheckCounterTop();
             }
         }
         else
         {
             //main hand is empty
             Collect(player);
+            CheckCounterTop();
         }
     }
 

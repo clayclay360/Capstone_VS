@@ -17,6 +17,7 @@ public class Tool : Item, ICollectable, ICookable
     public int timesUsed;
     public int containerSize;
     public Vector3 startLocation;
+    public GameObject counterTop;
 
     [Header("Models")]
     public GameObject cleanModel;
@@ -105,5 +106,14 @@ public class Tool : Item, ICollectable, ICookable
     public void RespawnTool()
     {
         gameObject.transform.position = startLocation;
+    }
+
+    public void CheckCounterTop()
+    {
+        if (counterTop != null)
+        {
+            counterTop.GetComponent<CounterTop>().isOccupied = false;
+            counterTop = null;
+        }
     }
 }
