@@ -134,13 +134,14 @@ public class PlayerController : MonoBehaviour
             float rayDist = hit.distance;
             float forDist = Vector3.Distance(transform.position, hit.point);
             float newDist = Vector3.Distance(transform.position + MOVESPEED * Time.deltaTime * moveVec, hit.point);
-            if (rayDist < 0.75f && newDist < forDist)
+            if (rayDist < 0.65f && newDist < forDist)
             {
                 movingSpeed = 0f;
             }
             else if (rayDist < range)
             {
-                movingSpeed = Mathf.Clamp(Mathf.Pow(rayDist, 3), 0.0f, MOVESPEED);
+                //(1/3)(x+1)^3. Don't ask.
+                movingSpeed = Mathf.Clamp((Mathf.Pow((rayDist + 1f), 3) * .3f), 0.0f, MOVESPEED);
             }
         }
         else

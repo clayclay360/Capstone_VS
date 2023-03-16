@@ -118,7 +118,7 @@ public class Pan : Tool
                     itemsInPan.Add(itemsInPan.Count, hashBrown); // adde hashbrown to pan inventory
                     hashBrown.transform.position = transform.position; // put hashbrown on pan
                     hashBrown.transform.parent = transform; // make hashbrown child of pan
-                    toast.gameObject.SetActive(true); // display hashbrown
+                    hashBrown.gameObject.SetActive(true); // display hashbrown
                     hashBrown.canInteract = false; // make hashbrown uninteractable
                     player.inventory[0] = null; // item in main hand null
                     player.isInteracting = false; //player is no longer interacting
@@ -133,7 +133,7 @@ public class Pan : Tool
             else
             {
                 //second hand is empty
-                if (itemsInPan != null)
+                if (itemsInPan != null && !IsCookingFood())
                 {
                     Collect(player);
                     CheckCounterTop();
@@ -161,6 +161,7 @@ public class Pan : Tool
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        if (IsCookingFood()) { return; } //Good old escape statement so the player can't pick up the pan
         switch (item)
         {
             case PlayerController.ItemInMainHand.empty:
