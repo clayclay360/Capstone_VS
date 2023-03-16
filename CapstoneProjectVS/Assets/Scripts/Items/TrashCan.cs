@@ -22,7 +22,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
             ingredient = item.GetComponent<Ingredients>();
             ingredient.RespawnIngredient();
             ingredient.gameObject.SetActive(true);
-            ingredient.isBeingUsed;
+            ingredient.isBeingUsed = false;
         }
         //Respawn item
     }
