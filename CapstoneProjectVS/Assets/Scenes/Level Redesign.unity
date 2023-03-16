@@ -7433,8 +7433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d1a45cad27ca94dbadff37e34ee6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  canInteract: 0
+  Name: Order Manager
+  canInteract: 1
   isValidTarget: 0
   main: {fileID: 0}
   outline: {fileID: 0}
@@ -9704,7 +9704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1374190582
 MonoBehaviour:
   m_ObjectHideFlags: 0
