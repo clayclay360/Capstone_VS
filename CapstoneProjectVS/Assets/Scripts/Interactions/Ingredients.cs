@@ -13,6 +13,9 @@ public class Ingredients : Item, ICollectable
     public Sprite spoiled;
     public Sprite burnt;
 
+    public bool isBeingUsed;
+    public Vector3 startLocation;
+
     Dictionary<string, GameObject[]> needNume = new Dictionary<string, GameObject[]>(); // this variable needs a name
     public bool isCooking { get; set; }
 
@@ -51,6 +54,17 @@ public class Ingredients : Item, ICollectable
             Debug.Log(rat.name + " collected: " + gameObject.name);
         }
         isValidTarget = false;
+    }
+
+    public void Start()
+    {
+        startLocation = gameObject.transform.position;
+        Debug.Log(startLocation);
+    }
+
+    public void RespawnIngredient()
+    {
+        gameObject.transform.position = startLocation;
     }
 
     public virtual void ChangeStatus()

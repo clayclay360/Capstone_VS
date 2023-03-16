@@ -16,6 +16,8 @@ public class Tool : Item, ICollectable, ICookable
     public int useBeforeDirty;
     public int timesUsed;
     public int containerSize;
+    public Vector3 startLocation;
+
     [Header("Models")]
     public GameObject cleanModel;
     public GameObject dirtyModel;
@@ -32,6 +34,12 @@ public class Tool : Item, ICollectable, ICookable
         {
             isDirty = true;
         }
+    }
+
+    public void Start()
+    {
+        startLocation = gameObject.transform.position;
+        Debug.Log(startLocation);
     }
 
     public virtual void SwitchModel(bool dirty)
@@ -92,5 +100,10 @@ public class Tool : Item, ICollectable, ICookable
         CookingCheckScript cookingCheckScript = cookingCheck.GetComponent<CookingCheckScript>(); // get cooking script
         cookingCheckScript.food = food;
         cookingCheckScript.StartCooking();
+    }
+
+    public void RespawnTool()
+    {
+        gameObject.transform.position = startLocation;
     }
 }
