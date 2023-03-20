@@ -61,10 +61,10 @@ public class Ingredients : Item, ICollectable
         isValidTarget = false;
     }
 
-    public void Start()
+    public override void Start()
     {
         startLocation = gameObject.transform.position;
-        Debug.Log(startLocation);
+        base.Start();
     }
 
     public void RespawnIngredient()
