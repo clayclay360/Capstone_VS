@@ -33,6 +33,11 @@ public class RatController : MonoBehaviour
     public List<GameObject> playerList;
     public GameObject closestPlayer;
 
+    //Animations
+    public Animator ratAnimator;
+    public bool isGrabbing;
+
+
     //Outline
     [SerializeField] private Outline outline;
 
@@ -53,6 +58,10 @@ public class RatController : MonoBehaviour
         DistToPlayer();
         CheckTarget();
         Movement();
+        if (isActiveAndEnabled)
+        {
+            MovementAnimation();
+        }
     }
 
     public void CheckPlayers()
@@ -120,7 +129,8 @@ public class RatController : MonoBehaviour
         //Assign a target from the target list
         int randTargetNum = Random.Range(0, targetList.Count);
         currTarget = targetList[randTargetNum];
-        navAgent.SetDestination(currTarget.transform.position);
+        NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
+        navAgent.SetDestination(hit.position);
         //Debug.Log(currTarget);
 
     }
@@ -137,7 +147,8 @@ public class RatController : MonoBehaviour
             //if target is valid and rat is not scared, make sure rat is moving towards target
             else if (!isScared)
             {
-                navAgent.SetDestination(currTarget.transform.position);
+                NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
+                navAgent.SetDestination(hit.position);
             }
         }
     }
@@ -174,13 +185,14 @@ public class RatController : MonoBehaviour
     {
         if (isScared)
         {
+            NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
             //temporary
-            if(navAgent.destination == currTarget.transform.position || Vector3.Distance(navAgent.destination, transform.position) < 0.1)  //if the rat hasn't already abandoned its target or has reached its destination
+            if (navAgent.destination == hit.position || Vector3.Distance(navAgent.destination, transform.position) < 0.1)  //if the rat hasn't already abandoned its target or has reached its destination
             {
                 Vector3 randomPoint = Random.insideUnitSphere * 10; //Get a random point within a 10 unit sphere of the rat
                 Vector3 newDestination = transform.position + randomPoint; //Add the random point to the rat's curret position
-                NavMesh.SamplePosition(newDestination, out NavMeshHit hit, 10, NavMesh.AllAreas); //Find the closest point on the navmesh to the new destination
-                newDestination = hit.position; //set the rat's new destination to that point
+                NavMesh.SamplePosition(newDestination, out NavMeshHit hit1, 10, NavMesh.AllAreas); //Find the closest point on the navmesh to the new destination
+                newDestination = hit1.position; //set the rat's new destination to that point
                 navAgent.SetDestination(newDestination); //Make the rat go to the new destination
             }
             scareTimer += Time.deltaTime;
@@ -193,7 +205,7 @@ public class RatController : MonoBehaviour
         else if (!objectiveComplete)
         {
             //Debug.Log(Vector2.Distance(currTarget.transform.position, transform.position)); 
-            if (Vector2.Distance(currTarget.transform.position, transform.position) <= 0.625f)
+            if (Vector2.Distance(navAgent.destination, transform.position) <= 0.3f)
             {
                 navAgent.isStopped = true;
                 AttackTarget();
@@ -207,8 +219,22 @@ public class RatController : MonoBehaviour
         }
     }
 
+    private void MovementAnimation()
+    {
+        isGrabbing = ratAnimator.GetBool("onGrab");
+        if (navAgent.isStopped)
+        {
+            ratAnimator.SetBool("isRunning", false);
+        }
+        else
+        {
+            ratAnimator.SetBool("isRunning", true);
+        }
+    }
+
     private void AttackTarget()
     {
+        ratAnimator.SetTrigger("onGrab");
         //check if target is a utility
         if(currTarget.GetComponent<IUtility>() != null)
         {
@@ -221,7 +247,10 @@ public class RatController : MonoBehaviour
                 objectiveComplete = true;
                 currTarget = spawnHole;
                 navAgent.SetDestination(currTarget.transform.position);
-                navAgent.isStopped = false;
+                if (!isGrabbing)
+                {
+                    navAgent.isStopped = false;
+                }
             }
         }
         //check if target is a tool or ingredient
@@ -242,7 +271,10 @@ public class RatController : MonoBehaviour
             }
             currTarget = spawnHole;
             navAgent.SetDestination(currTarget.transform.position);
-            navAgent.isStopped = false;
+            if (!isGrabbing)
+            {
+                navAgent.isStopped = false;
+            }
         }
     }
 

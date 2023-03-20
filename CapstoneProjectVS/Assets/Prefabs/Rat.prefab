@@ -63,6 +63,8 @@ MonoBehaviour:
   ratInventory: {fileID: 0}
   playerList: []
   closestPlayer: {fileID: 0}
+  ratAnimator: {fileID: 5874437930987060685}
+  isGrabbing: 0
   outline: {fileID: 2424608925886815708}
 --- !u!195 &8485352049709398998
 NavMeshAgent:
@@ -82,7 +84,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -174,8 +176,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d2a6d7518ddc245b828275f0b8e38c, type: 3}
+--- !u!1 &7550032048061303518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 41d2a6d7518ddc245b828275f0b8e38c, type: 3}
+  m_PrefabInstance: {fileID: 7207575748676122511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7173330999494971492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 41d2a6d7518ddc245b828275f0b8e38c, type: 3}
   m_PrefabInstance: {fileID: 7207575748676122511}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &5874437930987060685
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550032048061303518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8fa2aff6d6e84d4c80dd8beb2bfe089, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stove : Utilities
+public class Stove : Utilities, IUtility
 {
     [Header("Stove Variables")]
     public Transform toolPlacement;
@@ -25,7 +25,7 @@ public class Stove : Utilities
                 pan.stove = this;
 
                 isOccupied = true;
-                //isValidTarget = true;
+                isValidTarget = true;
 
                 if (pan.itemsInPan.Count > 0)
                 {
@@ -62,24 +62,25 @@ public class Stove : Utilities
 
     public void ratInteraction(RatController rat)
     {
-        if (GetComponentInChildren<Pan>() != null)
+        if (isOccupied)
         {
             Pan panScript = GetComponentInChildren<Pan>();
             GameObject pan = panScript.gameObject;
-            if(panScript.itemsInPan != null)
+            if(panScript.itemsInPan.Count > 0)
             {
                 GameObject ingredient = pan.GetComponentInChildren<Ingredients>().gameObject;
-                ingredient.transform.SetParent(null);
+                ingredient.transform.SetParent(rat.transform);
                 rat.ratInventory = ingredient;
                 panScript.itemsInPan.Remove(panScript.itemsInPan.Count);
                 Debug.Log(panScript.itemsInPan);
             }
             else
             {
-                rat.ratInventory = pan;
-                pan.transform.SetParent(rat.transform);
+                panScript.Collect(null, rat);
+                panScript.status = Tool.Status.dirty;
+                isOccupied = false;
+                isValidTarget = false;
             }
         }
-
     }
 }

@@ -6,6 +6,18 @@ public class TrashCan : Utilities, IUtility, IInteractable
 {
     public Item trashItem;
 
+    private void Update()
+    {
+        if(trashItem != null)
+        {
+            isValidTarget = true;
+        }
+        else
+        {
+            isValidTarget = false;
+        }
+    }
+
     public override void Interact(Item item, PlayerController player)
     {
         trashItem = item;

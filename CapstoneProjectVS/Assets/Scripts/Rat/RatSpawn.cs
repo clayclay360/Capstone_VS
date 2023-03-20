@@ -74,7 +74,7 @@ public class RatSpawn : MonoBehaviour
 
     public void AssignBraveness(RatController rat)
     {
-        int randNum = Random.Range(0, 4);
+        int randNum = Random.Range(3, 4);
         rat.scareDistance = scareDistances[randNum];
         rat.scareTime = scareTimes[randNum];
         switch (randNum) //Assign the braveness. Not sure if we use this outside of here?
