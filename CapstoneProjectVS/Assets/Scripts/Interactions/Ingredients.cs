@@ -13,9 +13,14 @@ public class Ingredients : Item, ICollectable
     public Sprite spoiled;
     public Sprite burnt;
 
+<<<<<<< Updated upstream
     public bool isBeingUsed;
     public Vector3 startLocation;
     public GameObject counterTop;
+=======
+    [Header("Mixing")]
+    public bool isMixable;
+>>>>>>> Stashed changes
 
     Dictionary<string, GameObject[]> needNume = new Dictionary<string, GameObject[]>(); // this variable needs a name
     public bool isCooking { get; set; }
