@@ -16,6 +16,10 @@ public class Ingredients : Item, ICollectable
     public bool isBeingUsed;
     public Vector3 startLocation;
     public GameObject counterTop;
+ 
+    [Header("Mixing")]
+    public bool isMixable;
+
 
     Dictionary<string, GameObject[]> needNume = new Dictionary<string, GameObject[]>(); // this variable needs a name
     public bool isCooking { get; set; }

@@ -96,11 +96,13 @@ public class Main : MonoBehaviour
         {
             currentNumberOfSides--;
             Destroy(sideOrderOne);
+            sideOrderOne = null;
         }
         else if(orderName == sideRecipeTwo.Name)
         {
             currentNumberOfSides--;
             Destroy(sideOrderTwo);
+            sideOrderTwo = null;
         }
     }
 }

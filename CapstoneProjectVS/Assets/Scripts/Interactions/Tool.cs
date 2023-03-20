@@ -37,10 +37,10 @@ public class Tool : Item, ICollectable, ICookable
         }
     }
 
-    public void Start()
+    public override void Start()
     {
         startLocation = gameObject.transform.position;
-        Debug.Log(startLocation);
+        base.Start();
     }
 
     public virtual void SwitchModel(bool dirty)
