@@ -130,6 +130,24 @@ public class Pan : Tool
                     CookingCheck(cookingCheck, 2, hashBrown); // start cooking // the cook time is 2 temporary
                 }
             }
+            else if(itemInMainHand.GetComponent<MixingBowl>() != null)
+            {
+                MixingBowl mixingBowl = itemInMainHand.GetComponent<MixingBowl>();
+
+                // check what's in the mixing bowl
+                switch (mixingBowl.nameOfMixture)
+                {
+                    case "Omelet":
+                        for(int i = 0; mixingBowl.itemsInMixingBowl.Count > i; i++)
+                        {
+                            mixingBowl.itemsInMixingBowl[i].transform.position = transform.position; // change position
+                            mixingBowl.itemsInMixingBowl[i].transform.parent = transform; // change parent
+                            player.isInteracting = false; //player is no longer interacting
+                            player.canCollect = false; //player cannot collect items
+                        }
+                        break;
+                }
+            }
             else
             {
                 //second hand is empty

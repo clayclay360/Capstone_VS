@@ -2,11 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MixingBowl : Tool
 {
     public Dictionary<int, Item> itemsInMixingBowl = new Dictionary<int, Item>();
     public Dictionary<int, Mix> mixes = new Dictionary<int, Mix>();
+
+    [Header("Placement")]
+    public Transform itemPlacement;
+    
+    [Header("UI")]
+    public GameObject mixtureDisplay;
+    public Text displayText;
+
+    public string nameOfMixture { get; set; }
     private int numberOfCorrectIngredients;
 
     public override void Start()
@@ -28,7 +38,12 @@ public class MixingBowl : Tool
                 // if ingredient is mixable
                 if (ingredients.isMixable)
                 {
+                    player.inventory[0] = null;
                     itemsInMixingBowl.Add(itemsInMixingBowl.Count, item);
+                    item.gameObject.SetActive(true);
+                    item.canInteract = false;
+                    item.transform.position = itemPlacement.position;
+                    item.transform.parent = transform;
                     CheckMix();
                 }
             }
@@ -56,18 +71,18 @@ public class MixingBowl : Tool
                     // if the ingredients name equals the mixture ingredients name
                     if (itemsInMixingBowl[x].Name == mixes[i].ingredients[c])
                     {
-                        Debug.Log(itemsInMixingBowl[x].Name + " " + mixes[i].ingredients[c]);
                         numberOfCorrectIngredients++;
                     }
                 }
             }
 
-            Debug.Log(numberOfCorrectIngredients);
             /* check to see if the number of correct ingredients equal the number of ingredients needed to make the ingredients and
             make sure the number of ingredients in the bowl is the same number of ingredients needed to make the mixture*/
             if (numberOfCorrectIngredients == mixes[i].ingredients.Length && itemsInMixingBowl.Count == mixes[i].ingredients.Length)
             {
-                Debug.Log("A Mixture Is Possible");
+                nameOfMixture = mixes[i].NameOfRecipe;
+                mixtureDisplay.SetActive(true);
+                displayText.text = nameOfMixture + " Mixture";
             }
         }
     }
