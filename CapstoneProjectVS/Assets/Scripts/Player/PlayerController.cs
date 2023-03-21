@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [Header("Inventory")]
     public Text Inv1;
     public Text Inv2;
+    public bool inventoryfull = false;
 
     [Header("Icons")]
     public Image[] Icon;
@@ -225,6 +226,15 @@ public class PlayerController : MonoBehaviour
 
     public void CheckInventory()
     {
+        if(inventory[0] != null && inventory[1] != null)
+        {
+            inventoryfull = true;
+        }
+        else
+        {
+            inventoryfull = false;
+        }
+
         if (inventory[0] != null)
         {
             Inv1.text = inventory[0].name;
