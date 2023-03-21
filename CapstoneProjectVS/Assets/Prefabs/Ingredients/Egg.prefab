@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2557686711327224517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0132, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0168, z: 0}
   m_LocalScale: {x: 0.25, y: 0.05, z: 0.25}
   m_Children:
   - {fileID: 2557686710425719548}
@@ -284,7 +284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2557686712286819358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0064, z: 0}
+  m_LocalPosition: {x: 0, y: 0.024, z: 0}
   m_LocalScale: {x: 0.25, y: 0.05, z: 0.15}
   m_Children: []
   m_Father: {fileID: 9193496973303149583}
@@ -356,7 +356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9193496973303149583
 Transform:
   m_ObjectHideFlags: 0
@@ -402,10 +402,20 @@ MonoBehaviour:
   Name: Egg
   canInteract: 1
   isValidTarget: 1
-  main: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
+  mainSprite: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
+  outline: {fileID: 0}
+  Interaction: 
   cookingStatus: 0
-  uncooked: {fileID: 0}
-  cooked: {fileID: 0}
-  spoiled: {fileID: 0}
-  burnt: {fileID: 0}
+  uncooked: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
+  cooked: {fileID: 21300000, guid: 9924d759f259d9a43a0ff1246af2f5d3, type: 3}
+  spoiled: {fileID: 21300000, guid: ded5ef5ad09b1f04886b700339d4dce5, type: 3}
+  burnt: {fileID: 21300000, guid: 796635796bafd864c9c2f27b810aefb9, type: 3}
+  isBeingUsed: 0
+  startLocation: {x: 0, y: 0, z: 0}
+  counterTop: {fileID: 0}
+  isMixable: 1
   state: 0
+  shellModel: {fileID: 2557686710460750971}
+  omeletModel: {fileID: 2557686712286819358}
+  scrambledModel: {fileID: 0}
+  yokedModel: {fileID: 2557686711327224517}

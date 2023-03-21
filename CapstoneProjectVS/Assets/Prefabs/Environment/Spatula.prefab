@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5845323697461641057}
   - component: {fileID: 1352716761}
+  - component: {fileID: 915878476}
   m_Layer: 0
   m_Name: Spatula
   m_TagString: Interactable
@@ -44,8 +45,38 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Radius: 0.26
+  m_Center: {x: 0, y: 0.26, z: 0}
+--- !u!114 &915878476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9031513021252998085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c99c8b6371e6044bb60d20f24c75107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spatula
+  canInteract: 1
+  isValidTarget: 1
+  mainSprite: {fileID: 21300000, guid: 355852363e81dd344a7d94437130b04a, type: 3}
+  outline: {fileID: 0}
+  Interaction: 
+  status: 0
+  isDirty: 0
+  isHot: 0
+  useBeforeDirty: 0
+  timesUsed: 0
+  containerSize: 0
+  startLocation: {x: 0, y: 0, z: 0}
+  counterTop: {fileID: 0}
+  cleanModel: {fileID: 0}
+  dirtyModel: {fileID: 0}
+  clean: {fileID: 21300000, guid: 355852363e81dd344a7d94437130b04a, type: 3}
+  dirty: {fileID: 21300000, guid: b7a54e67829b0964e826ceb9dd474695, type: 3}
 --- !u!1001 &4815781031082933610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,6 +134,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec4e0157dd48aff46b35633ebf0852c8, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ec4e0157dd48aff46b35633ebf0852c8, type: 3}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

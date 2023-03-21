@@ -49,7 +49,7 @@ MonoBehaviour:
   Name: Shredded Cheese
   canInteract: 1
   isValidTarget: 0
-  main: {fileID: 0}
+  mainSprite: {fileID: 21300000, guid: 3807daa5928d68041b37fcb36f0598ea, type: 3}
   outline: {fileID: 0}
   Interaction: 
   cookingStatus: 0
