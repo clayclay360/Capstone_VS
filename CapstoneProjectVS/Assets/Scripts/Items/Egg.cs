@@ -53,6 +53,12 @@ public class Egg : Ingredients, IInteractable
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        if (player.inventoryFull)
+        {
+            Interaction = "Inventory Full";
+            return;
+        }
+
         switch (item)
         {
             case PlayerController.ItemInMainHand.empty:
