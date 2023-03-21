@@ -104,4 +104,28 @@ public class MixingBowl : Tool
         string[] omeletIngredients = { "Egg", "Shredded Cheese" };
         mixes[0].ingredients = omeletIngredients;
     }
+
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        //Both hands are empty, pick up the bowl
+        if (!player.inventory[0] && !player.inventory[1])
+        {
+            Interaction = $"Grab {Name}";
+        }
+        //Check hands for ingredients: if either has one, we can add it to the bowl
+        else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
+        {
+            Interaction = $"Add {ingredientMH.Name} to mixing bowl";
+        }
+        else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
+        {
+            Interaction = $"Add {ingredientOH.Name} to mixing bowl";
+        }
+        //Player doesn't have an ingredient in their hands. If either hand is empty, they can pick up the bowl
+        else if (!player.inventory[0] || !player.inventory[1])
+        {
+            Interaction = $"Grab {Name}";
+        }
+
+    }
 }

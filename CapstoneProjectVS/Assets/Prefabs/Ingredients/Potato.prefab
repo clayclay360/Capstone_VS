@@ -154,12 +154,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98ae2a784319a849b3c6b6a1edb6741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: HashBrown
+  Name: Potato
   canInteract: 1
   isValidTarget: 1
-  main: {fileID: 0}
+  mainSprite: {fileID: 0}
+  outline: {fileID: 0}
+  Interaction: 
   cookingStatus: 0
   uncooked: {fileID: 0}
   cooked: {fileID: 0}
   spoiled: {fileID: 0}
   burnt: {fileID: 0}
+  isBeingUsed: 0
+  startLocation: {x: 0, y: 0, z: 0}
+  counterTop: {fileID: 0}
+  ProgressTime: 0
+  isMixable: 0
+  isCuttable: 0

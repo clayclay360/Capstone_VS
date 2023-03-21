@@ -23,6 +23,7 @@ public class Pan : Tool
         Interaction = "";
     }
 
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
@@ -185,59 +186,111 @@ public class Pan : Tool
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
-        if (IsCookingFood()) { return; } //Good old escape statement so the player can't pick up the pan
-        switch (item)
+        if (IsCookingFood())
         {
-            case PlayerController.ItemInMainHand.empty:
-                Interaction = "Grab Pan";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
-            case PlayerController.ItemInMainHand.hashbrown:
-                Interaction = "Grab Pan";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
-            case PlayerController.ItemInMainHand.spatula:
+            if ((player.inventory[0] && player.inventory[0].TryGetComponent<Spatula>(out _)) || 
+                (player.inventory[1] && player.inventory[1].TryGetComponent<Spatula>(out _)))
+            {
                 Interaction = "Use Spatula";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                }
-                break;
-            case PlayerController.ItemInMainHand.egg:
-                Interaction = "Grab Pan";
-                if (player.isInteracting)
-                {
-                    player.canInteract = false;
-                    player.isInteracting = false;
-                    gameObject.SetActive(false);
-                    Interaction = "";
-                }
-                break;
-            case PlayerController.ItemInMainHand.bacon:
-                Interaction = "Grab Pan";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
+            }
+            else
+            {
+                Interaction = "Need Spatula!";
+            }
+            return;
         }
+        //When the pan not cooking food and empty
+        else if (!IsCookingFood())
+        {
+            //There is an item in the pan (done cooking)
+            if (!player.inventory[0] || !player.inventory[1])
+            {
+                Interaction = "Grab Pan";
+                if (player.isInteracting)
+                {
+                    player.isInteracting = false;
+                    player.canInteract = false;
+                    Interaction = "";
+                    gameObject.SetActive(false);
+                }
+            }
+            //There is no item in the pan(pre-cooking)
+            {
+                if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
+                {
+                    Interaction = $"Add {ingredientMH.Name} to pan";
+                    if (player.isInteracting)
+                    {
+                        player.isInteracting = false;
+                        player.canInteract = false;
+                    }
+                }
+                else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
+                {
+                    Interaction = $"Add {ingredientOH.Name} to pan";
+                    if (player.isInteracting)
+                    {
+                        player.isInteracting = false;
+                        player.canInteract = false;
+                    }
+                }
+            }
+            return;
+        }
+
+        //Deprecated
+        //switch (item)
+        //{
+        //    case PlayerController.ItemInMainHand.empty:
+        //        Interaction = "Grab Pan";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.hashbrown:
+        //        Interaction = "Grab Pan";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.spatula:
+        //        Interaction = "Use Spatula";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.egg:
+        //        Interaction = "Grab Pan";
+        //        if (player.isInteracting)
+        //        {
+        //            player.canInteract = false;
+        //            player.isInteracting = false;
+        //            gameObject.SetActive(false);
+        //            Interaction = "";
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.bacon:
+        //        Interaction = "Grab Pan";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //}
     }
 
     // this function is to get information whether the pan is cooking for or not

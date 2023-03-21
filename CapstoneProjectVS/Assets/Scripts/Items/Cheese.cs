@@ -31,4 +31,9 @@ public class Cheese : Ingredients, IInteractable
             Collect(player);
         }
     }
+
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        base.CheckHand(item, player);
+    }
 }

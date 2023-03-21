@@ -43,65 +43,66 @@ public class Bacon : Ingredients
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
-        if (player.inventoryFull)
-        {
-            Interaction = "Inventory Full";
-            return;
-        }
+        base.CheckHand(item, player);
+        //if (player.inventoryFull)
+        //{
+        //    Interaction = "Inventory Full";
+        //    return;
+        //}
 
-        switch (item)
-        {
-            case PlayerController.ItemInMainHand.empty:
-                Interaction = "Grab Bacon";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
-            case PlayerController.ItemInMainHand.pan:
-                Interaction = "Grab Bacon";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
-            case PlayerController.ItemInMainHand.spatula:
-                Interaction = "Grab Bacon";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
-            case PlayerController.ItemInMainHand.egg:
-                Interaction = "Grab Bacon";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
-            case PlayerController.ItemInMainHand.hashbrown:
-                Interaction = "Grab Bacon";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                    Interaction = "";
-                    gameObject.SetActive(false);
-                }
-                break;
-        }
+        //switch (item)
+        //{
+        //    case PlayerController.ItemInMainHand.empty:
+        //        Interaction = "Grab Bacon";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.pan:
+        //        Interaction = "Grab Bacon";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.spatula:
+        //        Interaction = "Grab Bacon";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.egg:
+        //        Interaction = "Grab Bacon";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.hashbrown:
+        //        Interaction = "Grab Bacon";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //}
     }
 
 
