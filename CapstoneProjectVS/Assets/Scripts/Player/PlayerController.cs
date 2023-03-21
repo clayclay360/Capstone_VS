@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public bool canInteract;
     public bool canCollect;
     public bool isInteracting;
+    public Image interactButtonIcon;
 
     [Header("Knife Throw")]
     public GameObject knifePrefab;
@@ -83,10 +84,11 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        foreach(Image img in Icon)
+        foreach (Image img in Icon)
         {
             img.GetComponent<Image>();
         }
+        UpdateInteractionIcon();
     }
 
     #region movement
@@ -328,6 +330,11 @@ public class PlayerController : MonoBehaviour
                 other.GetComponent<Item>().ResetHighlight();
             }
         }        
+    }
+
+    private void UpdateInteractionIcon() 
+    {
+        interactButtonIcon.gameObject.SetActive(interactionText.text == "" ? false : true);
     }
 
     private void AssignHighlightColor()
