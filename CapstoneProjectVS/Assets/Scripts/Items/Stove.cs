@@ -60,6 +60,19 @@ public class Stove : Utilities, IUtility
         }
     }
 
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        if ((player.inventory[0] && player.inventory[0].TryGetComponent<Pan>(out _)) ||
+            (player.inventory[1] && player.inventory[1].TryGetComponent<Pan>(out _))) 
+        {
+            Interaction = "Place Pan on Stove";
+        }
+        else
+        {
+            Interaction = "";
+        }
+    }
+
     public void ratInteraction(RatController rat)
     {
         if (isOccupied)
