@@ -87,8 +87,9 @@ public class CounterTop : Utilities
         player.isInteracting = false;
     }
 
-    public void Update()
+    public override void Update()
     {
+        base.Update();
         canInteract = Interactivity();
         gameObject.GetComponent<BoxCollider>().enabled = Interactivity();
     }
@@ -104,4 +105,23 @@ public class CounterTop : Utilities
             return true;
         }
     }
+
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        if (!isOccupied)
+        {
+            if (player.inventory[0])
+            {
+                Interaction = $"Place {player.inventory[0].Name} on counter";
+                return;
+            }
+            else if (player.inventory[1])
+            {
+                Interaction = $"Place {player.inventory[1].Name} on counter";
+                return;
+            }
+        }
+        Interaction = ""; //Only reach this if we fall through everything else i.e. no items in inventory or occupied
+    }
+
 }

@@ -39,6 +39,65 @@ public class TrashCan : Utilities, IUtility, IInteractable
         //Respawn item
     }
 
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        if (player.inventory[0])
+        {
+            Interaction = CheckForContainerAndSetText(player.inventory[0]);
+        }
+        else if (player.inventory[1])
+        {
+            Interaction = CheckForContainerAndSetText(player.inventory[1]);
+        }
+        else
+        {
+            Interaction = "";
+        }
+    }
+
+    private string CheckForContainerAndSetText(Item item)
+    {
+        #region containers
+        if (item.TryGetComponent<Pan>(out Pan pan))
+        {
+            if (pan.itemsInPan.Count > 0) //This is how we check for items in the pan without breaking anything I guess
+            {
+                return $"Throw out {pan.itemsInPan[0].Name}";
+            }
+            else
+            {
+                return "Throw out pan";
+            }
+        }
+        else if (item.TryGetComponent<MixingBowl>(out MixingBowl bowl))
+        {
+            if (bowl.itemsInMixingBowl.Count > 0)
+            {
+                return "Throw out items in mixing bowl";
+            }
+            else
+            {
+                return "Throw out mixing bowl";
+            }
+        }
+        else if (item.TryGetComponent<Plate>(out Plate plate)) 
+        {
+            if (plate.foodOnPlate.Count > 0)
+            {
+                return "Throw out food";
+            }
+            else
+            {
+                return "Throw out plate";
+            }
+        }
+        #endregion
+        else
+        {
+            return $"Throw out {item.Name}";
+        }
+    }
+
     public void ratInteraction(RatController rat)
     {
         rat.ratInventory = trashItem.gameObject;

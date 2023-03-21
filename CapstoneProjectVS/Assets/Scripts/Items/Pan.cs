@@ -218,7 +218,7 @@ public class Pan : Tool
             {
                 if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
                 {
-                    Interaction = $"Add {ingredientMH.name} to pan";
+                    Interaction = $"Add {ingredientMH.Name} to pan";
                     if (player.isInteracting)
                     {
                         player.isInteracting = false;
@@ -227,7 +227,7 @@ public class Pan : Tool
                 }
                 else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
                 {
-                    Interaction = $"Add {ingredientOH.name} to pan";
+                    Interaction = $"Add {ingredientOH.Name} to pan";
                     if (player.isInteracting)
                     {
                         player.isInteracting = false;

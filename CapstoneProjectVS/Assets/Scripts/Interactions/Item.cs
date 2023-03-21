@@ -46,7 +46,39 @@ public class Item : MonoBehaviour, IInteractable
 
     }
 
-    public virtual void CheckHand(PlayerController.ItemInMainHand item, PlayerController player) { }
+    /// <summary>
+    /// This is the method that sets the interaction text for the player.
+    /// This base method should work for the ingredients, since you only ever pick
+    /// them up without any special interactions. Hopefully implementing this base
+    /// method makes things a lot easier for us.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="player"></param>
+    public virtual void CheckHand(PlayerController.ItemInMainHand item, PlayerController player) 
+    {
+        if (player.inventoryFull)
+        {
+            Interaction = "Inventory Full";
+            return;
+        }
+        else if (!player.inventory[0] || !player.inventory[1])
+        {
+            Interaction = $"Grab {Name}";
+            if (player.isInteracting)
+            {
+                player.isInteracting = false;
+                player.canInteract = false;
+                Interaction = "";
+                gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            Interaction = "";
+        }
+
+
+    }
 
     public virtual void Interact(Item item, PlayerController player){}
     public virtual void CanInteract(bool condition)
