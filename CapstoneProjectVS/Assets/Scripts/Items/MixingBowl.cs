@@ -14,6 +14,7 @@ public class MixingBowl : Tool
     
     [Header("UI")]
     public GameObject mixtureDisplay;
+    public Image[] ingredientDisplay;
     public Text displayText;
 
     public string nameOfMixture { get; set; }
@@ -33,18 +34,26 @@ public class MixingBowl : Tool
             // if item is an ingredient
             if(item.GetComponent<Ingredients>() != null)
             {
-                Ingredients ingredients = item.GetComponent<Ingredients>(); // get ingredient
+                Ingredients ingredient = item.GetComponent<Ingredients>(); // get ingredient
 
                 // if ingredient is mixable
-                if (ingredients.isMixable)
+                if (ingredient.isMixable)
                 {
-                    player.inventory[0] = null;
-                    itemsInMixingBowl.Add(itemsInMixingBowl.Count, item);
-                    item.gameObject.SetActive(true);
-                    item.canInteract = false;
-                    item.transform.position = itemPlacement.position;
-                    item.transform.parent = transform;
-                    CheckMix();
+                    player.inventory[0] = null; // hand empty
+                    ingredientDisplay[itemsInMixingBowl.Count].sprite = item.mainSprite; // change sprite
+                    ingredientDisplay[itemsInMixingBowl.Count].gameObject.SetActive(true); // enable sprite
+                    itemsInMixingBowl.Add(itemsInMixingBowl.Count, item); // add item to bowl
+                    item.gameObject.SetActive(true); // set active true
+                    item.canInteract = false; // no interaction
+                    item.transform.position = itemPlacement.position; // change position
+                    item.transform.parent = transform; // change parent
+                    CheckMix(); // call function
+
+                    // this is necessary only for the egg
+                    if (ingredient.GetComponent<Egg>() != null)
+                    {
+                        ingredient.GetComponent<Egg>().SwitchModel(Egg.State.yoked);
+                    }
                 }
             }
         }
@@ -81,7 +90,7 @@ public class MixingBowl : Tool
             if (numberOfCorrectIngredients == mixes[i].ingredients.Length && itemsInMixingBowl.Count == mixes[i].ingredients.Length)
             {
                 nameOfMixture = mixes[i].NameOfRecipe;
-                mixtureDisplay.SetActive(true);
+                //mixtureDisplay.SetActive(true);
                 displayText.text = nameOfMixture + " Mixture";
             }
         }

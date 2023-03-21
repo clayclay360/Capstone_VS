@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory[i] != null)
             {
-                Icon[i].sprite = inventory[i].main;
+                Icon[i].sprite = inventory[i].mainSprite;
             }
             else
             {
