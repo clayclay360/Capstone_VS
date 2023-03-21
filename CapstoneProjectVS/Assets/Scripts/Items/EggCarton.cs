@@ -66,12 +66,6 @@ public class EggCarton : Ingredients, IInteractable
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
-        if (player.inventoryfull)
-        {
-            Interaction = "Inventory Full";
-            return;
-        }
-
         switch (item)
         {
             case PlayerController.ItemInMainHand.empty:

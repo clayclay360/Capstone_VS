@@ -161,8 +161,6 @@ public class Pan : Tool
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
-        
-
         if (IsCookingFood()) { return; } //Good old escape statement so the player can't pick up the pan
         switch (item)
         {
