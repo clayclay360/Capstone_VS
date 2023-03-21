@@ -28,7 +28,7 @@ public class Item : MonoBehaviour, IInteractable
     public bool isValidTarget;
 
     [Header("Icons")]
-    public Sprite main;
+    public Sprite mainSprite;
 
     [Header("Outline")]
     public Outline outline;

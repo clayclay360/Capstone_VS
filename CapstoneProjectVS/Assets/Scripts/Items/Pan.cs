@@ -134,7 +134,7 @@ public class Pan : Tool
             {
                 MixingBowl mixingBowl = itemInMainHand.GetComponent<MixingBowl>();
 
-                // check what's in the mixing bowl
+                // check what's in the mixing bowl, this swtich statement also might not be necessary
                 switch (mixingBowl.nameOfMixture)
                 {
                     case "Omelet":
@@ -142,10 +142,16 @@ public class Pan : Tool
                         {
                             mixingBowl.itemsInMixingBowl[i].transform.position = transform.position; // change position
                             mixingBowl.itemsInMixingBowl[i].transform.parent = transform; // change parent
+                            itemsInPan.Add(i, mixingBowl.itemsInMixingBowl[i]); // add ingredient to pan
                             player.isInteracting = false; //player is no longer interacting
                             player.canCollect = false; //player cannot collect items
                         }
                         break;
+                }
+
+                if (isHot)
+                {
+                    CookingCheck(cookingCheck, 2, itemsInPan[0].GetComponent<Ingredients>()); // start cooking // the cook time is 2 temporary
                 }
             }
             else
@@ -251,10 +257,5 @@ public class Pan : Tool
             return false;
         }
         return true;
-    }
-
-    public void Update()
-    {
-
     }
 }

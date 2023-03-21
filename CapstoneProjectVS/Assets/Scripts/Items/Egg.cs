@@ -125,6 +125,7 @@ public class Egg : Ingredients, IInteractable
                 scrambledModel.SetActive(true);
                 break;
         }
+        state = currentState;
     }
 
     // this is temporary for now
