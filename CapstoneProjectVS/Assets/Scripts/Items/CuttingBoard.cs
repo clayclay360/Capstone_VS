@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,36 +7,56 @@ using UnityEngine.UI;
 public class CuttingBoard : Tool
 {
     public Dictionary<int, Item> itemsOnCuttingBoard = new Dictionary<int, Item>();
+    public Dictionary<int, Chop> chop = new Dictionary<int, Chop>();
 
     [SerializeField] private Transform knife;
     [SerializeField] private Slider slider;
 
-    private int numberOfIngridents;
-    private float currentProgressTime;
-    private float finalProgressTime;
-    private Coroutine cutCoroutine;
-    private Ingredients ingredients1;
+    [Header("Placement")]
+    public Transform itemPlacement;
+
+    [Header("UI")]
+    public GameObject ChopDisplay;
+    public Image[] ingredientDisplay;
+    public Text displayText;
+
     private bool isChopping;
+    public string nameOfMixture { get; set; }
+    private int numberOfIngredients;
     public override void Start()
     {
         base.Start();
-        //CuttingList();
+        ChopList();
     }
 
     public override void Interact(Item item, PlayerController player)
     {
-        base.Interact(item, player);
+        //base.Interact(item, player);
         if (item = null)
         {
             if (item.GetComponent<Ingredients>() != null)
             {
-                Ingredients ingredients = item.GetComponent<Ingredients>(); // get ingredient
+                Ingredients ingredient = item.GetComponent<Ingredients>(); // get ingredient
 
-                if (ingredients.isCuttable)
+                if (ingredient.isCuttable)
                 {
+                    player.inventory[0] = null;
+                    ingredientDisplay[itemsOnCuttingBoard.Count].sprite = item.mainSprite;
+                    ingredientDisplay[itemsOnCuttingBoard.Count].gameObject.SetActive(true);
                     itemsOnCuttingBoard.Add(itemsOnCuttingBoard.Count, item);
-                    //StartCoroutine(CheckCutting());
+                    item.gameObject.SetActive(true); // set active true
+                    item.canInteract = false; // no interaction
+                    item.transform.position = itemPlacement.position; // change position
+                    item.transform.parent = transform; // change parent
+                    
+                    CheckChopping();
+
+                    if (ingredient.GetComponent<Egg>() != null)
+                    {
+                        ingredient.GetComponent<Egg>().SwitchModel(Egg.State.yoked);
+                    }
                 }
+
             }
             else
             {
@@ -43,57 +64,71 @@ public class CuttingBoard : Tool
             }
         }
 
-        if (cutCoroutine == null)
-        {
-            finalProgressTime = ingredients1.ProgressTime;
-            currentProgressTime = 0f;
-            slider.value = 0f;
-            slider.gameObject.SetActive(true);
-            StartChopCoroutine();
-            return;
-        }
-
-        if (isChopping == false)
-        {
-            StartChopCoroutine();
-        }
+       
     }
 
-    private void StartChopCoroutine()
+    public void CheckChopping()
     {
-        cutCoroutine = StartCoroutine(CheckCutting());
-    }
+        numberOfIngredients = 0;
 
-    private void StopChopCoroutine()
-    {
-        isChopping = false;
-        if (cutCoroutine != null)
+        // for each possible mixture
+        for (int i = 0; chop.Count > i; i++)
         {
-            StopCoroutine(cutCoroutine);
+            // for each ingredient in the mixture
+            for (int c = 0; chop[i].ingredients.Length > c; c++)
+            {
+                // for each ingredient in the bowl
+                for (int x = 0; x < itemsOnCuttingBoard.Count; x++)
+                {
+                    // if the ingredients name equals the mixture ingredients name
+                    if (itemsOnCuttingBoard[x].Name == chop[i].ingredients[c])
+                    {
+                        numberOfIngredients++;
+                    }
+                }
+            }
+
+            /* check to see if the number of correct ingredients equal the number of ingredients needed to make the ingredients and
+            make sure the number of ingredients in the bowl is the same number of ingredients needed to make the mixture*/
+            if (numberOfIngredients == chop[i].ingredients.Length && itemsOnCuttingBoard.Count == chop[i].ingredients.Length)
+            {
+                nameOfMixture = chop[i].NameOfRecipe;
+                //mixtureDisplay.SetActive(true);
+                displayText.text = nameOfMixture + "Chopped Ingredients";
+            }
         }
     }
 
-    private IEnumerator CheckCutting()
+    public void ChopList()
     {
-        numberOfIngridents = 1;
-        isChopping = true;
-        while (currentProgressTime < finalProgressTime)
-        {
-            slider.value = currentProgressTime / finalProgressTime;
-            currentProgressTime += Time.deltaTime;
-            yield return null;
-        }
-
-        //Finished
-        slider.gameObject.SetActive(false);
-        isChopping = false;
-        cutCoroutine = null;
-
+        chop.Add(0, new Chop());
+        chop[0].NameOfRecipe = "Omelet";
+        string[] omeletIngredients = { "Egg", "Shredded Cheese" };
+        chop[0].ingredients = omeletIngredients;
     }
 
-    //public void CuttingList()
-    //{
-    //    return;
-    //}
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        //Both hands are empty, pick up the cutting board
+        if (!player.inventory[0] && !player.inventory[1])
+        {
+            Interaction = $"Grab {Name}";
+        }
+        //Check hands for ingredients: if either has one, we can add it to the board
+        else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
+        {
+            Interaction = $"Add {ingredientMH.Name} to cutting board";
+        }
+        else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
+        {
+            Interaction = $"Add {ingredientOH.Name} to cutting board";
+        }
+        //Player doesn't have an ingredient in their hands. If either hand is empty, they can pick up the board
+        else if (!player.inventory[0] || !player.inventory[1])
+        {
+            Interaction = $"Grab {Name}";
+        }
+
+    }
 
 }
