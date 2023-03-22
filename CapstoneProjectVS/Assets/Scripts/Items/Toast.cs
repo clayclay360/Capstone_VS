@@ -17,6 +17,7 @@ public class Toast : Ingredients, IInteractable
     {
         Name = "Toast";
         Interaction = "";
+        isBeingUsed = false;
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)

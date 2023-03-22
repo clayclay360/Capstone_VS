@@ -21,9 +21,11 @@ public class BreadLoaf : Ingredients, IInteractable
         if (!toast.isBeingUsed)
         {
             canInteract = true;
+            gameObject.GetComponent<SphereCollider>().enabled = true;
         } else
         {
             canInteract = false;
+            gameObject.GetComponent<SphereCollider>().enabled = false;
         }
     }
 

@@ -41,6 +41,7 @@ public class Ingredients : Item, ICollectable
                 player.interactionText.text = "";
                 player.isInteracting = false;
                 gameObject.SetActive(false);
+                Debug.Log("Pepsi");
             }
             else if (player.inventory[1] == null)
             {
@@ -49,6 +50,7 @@ public class Ingredients : Item, ICollectable
                 player.interactionText.text = "";
                 player.isInteracting = false;
                 gameObject.SetActive(false);
+                Debug.Log("Cola");
             }
 
             
