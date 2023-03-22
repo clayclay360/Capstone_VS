@@ -98,6 +98,8 @@ public class MixingBowl : Tool
 
     public void MixingList()
     {
+        nameOfMixture = "";
+
         // chessy omelet
         mixes.Add(0, new Mix());
         mixes[0].NameOfRecipe = "Omelet";
