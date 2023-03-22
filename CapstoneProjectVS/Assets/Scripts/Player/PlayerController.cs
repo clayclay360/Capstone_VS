@@ -330,6 +330,14 @@ public class PlayerController : MonoBehaviour
                 other.GetComponent<Item>().ResetHighlight();
             }
         }        
+
+        if (other.TryGetComponent<Cookbook>(out Cookbook cookbook))
+        {
+            if (!cookbook.isDestroyed)
+            {
+                cookbook.PlayerLeftBook();
+            }
+        }
     }
 
     private void UpdateInteractionIcon() 

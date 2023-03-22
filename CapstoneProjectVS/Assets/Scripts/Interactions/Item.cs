@@ -31,6 +31,10 @@ public class Item : MonoBehaviour, IInteractable
     public Sprite mainSprite;
 
     [Header("Outline")]
+    /// <summary>
+    /// The variable for the outline script of the object. An outline is automatically added at start.
+    /// That way, we don't have to add an outline component to every single object;
+    /// </summary>
     public Outline outline;
 
     [HideInInspector]public string Interaction;
