@@ -32,6 +32,8 @@ public class Plate : Tool
         else
         {
             Collect(player);
+            CheckCounterTop();
+            CheckSink();
         }
     }
 }

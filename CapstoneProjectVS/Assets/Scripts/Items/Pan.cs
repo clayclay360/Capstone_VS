@@ -43,6 +43,7 @@ public class Pan : Tool
                 {
                     Collect(player);
                     CheckCounterTop();
+                    CheckSink();
                 }
             }
             else if(itemInMainHand.GetComponent<Egg>() != null)
@@ -187,6 +188,7 @@ public class Pan : Tool
                 {
                     Collect(player);
                     CheckCounterTop();
+                    CheckSink();
                 }
             }
         }
@@ -198,6 +200,7 @@ public class Pan : Tool
                 // if the food is not cooking
                 Collect(player);
                 CheckCounterTop();
+                CheckSink();
 
                 // if the pan is occupying a stove than set it to false
                 if (stove != null)

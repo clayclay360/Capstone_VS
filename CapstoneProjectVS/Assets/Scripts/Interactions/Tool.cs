@@ -18,6 +18,7 @@ public class Tool : Item, ICollectable, ICookable
     public int containerSize;
     public Vector3 startLocation;
     public GameObject counterTop;
+    public GameObject sink;
 
     [Header("Models")]
     public GameObject cleanModel;
@@ -114,6 +115,15 @@ public class Tool : Item, ICollectable, ICookable
         {
             counterTop.GetComponent<CounterTop>().isOccupied = false;
             counterTop = null;
+        }
+    }
+
+    public void CheckSink()
+    {
+        if (sink != null)
+        {
+            sink.GetComponent<SinkScript>().isOccupied = false;
+            sink = null;
         }
     }
 }

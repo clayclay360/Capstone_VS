@@ -80,6 +80,7 @@ public class CounterTop : Utilities
                 toast.transform.position = gameObject.transform.position; // position pan
                 toast.gameObject.SetActive(true); // activate pan
                 toast.counterTop = gameObject;
+                toast.canInteract = true;
                 player.inventory[0] = null; // item in main hand is null
 
                 isOccupied = true;

@@ -19,19 +19,6 @@ public class Toast : Ingredients, IInteractable
         Interaction = "";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (canInteract == false)
-        {
-            GetComponent<Collider>().enabled = false;
-        }
-        else
-        {
-            GetComponent<Collider>().enabled = true;
-        }
-    }
-
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand

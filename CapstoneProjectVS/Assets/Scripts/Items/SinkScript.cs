@@ -10,6 +10,7 @@ public class SinkScript : Utilities
 
     public enum State { empty, filled };
     public State state;
+    private IEnumerator coroutine;
 
     public void Start()
     {
@@ -23,56 +24,68 @@ public class SinkScript : Utilities
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
         {
-            if (itemInMainHand.GetComponent<Pan>() != null)
+            if (itemInMainHand.GetComponent<Pan>() != null && itemInMainHand.GetComponent<Pan>().isDirty)
             {
                 Pan pan = itemInMainHand.GetComponent<Pan>();
 
                 pan.transform.position = gameObject.transform.position; // position pan
                 pan.gameObject.SetActive(true); // activate pan
-                pan.counterTop = gameObject;
+                pan.canInteract = false;
+                pan.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
+                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<Pan>());
+                StartCoroutine(coroutine);
 
                 isOccupied = true;
                 state = State.filled;
                 SwitchModel(state);
             }
 
-            if (itemInMainHand.GetComponent<Spatula>() != null)
+            if (itemInMainHand.GetComponent<Spatula>() != null && itemInMainHand.GetComponent<Spatula>().isDirty)
             {
                 Spatula spatula = itemInMainHand.GetComponent<Spatula>();
 
                 spatula.transform.position = gameObject.transform.position; // position pan
                 spatula.gameObject.SetActive(true); // activate pan
-                spatula.counterTop = gameObject;
+                spatula.canInteract = false;
+                spatula.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
+                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<Spatula>());
+                StartCoroutine(coroutine);
 
                 isOccupied = true;
                 state = State.filled;
                 SwitchModel(state);
             }
 
-            if (itemInMainHand.GetComponent<Plate>() != null)
+            if (itemInMainHand.GetComponent<Plate>() != null && itemInMainHand.GetComponent<Plate>().isDirty)
             {
                 Plate plate = itemInMainHand.GetComponent<Plate>();
 
                 plate.transform.position = gameObject.transform.position;
                 plate.gameObject.SetActive(true); // activate pan
-                plate.counterTop = gameObject;
+                plate.canInteract = false;
+                plate.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
+                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<Plate>());
+                StartCoroutine(coroutine);
 
                 isOccupied = true;
                 state = State.filled;
                 SwitchModel(state);
             }
 
-            if (itemInMainHand.GetComponent<CuttingBoard>() != null)
+            if (itemInMainHand.GetComponent<CuttingBoard>() != null && itemInMainHand.GetComponent<CuttingBoard>().isDirty)
             {
                 CuttingBoard cuttingBoard = itemInMainHand.GetComponent<CuttingBoard>();
 
                 cuttingBoard.transform.position = gameObject.transform.position;
                 cuttingBoard.gameObject.SetActive(true); // activate pan
-                cuttingBoard.counterTop = gameObject;
+                cuttingBoard.canInteract = false;
+                cuttingBoard.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
+                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<CuttingBoard>());
+                StartCoroutine(coroutine);
 
                 isOccupied = true;
                 state = State.filled;
@@ -138,5 +151,19 @@ public class SinkScript : Utilities
                 break;
         }
         state = currentState;
+    }
+
+    public void CleanUtensil(Tool tool)
+    {
+        tool.isDirty = false;
+    }
+
+    private IEnumerator CleanUtensil(float timer, Tool tool)
+    {
+        yield return new WaitForSeconds(timer);
+        tool.isDirty = false;
+        tool.canInteract = true;
+        state = State.empty;
+        SwitchModel(state);
     }
 }

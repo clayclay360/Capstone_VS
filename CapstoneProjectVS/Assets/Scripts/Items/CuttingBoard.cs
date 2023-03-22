@@ -62,6 +62,8 @@ public class CuttingBoard : Tool
             else
             {
                 Collect(player);
+                CheckCounterTop();
+                CheckSink();
             }
         }
 

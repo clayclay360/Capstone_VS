@@ -21,12 +21,14 @@ public class Spatula : Tool
             {
                 Collect(player);
                 CheckCounterTop();
+                CheckSink();
             }
             else
             {
                 //second hand is empty
                 Collect(player);
                 CheckCounterTop();
+                CheckSink();
             }
         }
         else
@@ -34,6 +36,7 @@ public class Spatula : Tool
             //main hand is empty
             Collect(player);
             CheckCounterTop();
+            CheckSink();
         }
     }
 
