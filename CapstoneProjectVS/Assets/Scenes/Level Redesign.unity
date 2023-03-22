@@ -232,7 +232,7 @@ Transform:
   - {fileID: 579764488}
   - {fileID: 1836692097}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &155064527
 PrefabInstance:
@@ -7056,6 +7056,7 @@ MonoBehaviour:
   Name: CounterTop
   canInteract: 1
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -7075,7 +7076,7 @@ Transform:
   m_Children:
   - {fileID: 1548975965}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651643507
 GameObject:
@@ -7110,7 +7111,7 @@ Transform:
   - {fileID: 878352448}
   - {fileID: 417774327}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &651643509
 MonoBehaviour:
@@ -7127,6 +7128,7 @@ MonoBehaviour:
   Name: Order Manager
   canInteract: 1
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -7654,6 +7656,7 @@ MonoBehaviour:
   Name: 
   canInteract: 1
   isValidTarget: 1
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -7743,7 +7746,7 @@ Transform:
   m_LocalScale: {x: 0.33301, y: 0.33301, z: 0.33301}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &847043781
 PrefabInstance:
@@ -7830,6 +7833,7 @@ MonoBehaviour:
   Name: 
   canInteract: 0
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -8037,6 +8041,7 @@ MonoBehaviour:
   Name: Spatula
   canInteract: 1
   isValidTarget: 1
+  isWashable: 1
   mainSprite: {fileID: 21300000, guid: 355852363e81dd344a7d94437130b04a, type: 3}
   outline: {fileID: 0}
   Interaction: 
@@ -8048,6 +8053,7 @@ MonoBehaviour:
   containerSize: 0
   startLocation: {x: 0, y: 0, z: 0}
   counterTop: {fileID: 0}
+  sink: {fileID: 0}
   cleanModel: {fileID: 0}
   dirtyModel: {fileID: 0}
   clean: {fileID: 21300000, guid: 355852363e81dd344a7d94437130b04a, type: 3}
@@ -8205,7 +8211,7 @@ Transform:
   - {fileID: 1854599340}
   - {fileID: 925612679}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &953938117
 GameObject:
@@ -8376,6 +8382,7 @@ MonoBehaviour:
   Name: Bacon
   canInteract: 1
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -8487,6 +8494,7 @@ MonoBehaviour:
   Name: Stove
   canInteract: 1
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -8513,6 +8521,7 @@ MonoBehaviour:
   Name: Plate
   canInteract: 1
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -8524,6 +8533,7 @@ MonoBehaviour:
   containerSize: 0
   startLocation: {x: 0, y: 0, z: 0}
   counterTop: {fileID: 0}
+  sink: {fileID: 0}
   cleanModel: {fileID: 2047252027}
   dirtyModel: {fileID: 681537229}
   clean: {fileID: 0}
@@ -8604,7 +8614,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1304852927
 GameObject:
@@ -8957,7 +8967,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1374622325
 PrefabInstance:
@@ -10611,7 +10621,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1709128255
 MonoBehaviour:
@@ -21055,6 +21065,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &2119901547
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.26213312
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.8326845
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847554, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847567, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: m_Name
+      value: Sinks
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
 --- !u!850595691 &2135131262
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -21309,6 +21376,7 @@ MonoBehaviour:
   Name: CounterTop
   canInteract: 1
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
@@ -21328,7 +21396,7 @@ Transform:
   m_Children:
   - {fileID: 369933944729634282}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &369933944729634280
 MeshRenderer:
