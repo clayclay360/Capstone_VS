@@ -338,6 +338,11 @@ public class PlayerController : MonoBehaviour
                 cookbook.PlayerLeftBook();
             }
         }
+
+        if(other.TryGetComponent<OrderManager>(out OrderManager orderManager))
+        {
+            orderManager.orderWindow.SetActive(false);
+        }
     }
 
     private void UpdateInteractionIcon() 
