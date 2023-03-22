@@ -5,6 +5,11 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class OrderManager : Item
 {
+    [Header("Variables")]
+    public GameObject orderWindow;
+    
+    [Header("UX")]
+    public Indicator indicator;
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         if(itemInMainHand != null)
@@ -31,5 +36,16 @@ public class OrderManager : Item
                 }
             }
         }
+    }
+
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    {
+        orderWindow.SetActive(true);
+        DisplayIndicator(false);
+    }
+
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.arrow.SetActive(condition);
     }
 }

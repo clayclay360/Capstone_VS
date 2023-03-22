@@ -78,6 +78,7 @@ public class Main : MonoBehaviour
                 }
 
                 currentNumberOfSides++;
+                FindObjectOfType<OrderManager>().DisplayIndicator(true);
                 yield return new WaitForSeconds(timeInBetweenOrders);
             }
         }
