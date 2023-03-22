@@ -146,6 +146,11 @@ public class Pan : Tool
                             mixingBowl.itemsInMixingBowl[i].transform.position = transform.position; // change position
                             mixingBowl.itemsInMixingBowl[i].transform.parent = transform; // change parent
                             itemsInPan.Add(i, mixingBowl.itemsInMixingBowl[i]); // add ingredient to pan
+                            mixingBowl.nameOfMixture = ""; // change mixture name
+                            for(int c = 0; c < mixingBowl.itemsInMixingBowl.Count; c++)
+                            {
+                                mixingBowl.itemsInMixingBowl.Remove(c); // remove ingredients from bowl
+                            }
                             player.isInteracting = false; //player is no longer interacting
                             player.canCollect = false; //player cannot collect items
                         }
@@ -262,63 +267,23 @@ public class Pan : Tool
                         player.canInteract = false;
                     }
                 }
+                else if (player.inventory[0] && player.inventory[0].TryGetComponent<MixingBowl>(out MixingBowl mixingBowlMH))
+                {
+                    if(mixingBowlMH.nameOfMixture != "")
+                    {
+                        Interaction = $"Add {mixingBowlMH.nameOfMixture} mixture to pan";
+                    }
+                }
+                else if (player.inventory[1] && player.inventory[1].TryGetComponent<MixingBowl>(out MixingBowl mixingBowlOH))
+                {
+                    if (mixingBowlOH.nameOfMixture != "")
+                    {
+                        Interaction = $"Add {mixingBowlOH.nameOfMixture} mixture to pan";
+                    }
+                }
             }
             return;
-        }
-
-        //Deprecated
-        //switch (item)
-        //{
-        //    case PlayerController.ItemInMainHand.empty:
-        //        Interaction = "Grab Pan";
-        //        if (player.isInteracting)
-        //        {
-        //            player.isInteracting = false;
-        //            player.canInteract = false;
-        //            Interaction = "";
-        //            gameObject.SetActive(false);
-        //        }
-        //        break;
-        //    case PlayerController.ItemInMainHand.hashbrown:
-        //        Interaction = "Grab Pan";
-        //        if (player.isInteracting)
-        //        {
-        //            player.isInteracting = false;
-        //            player.canInteract = false;
-        //            Interaction = "";
-        //            gameObject.SetActive(false);
-        //        }
-        //        break;
-        //    case PlayerController.ItemInMainHand.spatula:
-        //        Interaction = "Use Spatula";
-        //        if (player.isInteracting)
-        //        {
-        //            player.isInteracting = false;
-        //            player.canInteract = false;
-        //            Interaction = "";
-        //        }
-        //        break;
-        //    case PlayerController.ItemInMainHand.egg:
-        //        Interaction = "Grab Pan";
-        //        if (player.isInteracting)
-        //        {
-        //            player.canInteract = false;
-        //            player.isInteracting = false;
-        //            gameObject.SetActive(false);
-        //            Interaction = "";
-        //        }
-        //        break;
-        //    case PlayerController.ItemInMainHand.bacon:
-        //        Interaction = "Grab Pan";
-        //        if (player.isInteracting)
-        //        {
-        //            player.isInteracting = false;
-        //            player.canInteract = false;
-        //            Interaction = "";
-        //            gameObject.SetActive(false);
-        //        }
-        //        break;
-        //}
+        }        
     }
 
     // this function is to get information whether the pan is cooking for or not

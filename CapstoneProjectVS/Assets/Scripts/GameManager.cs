@@ -15,11 +15,6 @@ public class GameManager
     public static bool putOnCounter;
 
 
-    public static bool recipeIsOpenP1;
-    public static bool isTouchingBook;
-    public static List<int> isStepCompleted = new List<int>();
-
-
     public bool reqsClear;
 
     public static int numberOfPlayers = 0;

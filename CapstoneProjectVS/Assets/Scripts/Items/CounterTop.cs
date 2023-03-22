@@ -5,6 +5,7 @@ using UnityEngine.WSA;
 
 public class CounterTop : Utilities
 {
+    public Transform itemPlacement;
     public bool isOccupied;
 
     // Start is called before the first frame update
@@ -17,7 +18,7 @@ public class CounterTop : Utilities
             {
                 Pan pan = itemInMainHand.GetComponent<Pan>();
 
-                pan.transform.position = gameObject.transform.position; // position pan
+                pan.transform.position = itemPlacement.position; // position pan
                 pan.gameObject.SetActive(true); // activate pan
                 pan.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -29,7 +30,7 @@ public class CounterTop : Utilities
             {
                 Spatula spatula = itemInMainHand.GetComponent<Spatula>();
 
-                spatula.transform.position = gameObject.transform.position; // position pan
+                spatula.transform.position = itemPlacement.position; // position pan
                 spatula.gameObject.SetActive(true); // activate pan
                 spatula.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -41,7 +42,7 @@ public class CounterTop : Utilities
             {
                 Egg egg = itemInMainHand.GetComponent<Egg>();
 
-                egg.transform.position = gameObject.transform.position; // position pan
+                egg.transform.position = itemPlacement.position; // position pan
                 egg.gameObject.SetActive(true); // activate pan
                 egg.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -53,7 +54,7 @@ public class CounterTop : Utilities
             {
                 Bacon bacon = itemInMainHand.GetComponent<Bacon>();
 
-                bacon.transform.position = gameObject.transform.position; // position pan
+                bacon.transform.position = itemPlacement.position; // position pan
                 bacon.gameObject.SetActive(true); // activate pan
                 bacon.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -65,7 +66,7 @@ public class CounterTop : Utilities
             {
                 HashBrown hashBrown = itemInMainHand.GetComponent<HashBrown>();
 
-                hashBrown.transform.position = gameObject.transform.position; // position pan
+                hashBrown.transform.position = itemPlacement.position; // position pan
                 hashBrown.gameObject.SetActive(true); // activate pan
                 hashBrown.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -77,7 +78,7 @@ public class CounterTop : Utilities
             {
                 Toast toast = itemInMainHand.GetComponent<Toast>();
 
-                toast.transform.position = gameObject.transform.position; // position pan
+                toast.transform.position = itemPlacement.position; // position pan
                 toast.gameObject.SetActive(true); // activate pan
                 toast.counterTop = gameObject;
                 toast.canInteract = true;
@@ -90,7 +91,7 @@ public class CounterTop : Utilities
             {
                 Cheese cheese = itemInMainHand.GetComponent<Cheese>();
 
-                cheese.transform.position = gameObject.transform.position;
+                cheese.transform.position = itemPlacement.position;
                 cheese.gameObject.SetActive(true); // activate pan
                 cheese.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -102,7 +103,7 @@ public class CounterTop : Utilities
             {
                 Plate plate = itemInMainHand.GetComponent<Plate>();
 
-                plate.transform.position = gameObject.transform.position;
+                plate.transform.position = itemPlacement.position;
                 plate.gameObject.SetActive(true); // activate pan
                 plate.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -114,7 +115,7 @@ public class CounterTop : Utilities
             {
                 MixingBowl mixingBowl = itemInMainHand.GetComponent<MixingBowl>();
 
-                mixingBowl.transform.position = gameObject.transform.position;
+                mixingBowl.transform.position = itemPlacement.position;
                 mixingBowl.gameObject.SetActive(true); // activate pan
                 mixingBowl.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
@@ -126,7 +127,7 @@ public class CounterTop : Utilities
             {
                 CuttingBoard cuttingBoard = itemInMainHand.GetComponent<CuttingBoard>();
 
-                cuttingBoard.transform.position = gameObject.transform.position;
+                cuttingBoard.transform.position = itemPlacement.position;
                 cuttingBoard.gameObject.SetActive(true); // activate pan
                 cuttingBoard.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
