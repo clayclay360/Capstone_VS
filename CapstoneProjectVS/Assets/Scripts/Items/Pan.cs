@@ -155,6 +155,30 @@ public class Pan : Tool
                     CookingCheck(cookingCheck, 2, itemsInPan[0].GetComponent<Ingredients>()); // start cooking // the cook time is 2 temporary
                 }
             }
+            else if (itemInMainHand.GetComponent<CuttingBoard>() != null)
+            {
+                CuttingBoard cuttingBoard = itemInMainHand.GetComponent<CuttingBoard>();
+
+                // check what's in the mixing bowl, this swtich statement also might not be necessary
+                switch (cuttingBoard.nameOfMixture)
+                {
+                    case "Omelet":
+                        for (int i = 0; cuttingBoard.itemsOnCuttingBoard.Count > i; i++)
+                        {
+                            cuttingBoard.itemsOnCuttingBoard[i].transform.position = transform.position; // change position
+                            cuttingBoard.itemsOnCuttingBoard[i].transform.parent = transform; // change parent
+                            itemsInPan.Add(i, cuttingBoard.itemsOnCuttingBoard[i]); // add ingredient to pan
+                            player.isInteracting = false; //player is no longer interacting
+                            player.canCollect = false; //player cannot collect items
+                        }
+                        break;
+                }
+
+                if (isHot)
+                {
+                    CookingCheck(cookingCheck, 2, itemsInPan[0].GetComponent<Ingredients>()); // start cooking // the cook time is 2 temporary
+                }
+            }
             else
             {
                 //second hand is empty
