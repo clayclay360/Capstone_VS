@@ -27,6 +27,7 @@ public class CuttingBoard : Tool
     {
         base.Start();
         ChopList();
+        isWashable = true;
     }
 
     public override void Interact(Item item, PlayerController player)

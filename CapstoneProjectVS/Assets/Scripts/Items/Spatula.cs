@@ -9,6 +9,7 @@ public class Spatula : Tool
     {
         Name = "Spatula";
         Interaction = "";
+        isWashable = true;
     }
     public override void Interact(Item itemInMainHand, PlayerController player)
     {

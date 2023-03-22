@@ -26,6 +26,7 @@ public class Item : MonoBehaviour, IInteractable
     public string Name;
     public bool canInteract;
     public bool isValidTarget;
+    public bool isWashable;
 
     [Header("Icons")]
     public Sprite mainSprite;

@@ -21,6 +21,7 @@ public class Pan : Tool
     {
         Name = "Pan";
         Interaction = "";
+        isWashable = true;
     }
 
 
