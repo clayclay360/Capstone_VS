@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class CounterTop : Utilities
 {
@@ -79,6 +80,54 @@ public class CounterTop : Utilities
                 toast.transform.position = gameObject.transform.position; // position pan
                 toast.gameObject.SetActive(true); // activate pan
                 toast.counterTop = gameObject;
+                player.inventory[0] = null; // item in main hand is null
+
+                isOccupied = true;
+            }
+
+            if(itemInMainHand.GetComponent<Cheese>() != null)
+            {
+                Cheese cheese = itemInMainHand.GetComponent<Cheese>();
+
+                cheese.transform.position = gameObject.transform.position;
+                cheese.gameObject.SetActive(true); // activate pan
+                cheese.counterTop = gameObject;
+                player.inventory[0] = null; // item in main hand is null
+
+                isOccupied = true;
+            }
+
+            if(itemInMainHand.GetComponent<Plate>() != null)
+            {
+                Plate plate = itemInMainHand.GetComponent<Plate>();
+
+                plate.transform.position = gameObject.transform.position;
+                plate.gameObject.SetActive(true); // activate pan
+                plate.counterTop = gameObject;
+                player.inventory[0] = null; // item in main hand is null
+
+                isOccupied = true;
+            }
+
+            if(itemInMainHand.GetComponent<MixingBowl>() != null)
+            {
+                MixingBowl mixingBowl = itemInMainHand.GetComponent<MixingBowl>();
+
+                mixingBowl.transform.position = gameObject.transform.position;
+                mixingBowl.gameObject.SetActive(true); // activate pan
+                mixingBowl.counterTop = gameObject;
+                player.inventory[0] = null; // item in main hand is null
+
+                isOccupied = true;
+            }
+
+            if(itemInMainHand.GetComponent<CuttingBoard>() != null)
+            {
+                CuttingBoard cuttingBoard = itemInMainHand.GetComponent<CuttingBoard>();
+
+                cuttingBoard.transform.position = gameObject.transform.position;
+                cuttingBoard.gameObject.SetActive(true); // activate pan
+                cuttingBoard.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
 
                 isOccupied = true;
