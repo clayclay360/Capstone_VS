@@ -64,6 +64,14 @@ public class PlayerController : MonoBehaviour
     public GameObject bacon;
     public GameObject hashbrown;
 
+    [Header("Popout")]
+    public Animator popOutAnimator;
+    public GameObject helpGuide;
+
+    private bool helpIndicatorOpen;
+    private bool helpAvailable;
+    private string nameOfGuide;
+
     void Awake()
     {
         playerCamera.transform.position = gameObject.transform.position + camOffset;
@@ -324,6 +332,7 @@ public class PlayerController : MonoBehaviour
             isInteracting = false;
             canInteract = false;
             interactableObject = null;
+            HelpIndicator(false);
 
             if (other.TryGetComponent<Outline>(out _))
             {
@@ -343,6 +352,8 @@ public class PlayerController : MonoBehaviour
         {
             orderManager.orderWindow.SetActive(false);
         }
+
+
     }
 
     private void UpdateInteractionIcon() 
@@ -386,6 +397,35 @@ public class PlayerController : MonoBehaviour
             // implement throwCooldown
             Invoke("ResetThrow", throwCooldown);
         }
+    }
+
+    public void OnHelp()
+    {
+
+        if (helpAvailable)
+        {
+            switch (nameOfGuide)
+            {
+                case "Cooking":
+                    helpGuide.SetActive(!helpGuide.activeSelf) ;
+                    break;
+            }
+        }
+
+        Debug.Log(helpGuide.activeSelf);
+
+        if (!helpAvailable && helpGuide.activeSelf == true)
+        {
+            Debug.Log("Heloooo");
+            helpGuide.SetActive(false);
+        }
+    }
+
+    public void HelpIndicator(bool popUp = false, string guideName = "")
+    {
+        popOutAnimator.SetBool("Open", popUp);
+        helpAvailable = popUp;
+        nameOfGuide = guideName;
     }
 
     public void ResetThrow()

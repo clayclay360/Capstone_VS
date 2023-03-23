@@ -62,6 +62,8 @@ public class Stove : Utilities, IUtility
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "Cooking");
+
         if ((player.inventory[0] && player.inventory[0].TryGetComponent<Pan>(out _)) ||
             (player.inventory[1] && player.inventory[1].TryGetComponent<Pan>(out _))) 
         {
