@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spatula : Tool
 {
-
     public Spatula()
     {
         Name = "Spatula";
@@ -42,6 +41,8 @@ public class Spatula : Tool
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "Cooking Check");
+
         if (player.inventoryFull)
         {
             Interaction = "Inventory Full";

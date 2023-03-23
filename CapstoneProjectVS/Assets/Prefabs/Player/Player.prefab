@@ -188,7 +188,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cooking
+  m_Text: Test
 --- !u!1 &195315927854944126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1678,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You can place the pan on stove to cook food.
+  m_Text: Put Info Into me please.
 --- !u!1 &2472518444801025245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,7 +2557,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4702411381754169156}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: a632f4bd22d4ad248be21c68361577be, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -2569,7 +2569,7 @@ VideoPlayer:
   m_AspectRatio: 2
   m_DataSource: 0
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
+  m_AudioOutputMode: 0
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
@@ -2581,7 +2581,7 @@ VideoPlayer:
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
-  m_WaitForFirstFrame: 1
+  m_WaitForFirstFrame: 0
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
 --- !u!1 &4704593463734913045
@@ -2654,6 +2654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8250728863547300435}
+  - component: {fileID: 8335550632617268971}
   m_Layer: 0
   m_Name: Help
   m_TagString: Untagged
@@ -2682,6 +2683,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 750, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8335550632617268971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4867851117475673562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46843df1db8e1e147b2c26f3733c74e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helpGuides:
+  - Name: Cooking
+    clip: {fileID: 32900000, guid: a632f4bd22d4ad248be21c68361577be, type: 3}
+    content: You can place the pan on stove to cook food.
+  - Name: Cooking Check
+    clip: {fileID: 32900000, guid: d519b7e8f68f73b498cbd39af4291e47, type: 3}
+    content: Interact with the food inbetween the cooking checks by using the spatula.
+  videoPlayer: {fileID: 903230459269406616}
+  title: {fileID: 6760268111115029061}
+  content: {fileID: 7739414005538954164}
 --- !u!1 &4983752222640874744
 GameObject:
   m_ObjectHideFlags: 0
@@ -4250,8 +4273,6 @@ MonoBehaviour:
   hashbrown: {fileID: 0}
   popOutAnimator: {fileID: 5702401515280782155}
   helpGuide: {fileID: 4228877095977654703}
-  helpAvailable: 0
-  nameOfGuide: 
 --- !u!114 &8313516844159529844
 MonoBehaviour:
   m_ObjectHideFlags: 0
