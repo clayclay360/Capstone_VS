@@ -21,10 +21,12 @@ public class EggCarton : Ingredients, IInteractable
         if (!egg.isBeingUsed)
         {
             canInteract = true;
+            gameObject.GetComponent<SphereCollider>().enabled = true;
         }
         else
         {
             canInteract = false;
+            gameObject.GetComponent<SphereCollider>().enabled = false;
         }
     }
 

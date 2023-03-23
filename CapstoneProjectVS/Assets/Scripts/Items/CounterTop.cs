@@ -11,6 +11,7 @@ public class CounterTop : Utilities
     // Start is called before the first frame update
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
+        itemPlacement = gameObject.transform;
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
         {
