@@ -286,6 +286,7 @@ public class PlayerController : MonoBehaviour
             {
                 Item item = interactableObject.GetComponent<Item>();
                 item.Interact(inventory[0], this);
+                HelpIndicator(false);
                 interactableObject = null;
                 
             }
@@ -404,19 +405,22 @@ public class PlayerController : MonoBehaviour
 
         if (helpAvailable)
         {
-            switch (nameOfGuide)
+            helpGuide.SetActive(!helpGuide.activeSelf);
+
+            HelpGuideManager helpGuideManager = FindObjectOfType<HelpGuideManager>();
+            for(int i = 0; i < helpGuideManager.helpGuides.Length; i++)
             {
-                case "Cooking":
-                    helpGuide.SetActive(!helpGuide.activeSelf) ;
-                    break;
+                if (helpGuideManager.helpGuides[i].Name == nameOfGuide)
+                {
+                    helpGuideManager.videoPlayer.clip = helpGuideManager.helpGuides[i].clip;
+                    helpGuideManager.title.text = helpGuideManager.helpGuides[i].Name;
+                    helpGuideManager.content.text = helpGuideManager.helpGuides[i].content;
+                }
             }
         }
 
-        Debug.Log(helpGuide.activeSelf);
-
         if (!helpAvailable && helpGuide.activeSelf == true)
         {
-            Debug.Log("Heloooo");
             helpGuide.SetActive(false);
         }
     }
