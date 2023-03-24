@@ -21,6 +21,7 @@ public class CounterTop : Utilities
 
                 pan.transform.position = itemPlacement.position; // position pan
                 pan.gameObject.SetActive(true); // activate pan
+                pan.isValidTarget = true;
                 pan.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
 
@@ -33,6 +34,7 @@ public class CounterTop : Utilities
 
                 spatula.transform.position = itemPlacement.position; // position pan
                 spatula.gameObject.SetActive(true); // activate pan
+                spatula.isValidTarget = true;
                 spatula.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
 
@@ -106,6 +108,7 @@ public class CounterTop : Utilities
 
                 plate.transform.position = itemPlacement.position;
                 plate.gameObject.SetActive(true); // activate plate
+                plate.isValidTarget = true;
                 plate.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
 
@@ -118,6 +121,7 @@ public class CounterTop : Utilities
 
                 mixingBowl.transform.position = itemPlacement.position;
                 mixingBowl.gameObject.SetActive(true); // activate pan
+                mixingBowl.isValidTarget = true;
                 mixingBowl.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
 
@@ -137,11 +141,6 @@ public class CounterTop : Utilities
             }
         }
         player.isInteracting = false;
-    }
-
-    public void ratInteraction(RatController rat)
-    {
-
     }
 
     public override void Update()

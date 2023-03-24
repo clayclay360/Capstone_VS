@@ -28,7 +28,7 @@ public class RatController : MonoBehaviour
     
 
     public int health = 2;
-    public GameObject ratInventory;
+    public GameObject ratInventory, blood;
     //Dictionary<GameObject, bool> currActiveTargets;
     public List<GameObject> playerList;
     public GameObject closestPlayer;
@@ -50,6 +50,10 @@ public class RatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health <= 1 && !blood.activeInHierarchy)
+        {
+            blood.SetActive(true);
+        }
         if(health <= 0)
         {
             Despawn();
