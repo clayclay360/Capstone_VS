@@ -43,8 +43,8 @@ public class CounterTop : Utilities
             {
                 Egg egg = itemInMainHand.GetComponent<Egg>();
 
-                egg.transform.position = itemPlacement.position; // position pan
-                egg.gameObject.SetActive(true); // activate pan
+                egg.transform.position = itemPlacement.position; // position egg
+                egg.gameObject.SetActive(true); // activate egg
                 egg.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
 
@@ -105,7 +105,7 @@ public class CounterTop : Utilities
                 Plate plate = itemInMainHand.GetComponent<Plate>();
 
                 plate.transform.position = itemPlacement.position;
-                plate.gameObject.SetActive(true); // activate pan
+                plate.gameObject.SetActive(true); // activate plate
                 plate.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
 
@@ -139,10 +139,16 @@ public class CounterTop : Utilities
         player.isInteracting = false;
     }
 
+    public void ratInteraction(RatController rat)
+    {
+
+    }
+
     public override void Update()
     {
         base.Update();
         canInteract = Interactivity();
+        isValidTarget = !Interactivity();
         gameObject.GetComponent<BoxCollider>().enabled = Interactivity();
     }
 

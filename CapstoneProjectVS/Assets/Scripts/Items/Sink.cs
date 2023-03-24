@@ -12,8 +12,15 @@ public class Sink : Utilities, IUtility, IInteractable
         //Pick up item
         if (item == null)
         {
-            //We need to get the playerController to add to their inv
-            ClearFirstItemFromInv();
+            if (!IsInvEmpty())
+            {
+                //We need to get the playerController to add to their inv
+                ClearFirstItemFromInv();
+            }
+            else
+            {
+                Debug.LogWarning("All sink slots are empty");
+            }
         }
 
         //Place item
@@ -35,9 +42,15 @@ public class Sink : Utilities, IUtility, IInteractable
 
     public void ratInteraction(RatController rat)
     {
-        if (!IsInvFull())
+        if (!IsInvEmpty())
         {
-            rat.ratInventory = GetFirstItemFromInv().gameObject;
+            //Rats will try stealing clean items from the sink first
+            rat.ratInventory = GetFirstItemFromInv(true).gameObject;
+            if(rat.ratInventory == null)
+            {
+                //If there are no clean items, then rats will steal dirty ones
+                rat.ratInventory = GetFirstItemFromInv().gameObject;
+            }
             ClearFirstItemFromInv();
         }
 
@@ -90,6 +103,22 @@ public class Sink : Utilities, IUtility, IInteractable
         for (int i = 0; i < sinkInv.Length; i++)
         {
             if (!sinkInv[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// Helper function returns the bool true if all sink inv slots are null
+    /// </summary>
+    /// <returns></returns>
+    private bool IsInvEmpty()
+    {
+        for (int i = 0; i < sinkInv.Length; i++)
+        {
+            if (sinkInv[i])
             {
                 isValidTarget = true;
                 return false;

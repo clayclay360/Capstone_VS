@@ -33,6 +33,7 @@ public class Stove : Utilities, IUtility
                     {
                         pan.CookingCheck(pan.cookingCheck, 2, pan.itemsInPan[0].GetComponent<Ingredients>()); // start cooking check // the cook time is 2 temporary
                         pan.itemsInPan[0].GetComponent<Ingredients>().isCooking = true; // food is cooking
+                        isValidTarget = false;
                     }
                 }
             }
@@ -83,15 +84,18 @@ public class Stove : Utilities, IUtility
             GameObject pan = panScript.gameObject;
             if(panScript.itemsInPan.Count > 0)
             {
-                GameObject ingredient = pan.GetComponentInChildren<Ingredients>().gameObject;
-                ingredient.transform.SetParent(rat.transform);
-                rat.ratInventory = ingredient;
-                panScript.itemsInPan.Remove(panScript.itemsInPan.Count);
-                Debug.Log(panScript.itemsInPan);
+                Ingredients ingredient = pan.GetComponentInChildren<Ingredients>();
+                if (ingredient.isCooking)
+                {
+                    ingredient.Collect(null, rat);
+                    panScript.itemsInPan.Remove(panScript.itemsInPan.Count);
+                    Debug.Log(panScript.itemsInPan);
+                }
             }
             else
             {
                 panScript.Collect(null, rat);
+                panScript.isHot = false;
                 panScript.status = Tool.Status.dirty;
                 isOccupied = false;
                 isValidTarget = false;

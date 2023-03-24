@@ -62,6 +62,10 @@ public class RatController : MonoBehaviour
         {
             MovementAnimation();
         }
+        if(ratInventory != null)
+        {
+            MakeInvDirty();
+        }
     }
 
     public void CheckPlayers()
@@ -259,21 +263,31 @@ public class RatController : MonoBehaviour
             ICollectable collectableItem = currTarget.GetComponent<ICollectable>();
             collectableItem.Collect(null, this);
             objectiveComplete = true;
-            //set item to spoiled if ingredient
-            if(currTarget.GetComponent<Ingredients>() != null)
-            {
-                currTarget.GetComponent<Ingredients>().cookingStatus = Ingredients.CookingStatus.spoiled;
-            }
-            //set item to dirty if tool
-            else if (currTarget.GetComponent<Tool>() != null)
-            {
-                currTarget.GetComponent<Tool>().status = Tool.Status.dirty;
-            }
             currTarget = spawnHole;
             navAgent.SetDestination(currTarget.transform.position);
             if (!isGrabbing)
             {
                 navAgent.isStopped = false;
+            }
+        }
+    }
+
+    public void MakeInvDirty()
+    {
+        //set item to spoiled if ingredient and not already spoiled
+        if (ratInventory.GetComponent<Ingredients>() != null)
+        {
+            if(ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled)
+            {
+                ratInventory.GetComponent<Ingredients>().cookingStatus = Ingredients.CookingStatus.spoiled;
+            }
+        }
+        //set item to dirty if tool and not already dirty
+        else if (ratInventory.GetComponent<Tool>() != null)
+        {
+            if (ratInventory.GetComponent<Tool>().status != Tool.Status.dirty)
+            {
+                ratInventory.GetComponent<Tool>().status = Tool.Status.dirty;
             }
         }
     }
