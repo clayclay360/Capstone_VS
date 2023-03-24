@@ -41,6 +41,8 @@ public class TrashCan : Utilities, IUtility, IInteractable
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "Throwing Away");
+
         if (player.inventory[0])
         {
             Interaction = CheckForContainerAndSetText(player.inventory[0]);
