@@ -34,14 +34,17 @@ public class Pan : Tool
             if(itemInMainHand.GetComponent<Spatula>() != null)
             {
                 //if Pan is not empty and is hot
-                if (itemsInPan.Count > 0 && isHot)
+                if (itemsInPan.Count > 0 && isHot && itemsInPan[0].GetComponent<Ingredients>().cookingStatus == Ingredients.CookingStatus.uncooked)
                 {
                     Debug.Log("Sptula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
                 }
                 else
                 {
-                    Collect(player);
+                    if (!player.inventoryFull)
+                    {
+                        Collect(player);
+                    }
                     CheckCounterTop();
                     CheckSink();
                 }
@@ -50,7 +53,7 @@ public class Pan : Tool
             {
                 egg = itemInMainHand.GetComponent<Egg>();
 
-                if (itemsInPan.Count <= containerSize && egg.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and egg is not cooked
+                if (itemsInPan.Count < containerSize && egg.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and egg is not cooked
                 {
                     itemsInPan.Add(itemsInPan.Count, egg); // add egg in the pan inventory.
                     egg.transform.position = transform.position; // put egg on pan
@@ -68,12 +71,14 @@ public class Pan : Tool
                         CookingCheck(cookingCheck, 2, egg); // start cooking // the cook time is 2 temporary
                     }
                 }
+
+                
             }
             else if (itemInMainHand.GetComponent<Bacon>() != null)
             {
                 bacon = itemInMainHand.GetComponent<Bacon>();
 
-                if (itemsInPan.Count <= containerSize && bacon.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and egg is not cooked
+                if (itemsInPan.Count < containerSize && bacon.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and egg is not cooked
                 {
                     itemsInPan.Add(itemsInPan.Count, bacon); // add bacon in the pan inventory.
                     bacon.transform.position = transform.position; // put bacon on pan
@@ -94,7 +99,7 @@ public class Pan : Tool
             {
                 toast = itemInMainHand.GetComponent<Toast>();
 
-                if (itemsInPan.Count <= containerSize && toast.cookingStatus == Ingredients.CookingStatus.uncooked)// if pan is not full and toast is not toasted
+                if (itemsInPan.Count < containerSize && toast.cookingStatus == Ingredients.CookingStatus.uncooked)// if pan is not full and toast is not toasted
                 {
                     itemsInPan.Add(itemsInPan.Count, toast); // add toast to pan inventory
                     toast.transform.position = transform.position; // put toast on pan
@@ -116,7 +121,7 @@ public class Pan : Tool
             {
                 hashBrown = itemInMainHand.GetComponent<HashBrown>();
 
-                if(itemsInPan.Count <= containerSize && hashBrown.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and hashbornw is not cooked
+                if(itemsInPan.Count < containerSize && hashBrown.cookingStatus == Ingredients.CookingStatus.uncooked) // if pan is not full and hashbornw is not cooked
                 {
                     itemsInPan.Add(itemsInPan.Count, hashBrown); // adde hashbrown to pan inventory
                     hashBrown.transform.position = transform.position; // put hashbrown on pan
@@ -189,9 +194,10 @@ public class Pan : Tool
             else
             {
                 //second hand is empty
-                if (itemsInPan != null && !IsCookingFood())
+                if (itemsInPan == null && !IsCookingFood())
                 {
                     Collect(player);
+                    isHot = false;
                     CheckCounterTop();
                     CheckSink();
                 }
@@ -204,15 +210,9 @@ public class Pan : Tool
             {
                 // if the food is not cooking
                 Collect(player);
+                isHot = false;
                 CheckCounterTop();
                 CheckSink();
-
-                // if the pan is occupying a stove than set it to false
-                if (stove != null)
-                {
-                    stove.isOccupied = false;
-                    stove = null;
-                }
             }
         }
     }
@@ -244,12 +244,24 @@ public class Pan : Tool
                     player.isInteracting = false;
                     player.canInteract = false;
                     Interaction = "";
-                    gameObject.SetActive(false);
                 }
             }
             //There is no item in the pan(pre-cooking)
+            if (player.inventoryFull && !player.inventory[0].GetComponent<Ingredients>())
             {
-                if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
+                Interaction = "Inventory Full";
+                return;
+            }
+            else if(itemsInPan.Count >= containerSize)
+            {
+                if (player.inventory[0] != null && player.inventory[0].GetComponent<Ingredients>())
+                {
+                    Interaction = "Pan is Full";
+                    return;
+                }
+            }
+
+            else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
                 {
                     Interaction = $"Add {ingredientMH.Name} to pan";
                     if (player.isInteracting)
@@ -258,30 +270,29 @@ public class Pan : Tool
                         player.canInteract = false;
                     }
                 }
-                else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
-                {
-                    Interaction = $"Add {ingredientOH.Name} to pan";
-                    if (player.isInteracting)
-                    {
-                        player.isInteracting = false;
-                        player.canInteract = false;
-                    }
-                }
-                else if (player.inventory[0] && player.inventory[0].TryGetComponent<MixingBowl>(out MixingBowl mixingBowlMH))
-                {
-                    if(mixingBowlMH.nameOfMixture != "")
-                    {
-                        Interaction = $"Add {mixingBowlMH.nameOfMixture} mixture to pan";
-                    }
-                }
-                else if (player.inventory[1] && player.inventory[1].TryGetComponent<MixingBowl>(out MixingBowl mixingBowlOH))
-                {
-                    if (mixingBowlOH.nameOfMixture != "")
-                    {
-                        Interaction = $"Add {mixingBowlOH.nameOfMixture} mixture to pan";
-                    }
-                }
-            }
+            //else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
+            //{
+            //    Interaction = $"Add {ingredientOH.Name} to pan";
+            //    if (player.isInteracting)
+            //    {
+            //        player.isInteracting = false;
+            //        player.canInteract = false;
+            //    }
+            //}
+            //else if (player.inventory[0] && player.inventory[0].TryGetComponent<MixingBowl>(out MixingBowl mixingBowlMH))
+            //{
+            //    if(mixingBowlMH.nameOfMixture != "")
+            //    {
+            //        Interaction = $"Add {mixingBowlMH.nameOfMixture} mixture to pan";
+            //    }
+            //}
+            //else if (player.inventory[1] && player.inventory[1].TryGetComponent<MixingBowl>(out MixingBowl mixingBowlOH))
+            //{
+            //    if (mixingBowlOH.nameOfMixture != "")
+            //    {
+            //        Interaction = $"Add {mixingBowlOH.nameOfMixture} mixture to pan";
+            //    }
+            //}
             return;
         }        
     }
@@ -303,5 +314,19 @@ public class Pan : Tool
             return false;
         }
         return true;
+    }
+
+    public override void Collect(PlayerController player = null, RatController rat = null)
+    {
+        base.Collect(player, rat);
+
+        // if the pan is occupying a stove than set it to false
+        if (stove != null)
+        {
+            stove.isOccupied = false;
+            stove.canInteract = true;
+            stove = null;
+        }
+
     }
 }
