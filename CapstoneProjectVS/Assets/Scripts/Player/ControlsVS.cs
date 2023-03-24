@@ -80,6 +80,24 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextRecipe"",
+                    ""type"": ""Button"",
+                    ""id"": ""2758aa6f-5a7a-4a24-829e-2e85b34632af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousRecipe"",
+                    ""type"": ""Button"",
+                    ""id"": ""60f142ca-670b-4bc1-8f08-7cfef1d47c05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +265,28 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""action"": ""Help"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e0ea349-310d-4ca8-8ab3-4a662d361d16"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousRecipe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c810acb1-1add-44ad-896e-9b34dd2bb59c"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextRecipe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +313,8 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS_SwitchHand = m_PlayerControlsVS.FindAction("SwitchHand", throwIfNotFound: true);
         m_PlayerControlsVS_KnifeThrow = m_PlayerControlsVS.FindAction("KnifeThrow", throwIfNotFound: true);
         m_PlayerControlsVS_Help = m_PlayerControlsVS.FindAction("Help", throwIfNotFound: true);
+        m_PlayerControlsVS_NextRecipe = m_PlayerControlsVS.FindAction("NextRecipe", throwIfNotFound: true);
+        m_PlayerControlsVS_PreviousRecipe = m_PlayerControlsVS.FindAction("PreviousRecipe", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,6 +380,8 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControlsVS_SwitchHand;
     private readonly InputAction m_PlayerControlsVS_KnifeThrow;
     private readonly InputAction m_PlayerControlsVS_Help;
+    private readonly InputAction m_PlayerControlsVS_NextRecipe;
+    private readonly InputAction m_PlayerControlsVS_PreviousRecipe;
     public struct PlayerControlsVSActions
     {
         private @ControlsVS m_Wrapper;
@@ -348,6 +392,8 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         public InputAction @SwitchHand => m_Wrapper.m_PlayerControlsVS_SwitchHand;
         public InputAction @KnifeThrow => m_Wrapper.m_PlayerControlsVS_KnifeThrow;
         public InputAction @Help => m_Wrapper.m_PlayerControlsVS_Help;
+        public InputAction @NextRecipe => m_Wrapper.m_PlayerControlsVS_NextRecipe;
+        public InputAction @PreviousRecipe => m_Wrapper.m_PlayerControlsVS_PreviousRecipe;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControlsVS; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -375,6 +421,12 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Help.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnHelp;
                 @Help.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnHelp;
                 @Help.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnHelp;
+                @NextRecipe.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnNextRecipe;
+                @NextRecipe.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnNextRecipe;
+                @NextRecipe.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnNextRecipe;
+                @PreviousRecipe.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
+                @PreviousRecipe.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
+                @PreviousRecipe.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
             }
             m_Wrapper.m_PlayerControlsVSActionsCallbackInterface = instance;
             if (instance != null)
@@ -397,6 +449,12 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Help.started += instance.OnHelp;
                 @Help.performed += instance.OnHelp;
                 @Help.canceled += instance.OnHelp;
+                @NextRecipe.started += instance.OnNextRecipe;
+                @NextRecipe.performed += instance.OnNextRecipe;
+                @NextRecipe.canceled += instance.OnNextRecipe;
+                @PreviousRecipe.started += instance.OnPreviousRecipe;
+                @PreviousRecipe.performed += instance.OnPreviousRecipe;
+                @PreviousRecipe.canceled += instance.OnPreviousRecipe;
             }
         }
     }
@@ -418,5 +476,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         void OnSwitchHand(InputAction.CallbackContext context);
         void OnKnifeThrow(InputAction.CallbackContext context);
         void OnHelp(InputAction.CallbackContext context);
+        void OnNextRecipe(InputAction.CallbackContext context);
+        void OnPreviousRecipe(InputAction.CallbackContext context);
     }
 }

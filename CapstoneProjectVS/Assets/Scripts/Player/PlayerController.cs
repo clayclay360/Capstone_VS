@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     public Text Inv2;
     public bool inventoryFull = false;
 
+    private Cookbook cookbook;
+
     [Header("Icons")]
     public Image[] Icon;
     public Sprite EggIcon;
@@ -358,6 +360,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Honestly this is the only non-annoying way I could figure to get the cookbook assigned. Sue me.
+        if (!cookbook && other.TryGetComponent<Cookbook>(out Cookbook cb))
+        {
+            cookbook = cb;
+        }
+    }
+
     private void UpdateInteractionIcon() 
     {
         interactButtonIcon.gameObject.SetActive(interactionText.text == "" ? false : true);
@@ -438,4 +450,30 @@ public class PlayerController : MonoBehaviour
         readyToThrow = true;
     }
 
+    /// <summary>
+    /// Method from inputs which calls a method in the cookbook object which calls a method
+    /// in the cookbook UI. This is because the player has the controls, and only a reference
+    /// to the cookbook object, which has a reference to the cookbook UI. Fucking stupid I know.
+    /// </summary>
+    public void OnNextRecipe()
+    {
+        if (cookbook)
+        {
+            cookbook.OnNextRecipe();
+        }
+        
+    }
+
+    /// <summary>
+    /// Method from inputs which calls a method in the cookbook object which calls a method
+    /// in the cookbook UI. This is because the player has the controls, and only a reference
+    /// to the cookbook object, which has a reference to the cookbook UI. Fucking stupid I know.
+    /// </summary>
+    public void OnPreviousRecipe()
+    {
+        if (cookbook)
+        {
+            cookbook.OnPreviousRecipe();
+        }
+    }
 }
