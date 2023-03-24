@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3570161425733208012}
   - component: {fileID: 6837815798773412954}
   m_Layer: 0
-  m_Name: Cookbook
+  m_Name: CookBook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   Name: Cookbook
   canInteract: 1
   isValidTarget: 0
+  isWashable: 0
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
