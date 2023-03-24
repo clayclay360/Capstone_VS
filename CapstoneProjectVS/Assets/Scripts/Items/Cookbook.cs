@@ -70,6 +70,9 @@ public class Cookbook : Utilities, IInteractable
         }
     }
 
+    /// <summary>
+    /// Called from the player script when they leave the book's interaction range
+    /// </summary>
     public void PlayerLeftBook()
     {
         currState = cookBookState.closed;
@@ -79,14 +82,19 @@ public class Cookbook : Utilities, IInteractable
         UIScript.isOpen = false;
     }
 
-    //I don't know why I throw this between the object and the UI when I could just add the inputs and methods to the UI.
+    /// <summary>
+    /// Called from the player script when they press the next recipe button
+    /// </summary>
     public void OnNextRecipe()
     {
         UIScript.NextRecipe();
     }
 
+    /// <summary>
+    /// Called from the player script when the press the previous recipe button
+    /// </summary>
     public void OnPreviousRecipe()
     {
-        UIScript.NextRecipe();
+        UIScript.PreviousRecipe();
     }
 }

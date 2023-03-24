@@ -162,6 +162,7 @@ public class CookbookUI : MonoBehaviour
                 ShowOmeletRecipe();
                 break;
         }
+        SetPageText();
     }
 
     private void ShowBaconRecipe()
@@ -174,7 +175,6 @@ public class CookbookUI : MonoBehaviour
                            "3. Use Spatula to flip bacon at correct times\n" +
                            "4. Add bacon to plate\n" +
                            "5. Serve bacon";
-        SetPageText();
     }
 
     private void ShowToastRecipe()
@@ -189,20 +189,18 @@ public class CookbookUI : MonoBehaviour
                            "5. Repeat steps 1-4 once more\n" +
                            "6. Add butter and cinnamon to toast\n" +
                            "7. Serve toast";
-        SetPageText();
     }
 
     private void ShowOmeletRecipe()
     {
         currPageNum = 1;
         recipeTitle.text = "Omelet";
-        pageOneLeftText = "•Pan\n•Cooking oil\n•Eggs\n•Spatula•";//\n•Cheese";
+        pageOneLeftText = "•Pan\n•Cooking oil\n•Eggs\n•Spatula";//\n•Cheese";
         pageOneRightText = "1. Place pan on stove\n" +
                            "2. Add cooking oil to pan\n" + //Might have to remove this for long play
                            "3. Add eggs to pan\n" +
                            "4. Use Spatula to flip omelet at correct times\n" +
                            "5. Add omelet to plate\n" +
                            "6. Serve omelet";
-        SetPageText();
     }
 }
