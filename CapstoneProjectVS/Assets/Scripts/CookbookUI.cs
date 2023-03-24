@@ -22,20 +22,23 @@ public class CookbookUI : MonoBehaviour
     private int currPageNum;
     private int currRecipeNum;
 
-    private Dictionary<int, string> recipeList;
+    private Dictionary<int, string> recipeList = new Dictionary<int, string>();
+    
     /// <summary>
     /// Dictionary says how many pages each recipe takes.
     /// The first int is the recipe number.
     /// The second int is the number  of pages that recipe has.
     /// </summary>
-    private Dictionary<int, int> pagesPerRecipe;
+    private Dictionary<int, int> pagesPerRecipe = new Dictionary<int, int>();
 
-    // Start is called before the first frame update
-    void Start()
+    //Someone tell me why the hell start is only called  on active GameObjects?
+    //Man fuck Unity
+    private void Start()
     {
         currPageNum = 1;
         currRecipeNum = 1;
         SetRecipeDictionaries();
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -43,8 +46,15 @@ public class CookbookUI : MonoBehaviour
     /// </summary>
     private void SetRecipeDictionaries()
     {
+        //Bacon recipe
         recipeList.Add(1, "Bacon");
         pagesPerRecipe.Add(1, 1);
+        //Toast recipe
+        recipeList.Add(2, "Toast");
+        pagesPerRecipe.Add(2, 1);
+        //Omelet recipe
+        recipeList.Add(3, "Omelet");
+        pagesPerRecipe.Add(3, 1);
     }
 
     /// <summary>
@@ -86,7 +96,7 @@ public class CookbookUI : MonoBehaviour
     /// <summary>
     /// Moves down through the recipe if it has more than one page
     /// </summary>
-    private void FlipPageDown()
+    public void FlipPageDown()
     {
         if (!isOpen) { return; }
 
@@ -104,7 +114,7 @@ public class CookbookUI : MonoBehaviour
     /// <summary>
     /// Moves to the next recipe, or the first recipe if the player is on the last
     /// </summary>
-    private void NextRecipe()
+    public void NextRecipe()
     {
         if (!isOpen) { return; }
         if (currRecipeNum < recipeList.Count)
@@ -121,7 +131,7 @@ public class CookbookUI : MonoBehaviour
     /// <summary>
     /// Moves to the previous recipe, or the last recipe if the player is on the first
     /// </summary>
-    private void PreviousRecipe()
+    public void PreviousRecipe()
     {
         if (!isOpen) { return; }
         if (currRecipeNum == 1)
@@ -138,12 +148,18 @@ public class CookbookUI : MonoBehaviour
     /// <summary>
     /// Initializes the recipe text when the recipe number changes
     /// </summary>
-    private void SetRecipe()
+    public void SetRecipe()
     {
         switch (recipeList[currRecipeNum])
         {
             case "Bacon":
                 ShowBaconRecipe();
+                break;
+            case "Toast":
+                ShowToastRecipe();
+                break;
+            case "Omelet":
+                ShowOmeletRecipe();
                 break;
         }
     }
@@ -157,7 +173,36 @@ public class CookbookUI : MonoBehaviour
                            "2. Add bacon to pan\n" +
                            "3. Use Spatula to flip bacon at correct times\n" +
                            "4. Add bacon to plate\n" +
-                           "5.Serve";
+                           "5. Serve bacon";
+        SetPageText();
+    }
+
+    private void ShowToastRecipe()
+    {
+        currPageNum = 1;
+        recipeTitle.text = "Toast";
+        pageOneLeftText = "•Bread\n•Butter\n•Cinnamon";
+        pageOneRightText = "1. Place bread in toaster\n" +
+                           "2. Wait for toater to cook bread\n" +
+                           "3. Remove toast from toaster\n" +
+                           "4. Add toast to plate\n" +
+                           "5. Repeat steps 1-4 once more\n" +
+                           "6. Add butter and cinnamon to toast\n" +
+                           "7. Serve toast";
+        SetPageText();
+    }
+
+    private void ShowOmeletRecipe()
+    {
+        currPageNum = 1;
+        recipeTitle.text = "Omelet";
+        pageOneLeftText = "•Pan\n•Cooking oil\n•Eggs\n•Spatula•";//\n•Cheese";
+        pageOneRightText = "1. Place pan on stove\n" +
+                           "2. Add cooking oil to pan\n" + //Might have to remove this for long play
+                           "3. Add eggs to pan\n" +
+                           "4. Use Spatula to flip omelet at correct times\n" +
+                           "5. Add omelet to plate\n" +
+                           "6. Serve omelet";
         SetPageText();
     }
 }

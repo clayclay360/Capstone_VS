@@ -11,11 +11,17 @@ public class Cookbook : Utilities, IInteractable
 
     [Header("Objects")]
     [SerializeField] private GameObject cookbookUI;
+    private CookbookUI UIScript;
 
     [Header("Models")]
     [SerializeField] private GameObject openModel;
     [SerializeField] private GameObject closedModel;
     [SerializeField] private GameObject destroyedModel;
+
+    private void Awake()
+    {
+        UIScript = cookbookUI.GetComponent<CookbookUI>();
+    }
 
     public override void Interact(Item item, PlayerController player)
     {
@@ -26,12 +32,14 @@ public class Cookbook : Utilities, IInteractable
                 closedModel.SetActive(false);
                 openModel.SetActive(true);
                 cookbookUI.SetActive(true);
+                UIScript.isOpen = true;
                 break;
             case cookBookState.opened: //Switch book from closed to opened
                 currState = cookBookState.closed;
                 closedModel.SetActive(true);
                 openModel.SetActive(false);
                 cookbookUI.SetActive(false);
+                UIScript.isOpen = false;
                 break;
             case cookBookState.destroyed:
                 //Unreachable until rats can destroy the cookbook
@@ -68,5 +76,17 @@ public class Cookbook : Utilities, IInteractable
         cookbookUI.SetActive(false);
         openModel.SetActive(false);
         closedModel.SetActive(true);
+        UIScript.isOpen = false;
+    }
+
+    //I don't know why I throw this between the object and the UI when I could just add the inputs and methods to the UI.
+    public void OnNextRecipe()
+    {
+        UIScript.NextRecipe();
+    }
+
+    public void OnPreviousRecipe()
+    {
+        UIScript.NextRecipe();
     }
 }
