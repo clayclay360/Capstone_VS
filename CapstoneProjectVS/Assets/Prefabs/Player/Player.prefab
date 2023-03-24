@@ -2702,6 +2702,12 @@ MonoBehaviour:
   - Name: Cooking Check
     clip: {fileID: 32900000, guid: d519b7e8f68f73b498cbd39af4291e47, type: 3}
     content: Interact with the food inbetween the cooking checks by using the spatula.
+  - Name: Throwing Away
+    clip: {fileID: 32900000, guid: f7e32057147c31747898b6a14292da08, type: 3}
+    content: You can throw away items in your inventory in the trash can
+  - Name: Placing Items
+    clip: {fileID: 32900000, guid: 0bd3e430794ba01449a3b12c9fdad094, type: 3}
+    content: You can place items on the counter
   videoPlayer: {fileID: 903230459269406616}
   title: {fileID: 6760268111115029061}
   content: {fileID: 7739414005538954164}

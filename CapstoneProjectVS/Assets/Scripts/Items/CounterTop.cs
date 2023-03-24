@@ -160,6 +160,7 @@ public class CounterTop : Utilities
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "Placing Items");
         if (!isOccupied)
         {
             if (player.inventory[0])
