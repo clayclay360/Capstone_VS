@@ -25,10 +25,13 @@ public class OrderManager : Item
                     plate.foodOnPlate[0].Name == main.sideRecipeOne.Name)
                 {
                     main.OrderComplete(plate.foodOnPlate[0].Name);
-                    if (plate.foodOnPlate[0].Name == "Egg" || plate.foodOnPlate[0].Name == "Bacon" || plate.foodOnPlate[0].Name == "Toast")
+                    if (plate.foodOnPlate[0].Name == "Omelet" || plate.foodOnPlate[0].Name == "Bacon" || plate.foodOnPlate[0].Name == "Toast")
                     {
                         Ingredients ingredient;
                         ingredient = plate.foodOnPlate[0].GetComponent<Ingredients>();
+                        plate.foodOnPlate[0].transform.parent = null;
+                        plate.foodOnPlate[0].canInteract = true;
+                        plate.foodOnPlate[0] = null;
                         ingredient.RespawnIngredient();
                         ingredient.gameObject.SetActive(true);
                         ingredient.isBeingUsed = false;
@@ -40,7 +43,7 @@ public class OrderManager : Item
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
-        orderWindow.SetActive(true);
+        orderWindow.GetComponent<CanvasGroup>().alpha = 1;
         DisplayIndicator(false);
     }
 

@@ -315,7 +315,7 @@ public class PlayerController : MonoBehaviour
 
             if(other.gameObject.GetComponent<ICollectable>() != null)
             {
-                if (inventory[0] != null || inventory[1] != null)
+                if (!inventoryFull)
                 {
                     //If the player's inventory isn't full then they can collect
                     canCollect = true;
@@ -335,6 +335,7 @@ public class PlayerController : MonoBehaviour
             isInteracting = false;
             canInteract = false;
             interactableObject = null;
+            canCollect = false;
             HelpIndicator(false);
 
             if (other.TryGetComponent<Outline>(out _))
@@ -353,7 +354,7 @@ public class PlayerController : MonoBehaviour
 
         if(other.TryGetComponent<OrderManager>(out OrderManager orderManager))
         {
-            orderManager.orderWindow.SetActive(false);
+            orderManager.orderWindow.GetComponent<CanvasGroup>().alpha = 0;
         }
 
 
