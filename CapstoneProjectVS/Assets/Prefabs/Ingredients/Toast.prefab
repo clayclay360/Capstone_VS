@@ -45,16 +45,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e993a9332559ac4fbe788aeee3aa360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Bread
   canInteract: 0
   isValidTarget: 0
-  main: {fileID: 0}
+  isWashable: 0
+  mainSprite: {fileID: 0}
+  outline: {fileID: 0}
   Interaction: 
   cookingStatus: 0
-  uncooked: {fileID: 0}
+  uncooked: {fileID: 21300000, guid: 024b49b3fc8346b409fb0a56402224c7, type: 3}
   cooked: {fileID: 0}
   spoiled: {fileID: 0}
   burnt: {fileID: 0}
+  isBeingUsed: 0
+  startLocation: {x: 0, y: 0, z: 0}
+  counterTop: {fileID: 0}
+  ProgressTime: 0
+  isMixable: 0
+  isCuttable: 0
   state: 0
   sliceModel: {fileID: 0}
   toastModel: {fileID: 0}

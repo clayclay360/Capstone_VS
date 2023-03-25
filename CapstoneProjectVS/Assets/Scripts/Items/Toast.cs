@@ -15,9 +15,14 @@ public class Toast : Ingredients, IInteractable
     // Start is called before the first frame update
     public Toast()
     {
-        Name = "Toast";
+        Name = "Bread";
         Interaction = "";
         isBeingUsed = false;
+    }
+
+    public override void Update()
+    {
+        base.Update();
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)
@@ -50,6 +55,14 @@ public class Toast : Ingredients, IInteractable
             Collect(player);
             CheckCounterTop();
         }
+    }
+
+    public override void ChangeStatus()
+    {
+        state = State.toasted;
+        cookingStatus = CookingStatus.cooked;
+        Name = "Toast";
+        SwitchModel(state);
     }
 
     public virtual void SwitchModel(State currentState)

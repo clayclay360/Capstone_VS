@@ -32,6 +32,20 @@ public class Plate : Tool
                     }
                 }
             }
+            else if (itemInMainHand.GetComponent<Toast>())
+            {
+                Ingredients food = itemInMainHand.GetComponent<Ingredients>();
+
+                if (food.cookingStatus == Ingredients.CookingStatus.cooked)
+                {
+                    foodOnPlate.Add(foodOnPlate.Count, food);
+                    food.transform.position = foodPlacement.transform.position; // put food on plate
+                    food.transform.parent = transform; // have the plate be the parent of food
+                    food.gameObject.SetActive(true);
+                    player.inventory[0] = null;
+                    return;
+                }
+            }
             else if (!player.inventoryFull)
             {
                 if (itemInMainHand.GetComponent<Ingredients>())
@@ -63,6 +77,10 @@ public class Plate : Tool
                 player.canInteract = false;
                 Interaction = "";
             }
+        }
+        if(player.inventory[0] && player.inventory[0].TryGetComponent<Toast>(out Toast toast))
+        {
+            Interaction = $"Add Toast to plate";
         }
         //There is no item in the pan(pre-cooking)
         if (player.inventory[0] && player.inventory[0].TryGetComponent<Pan>(out Pan pan))
