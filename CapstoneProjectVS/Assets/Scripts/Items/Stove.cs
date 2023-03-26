@@ -31,7 +31,7 @@ public class Stove : Utilities, IUtility
                 {
                     if(pan.itemsInPan[0].GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.cooked)
                     {
-                        pan.CookingCheck(pan.cookingCheck, 2, pan.itemsInPan[0].GetComponent<Ingredients>()); // start cooking check // the cook time is 2 temporary
+                        pan.CookingCheck(pan.cookingCheck, 10, pan.itemsInPan[0].GetComponent<Ingredients>()); // start cooking check // the cook time is 2 temporary
                         pan.itemsInPan[0].GetComponent<Ingredients>().isCooking = true; // food is cooking
                         isValidTarget = false;
                     }

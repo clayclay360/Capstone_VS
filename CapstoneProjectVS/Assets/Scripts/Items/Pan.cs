@@ -81,7 +81,7 @@ public class Pan : Tool
 
                     if (isHot)
                     {
-                        CookingCheck(cookingCheck, 2, egg); // start cooking // the cook time is 2 temporary
+                        CookingCheck(cookingCheck, 10, egg); // start cooking // the cook time is 2 temporary
                     }
                 }
 
@@ -105,7 +105,7 @@ public class Pan : Tool
                     if (isHot)
                     {
                         Debug.Log("Hello");
-                        CookingCheck(cookingCheck, 2, bacon); // start cooking // the cook time is 2 temporary
+                        CookingCheck(cookingCheck, 10, bacon); // start cooking // the cook time is 2 temporary
                     }
                 }
             }
@@ -233,6 +233,8 @@ public class Pan : Tool
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "Cooking");
+
         if (IsCookingFood())
         {
             if ((player.inventory[0] && player.inventory[0].TryGetComponent<Spatula>(out _)) || 

@@ -43,6 +43,7 @@ public class Bacon : Ingredients
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "Placing food on Pan");
         base.CheckHand(item, player);
         //if (player.inventoryFull)
         //{

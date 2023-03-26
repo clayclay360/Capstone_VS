@@ -78,6 +78,8 @@ public class Plate : Tool
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "Placing food on Plate");
+
         if (!player.inventory[0] || !player.inventory[1])
         {
             Interaction = "Grab Plate";
@@ -107,7 +109,8 @@ public class Plate : Tool
             }
             else
             {
-                Interaction = "Inventory Full";
+                Interaction = "Plate Full";
+
             }
         }
         else if (player.inventoryFull && !player.inventory[0].GetComponent<Ingredients>())
