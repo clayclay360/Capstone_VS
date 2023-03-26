@@ -11,18 +11,6 @@ public class Spatula : Tool
         isWashable = true;
     }
 
-    public void Update()
-    {
-        if (timesUsed >= useBeforeDirty)
-        {
-            isDirty = true;
-        }
-        else
-        {
-            isDirty = false;
-        }
-    }
-
     public void Start()
     {
         useBeforeDirty = 2;

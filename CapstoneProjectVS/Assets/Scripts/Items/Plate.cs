@@ -9,6 +9,11 @@ public class Plate : Tool
     public Transform foodPlacement;
     public Dictionary<int, Item> foodOnPlate = new Dictionary<int, Item>();
 
+    public void Start()
+    {
+        useBeforeDirty = 1;
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
@@ -28,7 +33,7 @@ public class Plate : Tool
                         food.transform.position = foodPlacement.transform.position; // put food on plate
                         food.transform.parent = transform; // have the food be the parent of egg
                         itemInMainHand.GetComponent<Pan>().itemsInPan.Remove(0);
-                        itemInMainHand.GetComponent<Pan>().timesUsed += 1;
+                        itemInMainHand.GetComponent<Pan>().isDirtied();
                         return;
                     }
                 }

@@ -32,6 +32,7 @@ public class OrderManager : Item
                         plate.foodOnPlate[0].transform.parent = null;
                         plate.foodOnPlate[0].canInteract = true;
                         plate.foodOnPlate[0] = null;
+                        plate.isDirtied();
                         ingredient.RespawnIngredient();
                         ingredient.gameObject.SetActive(true);
                         ingredient.isBeingUsed = false;
