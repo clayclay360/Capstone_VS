@@ -10,6 +10,24 @@ public class Spatula : Tool
         Interaction = "";
         isWashable = true;
     }
+
+    public void Update()
+    {
+        if (timesUsed >= useBeforeDirty)
+        {
+            isDirty = true;
+        }
+        else
+        {
+            isDirty = false;
+        }
+    }
+
+    public void Start()
+    {
+        useBeforeDirty = 2;
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand

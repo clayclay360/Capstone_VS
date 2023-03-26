@@ -161,7 +161,7 @@ public class SinkScript : Utilities
     private IEnumerator CleanUtensil(float timer, Tool tool)
     {
         yield return new WaitForSeconds(timer);
-        tool.isDirty = false;
+        tool.timesUsed = 0;
         tool.canInteract = true;
         state = State.empty;
         SwitchModel(state);
