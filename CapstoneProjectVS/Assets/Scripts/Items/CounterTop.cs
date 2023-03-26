@@ -147,8 +147,8 @@ public class CounterTop : Utilities
     {
         base.Update();
         canInteract = Interactivity();
-        isValidTarget = !Interactivity();
-        gameObject.GetComponent<BoxCollider>().enabled = Interactivity();
+        //isValidTarget = !Interactivity();
+        gameObject.GetComponent<BoxCollider>().enabled = true;
     }
 
     public bool Interactivity()

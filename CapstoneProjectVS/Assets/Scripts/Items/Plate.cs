@@ -28,6 +28,7 @@ public class Plate : Tool
                         food.transform.position = foodPlacement.transform.position; // put food on plate
                         food.transform.parent = transform; // have the food be the parent of egg
                         itemInMainHand.GetComponent<Pan>().itemsInPan.Remove(0);
+                        itemInMainHand.GetComponent<Pan>().timesUsed += 1;
                         return;
                     }
                 }
@@ -51,10 +52,14 @@ public class Plate : Tool
                 if (itemInMainHand.GetComponent<Ingredients>())
                 {
                     Collect(player);
+                    CheckCounterTop();
+                    CheckSink();
                 }
                 else if (itemInMainHand.GetComponent<Tool>())
                 {
                     Collect(player);
+                    CheckCounterTop();
+                    CheckSink();
                 }
             }
         }

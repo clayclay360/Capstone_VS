@@ -22,6 +22,18 @@ public class Pan : Tool
         Name = "Pan";
         Interaction = "";
         isWashable = true;
+        useBeforeDirty = 1;
+    }
+
+    public void Update()
+    {
+        if (timesUsed >= useBeforeDirty)
+        {
+            isDirty = true;
+        } else
+        {
+            isDirty = false;
+        }
     }
 
 
@@ -38,6 +50,7 @@ public class Pan : Tool
                 {
                     Debug.Log("Sptula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
+                    itemInMainHand.GetComponent<Spatula>().timesUsed += 1;
                 }
                 else
                 {
@@ -328,5 +341,10 @@ public class Pan : Tool
             stove = null;
         }
 
+    }
+
+    public void Start()
+    {
+        useBeforeDirty = 1;
     }
 }
