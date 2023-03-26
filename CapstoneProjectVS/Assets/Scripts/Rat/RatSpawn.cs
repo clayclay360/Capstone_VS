@@ -13,7 +13,7 @@ public class RatSpawn : MonoBehaviour
 
     private const float SPAWNTIME = 7.5f;
     public float spawnTimer = 0f;
-    public bool canSpawn = true;
+    private bool canSpawn = true;
 
     //Rat variables
     private float[] scareTimes = { 6.0f, 3.0f, 1.5f, 0.0f };
@@ -22,7 +22,7 @@ public class RatSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnRat();
+
     }
 
     // Update is called once per frame
@@ -63,7 +63,7 @@ public class RatSpawn : MonoBehaviour
         } 
         else
         {
-            if (DistToPlayerCanSpawn() && canSpawn)
+            if (DistToPlayerCanSpawn() && canSpawn && GameManager.numberOfPlayers > 0)
             {
                 Debug.Log("Spawn Rat");
                 SpawnRat();
