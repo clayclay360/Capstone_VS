@@ -53,6 +53,51 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchHand"",
+                    ""type"": ""Button"",
+                    ""id"": ""b22f517e-dc23-472c-b81c-10515f093759"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KnifeThrow"",
+                    ""type"": ""Button"",
+                    ""id"": ""9130cc36-9e10-41f6-be86-f4b7356e9118"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Help"",
+                    ""type"": ""Button"",
+                    ""id"": ""d27c7b59-208e-47a3-a888-e7f284fd0a6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextRecipe"",
+                    ""type"": ""Button"",
+                    ""id"": ""2758aa6f-5a7a-4a24-829e-2e85b34632af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousRecipe"",
+                    ""type"": ""Button"",
+                    ""id"": ""60f142ca-670b-4bc1-8f08-7cfef1d47c05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +221,72 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3811dd38-1d21-43ca-bbef-4c1e80ad66bf"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fb56d6e-fca8-412b-b8eb-058e8b41ba5a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce0274a2-59d5-4f8c-9f34-24c807b4c210"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KnifeThrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d06ef21-cf2a-4abd-b872-1500930ffaa1"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Help"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e0ea349-310d-4ca8-8ab3-4a662d361d16"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousRecipe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c810acb1-1add-44ad-896e-9b34dd2bb59c"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextRecipe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +310,11 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS_Move = m_PlayerControlsVS.FindAction("Move", throwIfNotFound: true);
         m_PlayerControlsVS_Look = m_PlayerControlsVS.FindAction("Look", throwIfNotFound: true);
         m_PlayerControlsVS_Interact = m_PlayerControlsVS.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerControlsVS_SwitchHand = m_PlayerControlsVS.FindAction("SwitchHand", throwIfNotFound: true);
+        m_PlayerControlsVS_KnifeThrow = m_PlayerControlsVS.FindAction("KnifeThrow", throwIfNotFound: true);
+        m_PlayerControlsVS_Help = m_PlayerControlsVS.FindAction("Help", throwIfNotFound: true);
+        m_PlayerControlsVS_NextRecipe = m_PlayerControlsVS.FindAction("NextRecipe", throwIfNotFound: true);
+        m_PlayerControlsVS_PreviousRecipe = m_PlayerControlsVS.FindAction("PreviousRecipe", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -261,6 +377,11 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControlsVS_Move;
     private readonly InputAction m_PlayerControlsVS_Look;
     private readonly InputAction m_PlayerControlsVS_Interact;
+    private readonly InputAction m_PlayerControlsVS_SwitchHand;
+    private readonly InputAction m_PlayerControlsVS_KnifeThrow;
+    private readonly InputAction m_PlayerControlsVS_Help;
+    private readonly InputAction m_PlayerControlsVS_NextRecipe;
+    private readonly InputAction m_PlayerControlsVS_PreviousRecipe;
     public struct PlayerControlsVSActions
     {
         private @ControlsVS m_Wrapper;
@@ -268,6 +389,11 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerControlsVS_Move;
         public InputAction @Look => m_Wrapper.m_PlayerControlsVS_Look;
         public InputAction @Interact => m_Wrapper.m_PlayerControlsVS_Interact;
+        public InputAction @SwitchHand => m_Wrapper.m_PlayerControlsVS_SwitchHand;
+        public InputAction @KnifeThrow => m_Wrapper.m_PlayerControlsVS_KnifeThrow;
+        public InputAction @Help => m_Wrapper.m_PlayerControlsVS_Help;
+        public InputAction @NextRecipe => m_Wrapper.m_PlayerControlsVS_NextRecipe;
+        public InputAction @PreviousRecipe => m_Wrapper.m_PlayerControlsVS_PreviousRecipe;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControlsVS; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -286,6 +412,21 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnInteract;
+                @SwitchHand.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
+                @SwitchHand.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
+                @SwitchHand.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnSwitchHand;
+                @KnifeThrow.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnKnifeThrow;
+                @KnifeThrow.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnKnifeThrow;
+                @KnifeThrow.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnKnifeThrow;
+                @Help.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnHelp;
+                @Help.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnHelp;
+                @Help.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnHelp;
+                @NextRecipe.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnNextRecipe;
+                @NextRecipe.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnNextRecipe;
+                @NextRecipe.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnNextRecipe;
+                @PreviousRecipe.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
+                @PreviousRecipe.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
+                @PreviousRecipe.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
             }
             m_Wrapper.m_PlayerControlsVSActionsCallbackInterface = instance;
             if (instance != null)
@@ -299,6 +440,21 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @SwitchHand.started += instance.OnSwitchHand;
+                @SwitchHand.performed += instance.OnSwitchHand;
+                @SwitchHand.canceled += instance.OnSwitchHand;
+                @KnifeThrow.started += instance.OnKnifeThrow;
+                @KnifeThrow.performed += instance.OnKnifeThrow;
+                @KnifeThrow.canceled += instance.OnKnifeThrow;
+                @Help.started += instance.OnHelp;
+                @Help.performed += instance.OnHelp;
+                @Help.canceled += instance.OnHelp;
+                @NextRecipe.started += instance.OnNextRecipe;
+                @NextRecipe.performed += instance.OnNextRecipe;
+                @NextRecipe.canceled += instance.OnNextRecipe;
+                @PreviousRecipe.started += instance.OnPreviousRecipe;
+                @PreviousRecipe.performed += instance.OnPreviousRecipe;
+                @PreviousRecipe.canceled += instance.OnPreviousRecipe;
             }
         }
     }
@@ -317,5 +473,10 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSwitchHand(InputAction.CallbackContext context);
+        void OnKnifeThrow(InputAction.CallbackContext context);
+        void OnHelp(InputAction.CallbackContext context);
+        void OnNextRecipe(InputAction.CallbackContext context);
+        void OnPreviousRecipe(InputAction.CallbackContext context);
     }
 }

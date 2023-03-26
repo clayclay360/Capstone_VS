@@ -110,8 +110,8 @@ GameObject:
   m_Name: Shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2557686710460750972
 Transform:
@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2557686711327224517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0132, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0168, z: 0}
   m_LocalScale: {x: 0.25, y: 0.05, z: 0.25}
   m_Children:
   - {fileID: 2557686710425719548}
@@ -284,7 +284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2557686712286819358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0064, z: 0}
+  m_LocalPosition: {x: 0, y: 0.024, z: 0}
   m_LocalScale: {x: 0.25, y: 0.05, z: 0.15}
   m_Children: []
   m_Father: {fileID: 9193496973303149583}
@@ -348,9 +348,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9193496973303149583}
-  - component: {fileID: 9193496973303149576}
   - component: {fileID: 2560282284853215479}
-  - component: {fileID: 4627609362790912808}
+  - component: {fileID: 516629846}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Interactable
@@ -375,20 +374,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9193496973303149576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9193496973303149577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d52c1b88f2f1d6740acbb5e3e0b97920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Interactionrange: 5
-  itemID: 1
 --- !u!135 &2560282284853215479
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -402,7 +387,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4627609362790912808
+--- !u!114 &516629846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -411,32 +396,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 9193496973303149577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469d2c58273fac24bac6ef31c990ad1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 107f00baa63f68041a80f5db4793e57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Egg
-  Type: Food
-  despawnTime: 2
-  status: 0
-  cleanSelf: {fileID: 0}
-  dirtySelf: {fileID: 0}
-  selfReference: {fileID: 9193496973303149577}
-  canRespawn: 1
-  startPosition: {x: 0, y: 0, z: 0}
-  startRotation: {x: 0, y: 0, z: 0, w: 0}
-  Occupied: 0
-  prone: 0
-  isActive: 0
-  isTarget: 0
+  canInteract: 1
+  isValidTarget: 1
+  mainSprite: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
+  outline: {fileID: 0}
   Interaction: 
-  utilityItemIsOccupying: {fileID: 0}
-  toolItemIsOccupying: {fileID: 0}
-  usesUntilDirty: 0
-  currUses: 0
-  counterInUse: {fileID: 0}
-  Form:
-  - {fileID: 2557686710460750971}
-  - {fileID: 2557686711327224517}
-  - {fileID: 2557686712286819358}
+  cookingStatus: 0
+  uncooked: {fileID: 21300000, guid: 442b7b8c37d53584685a1383f0c0c011, type: 3}
+  cooked: {fileID: 21300000, guid: 9924d759f259d9a43a0ff1246af2f5d3, type: 3}
+  spoiled: {fileID: 21300000, guid: ded5ef5ad09b1f04886b700339d4dce5, type: 3}
+  burnt: {fileID: 21300000, guid: 796635796bafd864c9c2f27b810aefb9, type: 3}
+  isBeingUsed: 0
+  startLocation: {x: 0, y: 0, z: 0}
+  counterTop: {fileID: 0}
+  isMixable: 1
   state: 0
-  origPos: {x: 0, y: 0, z: 0}
+  shellModel: {fileID: 2557686710460750971}
+  omeletModel: {fileID: 2557686712286819358}
+  scrambledModel: {fileID: 0}
+  yokedModel: {fileID: 2557686711327224517}

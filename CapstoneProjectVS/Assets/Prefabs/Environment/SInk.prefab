@@ -533,8 +533,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1, z: 2.5}
-  m_Center: {x: 0, y: 0.5, z: -1.25}
+  m_Size: {x: 1, y: 1, z: 2.1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &498359385010735128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,30 +544,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4288501130798927215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbbf5d4bf3e41bc4f93556fb629db024, type: 3}
+  m_Script: {fileID: 11500000, guid: d4493e9569d270c42b33cc2a18b668c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 0
-  itemNeed: 0
-  itemGive: 0
-  Name: Sink
-  Height: 0
-  On: 0
-  Off: 0
-  Occupied: 0
-  Interaction: 
-  currClean: 0
-  isCleaning: 0
-  cleanTime: 5
-  cleanProgress: 0
-  progressSlider: {fileID: 498359384480425248}
-  sinkEmpty: {fileID: 114605946179680383}
-  sinkFull: {fileID: 8234844541826223149}
-  waterFull: 0
-  cleaningDish: {fileID: 0}
-  sinkInv1: {fileID: 0}
-  sinkInv2: {fileID: 0}
-  sinkInv3: {fileID: 0}
+  Name: 
+  canInteract: 1
+  doesHaveRatInteraction: 1
+  isValidTarget: 1
+  sinkInv:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1346906551677880411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -634,11 +621,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9208077624917832881, guid: 11aa54dd1d55f4c479bae05a18648ae6, type: 3}
   m_PrefabInstance: {fileID: 1346906551677880411}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8234844541826223149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6987659333730681974, guid: 11aa54dd1d55f4c479bae05a18648ae6, type: 3}
-  m_PrefabInstance: {fileID: 1346906551677880411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4395090708448393311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -699,10 +681,5 @@ PrefabInstance:
 --- !u!4 &8461470404297080768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5301670482694899615, guid: be641b58f9838964db3b7a5db1c63dc7, type: 3}
-  m_PrefabInstance: {fileID: 4395090708448393311}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &114605946179680383 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4425162901606645792, guid: be641b58f9838964db3b7a5db1c63dc7, type: 3}
   m_PrefabInstance: {fileID: 4395090708448393311}
   m_PrefabAsset: {fileID: 0}
