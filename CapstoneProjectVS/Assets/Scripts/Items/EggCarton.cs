@@ -7,8 +7,9 @@ public class EggCarton : Ingredients, IInteractable
     public GameObject eggGO;
     Egg egg;
 
-    public void Start()
+    public override void Start()
     {
+        base.Start();
         Interaction = "";
         Name = "EggCarton";
         egg = eggGO.GetComponent<Egg>();
@@ -64,6 +65,7 @@ public class EggCarton : Ingredients, IInteractable
                 egg.Collect(player);
             }
         }
+        outline.enabled = false;
     }
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)

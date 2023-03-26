@@ -11,6 +11,12 @@ public class Toaster : Utilities, IUtility, ICookable
     [Header("CookingCheck")]
     public GameObject cookingCheck;
 
+    public override void Update()
+    {
+        base.Update();
+        HighlightCheck();
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
@@ -35,6 +41,8 @@ public class Toaster : Utilities, IUtility, ICookable
             {
                 toast.Collect(player);
                 isValidTarget = false;
+                isOccupied = false;
+                toast = null;
             }
         }
     }
@@ -84,6 +92,21 @@ public class Toaster : Utilities, IUtility, ICookable
         else
         {
             Interaction = "";
+        }
+    }
+
+    private void HighlightCheck() 
+    {
+        if (isOccupied && toast.cookingStatus == Ingredients.CookingStatus.cooked)
+        {
+            outline.OutlineColor = Color.green; //Miro says yellow, green for visibility on the counter
+            outline.OutlineWidth = 3f;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
+            outline.enabled = true;
+        }
+        else if (!isOccupied)
+        {
+            outline.enabled = false;
         }
     }
 

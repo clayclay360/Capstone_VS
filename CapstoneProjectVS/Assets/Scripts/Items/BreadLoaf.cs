@@ -7,8 +7,9 @@ public class BreadLoaf : Ingredients, IInteractable
     public GameObject toastGO;
     Toast toast;
 
-    public void Start()
+    public override void Start()
     {
+        base.Start();
         Interaction = "";
         Name = "BreadLoaf";
         toast = toastGO.GetComponent<Toast>();
@@ -63,6 +64,7 @@ public class BreadLoaf : Ingredients, IInteractable
                 toast.Collect(player);
             }
         }
+        outline.enabled = false;
     }
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
