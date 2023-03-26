@@ -104,6 +104,7 @@ public class Pan : Tool
 
                     if (isHot)
                     {
+                        Debug.Log("Hello");
                         CookingCheck(cookingCheck, 2, bacon); // start cooking // the cook time is 2 temporary
                     }
                 }

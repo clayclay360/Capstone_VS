@@ -24,7 +24,7 @@ public class CounterTop : Utilities
                 pan.isValidTarget = true;
                 pan.counterTop = gameObject;
                 player.inventory[0] = null; // item in main hand is null
-
+                pan.canInteract = true;
                 isOccupied = true;
             }
 

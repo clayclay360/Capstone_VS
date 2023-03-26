@@ -152,11 +152,15 @@ public class CookingCheckScript : MonoBehaviour
             }
             yield return null;
         }
-        progressSlider.gameObject.SetActive(false);
+        progressSlider.transform.parent.gameObject.SetActive(false);
         food.ChangeStatus();
-        //FindObjectOfType<Pan>().isHot = false;
         food.isCooking = false;
-        // this is to fix the pan from disappearing
         
+        //Reset
+        attempt[0] = Attempt.None;
+        attempt[1] = Attempt.None;
+        interactionIndex = 0;
+        // this is to fix the pan from disappearing
+
     }
 }
