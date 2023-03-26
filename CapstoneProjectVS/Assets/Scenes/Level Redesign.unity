@@ -1579,6 +1579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toaster
       objectReference: {fileID: 0}
+    - target: {fileID: 8551659649271318146, guid: 19d71a8440fbb8e4381c7754c49ad957, type: 3}
+      propertyPath: toaster
+      value: 
+      objectReference: {fileID: 116917125}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19d71a8440fbb8e4381c7754c49ad957, type: 3}
 --- !u!1 &116917124 stripped
@@ -1586,6 +1590,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8535597635622160709, guid: 19d71a8440fbb8e4381c7754c49ad957, type: 3}
   m_PrefabInstance: {fileID: 116917123}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &116917125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4447188590904430217, guid: 19d71a8440fbb8e4381c7754c49ad957, type: 3}
+  m_PrefabInstance: {fileID: 116917123}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116917124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfe5e5e58fba8d4589cd362b532a418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &127385516
 PrefabInstance:
   m_ObjectHideFlags: 0

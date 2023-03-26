@@ -7,6 +7,7 @@ using static UnityEditor.PlayerSettings;
 public class ToastCheck : MonoBehaviour
 {
     [Header("Variables")]
+    public Toaster toaster;
     public float cookTime;
     public float progressMeter, progressMeterMin, progressMeterMax;
 
@@ -35,8 +36,10 @@ public class ToastCheck : MonoBehaviour
             progressSlider.value = progressMeter;
             yield return null;
         }
+        toaster.StartHighlight();
         progressSlider.gameObject.SetActive(false);
         food.ChangeStatus();
         food.isCooking = false;
+        
     }
 }

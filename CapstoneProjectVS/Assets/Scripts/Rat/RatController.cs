@@ -280,7 +280,7 @@ public class RatController : MonoBehaviour
     public void MakeInvDirty()
     {
         //set item to spoiled if ingredient and not already spoiled
-        if (ratInventory.GetComponent<Ingredients>() != null)
+        if (ratInventory && ratInventory.GetComponent<Ingredients>() != null)
         {
             if(ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled)
             {
@@ -288,7 +288,7 @@ public class RatController : MonoBehaviour
             }
         }
         //set item to dirty if tool and not already dirty
-        else if (ratInventory.GetComponent<Tool>() != null)
+        else if (ratInventory && ratInventory.GetComponent<Tool>() != null)
         {
             if (ratInventory.GetComponent<Tool>().status != Tool.Status.dirty)
             {

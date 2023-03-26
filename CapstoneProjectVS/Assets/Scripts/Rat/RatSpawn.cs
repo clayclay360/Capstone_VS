@@ -43,16 +43,21 @@ public class RatSpawn : MonoBehaviour
 
     public bool DistToPlayerCanSpawn()
     {
-        closestPlayer = GameObject.Find("PlayerControler");
-        distToPlayer = Vector3.Distance(closestPlayer.transform.position, transform.position);
+        if (GameManager.numberOfPlayers > 0) 
+        {
+            closestPlayer = GameObject.Find("PlayerControler");
+            distToPlayer = Vector3.Distance(closestPlayer.transform.position, transform.position);
 
-        if (distToPlayer <= 3.0f)
-        {
-            return false;
-        } else
-        {
-            return true;
+            if (distToPlayer <= 3.0f)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
+        return false;
     }
 
     public void SpawnTimer()
@@ -63,7 +68,7 @@ public class RatSpawn : MonoBehaviour
         } 
         else
         {
-            if (DistToPlayerCanSpawn() && canSpawn && GameManager.numberOfPlayers > 0)
+            if (DistToPlayerCanSpawn() && canSpawn)
             {
                 Debug.Log("Spawn Rat");
                 SpawnRat();
