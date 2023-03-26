@@ -33,7 +33,7 @@ public class SinkScript : Utilities
                 pan.canInteract = false;
                 pan.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
-                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<Pan>());
+                coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<Pan>());
                 StartCoroutine(coroutine);
 
                 isOccupied = true;
@@ -50,7 +50,7 @@ public class SinkScript : Utilities
                 spatula.canInteract = false;
                 spatula.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
-                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<Spatula>());
+                coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<Spatula>());
                 StartCoroutine(coroutine);
 
                 isOccupied = true;
@@ -67,7 +67,7 @@ public class SinkScript : Utilities
                 plate.canInteract = false;
                 plate.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
-                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<Plate>());
+                coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<Plate>());
                 StartCoroutine(coroutine);
 
                 isOccupied = true;
@@ -84,7 +84,7 @@ public class SinkScript : Utilities
                 cuttingBoard.canInteract = false;
                 cuttingBoard.sink = gameObject;
                 player.inventory[0] = null; // item in main hand is null
-                coroutine = CleanUtensil(2.0f, itemInMainHand.GetComponent<CuttingBoard>());
+                coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<CuttingBoard>());
                 StartCoroutine(coroutine);
 
                 isOccupied = true;
@@ -162,6 +162,7 @@ public class SinkScript : Utilities
     {
         yield return new WaitForSeconds(timer);
         tool.timesUsed = 0;
+        tool.IsClean();
         tool.canInteract = true;
         state = State.empty;
         SwitchModel(state);

@@ -50,7 +50,7 @@ public class Pan : Tool
                 {
                     Debug.Log("Sptula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
-                    itemInMainHand.GetComponent<Spatula>().timesUsed += 1;
+                    itemInMainHand.GetComponent<Spatula>().isDirtied();
                 }
                 else
                 {

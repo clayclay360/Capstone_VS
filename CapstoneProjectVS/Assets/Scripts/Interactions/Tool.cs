@@ -38,6 +38,12 @@ public class Tool : Item, ICollectable, ICookable
         }
     }
 
+    public virtual void IsClean()
+    {
+        timesUsed = 0;
+        isDirty = false;
+    }
+
     public override void Start()
     {
         startLocation = gameObject.transform.position;
