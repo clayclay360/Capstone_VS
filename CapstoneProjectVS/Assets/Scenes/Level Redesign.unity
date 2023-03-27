@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17921,7 +17921,7 @@ MonoBehaviour:
   canInteract: 1
   isValidTarget: 0
   isWashable: 0
-  mainSprite: {fileID: 0}
+  mainSprite: {fileID: 21300000, guid: 526c97170b70ffb4ab0f837dc93306cc, type: 3}
   outline: {fileID: 0}
   Interaction: 
   cookingStatus: 0
@@ -18433,7 +18433,7 @@ MonoBehaviour:
   canInteract: 1
   isValidTarget: 0
   isWashable: 0
-  mainSprite: {fileID: 0}
+  mainSprite: {fileID: 21300000, guid: fae0903975bf3284baa51e3f033762e7, type: 3}
   outline: {fileID: 0}
   Interaction: 
   status: 0
@@ -36334,6 +36334,10 @@ PrefabInstance:
       propertyPath: Name
       value: Toast
       objectReference: {fileID: 0}
+    - target: {fileID: 2895859826686007860, guid: e9256b142ad36dd439f8e4ca1a7e93c8, type: 3}
+      propertyPath: mainSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 024b49b3fc8346b409fb0a56402224c7, type: 3}
     - target: {fileID: 2895859826686007862, guid: e9256b142ad36dd439f8e4ca1a7e93c8, type: 3}
       propertyPath: m_Name
       value: Bread
