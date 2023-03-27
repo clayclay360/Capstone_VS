@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -92,6 +93,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        OnPlayerJoined();
+    }
+
     public void Update()
     {
         foreach (Image img in Icon)
@@ -108,6 +114,26 @@ public class PlayerController : MonoBehaviour
         CheckInventory();
         GetNameInMain();
         Icons();
+    }
+
+    public void OnPlayerJoined()
+    {
+        if(GameManager.numberOfPlayers == 1)
+        {
+            transform.position = new Vector3(-3.6f, 0, -4);
+        }
+        else
+        {
+            transform.position = new Vector3(8.5f, 0, 0);
+        }
+
+        Invoke("EnableNavAgent()", 0.5f);
+    }
+
+    public void EnableNavAgent()
+    {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent.enabled = true;
     }
 
     //Collects input from the controller
@@ -371,7 +397,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
