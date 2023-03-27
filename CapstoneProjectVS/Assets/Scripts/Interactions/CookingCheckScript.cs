@@ -20,6 +20,7 @@ public class CookingCheckScript : MonoBehaviour
 
     public Ingredients food { get; set; }
 
+    private int complete;
     private int interactionIndex = 0;
     private bool[] interactionAttemptReady;
     private enum Attempt { None, Failed, Completed };
@@ -48,6 +49,7 @@ public class CookingCheckScript : MonoBehaviour
         {
             img.gameObject.SetActive(false);
         }
+        complete = 0;
         progressMeter = progressMeterMin;
         progressSlider.maxValue = progressMeterMax;
         progressSlider.minValue = progressMeterMin;
@@ -99,7 +101,7 @@ public class CookingCheckScript : MonoBehaviour
                     completeMark[interactionIndex].sprite = checkMark;
                     completeMark[interactionIndex].gameObject.SetActive(true);
                     attempt[interactionIndex] = Attempt.Completed;
-
+                    complete++;
                 }
                 else if (progressMeter < interactionMeterStart[interactionIndex])
                 {
@@ -153,14 +155,34 @@ public class CookingCheckScript : MonoBehaviour
             yield return null;
         }
         progressSlider.transform.parent.gameObject.SetActive(false);
-        food.ChangeStatus();
         food.isCooking = false;
-        
+
+        QualityOfFood();
+        food.ChangeStatus();
+
         //Reset
         attempt[0] = Attempt.None;
         attempt[1] = Attempt.None;
         interactionIndex = 0;
-        // this is to fix the pan from disappearing
+    }
 
+    public void QualityOfFood()
+    {
+        // perfect - didn't miss any cooking checks
+        if(complete == 2)
+        {
+            food.qualityRate = 3;
+        }
+        else if(complete == 1) // ok - missed only one cooking check
+        {
+            food.qualityRate = 2;
+            food.cookingStatus = Ingredients.CookingStatus.burnt;
+        }
+        else // trash - you missed all cooking checks
+        {
+            food.qualityRate = 1;
+        }
+
+        complete = 0;
     }
 }
