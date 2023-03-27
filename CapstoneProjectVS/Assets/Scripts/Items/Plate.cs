@@ -47,6 +47,7 @@ public class Plate : Tool
                     foodOnPlate.Add(foodOnPlate.Count, food);
                     food.transform.position = foodPlacement.transform.position; // put food on plate
                     food.transform.parent = transform; // have the plate be the parent of food
+                    food.canInteract = false;
                     food.gameObject.SetActive(true);
                     player.inventory[0] = null;
                     return;

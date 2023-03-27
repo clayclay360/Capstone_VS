@@ -70,6 +70,20 @@ public class OrderManager : Item
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        if (player.inventory[0] && player.inventory[0].TryGetComponent<Plate>(out Plate plate))
+        {
+            plate = player.inventory[0].GetComponent<Plate>();
+            Debug.Log("Plate in Hand");
+
+            if(plate.foodOnPlate.Count > 0)
+            {
+                Interaction = "Submit " + plate.foodOnPlate[0].Name + " Order";
+            }
+            else
+            {
+                Interaction = "";
+            }
+        }
         orderWindow.GetComponent<CanvasGroup>().alpha = 1;
         DisplayIndicator(false);
     }
