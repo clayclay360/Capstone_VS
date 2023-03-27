@@ -113,6 +113,7 @@ public class Tool : Item, ICollectable, ICookable
     public void RespawnTool()
     {
         gameObject.transform.position = startLocation;
+        gameObject.SetActive(true);
     }
 
     public void CheckCounterTop()

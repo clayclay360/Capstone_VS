@@ -26,28 +26,28 @@ public class TrashCan : Utilities, IUtility, IInteractable
         {
             Pan pan;
             pan = item.GetComponent<Pan>();
-            pan.itemsInPan[0].GetComponent<Ingredients>().RespawnIngredient();
-            pan.itemsInPan[0].GetComponent<Ingredients>().transform.parent = null;
-            pan.itemsInPan[0].GetComponent<Ingredients>().isBeingUsed = false;
-            pan.itemsInPan.Clear();
-            Tool tool;
-            tool = item.GetComponent<Tool>();
-            tool.RespawnTool();
+            if (pan.itemsInPan.Count != 0)
+            {
+                pan.itemsInPan[0].GetComponent<Ingredients>().RespawnIngredient();
+                pan.itemsInPan[0].GetComponent<Ingredients>().transform.parent = null;
+                pan.itemsInPan[0].GetComponent<Ingredients>().isBeingUsed = false;
+                pan.itemsInPan.Clear();
+            }
+            pan.RespawnTool();
             trashItem = null;
-            tool.gameObject.SetActive(true);
         } else if (item.name == "Plate")
         {
             Plate plate;
             plate = item.GetComponent<Plate>();
-            plate.foodOnPlate[0].GetComponent<Ingredients>().RespawnIngredient();
-            plate.foodOnPlate[0].GetComponent<Ingredients>().transform.parent = null;
-            plate.foodOnPlate[0].GetComponent<Ingredients>().isBeingUsed = false;
-            plate.foodOnPlate.Clear();
-            Tool tool;
-            tool = item.GetComponent<Tool>();
-            tool.RespawnTool();
+            if (plate.foodOnPlate.Count != 0)
+            {
+                plate.foodOnPlate[0].GetComponent<Ingredients>().RespawnIngredient();
+                plate.foodOnPlate[0].GetComponent<Ingredients>().transform.parent = null;
+                plate.foodOnPlate[0].GetComponent<Ingredients>().isBeingUsed = false;
+                plate.foodOnPlate.Clear();
+            }
+            plate.RespawnTool();
             trashItem = null;
-            tool.gameObject.SetActive(true);
         } else if (item.name == "Spatula") //all scripts that derive from Tool must have their item.name added to this if statement for throwing things out
         {
             Tool tool;
