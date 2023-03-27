@@ -38,6 +38,7 @@ public class ToastCheck : MonoBehaviour
         }
         toaster.StartHighlight();
         progressSlider.gameObject.SetActive(false);
+        food.qualityRate = 3;
         food.ChangeStatus();
         food.isCooking = false;
         

@@ -26,9 +26,12 @@ public class Main : MonoBehaviour
     public Recipe[] sideRecipe;
     private GameObject mainOrder, sideOrderOne, sideOrderTwo, sideOrderThree;
     public GameObject[] sideOrder;
+    public GameObject results;
+    public int score { get; set; }
 
     private float timeInBetweenOrders;
     private int maxOrdersOfSides = 3;
+    private int ordersCompleted;
 
     private void Start()
     {
@@ -44,6 +47,11 @@ public class Main : MonoBehaviour
         //MainOrder();
     }
 
+    public void Update()
+    {
+        StartCoroutine(CheckGameStatus());
+    }
+
     //void MainOrder()
     //{
     //    mainRecipe = recipeManager[GameManager.currentLevel].mainRecipes[currentMainOrder];
@@ -57,7 +65,7 @@ public class Main : MonoBehaviour
         //while (GameManager.gameStarted)
         //{
             //while the game started spawn a maximum of 2 side orders
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(10);
 
             for(int i = 0; i < maxOrdersOfSides; i++)
             {
@@ -65,7 +73,7 @@ public class Main : MonoBehaviour
 
                 yield return new WaitForSeconds(3);
                 GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
-            orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120);
+                orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120);
 
                 sideOrder[i] = orderGameObject;
                 //if(i == 0)
@@ -130,8 +138,24 @@ public class Main : MonoBehaviour
                 if(food != null)
                 {
                     sideOrder[i].GetComponent<Order>().StarRating(food.qualityRate);
+                    score += food.qualityRate;
                 }
                 sideOrder[i]= null;
+                ordersCompleted++;
+            }
+        }
+    }
+
+    public IEnumerator CheckGameStatus()
+    {
+        while (GameManager.gameStarted)
+        {
+            yield return null;
+            if(ordersCompleted == 3)
+            {
+                results.SetActive(true);
+                results.GetComponent<Results>().DisplayResults(score / maxOrdersOfSides);
+                GameManager.gameStarted = false;
             }
         }
     }
