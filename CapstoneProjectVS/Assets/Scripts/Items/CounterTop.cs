@@ -136,6 +136,7 @@ public class CounterTop : Utilities, IUtility
         }
         player.isInteracting = false;
         isValidTarget = true;
+        outline.enabled = false;
     }
 
     public override void Update()

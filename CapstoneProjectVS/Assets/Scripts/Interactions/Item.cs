@@ -102,6 +102,7 @@ public class Item : MonoBehaviour, IInteractable
     {
         outline = gameObject.AddComponent<Outline>();
         outline.OutlineMode = Outline.Mode.OutlineVisible;
+        outline.enabled = false;
         //Add a black outline to ingredients and tools
         if (TryGetComponent<Ingredients>(out _) || TryGetComponent<Tool>(out _))
         {

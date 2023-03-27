@@ -372,7 +372,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         //Honestly this is the only non-annoying way I could figure to get the cookbook assigned. Sue me.
