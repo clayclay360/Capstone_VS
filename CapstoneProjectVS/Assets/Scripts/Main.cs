@@ -20,6 +20,7 @@ public class Main : MonoBehaviour
 
     [Header("UI")]
     public GameObject orderWindowUI;
+    public GameObject playersNeededUI;
 
     [HideInInspector]
     public Recipe mainRecipe, sideRecipeOne, sideRecipeTwo, sideRecipeThree;
@@ -33,16 +34,18 @@ public class Main : MonoBehaviour
     private int maxOrdersOfSides = 3;
     private int ordersCompleted;
 
+    private bool startOrders;
+
     private void Start()
     {
-        StartGame();
+        
     }
 
     public void StartGame()
     {
-        GameManager.gameStarted = true;
         sideRecipeOne = null;
         sideRecipeTwo = null;
+        playersNeededUI.SetActive(false);
         StartCoroutine(SideOrders());
         //MainOrder();
     }
@@ -50,7 +53,21 @@ public class Main : MonoBehaviour
     public void Update()
     {
         StartCoroutine(CheckGameStatus());
+
+        // start the orders
+        if(GameManager.gameStarted && !startingOrders)
+        {
+            StartGame();
+            startingOrders = true;
+        }
+
+        // 
+        if (!GameManager.gameStarted)
+        {
+            playersNeededUI.GetComponentInChildren<Text>().text = " Players Needed: " + (2 - GameManager.numberOfPlayers);
+        }
     }
+    
 
     //void MainOrder()
     //{
@@ -65,13 +82,12 @@ public class Main : MonoBehaviour
         //while (GameManager.gameStarted)
         //{
             //while the game started spawn a maximum of 2 side orders
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(2);
 
             for(int i = 0; i < maxOrdersOfSides; i++)
             {
                 sideRecipe[i] = recipeManager[GameManager.currentLevel].sideRecipes[i];
 
-                yield return new WaitForSeconds(3);
                 GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
                 orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120);
 
@@ -90,7 +106,8 @@ public class Main : MonoBehaviour
                 //}
                 currentNumberOfSides++;
                 FindObjectOfType<OrderManager>().DisplayIndicator(true);
-            }
+                yield return new WaitForSeconds(3);
+        }
 
             // Old Don't Delete
             //if (maxOrdersOfSides > currentNumberOfSides)
