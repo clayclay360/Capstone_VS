@@ -134,6 +134,11 @@ public class RatController : MonoBehaviour
                 targetList.Remove(item);
             }
         }
+        //If there are no valid targets for the rats, then despawn them
+        if(targetList.Count <= 0)
+        {
+            Despawn();
+        }
         //Assign a target from the target list
         int randTargetNum = Random.Range(0, targetList.Count);
         currTarget = targetList[randTargetNum];
@@ -210,6 +215,7 @@ public class RatController : MonoBehaviour
             //Debug.Log(Vector2.Distance(currTarget.transform.position, transform.position)); 
             if (Vector2.Distance(navAgent.destination, transform.position) <= 0.3f)
             {
+                Debug.Log(Vector2.Distance(navAgent.destination, transform.position));
                 navAgent.isStopped = true;
                 AttackTarget();
             }
