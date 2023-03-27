@@ -9,6 +9,11 @@ public class PlayerManager : MonoBehaviour
     public void OnPlayerJoined()
     {
         GameManager.numberOfPlayers++;
+
+        if(GameManager.numberOfPlayers == 2)
+        {
+            GameManager.gameStarted = true;
+        }
     }
 
 }

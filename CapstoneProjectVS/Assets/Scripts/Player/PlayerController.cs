@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(8.5f, 0, 0);
         }
 
-        Invoke("EnableNavAgent()", 0.5f);
+        Invoke("EnableNavAgent", 0.5f);
     }
 
     public void EnableNavAgent()
@@ -397,6 +397,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
