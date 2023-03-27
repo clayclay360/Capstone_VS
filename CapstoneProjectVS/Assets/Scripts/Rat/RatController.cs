@@ -118,7 +118,7 @@ public class RatController : MonoBehaviour
         List<GameObject> removeList = new List<GameObject>();
         foreach(GameObject target in targetList)
         {
-            if(target.GetComponent<Item>() != null && !target.GetComponent<Item>().isValidTarget)
+            if(target.GetComponent<Tool>() != null && !target.GetComponent<Tool>().isValidTarget)
             {
                 removeList.Add(target);
             }
@@ -148,12 +148,12 @@ public class RatController : MonoBehaviour
         if (!objectiveComplete)
         {
             //if currTarget is not valid, assign new target
-            if (!currTarget.activeInHierarchy || (!currTarget.GetComponent<Item>().isValidTarget && !currTarget.GetComponent<Utilities>().isValidTarget))
+            if (currTarget && (!currTarget.activeInHierarchy || (!currTarget.GetComponent<Item>().isValidTarget && !currTarget.GetComponent<Utilities>().isValidTarget)))
             {
                 AssignTarget();
             }
             //if target is valid and rat is not scared, make sure rat is moving towards target
-            else if (!isScared)
+            else if (!isScared && currTarget)
             {
                 NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
                 navAgent.SetDestination(hit.position);
@@ -193,16 +193,11 @@ public class RatController : MonoBehaviour
     {
         if (isScared)
         {
-            NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
-            //temporary
-            if (navAgent.destination == hit.position || Vector3.Distance(navAgent.destination, transform.position) < 0.1)  //if the rat hasn't already abandoned its target or has reached its destination
-            {
-                Vector3 randomPoint = Random.insideUnitSphere * 10; //Get a random point within a 10 unit sphere of the rat
-                Vector3 newDestination = transform.position + randomPoint; //Add the random point to the rat's curret position
-                NavMesh.SamplePosition(newDestination, out NavMeshHit hit1, 10, NavMesh.AllAreas); //Find the closest point on the navmesh to the new destination
-                newDestination = hit1.position; //set the rat's new destination to that point
-                navAgent.SetDestination(newDestination); //Make the rat go to the new destination
-            }
+            float distToScareObject = Vector3.Distance(transform.position, scareObject.transform.position);
+            Vector3 farthestPoint = transform.position + (transform.position - scareObject.transform.position).normalized * distToScareObject; //Find the farthest point from the scare object
+            NavMesh.SamplePosition(farthestPoint, out NavMeshHit hit, distToScareObject, NavMesh.AllAreas); //Find the closest point on the navmesh to that point
+            navAgent.SetDestination(hit.position); //Make the rat go to that point
+            
             scareTimer += Time.deltaTime;
             if (scareTimer >= scareTime)
             {
@@ -244,14 +239,14 @@ public class RatController : MonoBehaviour
     {
         ratAnimator.SetTrigger("onGrab");
         //check if target is a utility
-        if(currTarget.GetComponent<IUtility>() != null)
+        if(currTarget && currTarget.GetComponent<IUtility>() != null)
         {
             Utilities interactionCheck = currTarget.GetComponent<Utilities>();
             IUtility utility = currTarget.GetComponent<IUtility>();
             //check if the rat can interact with this utility
             if (interactionCheck.doesHaveRatInteraction)
             {
-                utility.ratInteraction(this);
+                utility.RatInteraction(this);
                 objectiveComplete = true;
                 currTarget = spawnHole;
                 navAgent.SetDestination(currTarget.transform.position);
@@ -262,7 +257,7 @@ public class RatController : MonoBehaviour
             }
         }
         //check if target is a tool or ingredient
-        else if(currTarget.GetComponent<ICollectable>() != null)
+        else if(currTarget && currTarget.GetComponent<ICollectable>() != null)
         {
             ICollectable collectableItem = currTarget.GetComponent<ICollectable>();
             collectableItem.Collect(null, this);
@@ -274,12 +269,13 @@ public class RatController : MonoBehaviour
                 navAgent.isStopped = false;
             }
         }
+        UpdateOutline();
     }
 
     public void MakeInvDirty()
     {
         //set item to spoiled if ingredient and not already spoiled
-        if (ratInventory.GetComponent<Ingredients>() != null)
+        if (ratInventory && ratInventory.GetComponent<Ingredients>() != null)
         {
             if(ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled)
             {
@@ -287,11 +283,12 @@ public class RatController : MonoBehaviour
             }
         }
         //set item to dirty if tool and not already dirty
-        else if (ratInventory.GetComponent<Tool>() != null)
+        else if (ratInventory && ratInventory.GetComponent<Tool>() != null)
         {
             if (ratInventory.GetComponent<Tool>().status != Tool.Status.dirty)
             {
                 ratInventory.GetComponent<Tool>().status = Tool.Status.dirty;
+                ratInventory.GetComponent<Tool>().isDirty = true;
             }
         }
     }

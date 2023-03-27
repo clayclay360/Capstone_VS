@@ -27,12 +27,14 @@ public class TrashCan : Utilities, IUtility, IInteractable
             Tool tool;
             tool = item.GetComponent<Tool>();
             tool.RespawnTool();
+            trashItem = null;
             tool.gameObject.SetActive(true);
-        } else if (item.name == "Egg" || item.name == "Toast")
+        } else if (item.name == "Egg" || item.name == "Bacon" || item.name == "Toast")
         {
             Ingredients ingredient;
             ingredient = item.GetComponent<Ingredients>();
             ingredient.RespawnIngredient();
+            trashItem = null;
             ingredient.gameObject.SetActive(true);
             ingredient.isBeingUsed = false;
         }
@@ -100,7 +102,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
         }
     }
 
-    public void ratInteraction(RatController rat)
+    public void RatInteraction(RatController rat)
     {
         rat.ratInventory = trashItem.gameObject;
         trashItem = null;

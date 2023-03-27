@@ -40,7 +40,7 @@ public class Sink : Utilities, IUtility, IInteractable
         }
     }
 
-    public void ratInteraction(RatController rat)
+    public void RatInteraction(RatController rat)
     {
         if (!IsInvEmpty())
         {

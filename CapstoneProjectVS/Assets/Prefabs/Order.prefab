@@ -208,6 +208,10 @@ MonoBehaviour:
   Rating: 0
   Name: {fileID: 6408259134463113920}
   TImer: {fileID: 6408259133868958967}
+  starImages:
+  - {fileID: 6408259134505185115}
+  - {fileID: 6408259133635465185}
+  - {fileID: 6408259134108328872}
 --- !u!1 &6408259133106502356
 GameObject:
   m_ObjectHideFlags: 0

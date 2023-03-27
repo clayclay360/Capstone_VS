@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24cc66b1cc0fbb4e8e4408cc3639c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toaster: {fileID: 4447188590904430217}
   cookTime: 4
   progressMeter: 0
   progressMeterMin: 0

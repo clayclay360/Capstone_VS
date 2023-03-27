@@ -10,12 +10,18 @@ public class Order : MonoBehaviour
 
     public Text Name;
     public Slider TImer;
+    public Image[] starImages;
 
     private Main main;
 
     public void Start()
     {
         main = FindObjectOfType<Main>();
+
+        foreach(Image img in starImages)
+        {
+            img.GetComponent<Image>();
+        }
     }
 
     public void AssignOrder(string name, int time)
@@ -41,5 +47,13 @@ public class Order : MonoBehaviour
 
         main.OrderComplete(Name.text);
         Destroy(gameObject);
+    }
+
+    public void StarRating(int foodQuality)
+    {
+        for(int i = 0; i < foodQuality; i++)
+        {
+            starImages[i].color = Color.yellow;
+        }
     }
 }

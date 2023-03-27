@@ -112,7 +112,7 @@ public class Main : MonoBehaviour
         //}
     }
 
-    public void OrderComplete(string orderName)
+    public void OrderComplete(string orderName, Ingredients food = null)
     {
         //check to see which order this is
         if(orderName == mainRecipe.Name)
@@ -126,8 +126,12 @@ public class Main : MonoBehaviour
             if (sideRecipe[i].Name == orderName)
             {
                 currentNumberOfSides--;
-                Destroy(sideOrder[i]);
-                sideOrder[i] = null;
+                Destroy(sideOrder[i],3);
+                if(food != null)
+                {
+                    sideOrder[i].GetComponent<Order>().StarRating(food.qualityRate);
+                }
+                sideOrder[i]= null;
             }
         }
     }
