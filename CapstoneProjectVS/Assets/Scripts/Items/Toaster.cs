@@ -53,7 +53,7 @@ public class Toaster : Utilities, IUtility, ICookable
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
-        //player.HelpIndicator(true, "Cooking");
+        player.HelpIndicator(true, "Using the Toaster");
 
         if ((player.inventory[0] && player.inventory[0].TryGetComponent<Toast>(out _)) ||
             (player.inventory[1] && player.inventory[1].TryGetComponent<Toast>(out _)))

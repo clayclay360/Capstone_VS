@@ -945,7 +945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 490}
+  m_AnchoredPosition: {x: -130, y: 490}
   m_SizeDelta: {x: 440, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &20400170443152297
@@ -1171,18 +1171,18 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472515659209009286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0000089198}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0007804813}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8561169418285274736}
   m_Father: {fileID: 1346894493719334315}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430, y: 490}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -0.000091552734, y: 0}
+  m_SizeDelta: {x: 125, y: 125}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &3934186494904588744
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2871,6 +2871,12 @@ MonoBehaviour:
   - Name: Placing food on Plate
     clip: {fileID: 32900000, guid: 200d1ec39e5f1c2478ea07551542c7e4, type: 3}
     content: You can place food on the plate. Use the plate to turn in orders.
+  - Name: Using the Toaster
+    clip: {fileID: 32900000, guid: 2c780f38a5331ae48a61e47faf12bb80, type: 3}
+    content: You can use the Toaster to make Toast.
+  - Name: CookBook
+    clip: {fileID: 32900000, guid: 0316df1f314ca534893aa3cd916ab311, type: 3}
+    content: Use the cookbook to look at how to complete recipes.
   videoPlayer: {fileID: 903230459269406616}
   title: {fileID: 6760268111115029061}
   content: {fileID: 7739414005538954164}
@@ -4091,16 +4097,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7929706910119039699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00022299465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4142890489893415222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000091552734, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2827607881840733661
 CanvasRenderer:
