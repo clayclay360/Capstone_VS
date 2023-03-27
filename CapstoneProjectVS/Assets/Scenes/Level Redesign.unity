@@ -2023,23 +2023,23 @@ PrefabInstance:
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1207273915}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[2]
       value: 
-      objectReference: {fileID: 116917124}
+      objectReference: {fileID: 449418109}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[3]
       value: 
-      objectReference: {fileID: 449418109}
+      objectReference: {fileID: 116917124}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[4]
       value: 
-      objectReference: {fileID: 915878475}
+      objectReference: {fileID: 1048870812}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[5]
       value: 
-      objectReference: {fileID: 1048870812}
+      objectReference: {fileID: 915878475}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[6]
       value: 
@@ -2055,15 +2055,15 @@ PrefabInstance:
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[9]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1578485477}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[10]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1789954470}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[11]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2078117102}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
 --- !u!1001 &162364778
@@ -21978,15 +21978,15 @@ PrefabInstance:
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[9]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1578485477}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[10]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1789954470}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[11]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2078117102}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
 --- !u!1001 &1416799933
@@ -23677,7 +23677,7 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
-  doesHaveRatInteraction: 0
+  doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
   item1: {fileID: 0}
@@ -26732,7 +26732,7 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
-  doesHaveRatInteraction: 0
+  doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
   item1: {fileID: 0}
@@ -38222,7 +38222,7 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
-  doesHaveRatInteraction: 0
+  doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
   item1: {fileID: 0}
@@ -39055,7 +39055,7 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
-  doesHaveRatInteraction: 0
+  doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
   item1: {fileID: 0}
