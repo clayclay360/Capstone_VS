@@ -153,7 +153,6 @@ public class Main : MonoBehaviour
             yield return null;
             if(ordersCompleted == 3)
             {
-                Debug.Log("Game Over");
                 results.SetActive(true);
                 results.GetComponent<Results>().DisplayResults(score / maxOrdersOfSides);
                 GameManager.gameStarted = false;

@@ -19,15 +19,15 @@ public class Results : MonoBehaviour
 
         if (score == 3)
         {
-            content.text = "Awesome Job!";
+            content.text = "Perfect!";
         }
         else if (score == 2)
         {
-            content.text = "Not Bad";
+            content.text = "Good";
         }
         else
         {
-            content.text = "Bad";
+            content.text = "Ewww";
         }
     }
 }
