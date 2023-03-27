@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
             {
                 other.GetComponent<Item>().ResetHighlight();
             }
-        }        
+        }
 
         if (other.TryGetComponent<Cookbook>(out Cookbook cookbook))
         {
@@ -352,11 +352,23 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(other.TryGetComponent<OrderManager>(out OrderManager orderManager))
+        else if (other.TryGetComponent<OrderManager>(out OrderManager orderManager))
         {
             orderManager.orderWindow.GetComponent<CanvasGroup>().alpha = 0;
         }
 
+        else if (other.TryGetComponent<CounterTop>(out CounterTop counter))
+        {
+            counter.outline.enabled = false;
+        }
+
+        else if (other.TryGetComponent<Toaster>(out Toaster toaster))
+        {
+            if (toaster.isOccupied && toaster.toast.cookingStatus == Ingredients.CookingStatus.cooked)
+            {
+                toaster.StartHighlight();
+            }
+        }
 
     }
 

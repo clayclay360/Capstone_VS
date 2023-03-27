@@ -148,12 +148,12 @@ public class RatController : MonoBehaviour
         if (!objectiveComplete)
         {
             //if currTarget is not valid, assign new target
-            if (!currTarget.activeInHierarchy || (!currTarget.GetComponent<Item>().isValidTarget && !currTarget.GetComponent<Utilities>().isValidTarget))
+            if (currTarget && (!currTarget.activeInHierarchy || (!currTarget.GetComponent<Item>().isValidTarget && !currTarget.GetComponent<Utilities>().isValidTarget)))
             {
                 AssignTarget();
             }
             //if target is valid and rat is not scared, make sure rat is moving towards target
-            else if (!isScared)
+            else if (!isScared && currTarget)
             {
                 NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
                 navAgent.SetDestination(hit.position);
@@ -244,7 +244,7 @@ public class RatController : MonoBehaviour
     {
         ratAnimator.SetTrigger("onGrab");
         //check if target is a utility
-        if(currTarget.GetComponent<IUtility>() != null)
+        if(currTarget && currTarget.GetComponent<IUtility>() != null)
         {
             Utilities interactionCheck = currTarget.GetComponent<Utilities>();
             IUtility utility = currTarget.GetComponent<IUtility>();
@@ -262,7 +262,7 @@ public class RatController : MonoBehaviour
             }
         }
         //check if target is a tool or ingredient
-        else if(currTarget.GetComponent<ICollectable>() != null)
+        else if(currTarget && currTarget.GetComponent<ICollectable>() != null)
         {
             ICollectable collectableItem = currTarget.GetComponent<ICollectable>();
             collectableItem.Collect(null, this);
@@ -274,12 +274,13 @@ public class RatController : MonoBehaviour
                 navAgent.isStopped = false;
             }
         }
+        UpdateOutline();
     }
 
     public void MakeInvDirty()
     {
         //set item to spoiled if ingredient and not already spoiled
-        if (ratInventory.GetComponent<Ingredients>() != null)
+        if (ratInventory && ratInventory.GetComponent<Ingredients>() != null)
         {
             if(ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled)
             {
@@ -287,7 +288,7 @@ public class RatController : MonoBehaviour
             }
         }
         //set item to dirty if tool and not already dirty
-        else if (ratInventory.GetComponent<Tool>() != null)
+        else if (ratInventory && ratInventory.GetComponent<Tool>() != null)
         {
             if (ratInventory.GetComponent<Tool>().status != Tool.Status.dirty)
             {
