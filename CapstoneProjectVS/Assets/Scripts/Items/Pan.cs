@@ -48,7 +48,7 @@ public class Pan : Tool
                 //if Pan is not empty and is hot
                 if (itemsInPan.Count > 0 && isHot && itemsInPan[0].GetComponent<Ingredients>().cookingStatus == Ingredients.CookingStatus.uncooked)
                 {
-                    Debug.Log("Sptula Used");
+                    Debug.Log("Spatula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
                     itemInMainHand.GetComponent<Spatula>().isDirtied();
                 }
