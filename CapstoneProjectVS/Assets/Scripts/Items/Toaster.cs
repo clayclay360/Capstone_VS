@@ -98,7 +98,7 @@ public class Toaster : Utilities, IUtility, ICookable
         outline.enabled = true;
     }
 
-    public void ratInteraction(RatController rat)
+    public void RatInteraction(RatController rat)
     {
         if (isOccupied)
         {

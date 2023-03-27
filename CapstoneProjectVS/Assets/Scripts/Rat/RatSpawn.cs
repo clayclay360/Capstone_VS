@@ -16,8 +16,8 @@ public class RatSpawn : MonoBehaviour
     private bool canSpawn = true;
 
     //Rat variables
-    private float[] scareTimes = { 6.0f, 3.0f, 1.5f, 0.0f };
-    private float[] scareDistances = { 7.5f, 5.0f, 3.0f, 0.0f };
+    private float[] scareTimes = { 2.0f, 1.5f, 1.0f, 0.0f };
+    private float[] scareDistances = { 3.0f, 2.0f, 1.0f, 0.0f };
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +79,7 @@ public class RatSpawn : MonoBehaviour
 
     public void AssignBraveness(RatController rat)
     {
-        int randNum = Random.Range(3, 4);
+        int randNum = Random.Range(0, 4);
         rat.scareDistance = scareDistances[randNum];
         rat.scareTime = scareTimes[randNum];
         switch (randNum) //Assign the braveness. Not sure if we use this outside of here?

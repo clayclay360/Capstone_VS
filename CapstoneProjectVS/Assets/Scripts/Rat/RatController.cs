@@ -118,7 +118,7 @@ public class RatController : MonoBehaviour
         List<GameObject> removeList = new List<GameObject>();
         foreach(GameObject target in targetList)
         {
-            if(target.GetComponent<Item>() != null && !target.GetComponent<Item>().isValidTarget)
+            if(target.GetComponent<Tool>() != null && !target.GetComponent<Tool>().isValidTarget)
             {
                 removeList.Add(target);
             }
@@ -193,16 +193,11 @@ public class RatController : MonoBehaviour
     {
         if (isScared)
         {
-            NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
-            //temporary
-            if (navAgent.destination == hit.position || Vector3.Distance(navAgent.destination, transform.position) < 0.1)  //if the rat hasn't already abandoned its target or has reached its destination
-            {
-                Vector3 randomPoint = Random.insideUnitSphere * 10; //Get a random point within a 10 unit sphere of the rat
-                Vector3 newDestination = transform.position + randomPoint; //Add the random point to the rat's curret position
-                NavMesh.SamplePosition(newDestination, out NavMeshHit hit1, 10, NavMesh.AllAreas); //Find the closest point on the navmesh to the new destination
-                newDestination = hit1.position; //set the rat's new destination to that point
-                navAgent.SetDestination(newDestination); //Make the rat go to the new destination
-            }
+            float distToScareObject = Vector3.Distance(transform.position, scareObject.transform.position);
+            Vector3 farthestPoint = transform.position + (transform.position - scareObject.transform.position).normalized * distToScareObject; //Find the farthest point from the scare object
+            NavMesh.SamplePosition(farthestPoint, out NavMeshHit hit, distToScareObject, NavMesh.AllAreas); //Find the closest point on the navmesh to that point
+            navAgent.SetDestination(hit.position); //Make the rat go to that point
+            
             scareTimer += Time.deltaTime;
             if (scareTimer >= scareTime)
             {
@@ -251,7 +246,7 @@ public class RatController : MonoBehaviour
             //check if the rat can interact with this utility
             if (interactionCheck.doesHaveRatInteraction)
             {
-                utility.ratInteraction(this);
+                utility.RatInteraction(this);
                 objectiveComplete = true;
                 currTarget = spawnHole;
                 navAgent.SetDestination(currTarget.transform.position);
@@ -293,6 +288,7 @@ public class RatController : MonoBehaviour
             if (ratInventory.GetComponent<Tool>().status != Tool.Status.dirty)
             {
                 ratInventory.GetComponent<Tool>().status = Tool.Status.dirty;
+                ratInventory.GetComponent<Tool>().isDirty = true;
             }
         }
     }

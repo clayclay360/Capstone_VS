@@ -76,7 +76,7 @@ public class Stove : Utilities, IUtility
         }
     }
 
-    public void ratInteraction(RatController rat)
+    public void RatInteraction(RatController rat)
     {
         if (isOccupied)
         {

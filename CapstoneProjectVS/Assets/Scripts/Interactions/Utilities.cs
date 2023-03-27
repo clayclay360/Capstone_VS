@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IUtility
 {
-    public void ratInteraction(RatController rat);
+    public void RatInteraction(RatController rat);
 }
 public class Utilities : Item
 { 

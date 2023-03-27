@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SinkScript : Utilities
+public class SinkScript : Utilities, IUtility
 {
     public bool isOccupied;
+    public Tool tool;
     public GameObject sinkGO;
     public GameObject sinkFilledGO;
 
@@ -32,6 +33,7 @@ public class SinkScript : Utilities
                 pan.gameObject.SetActive(true); // activate pan
                 pan.canInteract = false;
                 pan.sink = gameObject;
+                tool = pan;
                 player.inventory[0] = null; // item in main hand is null
                 coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<Pan>());
                 StartCoroutine(coroutine);
@@ -49,6 +51,7 @@ public class SinkScript : Utilities
                 spatula.gameObject.SetActive(true); // activate pan
                 spatula.canInteract = false;
                 spatula.sink = gameObject;
+                tool = spatula;
                 player.inventory[0] = null; // item in main hand is null
                 coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<Spatula>());
                 StartCoroutine(coroutine);
@@ -66,6 +69,7 @@ public class SinkScript : Utilities
                 plate.gameObject.SetActive(true); // activate pan
                 plate.canInteract = false;
                 plate.sink = gameObject;
+                tool = plate;
                 player.inventory[0] = null; // item in main hand is null
                 coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<Plate>());
                 StartCoroutine(coroutine);
@@ -74,31 +78,16 @@ public class SinkScript : Utilities
                 state = State.filled;
                 SwitchModel(state);
             }
-
-            if (itemInMainHand.GetComponent<CuttingBoard>() != null && itemInMainHand.GetComponent<CuttingBoard>().isDirty)
-            {
-                CuttingBoard cuttingBoard = itemInMainHand.GetComponent<CuttingBoard>();
-
-                cuttingBoard.transform.position = gameObject.transform.position;
-                cuttingBoard.gameObject.SetActive(true); // activate pan
-                cuttingBoard.canInteract = false;
-                cuttingBoard.sink = gameObject;
-                player.inventory[0] = null; // item in main hand is null
-                coroutine = CleanUtensil(4.0f, itemInMainHand.GetComponent<CuttingBoard>());
-                StartCoroutine(coroutine);
-
-                isOccupied = true;
-                state = State.filled;
-                SwitchModel(state);
-            }
         }
         player.isInteracting = false;
+        isValidTarget = true;
     }
 
     public override void Update()
     {
         base.Update();
         canInteract = Interactivity();
+        isValidTarget = !Interactivity();
         gameObject.GetComponent<BoxCollider>().enabled = Interactivity();
 
         if (isOccupied)
@@ -156,6 +145,17 @@ public class SinkScript : Utilities
     public void CleanUtensil(Tool tool)
     {
         tool.isDirty = false;
+    }
+
+    public void RatInteraction(RatController rat)
+    {
+        if (isOccupied)
+        {
+            tool.Collect(null, rat);
+            tool.sink = null;
+            StopCoroutine(CleanUtensil(0, tool));
+            isOccupied = false;
+        }
     }
 
     private IEnumerator CleanUtensil(float timer, Tool tool)
