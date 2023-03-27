@@ -26,7 +26,7 @@ public class OrderManager : Item
                     {
                         if (plate.foodOnPlate[0].Name == main.sideRecipe[i].Name)
                         {
-                            main.OrderComplete(plate.foodOnPlate[0].Name);
+                            main.OrderComplete(plate.foodOnPlate[0].Name, plate.foodOnPlate[0].GetComponent<Ingredients>());
                             if (plate.foodOnPlate[0].Name == "Omelet" || plate.foodOnPlate[0].Name == "Bacon" || plate.foodOnPlate[0].Name == "Toast")
                             {
                                 Ingredients ingredient;

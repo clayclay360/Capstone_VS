@@ -27,6 +27,7 @@ public class Ingredients : Item, ICollectable
 
     Dictionary<string, GameObject[]> needNume = new Dictionary<string, GameObject[]>(); // this variable needs a name
     public bool isCooking { get; set; }
+    public int qualityRate { get; set; }
 
     public virtual void Collect(PlayerController player = null, RatController rat = null)
     {
