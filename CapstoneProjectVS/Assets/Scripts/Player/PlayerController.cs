@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Camera")]
     public Camera playerCamera;
-    private Vector3 camOffset = new Vector3(0, 7, -2);
+    private Vector3 camOffset = new Vector3(0, 10, -3);
     private Vector3 camRotation = new Vector3(70, 0, 0);
 
     //Animator
