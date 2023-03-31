@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public float power;
     public float throwCooldown;
     public bool readyToThrow;
+    [SerializeField] private LineRenderer aimLine;
 
     //Inventory
     public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown, toast };
@@ -449,6 +450,11 @@ public class PlayerController : MonoBehaviour
             // implement throwCooldown
             Invoke("ResetThrow", throwCooldown);
         }
+    }
+
+    public void OnAimLine()
+    {
+        aimLine.enabled = !aimLine.enabled;
     }
 
     public void OnHelp()

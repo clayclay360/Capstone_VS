@@ -98,6 +98,15 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimLine"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c2b6b62-85ce-4065-ab9d-c6d16a44c16b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,6 +296,17 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""action"": ""NextRecipe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec0edd34-db73-4907-b7ad-e9a0d37cad91"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimLine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -315,6 +335,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS_Help = m_PlayerControlsVS.FindAction("Help", throwIfNotFound: true);
         m_PlayerControlsVS_NextRecipe = m_PlayerControlsVS.FindAction("NextRecipe", throwIfNotFound: true);
         m_PlayerControlsVS_PreviousRecipe = m_PlayerControlsVS.FindAction("PreviousRecipe", throwIfNotFound: true);
+        m_PlayerControlsVS_AimLine = m_PlayerControlsVS.FindAction("AimLine", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -382,6 +403,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControlsVS_Help;
     private readonly InputAction m_PlayerControlsVS_NextRecipe;
     private readonly InputAction m_PlayerControlsVS_PreviousRecipe;
+    private readonly InputAction m_PlayerControlsVS_AimLine;
     public struct PlayerControlsVSActions
     {
         private @ControlsVS m_Wrapper;
@@ -394,6 +416,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         public InputAction @Help => m_Wrapper.m_PlayerControlsVS_Help;
         public InputAction @NextRecipe => m_Wrapper.m_PlayerControlsVS_NextRecipe;
         public InputAction @PreviousRecipe => m_Wrapper.m_PlayerControlsVS_PreviousRecipe;
+        public InputAction @AimLine => m_Wrapper.m_PlayerControlsVS_AimLine;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControlsVS; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -427,6 +450,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @PreviousRecipe.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
                 @PreviousRecipe.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
                 @PreviousRecipe.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPreviousRecipe;
+                @AimLine.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnAimLine;
+                @AimLine.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnAimLine;
+                @AimLine.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnAimLine;
             }
             m_Wrapper.m_PlayerControlsVSActionsCallbackInterface = instance;
             if (instance != null)
@@ -455,6 +481,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @PreviousRecipe.started += instance.OnPreviousRecipe;
                 @PreviousRecipe.performed += instance.OnPreviousRecipe;
                 @PreviousRecipe.canceled += instance.OnPreviousRecipe;
+                @AimLine.started += instance.OnAimLine;
+                @AimLine.performed += instance.OnAimLine;
+                @AimLine.canceled += instance.OnAimLine;
             }
         }
     }
@@ -478,5 +507,6 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         void OnHelp(InputAction.CallbackContext context);
         void OnNextRecipe(InputAction.CallbackContext context);
         void OnPreviousRecipe(InputAction.CallbackContext context);
+        void OnAimLine(InputAction.CallbackContext context);
     }
 }

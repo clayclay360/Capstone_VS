@@ -28,7 +28,7 @@ public class RatController : MonoBehaviour
     
 
     public int health = 2;
-    public GameObject ratInventory, blood;
+    public GameObject ratInventory, ratItemHoldPoint, blood;
     //Dictionary<GameObject, bool> currActiveTargets;
     public List<GameObject> playerList;
     public GameObject closestPlayer;
@@ -69,6 +69,7 @@ public class RatController : MonoBehaviour
         if(ratInventory != null)
         {
             MakeInvDirty();
+            UpdateInventoryItemLocation();
         }
     }
 
@@ -297,6 +298,21 @@ public class RatController : MonoBehaviour
                 ratInventory.GetComponent<Tool>().isDirty = true;
             }
         }
+    }
+
+    /// <summary>
+    /// Updates the location of the item in the rat's inventory to follow the item
+    /// </summary>
+    private void UpdateInventoryItemLocation()
+    {
+        //Make the item visible if it is not
+        if (!ratInventory.activeSelf)
+        {
+            ratInventory.SetActive(true);
+        }
+        //Move the item's position and rotation
+        ratInventory.transform.position = ratItemHoldPoint.transform.position;
+        ratInventory.transform.rotation = transform.rotation;
     }
 
     private void Despawn()
