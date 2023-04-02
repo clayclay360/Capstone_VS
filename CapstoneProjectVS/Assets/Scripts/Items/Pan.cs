@@ -23,6 +23,7 @@ public class Pan : Tool
         Interaction = "";
         isWashable = true;
         useBeforeDirty = 1;
+        status = Status.clean;
     }
 
     public void Update()
@@ -30,9 +31,21 @@ public class Pan : Tool
         if (timesUsed >= useBeforeDirty)
         {
             isDirty = true;
+            Interaction = "Pan is dirty!";
         } else
         {
             isDirty = false;
+        }
+
+        switch (status)
+        {
+            case Status.clean:
+                mainSprite = clean;
+                break;
+
+            case Status.dirty:
+                mainSprite = dirty;
+                break;
         }
     }
 
