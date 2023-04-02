@@ -10,6 +10,29 @@ public class HashBrown : Ingredients, IInteractable
     {
         Name = "HashBrown";
         Interaction = "";
+        cookingStatus = CookingStatus.uncooked;
+    }
+
+    public void Update()
+    {
+        switch(cookingStatus)
+        {
+            case CookingStatus.uncooked:
+                mainSprite = uncooked;
+                break;
+
+            case CookingStatus.cooked:
+                mainSprite = cooked;
+                break;
+
+            case CookingStatus.spoiled: 
+                mainSprite = spoiled; 
+                break;
+
+            case CookingStatus.burnt:
+                mainSprite = burnt;
+                break;
+        }
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)
