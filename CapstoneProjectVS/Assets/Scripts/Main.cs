@@ -15,7 +15,6 @@ public class Main : MonoBehaviour
     [Header("Orders")]
     public GameObject orderPrefab;
     public Transform sideOrderWindow, mainOrderWindow;
-    //public static Dictionary<int, Plate> Order = new Dictionary<int, Plate>();
     public int orderNumber;
 
     [Header("UI")]
@@ -67,74 +66,27 @@ public class Main : MonoBehaviour
             playersNeededUI.GetComponentInChildren<Text>().text = " Players Needed: " + (2 - GameManager.numberOfPlayers);
         }
     }
-    
-
-    //void MainOrder()
-    //{
-    //    mainRecipe = recipeManager[GameManager.currentLevel].mainRecipes[currentMainOrder];
-    //    GameObject orderGameObject = Instantiate(orderPrefab, mainOrderWindow);
-    //    orderGameObject.GetComponent<Order>().AssignOrder(mainRecipe.Name, 300);
-    //    mainOrder = orderGameObject;
-    //}
 
     IEnumerator SideOrders()
     {
-        //while (GameManager.gameStarted)
-        //{
-            //while the game started spawn a maximum of 2 side orders
-            yield return new WaitForSeconds(2);
+        //while the game started spawn a maximum of 2 side orders
+        yield return new WaitForSeconds(2);
 
-            for(int i = 0; i < maxOrdersOfSides; i++)
-            {
-                sideRecipe[i] = recipeManager[GameManager.currentLevel].sideRecipes[i];
+        for(int i = 0; i < maxOrdersOfSides; i++)
+        {
+            sideRecipe[i] = recipeManager[GameManager.currentLevel].sideRecipes[i];
 
-                GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
-                orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120);
+            GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
+            orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120);
 
-                sideOrder[i] = orderGameObject;
-                //if(i == 0)
-                //{
-                //    sideOrderOne = orderGameObject;
-                //}
-                //else if(i == 1)
-                //{
-                //    sideOrderTwo = orderGameObject;
-                //}
-                //else
-                //{
-                //    sideOrderThree = orderGameObject;
-                //}
-                currentNumberOfSides++;
-                FindObjectOfType<OrderManager>().DisplayIndicator(true);
-                yield return new WaitForSeconds(3);
+            sideOrder[i] = orderGameObject;
+
+            currentNumberOfSides++;
+            FindObjectOfType<OrderManager>().DisplayIndicator(true);
+
+            timeInBetweenOrders = Random.Range(minTimeInBetweenOrders, maxOrdersOfSides);
+            yield return new WaitForSeconds(timeInBetweenOrders);
         }
-
-            // Old Don't Delete
-            //if (maxOrdersOfSides > currentNumberOfSides)
-            //{
-            //    timeInBetweenOrders = Random.Range(minTimeInBetweenOrders, maxTimeInBetweenOrders);
-            //    int orderIndex = Random.Range(0, recipeManager[GameManager.currentLevel].sideRecipes.Length);
-
-            //    if(sideRecipeOne == null)
-            //    {
-            //        sideRecipeOne = recipeManager[GameManager.currentLevel].sideRecipes[orderIndex];
-            //        GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
-            //        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipeOne.Name, 120);
-            //        sideOrderOne = orderGameObject;
-            //    }
-            //    else
-            //    {
-            //        sideRecipeTwo = recipeManager[GameManager.currentLevel].sideRecipes[orderIndex];
-            //        GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
-            //        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipeTwo.Name, 120);
-            //        sideOrderTwo = orderGameObject;
-            //    }
-
-            //    currentNumberOfSides++;
-            //    FindObjectOfType<OrderManager>().DisplayIndicator(true);
-            //    yield return new WaitForSeconds(timeInBetweenOrders);
-            //}
-        //}
     }
 
     public void OrderComplete(string orderName, Ingredients food = null)
