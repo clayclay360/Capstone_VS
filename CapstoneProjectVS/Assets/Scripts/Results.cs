@@ -39,12 +39,12 @@ public class Results : MonoBehaviour
     public void LoadMenu()
     {
         Debug.Log("Loading Menu...");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("StartMenu");
     }
 
     public void Restart()
     {
         Debug.Log("Restarting Game...");
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Level Redesign");
     }
 }
