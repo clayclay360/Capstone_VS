@@ -21428,8 +21428,8 @@ MonoBehaviour:
       stars: 0
   currentMainOrder: 0
   startingOrders: 0
-  maxTimeInBetweenOrders: 3
-  minTimeInBetweenOrders: 1
+  maxTimeInBetweenOrders: 50
+  minTimeInBetweenOrders: 70
   orderPrefab: {fileID: 6408259132917677535, guid: e906f9497cf81dd468238766517ebc7c, type: 3}
   sideOrderWindow: {fileID: 437498137}
   mainOrderWindow: {fileID: 2010183705}
