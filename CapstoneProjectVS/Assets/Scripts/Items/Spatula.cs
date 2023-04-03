@@ -19,6 +19,16 @@ public class Spatula : Tool
 
     public void Update()
     {
+        if(useBeforeDirty == 0)
+        {
+            isDirty = true;
+            Interaction = "Spatula is dirty!";
+        }
+        else
+        {
+            isDirty = false;
+        }
+
         switch (status)
         {
             case Status.clean:
