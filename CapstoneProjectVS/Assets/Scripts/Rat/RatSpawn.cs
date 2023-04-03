@@ -10,6 +10,8 @@ public class RatSpawn : MonoBehaviour
     public List<GameObject> playerList; //We'll add players to this list when they spawn
     private GameObject closestPlayer;
     private float distToPlayer;
+    public int maxRats;
+    public int ratCounter;
 
     private const float SPAWNTIME = 7.5f;
     public float spawnTimer = 0f;
@@ -28,7 +30,11 @@ public class RatSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpawnTimer();
+        ratCounter = GameManager.ratCount;
+        if(GameManager.ratCount < maxRats)
+        {
+            SpawnTimer();
+        }
     }
 
     public void SpawnRat()
@@ -38,14 +44,21 @@ public class RatSpawn : MonoBehaviour
         ratScript.spawnHole = this.gameObject;
         ratScript.playerList.AddRange(playerList);
         AssignBraveness(ratScript);
-        Instantiate(newRat, ratSpawnLoc.transform.position, ratSpawnLoc.transform.rotation); 
+        Instantiate(newRat, ratSpawnLoc.transform.position, ratSpawnLoc.transform.rotation);
+        GameManager.ratCount++;
     }
 
     public bool DistToPlayerCanSpawn()
     {
-        if (GameManager.numberOfPlayers > 0) 
+        if (GameManager.gameStarted) 
         {
-            closestPlayer = GameObject.Find("PlayerControler");
+            foreach(GameObject player in playerList)
+            {
+                if(closestPlayer == null || Vector3.Distance(player.transform.position, transform.position) < Vector3.Distance(closestPlayer.transform.position, transform.position))
+                {
+                    closestPlayer = player;
+                }
+            }
             distToPlayer = Vector3.Distance(closestPlayer.transform.position, transform.position);
 
             if (distToPlayer <= 3.0f)
