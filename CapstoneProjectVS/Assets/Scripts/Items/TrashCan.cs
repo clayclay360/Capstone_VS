@@ -54,15 +54,12 @@ public class TrashCan : Utilities, IUtility, IInteractable
             tool = item.GetComponent<Tool>();
             tool.RespawnTool();
             trashItem = null;
-            tool.gameObject.SetActive(true);
         } else if (item.name == "Egg" || item.name == "Bacon" || item.name == "Toast")
         {
             Ingredients ingredient;
             ingredient = item.GetComponent<Ingredients>();
             ingredient.RespawnIngredient();
             trashItem = null;
-            ingredient.gameObject.SetActive(true);
-            ingredient.isBeingUsed = false;
         }
         //Respawn item
     }

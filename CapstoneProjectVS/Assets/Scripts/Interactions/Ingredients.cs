@@ -77,6 +77,8 @@ public class Ingredients : Item, ICollectable
     public void RespawnIngredient()
     {
         gameObject.transform.position = startLocation;
+        gameObject.SetActive(true);
+        isBeingUsed = false;
     }
 
     public virtual void ChangeStatus()
