@@ -27,7 +27,7 @@ public class Main : MonoBehaviour
     private GameObject mainOrder, sideOrderOne, sideOrderTwo, sideOrderThree;
     public GameObject[] sideOrder;
     public GameObject results;
-    public int score { get; set; }
+    public int Score { get; set; }
 
     private float timeInBetweenOrders;
     private int maxOrdersOfSides = 3;
@@ -107,7 +107,7 @@ public class Main : MonoBehaviour
                 if(food != null)
                 {
                     sideOrder[i].GetComponent<Order>().StarRating(food.qualityRate);
-                    score += food.qualityRate;
+                    Score += food.qualityRate;
                 }
                 sideOrder[i]= null;
                 ordersCompleted++;
@@ -123,7 +123,7 @@ public class Main : MonoBehaviour
             if(ordersCompleted == 3)
             {
                 results.SetActive(true);
-                results.GetComponent<Results>().DisplayResults(score / maxOrdersOfSides);
+                results.GetComponent<Results>().DisplayResults(Score / maxOrdersOfSides);
                 GameManager.gameStarted = false;
             }
         }
