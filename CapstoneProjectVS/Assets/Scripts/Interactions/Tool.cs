@@ -28,13 +28,14 @@ public class Tool : Item, ICollectable, ICookable
     public Sprite clean;
     public Sprite dirty;
 
-    public virtual void isDirtied()
+    public virtual void IsDirtied()
     {
         timesUsed += 1;
 
         if(timesUsed >= useBeforeDirty)
         {
             isDirty = true;
+            Interaction = $"{Name} is dirty";
         }
     }
 
