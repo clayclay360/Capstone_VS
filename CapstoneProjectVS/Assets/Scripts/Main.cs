@@ -56,8 +56,16 @@ public class Main : MonoBehaviour
         // start the orders
         if(GameManager.gameStarted && !startingOrders)
         {
-            StartGame();
-            startingOrders = true;
+            // if the tutorial level, start bacon order 
+            if (GameManager.tutorialLevel)
+            {
+                TutorialOrder();
+            }
+            else // start normal game orders
+            {
+                StartGame();
+                startingOrders = true;
+            }
         }
 
         // 
@@ -87,6 +95,15 @@ public class Main : MonoBehaviour
             timeInBetweenOrders = Random.Range(minTimeInBetweenOrders, maxOrdersOfSides);
             yield return new WaitForSeconds(timeInBetweenOrders);
         }
+    }
+
+    public void TutorialOrder()
+    {
+        sideRecipe[0] = recipeManager[0].sideRecipes[1];
+        GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
+
+        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 120);
+        sideOrder[0] = orderGameObject;
     }
 
     public void OrderComplete(string orderName, Ingredients food = null)

@@ -6,6 +6,7 @@ public class GameManager
 {
     public static bool gameStarted;
     public static bool assigningOrders;
+    public static bool tutorialLevel;
     public static int currentLevel;
     public static float rating;
 
