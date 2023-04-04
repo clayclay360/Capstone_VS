@@ -102,7 +102,6 @@ public class Toaster : Utilities, IUtility, ICookable
     {
         if (isOccupied)
         {
-            Toast toast = GetComponentInChildren<Toast>();
             toast.Collect(null, rat);
             if (cookingCheck.activeInHierarchy)
             {

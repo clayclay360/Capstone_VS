@@ -222,6 +222,18 @@ public class RatController : MonoBehaviour
             }
 
         }
+        //tf the rat has something in it's inventory, it will run around until it's killed
+        else if(ratInventory != null)
+        {
+            currTarget = null;
+            if(Vector3.Distance(transform.position, navAgent.destination) < 0.1)
+            {
+                Vector3 randomPoint = Random.insideUnitSphere * 10;
+                NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 10, NavMesh.AllAreas);
+                randomPoint = hit.position;
+                navAgent.SetDestination(randomPoint);
+            }
+        }
         //The rat despawns when close to the vent and has completed its objective
         else if (Vector3.Distance(spawnHole.transform.position, transform.position) <= 1.0f)//DESPAWN
         {
@@ -269,8 +281,11 @@ public class RatController : MonoBehaviour
             ICollectable collectableItem = currTarget.GetComponent<ICollectable>();
             collectableItem.Collect(null, this);
             objectiveComplete = true;
-            currTarget = spawnHole;
-            navAgent.SetDestination(currTarget.transform.position);
+            currTarget = null;
+            Vector3 randomPoint = Random.insideUnitSphere * 10;
+            NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 10, NavMesh.AllAreas);
+            randomPoint = hit.position;
+            navAgent.SetDestination(randomPoint);
             if (!isGrabbing)
             {
                 navAgent.isStopped = false;
@@ -335,6 +350,7 @@ public class RatController : MonoBehaviour
             ratInventory = null;
         }
         Destroy(gameObject);
+        GameManager.ratCount--;
     }
 
     private void UpdateOutline()

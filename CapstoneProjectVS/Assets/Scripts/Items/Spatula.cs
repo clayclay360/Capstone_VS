@@ -14,11 +14,21 @@ public class Spatula : Tool
 
     public void Start()
     {
-        useBeforeDirty = 2;
+        
+        useBeforeDirty = 1;
     }
 
     public void Update()
     {
+        //if (timesUsed >= useBeforeDirty)
+        //{
+        //    isDirty = true;
+        //}
+        //else
+        //{
+        //    isDirty = false;
+        //}
+
         switch (status)
         {
             case Status.clean:
@@ -127,11 +137,27 @@ public class Spatula : Tool
         
     }
 
-    public override void isDirtied()
+    
+
+    public override void IsDirtied()
     {
-        base.isDirtied();
-        Interaction = "Spatula is dirty!";
+        if (timesUsed >= useBeforeDirty)
+        {
+            useBeforeDirty--;
+            isDirty = true;
+            Interaction = $"{Name} is dirty";
+        }
     }
 
+
+    public override void IsClean()
+    {
+        if (isDirty != true)
+        {
+            useBeforeDirty++;
+            timesUsed = 0;
+            isDirty = false;
+        }
+    }
 
 }

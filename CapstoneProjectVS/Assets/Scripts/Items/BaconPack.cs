@@ -29,6 +29,7 @@ public class BaconPack : Ingredients, IInteractable
             canInteract = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
+        Debug.Log(isBeingUsed);
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)
@@ -64,6 +65,7 @@ public class BaconPack : Ingredients, IInteractable
                 bacon.isBeingUsed = true;
                 bacon.Collect(player);
             }
+            bacon.isBeingUsed = true;
         }
         outline.enabled = false;
     }

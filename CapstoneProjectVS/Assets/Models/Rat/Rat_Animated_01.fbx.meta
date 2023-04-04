@@ -15,7 +15,12 @@ ModelImporter:
   - first:
       74: 6796515505118468616
     second: Rat_rig|Rat_Walk
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rat_Mat
+    second: {fileID: 2100000, guid: 319d7ad1324d0504d8fdfb9a38c921c0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
