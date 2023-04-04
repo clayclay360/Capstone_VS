@@ -9,6 +9,35 @@ public class Bacon : Ingredients
     public GameObject cookedModel;
     public GameObject burntModel;
 
+    public Bacon()
+    {
+        Name = "Bacon";
+        Interaction = "";
+        cookingStatus = CookingStatus.uncooked;
+    }
+
+    public void Update()
+    {
+        switch (cookingStatus)
+        {
+            case CookingStatus.uncooked:
+                mainSprite = uncooked;
+                break;
+
+            case CookingStatus.cooked:
+                mainSprite = cooked;
+                break;
+
+            case CookingStatus.spoiled:
+                mainSprite = spoiled;
+                break;
+
+            case CookingStatus.burnt:
+                mainSprite = burnt;
+                break;
+        }
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
