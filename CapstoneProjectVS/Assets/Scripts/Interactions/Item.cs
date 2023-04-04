@@ -113,7 +113,7 @@ public class Item : MonoBehaviour, IInteractable
     /// <summary>
     /// Changes the highlight back to normal after the player leaves interact range
     /// </summary>
-    public void ResetHighlight()
+    public virtual void ResetHighlight()
     {
 
         if (TryGetComponent<Ingredients>(out _) || TryGetComponent<Tool>(out _))

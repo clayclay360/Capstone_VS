@@ -29,7 +29,7 @@ public class BaconPack : Ingredients, IInteractable
             canInteract = false;
             gameObject.GetComponent<SphereCollider>().enabled = false;
         }
-        Debug.Log(isBeingUsed);
+        //Debug.Log(isBeingUsed);
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)

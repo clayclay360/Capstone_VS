@@ -357,6 +357,23 @@ public class PlayerController : MonoBehaviour
     //player is not ready to interact
     private void OnTriggerExit(Collider other)
     {
+        if (other.TryGetComponent<CounterTop>(out CounterTop counter))
+        {
+            counter.outline.enabled = false;
+            return;
+        }
+
+        if (other.TryGetComponent<IngredientHolder>(out IngredientHolder container))
+        {
+            interactionText.text = "";
+            isInteracting = false;
+            canInteract = false;
+            interactableObject = null;
+            canCollect = false;
+            container.ResetHighlight();
+            return;
+        }
+
         if (other.gameObject.GetComponent<Item>() != null)
         {
             interactionText.text = "";
@@ -384,12 +401,6 @@ public class PlayerController : MonoBehaviour
         {
             orderManager.orderWindow.GetComponent<CanvasGroup>().alpha = 0;
         }
-
-        else if (other.TryGetComponent<CounterTop>(out CounterTop counter))
-        {
-            counter.outline.enabled = false;
-        }
-
         else if (other.TryGetComponent<Toaster>(out Toaster toaster))
         {
             if (toaster.isOccupied && toaster.toast.cookingStatus == Ingredients.CookingStatus.cooked)
