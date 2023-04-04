@@ -328,6 +328,20 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Item>() != null)
         {
+            if (other.TryGetComponent<IngredientHolder>(out IngredientHolder container))
+            {
+                container.CheckHand(itemInMainHand, this);
+                interactionText.text = container.Interaction;
+                if (!container.CanGetItem())
+                {
+                    return;
+                }
+                SetOutlineToPlayerColor(container.GetComponent<Outline>());
+                canInteract = true;
+                interactableObject = other.gameObject;
+                return;
+            }
+
             canInteract = true;
             interactableObject = other.gameObject;
             other.gameObject.GetComponent<Item>().CheckHand(itemInMainHand, this);
@@ -336,9 +350,7 @@ public class PlayerController : MonoBehaviour
             //Change highlight of the object to the player color
             if (other.TryGetComponent<Outline>(out Outline ol))
             {
-                ol.enabled = true;
-                ol.OutlineColor = highlightColor;
-                ol.OutlineWidth = 3f;
+                SetOutlineToPlayerColor(ol);
             }
 
             if(other.gameObject.GetComponent<ICollectable>() != null)
@@ -440,6 +452,13 @@ public class PlayerController : MonoBehaviour
         }
         else { Debug.Log($"Something is wrong with GameManager.numberOfPlayers! It is not 1 or 2, but {GameManager.numberOfPlayers}."); }
 
+    }
+
+    private void SetOutlineToPlayerColor(Outline ol)
+    {
+        ol.enabled = true;
+        ol.OutlineColor = highlightColor;
+        ol.OutlineWidth = 3f;
     }
 
     public void OnKnifeThrow()

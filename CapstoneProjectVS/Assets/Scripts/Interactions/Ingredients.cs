@@ -78,6 +78,7 @@ public class Ingredients : Item, ICollectable
 
     public void RespawnIngredient()
     {
+        Debug.Log($"{name} is respawning!");
         gameObject.transform.position = startLocation;
         gameObject.SetActive(true);
         isBeingUsed = false;

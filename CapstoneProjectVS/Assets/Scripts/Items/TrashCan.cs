@@ -20,6 +20,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
 
     public override void Interact(Item item, PlayerController player)
     {
+        Debug.Log($"Trash can called with {item.name}");
         trashItem = item;
         player.inventory[0] = null;
         if (item.name == "Pan")
@@ -54,8 +55,9 @@ public class TrashCan : Utilities, IUtility, IInteractable
             tool = item.GetComponent<Tool>();
             tool.RespawnTool();
             trashItem = null;
-        } else if (item.name == "Egg" || item.name == "Bacon" || item.name == "Toast")
+        } else if (item.name == "Egg" || item.name == "Bacon" || item.name == "Toast" || item.name == "Bread")
         {
+            Debug.Log("Name checks out!");
             Ingredients ingredient;
             ingredient = item.GetComponent<Ingredients>();
             ingredient.RespawnIngredient();

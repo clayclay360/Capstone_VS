@@ -11,11 +11,14 @@ public class IngredientHolder : Item, IInteractable
     {
         base.Start();
         ingredient.SetIngredientSource(this);
+        outline.OutlineColor = Color.white;
+        outline.OutlineWidth = 3f;
+        outline.enabled = true;
     }
 
     public override void Update()
     {
-        base.Update();
+        //base.Update();
         SetCanBeUsed();
     }
 
@@ -31,13 +34,11 @@ public class IngredientHolder : Item, IInteractable
 
     public void SetOutlineColor()
     {
-        Debug.Log("Set outline color is called!");
         outline.OutlineColor = CanGetItem() ? Color.white : Color.red;
     }
 
     public override void ResetHighlight()
     {
-        Debug.Log("ResetHighlight is called!");
         SetOutlineColor();
     }
 
