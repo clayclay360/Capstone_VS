@@ -73,6 +73,7 @@ public class Item : MonoBehaviour, IInteractable
             {
                 player.isInteracting = false;
                 player.canInteract = false;
+                Debug.Log("Trew");
                 Interaction = "";
                 gameObject.SetActive(false);
             }
@@ -85,7 +86,10 @@ public class Item : MonoBehaviour, IInteractable
 
     }
 
-    public virtual void Interact(Item item, PlayerController player){}
+    public virtual void Interact(Item item, PlayerController player)
+    {
+        
+    }
     public virtual void CanInteract(bool condition)
     {
         if(GetComponent<Collider>() != null)
@@ -126,5 +130,11 @@ public class Item : MonoBehaviour, IInteractable
             outline.enabled = false;
         }
 
+    }
+
+    public void DropOnGround(GameObject player)
+    {
+        gameObject.transform.position = player.transform.position;
+        gameObject.SetActive(true);
     }
 }
