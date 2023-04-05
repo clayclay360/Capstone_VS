@@ -145,7 +145,7 @@ public class Spatula : Tool
         {
             useBeforeDirty--;
             isDirty = true;
-            Interaction = $"{Name} is dirty";
+            Interaction = "Spatula is dirty";
         }
     }
 
