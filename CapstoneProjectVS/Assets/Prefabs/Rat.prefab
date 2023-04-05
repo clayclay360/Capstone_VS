@@ -81,7 +81,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   navAgent: {fileID: 8485352049709398998}
-  targetList: []
+  targetList:
+  - {fileID: 4647432269454624998, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
+  - {fileID: 9031513021252998085, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
   currTarget: {fileID: 0}
   spawnHole: {fileID: 0}
   objectiveComplete: 0

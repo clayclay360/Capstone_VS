@@ -311,6 +311,7 @@ public class RatController : MonoBehaviour
             {
                 ratInventory.GetComponent<Tool>().status = Tool.Status.dirty;
                 ratInventory.GetComponent<Tool>().isDirty = true;
+                //ratInventory.GetComponent<Tool>().useBeforeDirty--;
             }
         }
     }

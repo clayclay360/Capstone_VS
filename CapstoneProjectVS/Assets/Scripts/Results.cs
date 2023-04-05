@@ -23,7 +23,7 @@ public class Results : MonoBehaviour
         for (int i = 0; i < score; i++)
         {
             starImages[i].color = Color.yellow;
-            finalScore += score;
+            finalScore = score;
         }
 
         if (score == 3)
