@@ -55,8 +55,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerList: []
+  maxRats: 0
+  ratCounter: 0
   spawnTimer: 0
-  canSpawn: 1
+  timidMat: {fileID: 2100000, guid: a4be56f525793664d9bcf7eff6c6139c, type: 2}
+  normalMat: {fileID: 2100000, guid: 319d7ad1324d0504d8fdfb9a38c921c0, type: 2}
+  braveMat: {fileID: 2100000, guid: aee354ca748125b43b8bd7e20161bab5, type: 2}
+  recklessMat: {fileID: 2100000, guid: db5cbc6fac27070448cf06d066f9bba8, type: 2}
 --- !u!1 &2444297263577614845
 GameObject:
   m_ObjectHideFlags: 0

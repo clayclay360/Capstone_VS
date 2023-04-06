@@ -28,7 +28,7 @@ public class RatController : MonoBehaviour
     
 
     public int health = 2;
-    public GameObject ratInventory, ratItemHoldPoint, blood;
+    public GameObject ratInventory, ratItemHoldPoint, blood, body;
     //Dictionary<GameObject, bool> currActiveTargets;
     public List<GameObject> playerList;
     public GameObject closestPlayer;

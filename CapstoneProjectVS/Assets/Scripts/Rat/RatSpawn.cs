@@ -20,6 +20,7 @@ public class RatSpawn : MonoBehaviour
     //Rat variables
     private float[] scareTimes = { 2.0f, 1.5f, 1.0f, 0.0f };
     private float[] scareDistances = { 3.0f, 2.0f, 1.0f, 0.0f };
+    public Material timidMat, normalMat, braveMat, recklessMat;
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +51,8 @@ public class RatSpawn : MonoBehaviour
 
     public bool DistToPlayerCanSpawn()
     {
-        if (GameManager.gameStarted) 
-        {
+        //if (GameManager.gameStarted) 
+        //{
             foreach(GameObject player in playerList)
             {
                 if(closestPlayer == null || Vector3.Distance(player.transform.position, transform.position) < Vector3.Distance(closestPlayer.transform.position, transform.position))
@@ -69,8 +70,8 @@ public class RatSpawn : MonoBehaviour
             {
                 return true;
             }
-        }
-        return false;
+        //}
+        //return false;
     }
 
     public void SpawnTimer()
@@ -99,15 +100,19 @@ public class RatSpawn : MonoBehaviour
         {
             case 0:
                 rat.ratBraveness = RatController.Braveness.Timid;
+                rat.body.GetComponent<SkinnedMeshRenderer>().material = timidMat;
                 break;
             case 1:
                 rat.ratBraveness = RatController.Braveness.Normal;
+                rat.body.GetComponent<SkinnedMeshRenderer>().material = normalMat;
                 break;
             case 2:
                 rat.ratBraveness = RatController.Braveness.Brave;
+                rat.body.GetComponent<SkinnedMeshRenderer>().material = braveMat;
                 break;
             case 3:
                 rat.ratBraveness = RatController.Braveness.Reckless;
+                rat.body.GetComponent<SkinnedMeshRenderer>().material = recklessMat;
                 break;
         }
         
