@@ -18,6 +18,9 @@ public class Cookbook : Utilities, IInteractable
     [SerializeField] private GameObject closedModel;
     [SerializeField] private GameObject destroyedModel;
 
+    [Header("UX")]
+    public GameObject indicator;
+
     private void Awake()
     {
         UIScript = cookbookUI.GetComponent<CookbookUI>();
@@ -45,6 +48,12 @@ public class Cookbook : Utilities, IInteractable
                 //Unreachable until rats can destroy the cookbook
                 //We'll need to add the cookbook page(s) for repair then too
                 break;
+        }
+
+        // if the player is on the tutorial level, once they flips to the bacon page, turn off indicator
+        if (GameManager.tutorialLevel)
+        {
+            FindObjectOfType<Cookbook>().DisplayIndicator(false);
         }
     }
 
@@ -98,5 +107,10 @@ public class Cookbook : Utilities, IInteractable
     public void OnPreviousRecipe()
     {
         UIScript.PreviousRecipe();
+    }
+
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
     }
 }

@@ -86,6 +86,18 @@ public class OrderManager : Item
         }
         orderWindow.GetComponent<CanvasGroup>().alpha = 1;
         DisplayIndicator(false);
+
+        // if in the tutorial level, if the current setp is 1 then mark it complete
+        if (GameManager.tutorialLevel)
+        {
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+            if(tutorial.currentStepNumber == 1)
+            {
+                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
+                tutorial.currentStepNumber++;
+            }
+        }
     }
 
     public void DisplayIndicator(bool condition)
