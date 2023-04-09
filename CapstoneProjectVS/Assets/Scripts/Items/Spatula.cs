@@ -28,7 +28,8 @@ public class Spatula : Tool
         //{
         //    isDirty = false;
         //}
-
+        IsDirtied();
+        IsClean();
         switch (status)
         {
             case Status.clean:
@@ -143,7 +144,7 @@ public class Spatula : Tool
     {
         if (timesUsed >= useBeforeDirty)
         {
-            useBeforeDirty--;
+            status = Status.dirty;
             isDirty = true;
             Interaction = "Spatula is dirty";
         }
@@ -152,12 +153,11 @@ public class Spatula : Tool
 
     public override void IsClean()
     {
-        if (isDirty != true)
-        {
-            useBeforeDirty++;
-            timesUsed = 0;
-            isDirty = false;
-        }
+
+        status = Status.clean;
+        timesUsed = 0;
+        isDirty = false;
+        
     }
 
 }

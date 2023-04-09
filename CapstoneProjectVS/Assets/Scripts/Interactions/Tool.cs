@@ -34,6 +34,7 @@ public class Tool : Item, ICollectable, ICookable
 
         if(timesUsed >= useBeforeDirty)
         {
+            status = Status.dirty;
             isDirty = true;
             Interaction = $"{Name} is dirty";
         }
@@ -41,6 +42,7 @@ public class Tool : Item, ICollectable, ICookable
 
     public virtual void IsClean()
     {
+        status = Status.clean;
         timesUsed = 0;
         isDirty = false;
     }
