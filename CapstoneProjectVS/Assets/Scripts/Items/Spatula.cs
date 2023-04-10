@@ -28,8 +28,7 @@ public class Spatula : Tool
         //{
         //    isDirty = false;
         //}
-        IsDirtied();
-        IsClean();
+        
         switch (status)
         {
             case Status.clean:
