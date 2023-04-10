@@ -53,6 +53,7 @@ public class Ingredients : Item, ICollectable
                 Interaction = "";
                 player.interactionText.text = "";
                 player.isInteracting = false;
+                player.ChangeCanInteract();
                 gameObject.SetActive(false);
             }
 
@@ -62,7 +63,7 @@ public class Ingredients : Item, ICollectable
         else if(rat != null)
         {
             rat.ratInventory = gameObject;
-
+            CheckCounterTop();
             //temporary
             gameObject.SetActive(false);
             Debug.Log(rat.name + " collected: " + gameObject.name);

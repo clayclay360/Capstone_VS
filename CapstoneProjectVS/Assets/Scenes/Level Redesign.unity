@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2065,7 +2065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707365726603931764, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: maxRats
@@ -20823,6 +20823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4733bba4ab732de42a926be7db26bcf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTutorialLevel: 0
   recipeManager:
   - mainRecipes:
     - Name: Pancake
@@ -21356,7 +21357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707365726603931764, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: maxRats
@@ -39825,7 +39826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503677467062722856, guid: 4d4a1b7ba94358745bc97e6088b54690, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.81
+      value: 6.07
       objectReference: {fileID: 0}
     - target: {fileID: 5503677467062722856, guid: 4d4a1b7ba94358745bc97e6088b54690, type: 3}
       propertyPath: m_LocalPosition.y
@@ -39833,7 +39834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503677467062722856, guid: 4d4a1b7ba94358745bc97e6088b54690, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.04
+      value: -7.69
       objectReference: {fileID: 0}
     - target: {fileID: 5503677467062722856, guid: 4d4a1b7ba94358745bc97e6088b54690, type: 3}
       propertyPath: m_LocalRotation.w

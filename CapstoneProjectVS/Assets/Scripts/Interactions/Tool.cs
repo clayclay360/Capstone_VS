@@ -78,6 +78,7 @@ public class Tool : Item, ICollectable, ICookable
                 Interaction = "";
                 player.interactionText.text = "";
                 player.isInteracting = false;
+                player.ChangeCanInteract();
                 gameObject.SetActive(false);
             }
             else if (player.inventory[1] == null)
@@ -86,6 +87,7 @@ public class Tool : Item, ICollectable, ICookable
                 Interaction = "";
                 player.interactionText.text = "";
                 player.isInteracting = false;
+                player.ChangeCanInteract();
                 gameObject.SetActive(false);
             }
 
@@ -96,7 +98,8 @@ public class Tool : Item, ICollectable, ICookable
         else if(rat != null)
         {
             rat.ratInventory = gameObject;
-
+            CheckCounterTop();
+            CheckSink();
             //temporary
             gameObject.SetActive(false);
             Debug.Log(rat.name + " collected: " + gameObject.name);

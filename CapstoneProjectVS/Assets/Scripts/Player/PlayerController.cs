@@ -380,6 +380,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.TryGetComponent<CounterTop>(out CounterTop counter))
         {
+            Debug.Log("Stopped Touching Countertop");
             interactionText.text = "";
             isInteracting = false;
             canInteract = false;
@@ -572,7 +573,6 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator EnumeratorMethod()
     {
-        Debug.Log(1);
         yield return new WaitForSeconds(0.3f);
         canInteract = false;
     }

@@ -142,8 +142,8 @@ public class CounterTop : Utilities, IUtility
     public override void Update()
     {
         base.Update();
-        canInteract = Interactivity();
-        isValidTarget = !Interactivity();
+        //canInteract = Interactivity();
+        //isValidTarget = !Interactivity();
         gameObject.GetComponent<BoxCollider>().enabled = true;
     }
 
