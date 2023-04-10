@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public bool canCollect;
     public bool isInteracting;
     public Image interactButtonIcon;
+    public bool isTouching;
 
     [Header("Knife Throw")]
     public GameObject knifePrefab;
@@ -321,6 +323,13 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
+
+        if (inventory[0] != null && !canInteract)
+        {
+            Item item = inventory[0].GetComponent<Item>();
+            item.DropOnGround(gameObject);
+            inventory[0] = null;
+        }
     }
 
     //player is ready to interact
@@ -371,7 +380,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.TryGetComponent<CounterTop>(out CounterTop counter))
         {
+            Debug.Log("Stopped Touching Countertop");
+            interactionText.text = "";
+            isInteracting = false;
+            canInteract = false;
+            interactableObject = null;
             counter.outline.enabled = false;
+            canCollect = false;
             return;
         }
 
@@ -420,7 +435,6 @@ public class PlayerController : MonoBehaviour
                 toaster.StartHighlight();
             }
         }
-
     }
 
 
@@ -550,5 +564,16 @@ public class PlayerController : MonoBehaviour
         {
             cookbook.OnPreviousRecipe();
         }
+    }
+
+    public void ChangeCanInteract()
+    {
+        StartCoroutine(EnumeratorMethod());
+    }
+
+    private IEnumerator EnumeratorMethod()
+    {
+        yield return new WaitForSeconds(0.3f);
+        canInteract = false;
     }
 }
