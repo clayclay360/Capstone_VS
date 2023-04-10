@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Main : MonoBehaviour
 {
     [Header("Variables")]
+    public bool isTutorialLevel;
     public RecipeManager[] recipeManager;
     public int currentMainOrder;
     
@@ -39,7 +40,7 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
-        
+        GameManager.tutorialLevel = isTutorialLevel;
     }
 
     public void StartGame()
@@ -62,7 +63,8 @@ public class Main : MonoBehaviour
             // if the tutorial level, start bacon order 
             if (GameManager.tutorialLevel)
             {
-                TutorialOrder();
+                FindObjectOfType<Tutorial>().StartTutorial();
+                GameManager.gameStarted = false;
             }
             else // start normal game orders
             {
@@ -107,6 +109,7 @@ public class Main : MonoBehaviour
 
         orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 120);
         sideOrder[0] = orderGameObject;
+        FindObjectOfType<OrderManager>().DisplayIndicator(true);
     }
 
     public void OrderComplete(string orderName, Ingredients food = null)
@@ -132,6 +135,7 @@ public class Main : MonoBehaviour
                 sideOrder[i]= null;
                 ordersCompleted++;
                 showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
+                Results.instance.Points();
             }
         }
 

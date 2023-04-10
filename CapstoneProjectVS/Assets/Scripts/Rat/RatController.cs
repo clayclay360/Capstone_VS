@@ -28,7 +28,7 @@ public class RatController : MonoBehaviour
     
 
     public int health = 2;
-    public GameObject ratInventory, ratItemHoldPoint, blood;
+    public GameObject ratInventory, ratItemHoldPoint, blood, body;
     //Dictionary<GameObject, bool> currActiveTargets;
     public List<GameObject> playerList;
     public GameObject closestPlayer;
@@ -301,6 +301,7 @@ public class RatController : MonoBehaviour
         {
             if(ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled)
             {
+                Results.instance.Ratpoints();
                 ratInventory.GetComponent<Ingredients>().cookingStatus = Ingredients.CookingStatus.spoiled;
             }
         }
@@ -312,6 +313,7 @@ public class RatController : MonoBehaviour
                 ratInventory.GetComponent<Tool>().status = Tool.Status.dirty;
                 ratInventory.GetComponent<Tool>().isDirty = true;
                 //ratInventory.GetComponent<Tool>().useBeforeDirty--;
+                Results.instance.Ratpoints();
             }
         }
     }

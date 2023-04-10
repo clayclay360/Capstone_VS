@@ -7,6 +7,9 @@ public class BaconPack : Ingredients, IInteractable
     public GameObject baconGO;
     Bacon bacon;
 
+    [Header("UX")]
+    public GameObject indicator;
+
     public override void Start()
     {
         base.Start();
@@ -68,6 +71,20 @@ public class BaconPack : Ingredients, IInteractable
             bacon.isBeingUsed = true;
         }
         outline.enabled = false;
+
+        // Tutorial Level
+        DisplayIndicator(false);
+
+        if (GameManager.tutorialLevel)
+        {
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+            // if on step four then complete task
+            if (tutorial.currentStepNumber == 3)
+            {
+                tutorial.currentNumberOfTaskCompleted++;
+            }
+        }
     }
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
@@ -131,5 +148,10 @@ public class BaconPack : Ingredients, IInteractable
                 }
                 break;
         }
+    }
+
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
     }
 }
