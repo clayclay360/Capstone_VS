@@ -11,6 +11,7 @@ public class Tutorial : MonoBehaviour
     public Step[] steps;
 
     public int currentStepNumber;
+    public int currentNumberOfTaskCompleted { set; get; }
 
     // variables of the player
     private PlayerController[] playerControllers;
@@ -53,12 +54,26 @@ public class Tutorial : MonoBehaviour
         {
             playerController.interactionText.text = "";
         }
-        Debug.Log(currentStepNumber);
         while (!steps[1].isComplete)
         {
             yield return null;
         }
         // show cook book
         FindObjectOfType<Cookbook>().DisplayIndicator(true);
+        while (!steps[2].isComplete)
+        {
+            yield return null;
+        }
+        // bacon and pan
+        FindObjectOfType<BaconPack>().DisplayIndicator(true);
+        FindObjectOfType<Pan>().DisplayIndicator(true);
+        while(currentNumberOfTaskCompleted < 2)
+        {
+            yield return null;
+        }
+        steps[currentStepNumber].isComplete = true;
+        currentStepNumber++;
+        Debug.Log("Step Completed");
+        //
     }
 }

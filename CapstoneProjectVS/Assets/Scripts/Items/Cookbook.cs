@@ -43,6 +43,19 @@ public class Cookbook : Utilities, IInteractable
                 openModel.SetActive(false);
                 cookbookUI.SetActive(false);
                 UIScript.isOpen = false;
+
+                // in tutorial level when the cook book is closed, player moves on to the next step
+                if (GameManager.tutorialLevel)
+                {
+                    DisplayIndicator(false);
+                    Tutorial tutorial = FindObjectOfType<Tutorial>();
+                    if (tutorial.currentStepNumber == 2)
+                    {
+                        tutorial.steps[tutorial.currentStepNumber].isComplete = true;
+                        tutorial.currentStepNumber++;
+                    }
+                }
+
                 break;
             case cookBookState.destroyed:
                 //Unreachable until rats can destroy the cookbook
@@ -51,10 +64,6 @@ public class Cookbook : Utilities, IInteractable
         }
 
         // if the player is on the tutorial level, once they flips to the bacon page, turn off indicator
-        if (GameManager.tutorialLevel)
-        {
-            FindObjectOfType<Cookbook>().DisplayIndicator(false);
-        }
     }
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
