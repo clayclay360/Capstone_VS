@@ -9,6 +9,9 @@ public class Pan : Tool
     [Header("CookingCheck")]
     public GameObject cookingCheck;
 
+    [Header("UX")]
+    public GameObject indicator;
+
     [HideInInspector]
     public Stove stove; // this variable is to get what stove the pan is occupying
 
@@ -349,6 +352,19 @@ public class Pan : Tool
     {
         base.Collect(player, rat);
 
+        DisplayIndicator(false);
+
+        if (GameManager.tutorialLevel)
+        {
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+            // if on step four then complete task
+            if(tutorial.currentStepNumber == 3)
+            {
+                tutorial.currentNumberOfTaskCompleted++;
+            }
+        }
+
         // if the pan is occupying a stove than set it to false
         if (stove != null)
         {
@@ -359,6 +375,10 @@ public class Pan : Tool
 
     }
 
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
+    }
     public void Start()
     {
         useBeforeDirty = 1;
