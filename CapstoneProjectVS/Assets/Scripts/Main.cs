@@ -135,6 +135,7 @@ public class Main : MonoBehaviour
                 sideOrder[i]= null;
                 ordersCompleted++;
                 showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
+                Results.instance.Points();
             }
         }
 

@@ -61,7 +61,7 @@ public class Results : MonoBehaviour
 
     public void Points()
     {
-        cookingScore += 1;
+        cookingScore += 5;
         scoreText.text = finalScore.ToString();
     }
 
