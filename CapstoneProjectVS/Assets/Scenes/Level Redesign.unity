@@ -20858,6 +20858,9 @@ MonoBehaviour:
   orderNumber: 0
   orderWindowUI: {fileID: 594075718}
   playersNeededUI: {fileID: 1369860539}
+  FirstStar: {fileID: 952505124}
+  SecondStar: {fileID: 1946141979}
+  ThirdStar: {fileID: 1748345434}
   mainRecipe:
     Name: 
     Steps: []
@@ -39376,7 +39379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2143948792
 RectTransform:
   m_ObjectHideFlags: 0
