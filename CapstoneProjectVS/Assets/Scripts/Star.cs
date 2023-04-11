@@ -20,5 +20,6 @@ public class Star : MonoBehaviour
         {
             starImages[i].color = Color.yellow;
         }
+        
     }
 }

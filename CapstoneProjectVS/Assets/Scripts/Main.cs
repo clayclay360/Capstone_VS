@@ -21,6 +21,9 @@ public class Main : MonoBehaviour
     [Header("UI")]
     public GameObject orderWindowUI;
     public GameObject playersNeededUI;
+    public Image FirstStar;
+    public Image SecondStar;
+    public Image ThirdStar;
 
     [HideInInspector]
     public Recipe mainRecipe, sideRecipeOne, sideRecipeTwo, sideRecipeThree;
@@ -130,17 +133,33 @@ public class Main : MonoBehaviour
                 if(food != null)
                 {
                     sideOrder[i].GetComponent<Order>().StarRating(food.qualityRate);
+                    showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
                     Score += food.qualityRate;
                 }
                 sideOrder[i]= null;
                 ordersCompleted++;
-                showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
                 Results.instance.Points();
             }
         }
 
         if(ordersCompleted == 1)
         {
+            Debug.Log("You got a star");
+            FirstStar.color = Color.yellow;
+            gameStar.SetActive(true);
+            Invoke(nameof(DestroyStar), 2f);
+        }
+        else if(ordersCompleted == 2)
+        {
+            Debug.Log("You got a star");
+            SecondStar.color = Color.yellow;
+            gameStar.SetActive(true);
+            Invoke(nameof(DestroyStar), 2f);
+        }
+        else if (ordersCompleted == 3)
+        {
+            Debug.Log("You got a star");
+            ThirdStar.color = Color.yellow;
             gameStar.SetActive(true);
             Invoke(nameof(DestroyStar), 2f);
         }
