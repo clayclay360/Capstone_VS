@@ -79,6 +79,8 @@ public class Tool : Item, ICollectable, ICookable
                 player.interactionText.text = "";
                 player.isInteracting = false;
                 player.ChangeCanInteract();
+                CheckCounterTop();
+                CheckSink();
                 gameObject.SetActive(false);
             }
             else if (player.inventory[1] == null)
@@ -88,6 +90,8 @@ public class Tool : Item, ICollectable, ICookable
                 player.interactionText.text = "";
                 player.isInteracting = false;
                 player.ChangeCanInteract();
+                CheckCounterTop();
+                CheckSink();
                 gameObject.SetActive(false);
             }
 
