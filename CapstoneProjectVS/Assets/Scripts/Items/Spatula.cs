@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Spatula : Tool
 {
+    [Header("UX")]
+    public GameObject indicator;
+
     public Spatula()
     {
         Name = "Spatula";
@@ -67,6 +70,18 @@ public class Spatula : Tool
             Collect(player);
             CheckCounterTop();
             CheckSink();
+        }
+
+        // in tutorial level when the cook book is closed, player moves on to the next step
+        if (GameManager.tutorialLevel)
+        {
+            DisplayIndicator(false);
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+            if (tutorial.currentStepNumber == 5)
+            {
+                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
+                tutorial.currentStepNumber++;
+            }
         }
     }
 
@@ -137,7 +152,10 @@ public class Spatula : Tool
         
     }
 
-    
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
+    }
 
     public override void IsDirtied()
     {

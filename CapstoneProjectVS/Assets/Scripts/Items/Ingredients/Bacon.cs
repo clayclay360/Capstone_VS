@@ -9,11 +9,19 @@ public class Bacon : Ingredients
     public GameObject cookedModel;
     public GameObject burntModel;
 
+    [Header("UX")]
+    public GameObject indicator;
+
     public Bacon()
     {
         Name = "Bacon";
         Interaction = "";
         cookingStatus = CookingStatus.uncooked;
+    }
+
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
     }
 
     public void Update()

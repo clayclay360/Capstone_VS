@@ -83,8 +83,17 @@ public class BaconPack : Ingredients, IInteractable
             if (tutorial.currentStepNumber == 3)
             {
                 tutorial.currentNumberOfTaskCompleted++;
+
+                tutorial.playerTwoText.text = "You can only take one of each ingredient at a time!";
+                StartCoroutine(TurnOffDisplay());
             }
         }
+    }
+
+    public IEnumerator TurnOffDisplay()
+    {
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<Tutorial>().playerTwoText.text = "";
     }
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
