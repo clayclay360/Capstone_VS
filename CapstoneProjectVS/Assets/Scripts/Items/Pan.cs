@@ -352,7 +352,10 @@ public class Pan : Tool
     {
         base.Collect(player, rat);
 
-        DisplayIndicator(false);
+        if (GameManager.tutorialLevel)
+        {
+            DisplayIndicator(false);
+        }
 
         if (GameManager.tutorialLevel)
         {

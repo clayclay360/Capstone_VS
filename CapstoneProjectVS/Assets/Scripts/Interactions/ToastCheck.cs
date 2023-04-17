@@ -26,6 +26,12 @@ public class ToastCheck : MonoBehaviour
         StartCoroutine(Toasting(cookTime));
     }
 
+    public void StopCooking()
+    {
+        food.isCooking = false;
+        StopCoroutine(Toasting(0));
+    }
+
     IEnumerator Toasting(float time)
     {
         float deltaTime = Time.unscaledTime;
