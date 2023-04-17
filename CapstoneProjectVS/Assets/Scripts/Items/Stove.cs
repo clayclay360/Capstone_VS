@@ -8,6 +8,14 @@ public class Stove : Utilities, IUtility
     public Transform toolPlacement;
     public bool isOccupied;
 
+    [Header("UX")]
+    public GameObject indicator;
+
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition); // activate the indicator depending on the parameter
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
@@ -34,6 +42,19 @@ public class Stove : Utilities, IUtility
                         pan.CookingCheck(pan.cookingCheck, 10, pan.itemsInPan[0].GetComponent<Ingredients>()); // start cooking check // the cook time is 2 temporary
                         pan.itemsInPan[0].GetComponent<Ingredients>().isCooking = true; // food is cooking
                         isValidTarget = false;
+                    }
+                }
+
+                // Tutorial Level
+                if (GameManager.tutorialLevel)
+                {
+                    Tutorial tutorial = FindObjectOfType<Tutorial>();
+                    DisplayIndicator(false);
+
+                    // if on step four then complete task
+                    if (tutorial.currentStepNumber == 4)
+                    {
+                        tutorial.currentNumberOfTaskCompleted++;
                     }
                 }
             }
