@@ -9,9 +9,6 @@ public class Pan : Tool
     [Header("CookingCheck")]
     public GameObject cookingCheck;
 
-    [Header("UX")]
-    public GameObject indicator;
-
     [HideInInspector]
     public Stove stove; // this variable is to get what stove the pan is occupying
 
@@ -378,10 +375,6 @@ public class Pan : Tool
 
     }
 
-    public void DisplayIndicator(bool condition)
-    {
-        indicator.SetActive(condition);
-    }
     public void Start()
     {
         useBeforeDirty = 1;

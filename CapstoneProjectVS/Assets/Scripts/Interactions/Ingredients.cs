@@ -26,15 +26,28 @@ public class Ingredients : Item, ICollectable
     [Header("Chopping")]
     public bool isCuttable;
 
+    [Header("UX")]
+    public GameObject indicator;
 
     Dictionary<string, GameObject[]> needNume = new Dictionary<string, GameObject[]>(); // this variable needs a name
     public bool isCooking { get; set; }
     public int qualityRate { get; set; }
 
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
+    }
+
     public virtual void Collect(PlayerController player = null, RatController rat = null)
     {
+        // turn off indicator display
+        if (indicator != null)
+        {
+            DisplayIndicator(false);
+        }
+
         //check if the player is trying to collect this item
-        if(player != null)
+        if (player != null)
         {
             //check to see which inventory is empty
             if (player.inventory[0] == null)

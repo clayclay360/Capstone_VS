@@ -117,12 +117,42 @@ public class Tutorial : MonoBehaviour
         if(currentStepNumber == 5)
         {
             FindObjectOfType<Spatula>().DisplayIndicator(true);
+            while(currentStepNumber == 5)
+            {
+                yield return null;
+            }
         }
 
         // bacon
         if (currentStepNumber == 6)
         {
             FindObjectOfType<Bacon>().DisplayIndicator(true);
+            while (currentStepNumber == 6)
+            {
+                yield return null;
+            }
+        }
+
+        // plate
+        if(currentStepNumber == 7)
+        {
+            FindObjectOfType<Plate>().DisplayIndicator(true);
+            while (currentStepNumber == 7)
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(3);
+            playerTwoText.text = "";
+        }
+
+        // sink
+        if(currentStepNumber == 8)
+        {
+            FindObjectOfType<SinkScript>().DisplayIndicator(true);
+            while (currentStepNumber == 8)
+            {
+                yield return null;
+            }
         }
 
         Debug.Log("Step Completed");
