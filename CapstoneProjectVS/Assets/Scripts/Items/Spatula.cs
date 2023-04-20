@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Spatula : Tool
 {
-    [Header("UX")]
-    public GameObject indicator;
-
     public Spatula()
     {
         Name = "Spatula";
@@ -150,11 +147,6 @@ public class Spatula : Tool
         }
 
         
-    }
-
-    public void DisplayIndicator(bool condition)
-    {
-        indicator.SetActive(condition);
     }
 
     public override void IsDirtied()

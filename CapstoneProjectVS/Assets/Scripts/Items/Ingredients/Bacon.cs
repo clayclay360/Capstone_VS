@@ -9,19 +9,11 @@ public class Bacon : Ingredients
     public GameObject cookedModel;
     public GameObject burntModel;
 
-    [Header("UX")]
-    public GameObject indicator;
-
     public Bacon()
     {
         Name = "Bacon";
         Interaction = "";
         cookingStatus = CookingStatus.uncooked;
-    }
-
-    public void DisplayIndicator(bool condition)
-    {
-        indicator.SetActive(condition);
     }
 
     public void Update()
@@ -75,6 +67,23 @@ public class Bacon : Ingredients
             //main hand is empty
             Collect(player);
             CheckCounterTop();
+        }
+    }
+
+    public override void Collect(PlayerController player = null, RatController rat = null)
+    {
+        base.Collect(player, rat);
+        
+        // if in the tutorial level, if the current setp is 1 then mark it complete
+        if (GameManager.tutorialLevel)
+        {
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+            if (tutorial.currentStepNumber == 6)
+            {
+                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
+                tutorial.currentStepNumber++;
+            }
         }
     }
 
