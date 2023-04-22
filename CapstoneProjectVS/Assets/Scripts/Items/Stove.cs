@@ -45,8 +45,6 @@ public class Stove : Utilities, IUtility
                     }
                 }
 
-               
-
                 // Tutorial Level
                 if (GameManager.tutorialLevel)
                 {
@@ -97,8 +95,6 @@ public class Stove : Utilities, IUtility
         {
             Interaction = "";
         }
-
-        
     }
 
     public void RatInteraction(RatController rat)

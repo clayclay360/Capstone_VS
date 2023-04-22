@@ -31,16 +31,14 @@ public class Pan : Tool
 
     public void Update()
     {
-        //if (timesUsed >= useBeforeDirty)
-        //{
-        //    isDirty = true;
-        //    Interaction = "Pan is dirty!";
-        //} else
-        //{
-        //    isDirty = false;
-        //}
-
-        
+        if (timesUsed >= useBeforeDirty)
+        {
+            isDirty = true;
+            Interaction = "Pan is dirty!";
+        } else
+        {
+            isDirty = false;
+        }
 
         switch (status)
         {
@@ -387,27 +385,5 @@ public class Pan : Tool
     public void Start()
     {
         useBeforeDirty = 1;
-    }
-
-    public override void IsDirtied()
-    {
-        if (timesUsed >= useBeforeDirty)
-        {
-            status = Status.dirty;
-            isDirty = true;
-            stove.canInteract = false;
-            Interaction = "Pan is dirty";
-            return;
-        }
-    }
-
-
-    public override void IsClean()
-    {
-
-        status = Status.clean;
-        timesUsed = 0;
-        isDirty = false;
-
     }
 }
