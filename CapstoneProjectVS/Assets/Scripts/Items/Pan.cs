@@ -31,14 +31,14 @@ public class Pan : Tool
 
     public void Update()
     {
-        //if (timesUsed >= useBeforeDirty)
-        //{
-        //    isDirty = true;
-        //    Interaction = "Pan is dirty!";
-        //} else
-        //{
-        //    isDirty = false;
-        //}
+        if (timesUsed >= useBeforeDirty)
+        {
+            isDirty = true;
+            Interaction = "Pan is dirty!";
+        } else
+        {
+            isDirty = false;
+        }
 
         switch (status)
         {
@@ -78,7 +78,7 @@ public class Pan : Tool
                     CheckSink();
                 }
             }
-            else if(itemInMainHand.GetComponent<Egg>() != null && !isDirty)
+            else if(itemInMainHand.GetComponent<Egg>() != null)
             {
                 egg = itemInMainHand.GetComponent<Egg>();
 
@@ -103,7 +103,7 @@ public class Pan : Tool
 
                 
             }
-            else if (itemInMainHand.GetComponent<Bacon>() != null && !isDirty)
+            else if (itemInMainHand.GetComponent<Bacon>() != null)
             {
                 bacon = itemInMainHand.GetComponent<Bacon>();
 
@@ -293,7 +293,7 @@ public class Pan : Tool
                 }
             }
 
-            else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH) && !isDirty)
+            else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
                 {
                     Interaction = $"Add {ingredientMH.Name} to pan";
                     if (player.isInteracting)
@@ -302,10 +302,6 @@ public class Pan : Tool
                         player.canInteract = false;
                     }
                 }
-            else if (isDirty)
-            {
-                Interaction = "Pan is dirty";
-            }
             //else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
             //{
             //    Interaction = $"Add {ingredientOH.Name} to pan";
@@ -386,27 +382,6 @@ public class Pan : Tool
     {
         indicator.SetActive(condition);
     }
-
-    public override void IsDirtied()
-    {
-        if (timesUsed >= useBeforeDirty)
-        {
-            status = Status.dirty;
-            isDirty = true;
-            Interaction = "Pan is dirty";
-        }
-    }
-
-
-    public override void IsClean()
-    {
-
-        status = Status.clean;
-        timesUsed = 0;
-        isDirty = false;
-
-    }
-
     public void Start()
     {
         useBeforeDirty = 1;
