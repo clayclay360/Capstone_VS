@@ -69,7 +69,6 @@ public class Item : MonoBehaviour, IInteractable
         else if (!player.inventory[0] || !player.inventory[1])
         {
             Interaction = $"Grab {Name}";
-            Debug.Log("grabbing Itema");
             if (player.isInteracting)
             {
                 player.isInteracting = false;

@@ -39,8 +39,24 @@ public class OrderManager : Item
                                 ingredient.RespawnIngredient();
                                 ingredient.gameObject.SetActive(true);
                                 ingredient.isBeingUsed = false;
+<<<<<<< Updated upstream
                                 plate.timesUsed += 1;
                                 plate.IsDirtied();
+=======
+
+                                // if in the tutorial level
+                                if (GameManager.tutorialLevel)
+                                {
+                                    DisplayIndicator(false);
+                                    Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+                                    if (tutorial.playerTwoCurrentStep == 9)
+                                    {
+                                        tutorial.playerTwoSteps[9].isComplete = true;
+                                        //tutorial.playerTwoCurrentStep++;
+                                    }
+                                }
+>>>>>>> Stashed changes
                                 break;
                             }
                         }
@@ -94,10 +110,10 @@ public class OrderManager : Item
         {
             Tutorial tutorial = FindObjectOfType<Tutorial>();
 
-            if(tutorial.currentStepNumber == 1)
+            if(tutorial.playerTwoCurrentStep == 1)
             {
-                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
-                tutorial.currentStepNumber++;
+                tutorial.playerTwoSteps[tutorial.playerTwoCurrentStep].isComplete = true;
+                tutorial.playerTwoCurrentStep++;
             }
         }
     }

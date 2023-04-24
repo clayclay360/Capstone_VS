@@ -33,6 +33,26 @@ public class Plate : Tool
                         food.transform.position = foodPlacement.transform.position; // put food on plate
                         food.transform.parent = transform; // have the food be the parent of egg
                         itemInMainHand.GetComponent<Pan>().itemsInPan.Remove(0);
+<<<<<<< Updated upstream
+=======
+                        itemInMainHand.GetComponent<Pan>().IsDirtied();
+
+                        // Tutorial Level
+                        DisplayIndicator(false);
+                        if (GameManager.tutorialLevel)
+                        {
+                            Tutorial tutorial = FindObjectOfType<Tutorial>();
+                            DisplayIndicator(false);
+
+                            // if on step four then complete task
+                            if (tutorial.playerOneCurrentStep == 9)
+                            {
+                                tutorial.playerOneSteps[tutorial.playerOneCurrentStep].isComplete = true;
+                                tutorial.playerOneCurrentStep++;
+                            }
+                        }
+
+>>>>>>> Stashed changes
                         return;
                     }
                 }
@@ -88,12 +108,22 @@ public class Plate : Tool
             Tutorial tutorial = FindObjectOfType<Tutorial>();
 
             // if on step four then complete task
-            if (tutorial.currentStepNumber == 7)
+            if (tutorial.playerTwoCurrentStep == 4)
             {
-                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
-                tutorial.currentStepNumber++;
-
+                tutorial.playerTwoSteps[4].isComplete = true;
+                tutorial.playerTwoCurrentStep++;
                 tutorial.playerTwoText.text = "Dirty dishes must be cleaned in the sink!";
+            }
+            else if(tutorial.playerTwoCurrentStep == 6)
+            {
+                tutorial.playerTwoSteps[6].isComplete = true;
+                tutorial.playerTwoCurrentStep++;
+                FindObjectOfType<SinkScript>().DisplayIndicator(false);
+            }
+            else if (tutorial.playerTwoCurrentStep == 8)
+            {
+                tutorial.playerTwoSteps[8].isComplete = true;
+                tutorial.playerTwoCurrentStep++;
             }
         }
     }

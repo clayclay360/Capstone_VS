@@ -169,6 +169,19 @@ public class CookingCheckScript : MonoBehaviour
         attempt[0] = Attempt.None;
         attempt[1] = Attempt.None;
         interactionIndex = 0;
+
+        // Tutorial Level
+        if (GameManager.tutorialLevel)
+        {
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+            // if on step four then complete task
+            if (tutorial.playerOneCurrentStep == 7)
+            {
+                tutorial.playerOneSteps[7].isComplete = true;
+                tutorial.playerOneCurrentStep++;
+            }
+        }
     }
 
     public void QualityOfFood()

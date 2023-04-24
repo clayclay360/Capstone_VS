@@ -79,11 +79,13 @@ public class BaconPack : Ingredients, IInteractable
         {
             Tutorial tutorial = FindObjectOfType<Tutorial>();
 
-            // if on step four then complete task
-            if (tutorial.currentStepNumber == 3)
+            // if on step 2 then complete task
+            if (tutorial.playerTwoCurrentStep == 2)
             {
-                tutorial.currentNumberOfTaskCompleted++;
+                tutorial.playerTwoSteps[tutorial.playerTwoCurrentStep].isComplete = true;
+                tutorial.playerTwoCurrentStep++;
 
+                tutorial.playerTwoController.isDisplayingInformation = true;
                 tutorial.playerTwoText.text = "You can only take one of each ingredient at a time!";
                 StartCoroutine(TurnOffDisplay());
             }
@@ -94,6 +96,7 @@ public class BaconPack : Ingredients, IInteractable
     {
         yield return new WaitForSeconds(3);
         FindObjectOfType<Tutorial>().playerTwoText.text = "";
+        FindObjectOfType<Tutorial>().playerTwoController.isDisplayingInformation = false;
     }
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
@@ -157,10 +160,5 @@ public class BaconPack : Ingredients, IInteractable
                 }
                 break;
         }
-    }
-
-    public void DisplayIndicator(bool condition)
-    {
-        indicator.SetActive(condition);
     }
 }

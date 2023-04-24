@@ -55,9 +55,10 @@ public class Stove : Utilities, IUtility
                     DisplayIndicator(false);
 
                     // if on step four then complete task
-                    if (tutorial.currentStepNumber == 4)
+                    if (tutorial.playerOneCurrentStep == 3)
                     {
-                        tutorial.currentNumberOfTaskCompleted++;
+                        tutorial.playerOneSteps[tutorial.playerOneCurrentStep].isComplete = true;
+                        tutorial.playerOneCurrentStep++;
                     }
                 }
             }

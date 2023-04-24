@@ -74,6 +74,9 @@ public class PlayerController : MonoBehaviour
     public Animator popOutAnimator;
     public GameObject helpGuide;
 
+    [Header("Tutorial")]
+    public bool isDisplayingInformation;
+
     private bool helpIndicatorOpen;
     private bool helpAvailable;
     private string nameOfGuide;
@@ -335,7 +338,7 @@ public class PlayerController : MonoBehaviour
     //player is ready to interact
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.GetComponent<Item>() != null)
+        if(other.gameObject.GetComponent<Item>() != null && !isDisplayingInformation)
         {
             if (other.TryGetComponent<IngredientHolder>(out IngredientHolder container))
             {
@@ -380,7 +383,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.TryGetComponent<CounterTop>(out CounterTop counter))
         {
-            Debug.Log("Stopped Touching Countertop");
             interactionText.text = "";
             isInteracting = false;
             canInteract = false;
