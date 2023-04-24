@@ -19496,7 +19496,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071972569}
   m_LocalRotation: {x: -0.006777986, y: -0, z: -0, w: 0.9999771}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 169}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 1382071152}
@@ -21027,7 +21027,7 @@ MonoBehaviour:
   outline: {fileID: 0}
   Interaction: 
   status: 0
-  isDirty: 0
+  isDirty: 1
   isHot: 0
   useBeforeDirty: 0
   timesUsed: 0
@@ -22952,10 +22952,60 @@ MonoBehaviour:
     isComplete: 0
   - Name: Sink
     isComplete: 0
-  currentStepNumber: 8
+  - Name: Retrieve Plate from Sink
+    isComplete: 0
+  - Name: Counter
+    isComplete: 0
+  playerOneSteps:
+  - Name: Movement
+    isComplete: 0
+  - Name: Cook Book
+    isComplete: 0
+  - Name: Grab Pan
+    isComplete: 0
+  - Name: Place Pan on Stove
+    isComplete: 0
+  - Name: Grab Spatula
+    isComplete: 0
+  - Name: Grab Bacon
+    isComplete: 0
+  - Name: Place Bacon on Pan
+    isComplete: 0
+  - Name: Cooking Bacon
+    isComplete: 0
+  - Name: Grab Pan From Stone
+    isComplete: 0
+  - Name: Place Food on Plate
+    isComplete: 0
+  playerTwoSteps:
+  - Name: Movement
+    isComplete: 0
+  - Name: Order Manager
+    isComplete: 0
+  - Name: Grab Bacon
+    isComplete: 0
+  - Name: Place Bacon on Counter
+    isComplete: 0
+  - Name: Grab Dirty Plate
+    isComplete: 0
+  - Name: Place Plate in Sink
+    isComplete: 0
+  - Name: Grab Plate from Sink
+    isComplete: 0
+  - Name: Place Plate on Counter
+    isComplete: 0
+  - Name: Grab Plate
+    isComplete: 0
+  - Name: Submit Order
+    isComplete: 0
+  currentStepNumber: 10
   passCounter: {fileID: 630202327}
+  playerOneController: {fileID: 0}
+  playerTwoController: {fileID: 0}
   playerOneText: {fileID: 953938119}
   playerTwoText: {fileID: 1999941102}
+  playerOneCurrentStep: 0
+  playerTwoCurrentStep: 0
 --- !u!1001 &1374622325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23173,7 +23223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 18.8, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.09}
+  m_AnchoredPosition: {x: 0, y: 1.387}
   m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382071153

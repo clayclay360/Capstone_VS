@@ -78,11 +78,10 @@ public class Bacon : Ingredients
         if (GameManager.tutorialLevel)
         {
             Tutorial tutorial = FindObjectOfType<Tutorial>();
-
-            if (tutorial.currentStepNumber == 6)
+            if (tutorial.playerOneCurrentStep == 5)
             {
-                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
-                tutorial.currentStepNumber++;
+                tutorial.playerOneSteps[5].isComplete = true;
+                tutorial.playerOneCurrentStep++;
             }
         }
     }

@@ -49,10 +49,10 @@ public class Cookbook : Utilities, IInteractable
                 {
                     DisplayIndicator(false);
                     Tutorial tutorial = FindObjectOfType<Tutorial>();
-                    if (tutorial.currentStepNumber == 2)
+                    if (tutorial.playerOneCurrentStep == 1)
                     {
-                        tutorial.steps[tutorial.currentStepNumber].isComplete = true;
-                        tutorial.currentStepNumber++;
+                        tutorial.playerOneSteps[tutorial.playerOneCurrentStep].isComplete = true;
+                        tutorial.playerOneCurrentStep++;
                     }
                 }
 

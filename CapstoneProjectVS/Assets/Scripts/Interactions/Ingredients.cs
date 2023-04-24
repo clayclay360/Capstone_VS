@@ -57,7 +57,6 @@ public class Ingredients : Item, ICollectable
                 player.interactionText.text = "";
                 player.isInteracting = false;
                 player.ChangeCanInteract();
-                Debug.Log("InEgg");
                 gameObject.SetActive(false);
             }
             else if (player.inventory[1] == null)

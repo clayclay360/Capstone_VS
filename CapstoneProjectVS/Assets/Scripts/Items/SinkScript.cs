@@ -95,10 +95,10 @@ public class SinkScript : Utilities, IUtility
                     Tutorial tutorial = FindObjectOfType<Tutorial>();
 
                     // if on step four then complete task
-                    if (tutorial.currentStepNumber == 8)
+                    if (tutorial.playerTwoCurrentStep == 5)
                     {
-                        tutorial.steps[tutorial.currentStepNumber].isComplete = true; // step complete
-                        tutorial.currentStepNumber++; // next step
+                        tutorial.playerTwoSteps[5].isComplete = true; // step complete
+                        tutorial.playerTwoCurrentStep++; // next step
                     }
                 }
             }
@@ -196,5 +196,6 @@ public class SinkScript : Utilities, IUtility
         cleaningCheck.gameObject.SetActive(false);
         state = State.empty;
         SwitchModel(state);
+        DisplayIndicator(true);
     }
 }

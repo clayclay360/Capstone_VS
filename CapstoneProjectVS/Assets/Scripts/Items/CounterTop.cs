@@ -76,9 +76,10 @@ public class CounterTop : Utilities, IUtility
                     DisplayIndicator(false);
 
                     // if on step four then complete task
-                    if (tutorial.currentStepNumber == 4)
+                    if (tutorial.playerTwoCurrentStep == 3)
                     {
-                        tutorial.currentNumberOfTaskCompleted++;
+                        tutorial.playerTwoSteps[tutorial.playerTwoCurrentStep].isComplete = true;
+                        tutorial.playerTwoCurrentStep++;
                     }
                 }
             }
@@ -134,6 +135,21 @@ public class CounterTop : Utilities, IUtility
                 player.inventory[0] = null; // item in main hand is null
 
                 isOccupied = true;
+
+                // Tutorial Level
+                if (GameManager.tutorialLevel)
+                {
+                    Tutorial tutorial = FindObjectOfType<Tutorial>();
+                    DisplayIndicator(false);
+
+                    // if plate is put of counter top 
+                    if (tutorial.playerTwoCurrentStep == 7)
+                    {
+                        tutorial.playerTwoSteps[tutorial.playerTwoCurrentStep].isComplete = true;
+                        tutorial.playerTwoCurrentStep++;
+
+                    }
+                }
             }
 
             if(itemInMainHand.GetComponent<MixingBowl>() != null)

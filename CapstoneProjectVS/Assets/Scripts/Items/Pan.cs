@@ -120,8 +120,26 @@ public class Pan : Tool
 
                     if (isHot)
                     {
-                        Debug.Log("Hello");
-                        CookingCheck(cookingCheck, 10, bacon); // start cooking // the cook time is 2 temporary
+                        // Tutorial Level
+                        if (GameManager.tutorialLevel)
+                        {
+                            Tutorial tutorial = FindObjectOfType<Tutorial>();
+                            DisplayIndicator(false);
+
+                            // if on step four then complete task
+                            if (tutorial.playerOneCurrentStep == 6)
+                            {
+                                tutorial.playerOneController.isDisplayingInformation = true;
+                                tutorial.playerOneText.text = "Use the spatula when the bar is below the spatula icon!";
+                                tutorial.playerOneSteps[6].isComplete = true;
+                                tutorial.playerOneCurrentStep++;
+                                Invoke("StartCooking", 3);
+                            }
+                        }
+                        else
+                        {
+                            CookingCheck(cookingCheck, 10, bacon); // start cooking // the cook time is 2 temporary
+                        }
                     }
                 }
             }
@@ -247,6 +265,14 @@ public class Pan : Tool
         }
     }
 
+    public void StartCooking()
+    {
+        FindObjectOfType<Tutorial>().playerOneController.interactionText.text = "";
+        FindObjectOfType<Tutorial>().playerOneController.isDisplayingInformation = false;
+        CookingCheck(cookingCheck, 10, bacon); // start cooking
+
+    }
+
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
         player.HelpIndicator(true, "Cooking");
@@ -366,9 +392,16 @@ public class Pan : Tool
             Tutorial tutorial = FindObjectOfType<Tutorial>();
 
             // if on step four then complete task
-            if(tutorial.currentStepNumber == 3)
+            if(tutorial.playerOneCurrentStep == 2)
             {
-                tutorial.currentNumberOfTaskCompleted++;
+                tutorial.playerOneSteps[tutorial.playerOneCurrentStep].isComplete = true;
+                tutorial.playerOneCurrentStep++;
+            }
+
+            if(tutorial.playerOneCurrentStep == 8)
+            {
+                tutorial.playerOneSteps[tutorial.playerOneCurrentStep].isComplete = true;
+                tutorial.playerOneCurrentStep++;
             }
         }
 

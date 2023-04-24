@@ -74,10 +74,10 @@ public class Spatula : Tool
         {
             DisplayIndicator(false);
             Tutorial tutorial = FindObjectOfType<Tutorial>();
-            if (tutorial.currentStepNumber == 5)
+            if (tutorial.playerOneCurrentStep == 4)
             {
-                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
-                tutorial.currentStepNumber++;
+                tutorial.playerOneSteps[4].isComplete = true;
+                tutorial.playerOneCurrentStep++;
             }
         }
     }
