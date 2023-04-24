@@ -39,10 +39,8 @@ public class OrderManager : Item
                                 ingredient.RespawnIngredient();
                                 ingredient.gameObject.SetActive(true);
                                 ingredient.isBeingUsed = false;
-<<<<<<< Updated upstream
                                 plate.timesUsed += 1;
                                 plate.IsDirtied();
-=======
 
                                 // if in the tutorial level
                                 if (GameManager.tutorialLevel)
@@ -56,7 +54,6 @@ public class OrderManager : Item
                                         //tutorial.playerTwoCurrentStep++;
                                     }
                                 }
->>>>>>> Stashed changes
                                 break;
                             }
                         }
