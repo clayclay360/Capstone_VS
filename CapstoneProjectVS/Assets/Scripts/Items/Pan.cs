@@ -31,14 +31,14 @@ public class Pan : Tool
 
     public void Update()
     {
-        if (timesUsed >= useBeforeDirty)
-        {
-            isDirty = true;
-            Interaction = "Pan is dirty!";
-        } else
-        {
-            isDirty = false;
-        }
+        //if (timesUsed >= useBeforeDirty)
+        //{
+        //    isDirty = true;
+        //    Interaction = "Pan is dirty!";
+        //} else
+        //{
+        //    isDirty = false;
+        //}
 
         switch (status)
         {
@@ -78,7 +78,7 @@ public class Pan : Tool
                     CheckSink();
                 }
             }
-            else if(itemInMainHand.GetComponent<Egg>() != null)
+            else if(itemInMainHand.GetComponent<Egg>() != null && !isDirty)
             {
                 egg = itemInMainHand.GetComponent<Egg>();
 
@@ -103,7 +103,7 @@ public class Pan : Tool
 
                 
             }
-            else if (itemInMainHand.GetComponent<Bacon>() != null)
+            else if (itemInMainHand.GetComponent<Bacon>() != null && !isDirty)
             {
                 bacon = itemInMainHand.GetComponent<Bacon>();
 
@@ -125,29 +125,29 @@ public class Pan : Tool
                     }
                 }
             }
-            else if(itemInMainHand.GetComponent<Toast>() != null)
-            {
-                toast = itemInMainHand.GetComponent<Toast>();
+            //else if(itemInMainHand.GetComponent<Toast>() != null)
+            //{
+            //    toast = itemInMainHand.GetComponent<Toast>();
 
-                if (itemsInPan.Count < containerSize && toast.cookingStatus == Ingredients.CookingStatus.uncooked)// if pan is not full and toast is not toasted
-                {
-                    itemsInPan.Add(itemsInPan.Count, toast); // add toast to pan inventory
-                    toast.transform.position = transform.position; // put toast on pan
-                    toast.transform.parent = transform; // make toast child of pan
-                    toast.gameObject.SetActive(true); // display toast
-                    toast.canInteract = false; // make toast uninteractable
-                    player.inventory[0] = null; // item in main hand null
-                    player.isInteracting = false; //player is no longer interacting
-                    player.canCollect = false; //player cannot collect items
-                }
+            //    if (itemsInPan.Count < containerSize && toast.cookingStatus == Ingredients.CookingStatus.uncooked)// if pan is not full and toast is not toasted
+            //    {
+            //        //itemsInPan.Add(itemsInPan.Count, toast); // add toast to pan inventory
+            //        //toast.transform.position = transform.position; // put toast on pan
+            //        //toast.transform.parent = transform; // make toast child of pan
+            //        //toast.gameObject.SetActive(true); // display toast
+            //        //toast.canInteract = false; // make toast uninteractable
+            //        //player.inventory[0] = null; // item in main hand null
+            //        //player.isInteracting = false; //player is no longer interacting
+            //        //player.canCollect = false; //player cannot collect items
+            //    }
 
-                if (isHot)
-                {
-                    CookingCheck(cookingCheck, 2, toast); // start cooking // the cook time is 2 temporary
-                }
+            //    if (isHot)
+            //    {
+            //        CookingCheck(cookingCheck, 2, toast); // start cooking // the cook time is 2 temporary
+            //    }
 
-            }
-            else if (itemInMainHand.GetComponent<HashBrown>() != null)
+            //}
+            else if (itemInMainHand.GetComponent<HashBrown>() != null && !isDirty)
             {
                 hashBrown = itemInMainHand.GetComponent<HashBrown>();
 
@@ -284,7 +284,7 @@ public class Pan : Tool
                 Interaction = "Inventory Full";
                 return;
             }
-            else if(itemsInPan.Count >= containerSize)
+            else if (itemsInPan.Count >= containerSize)
             {
                 if (player.inventory[0] != null && player.inventory[0].GetComponent<Ingredients>())
                 {
@@ -293,15 +293,19 @@ public class Pan : Tool
                 }
             }
 
-            else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH))
+            else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH) && !isDirty)
+            {
+                Interaction = $"Add {ingredientMH.Name} to pan";
+                if (player.isInteracting)
                 {
-                    Interaction = $"Add {ingredientMH.Name} to pan";
-                    if (player.isInteracting)
-                    {
-                        player.isInteracting = false;
-                        player.canInteract = false;
-                    }
+                    player.isInteracting = false;
+                    player.canInteract = false;
                 }
+            }
+            else if(isDirty)
+            {
+                Interaction = "Pan is dirty";
+            }
             //else if (player.inventory[1] && player.inventory[1].TryGetComponent<Ingredients>(out Ingredients ingredientOH))
             //{
             //    Interaction = $"Add {ingredientOH.Name} to pan";
@@ -385,5 +389,25 @@ public class Pan : Tool
     public void Start()
     {
         useBeforeDirty = 1;
+    }
+
+    public override void IsDirtied()
+    {
+        if (timesUsed >= useBeforeDirty)
+        {
+            status = Status.dirty;
+            isDirty = true;
+            Interaction = "Pan is dirty";
+        }
+    }
+
+
+    public override void IsClean()
+    {
+
+        status = Status.clean;
+        timesUsed = 0;
+        isDirty = false;
+
     }
 }
