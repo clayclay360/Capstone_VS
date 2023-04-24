@@ -15,7 +15,7 @@ public class Spatula : Tool
     public void Start()
     {
         
-        useBeforeDirty = 1;
+        useBeforeDirty = 2;
     }
 
     public void Update()

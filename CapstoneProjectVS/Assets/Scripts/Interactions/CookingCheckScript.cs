@@ -25,12 +25,14 @@ public class CookingCheckScript : MonoBehaviour
     private bool[] interactionAttemptReady;
     private enum Attempt { None, Failed, Completed };
     private Attempt[] attempt;
+    Pan pan;
 
     private void Start()
     {
         attempt = new Attempt[interactionMeterEnd.Length];
         attempt[0] = Attempt.None;
         attempt[1] = Attempt.None;
+        pan = transform.parent.gameObject.GetComponent<Pan>();
     }
 
     public void ResetAttempts()
@@ -159,6 +161,9 @@ public class CookingCheckScript : MonoBehaviour
 
         QualityOfFood();
         food.ChangeStatus();
+
+        pan.timesUsed += 1;
+        pan.IsDirtied();
 
         //Reset
         attempt[0] = Attempt.None;

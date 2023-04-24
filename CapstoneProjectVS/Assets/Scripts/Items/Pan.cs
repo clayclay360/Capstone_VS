@@ -63,6 +63,7 @@ public class Pan : Tool
                 {
                     Debug.Log("Spatula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
+                    itemInMainHand.GetComponent<Spatula>().timesUsed += 1;
                     itemInMainHand.GetComponent<Spatula>().IsDirtied();
                 }
                 else
@@ -86,6 +87,7 @@ public class Pan : Tool
                     egg.transform.parent = transform; // have the pan be the parent of egg
                     egg.gameObject.SetActive(true); // display pan
                     egg.canInteract = false; // egg can't not be interacted
+                    egg.SetCollider(); //sets the collider of the food
                     egg.state = Egg.State.yoked; // change state
                     egg.SwitchModel(Egg.State.yoked); // change model
                     player.inventory[0] = null; // item in main hand is null
@@ -111,6 +113,7 @@ public class Pan : Tool
                     bacon.transform.parent = transform; // have the pan be the parent of bacon
                     bacon.gameObject.SetActive(true); // display pan
                     bacon.canInteract = false; // bacon can't not be interacted
+                    bacon.SetCollider(); //sets the collider of the food
                     player.inventory[0] = null; // item in main hand is null
                     player.isInteracting = false; //player is no longer interacting
                     player.canCollect = false; //player cannot collect items

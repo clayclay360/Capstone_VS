@@ -33,7 +33,6 @@ public class Plate : Tool
                         food.transform.position = foodPlacement.transform.position; // put food on plate
                         food.transform.parent = transform; // have the food be the parent of egg
                         itemInMainHand.GetComponent<Pan>().itemsInPan.Remove(0);
-                        itemInMainHand.GetComponent<Pan>().IsDirtied();
                         return;
                     }
                 }
@@ -147,5 +146,25 @@ public class Plate : Tool
             Interaction = "Inventory Full";
             return;
         }
+    }
+
+    public override void IsDirtied()
+    {
+        if (timesUsed >= useBeforeDirty)
+        {
+            status = Status.dirty;
+            isDirty = true;
+            Interaction = "Pan is dirty";
+        }
+    }
+
+
+    public override void IsClean()
+    {
+
+        status = Status.clean;
+        timesUsed = 0;
+        isDirty = false;
+
     }
 }

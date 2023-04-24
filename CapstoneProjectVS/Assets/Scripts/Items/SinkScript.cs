@@ -34,7 +34,7 @@ public class SinkScript : Utilities, IUtility
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
         {
-            if (itemInMainHand.GetComponent<Pan>() != null && itemInMainHand.GetComponent<Pan>().isDirty)
+            if (itemInMainHand.GetComponent<Pan>() != null && itemInMainHand.GetComponent<Pan>().isDirty && itemInMainHand.GetComponent<Pan>().itemsInPan.Count == 0)
             {
                 Pan pan = itemInMainHand.GetComponent<Pan>();
 

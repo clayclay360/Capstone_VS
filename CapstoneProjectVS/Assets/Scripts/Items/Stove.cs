@@ -11,6 +11,8 @@ public class Stove : Utilities, IUtility
     [Header("UX")]
     public GameObject indicator;
 
+    CookingCheckScript cookingCheckScript;
+
     public void DisplayIndicator(bool condition)
     {
         indicator.SetActive(condition); // activate the indicator depending on the parameter
@@ -28,6 +30,7 @@ public class Stove : Utilities, IUtility
                 pan.transform.position = toolPlacement.position; // position pan
                 pan.gameObject.SetActive(true); // activate pan
                 pan.transform.parent = transform; // make pan child of stove
+
                 pan.isHot = true; // pan is hot
                 player.inventory[0] = null; // item in main hand is null
                 pan.stove = this;

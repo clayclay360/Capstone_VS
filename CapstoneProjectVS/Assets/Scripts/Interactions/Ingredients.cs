@@ -88,6 +88,8 @@ public class Ingredients : Item, ICollectable
     {
         startLocation = gameObject.transform.position;
         base.Start();
+        canInteract = true;
+        SetCollider();
     }
 
     public void RespawnIngredient()
@@ -96,6 +98,8 @@ public class Ingredients : Item, ICollectable
         gameObject.transform.position = startLocation;
         gameObject.SetActive(true);
         isBeingUsed = false;
+        canInteract = true;
+        SetCollider();
         source.SetOutlineColor();
     }
 
@@ -116,5 +120,18 @@ public class Ingredients : Item, ICollectable
     public void SetIngredientSource(IngredientHolder holder)
     {
         source = holder;
+    }
+
+    public void SetCollider()
+    {
+        if (canInteract)
+        {
+            gameObject.GetComponent<SphereCollider>().enabled = true;
+        }
+        else
+        {
+            gameObject.GetComponent<SphereCollider>().enabled = false;
+        }
+        Debug.Log("Collider has been set");
     }
 }
