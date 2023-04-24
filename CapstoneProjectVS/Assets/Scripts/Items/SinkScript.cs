@@ -14,10 +14,18 @@ public class SinkScript : Utilities, IUtility
     public State state;
     private IEnumerator coroutine;
 
+    [Header("UX")]
+    public GameObject indicator;
+
     public void Start()
     {
         state = State.empty;
         SwitchModel(state);
+    }
+
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
     }
 
     // Start is called before the first frame update
@@ -78,6 +86,21 @@ public class SinkScript : Utilities, IUtility
                 isOccupied = true;
                 state = State.filled;
                 SwitchModel(state);
+
+                // Tutorial Level
+                DisplayIndicator(false);
+
+                if (GameManager.tutorialLevel)
+                {
+                    Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+                    // if on step four then complete task
+                    if (tutorial.currentStepNumber == 8)
+                    {
+                        tutorial.steps[tutorial.currentStepNumber].isComplete = true; // step complete
+                        tutorial.currentStepNumber++; // next step
+                    }
+                }
             }
         }
         player.isInteracting = false;
