@@ -39,6 +39,8 @@ public class OrderManager : Item
                                 ingredient.RespawnIngredient();
                                 ingredient.gameObject.SetActive(true);
                                 ingredient.isBeingUsed = false;
+                                plate.timesUsed += 1;
+                                plate.IsDirtied();
                                 break;
                             }
                         }
