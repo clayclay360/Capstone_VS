@@ -33,8 +33,6 @@ public class Plate : Tool
                         food.transform.position = foodPlacement.transform.position; // put food on plate
                         food.transform.parent = transform; // have the food be the parent of egg
                         itemInMainHand.GetComponent<Pan>().itemsInPan.Remove(0);
-<<<<<<< Updated upstream
-=======
                         itemInMainHand.GetComponent<Pan>().IsDirtied();
 
                         // Tutorial Level
@@ -52,7 +50,6 @@ public class Plate : Tool
                             }
                         }
 
->>>>>>> Stashed changes
                         return;
                     }
                 }
