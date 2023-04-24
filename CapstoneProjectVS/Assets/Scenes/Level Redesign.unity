@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13451,7 +13451,6 @@ MonoBehaviour:
   itemPlacement: {fileID: 0}
   isOccupied: 0
   item1: {fileID: 0}
-  indicator: {fileID: 0}
 --- !u!4 &630202330
 Transform:
   m_ObjectHideFlags: 0
@@ -18628,7 +18627,6 @@ MonoBehaviour:
   uncookedModel: {fileID: 1711812394}
   cookedModel: {fileID: 659260954}
   burntModel: {fileID: 0}
-  indicator: {fileID: 0}
 --- !u!1001 &1163763452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18896,7 +18894,6 @@ MonoBehaviour:
   doesHaveRatInteraction: 1
   toolPlacement: {fileID: 1184831526}
   isOccupied: 0
-  indicator: {fileID: 0}
 --- !u!1 &1214556111
 GameObject:
   m_ObjectHideFlags: 0
@@ -21363,7 +21360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707365726603931764, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: maxRats

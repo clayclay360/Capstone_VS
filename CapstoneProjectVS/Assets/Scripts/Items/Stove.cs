@@ -18,12 +18,10 @@ public class Stove : Utilities, IUtility
 
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
-
-
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
         {
-            if(itemInMainHand.GetComponent<Pan>() != null && !itemInMainHand.GetComponent<Pan>().isDirty)
+            if(itemInMainHand.GetComponent<Pan>() != null)
             {
                 Pan pan = itemInMainHand.GetComponent<Pan>();
 
@@ -46,8 +44,6 @@ public class Stove : Utilities, IUtility
                         isValidTarget = false;
                     }
                 }
-
-                
 
                 // Tutorial Level
                 if (GameManager.tutorialLevel)
@@ -93,19 +89,7 @@ public class Stove : Utilities, IUtility
         if ((player.inventory[0] && player.inventory[0].TryGetComponent<Pan>(out _)) ||
             (player.inventory[1] && player.inventory[1].TryGetComponent<Pan>(out _))) 
         {
-
-            if(player.inventory[0].GetComponent<Pan>() != null && player.inventory[0].GetComponent<Pan>().isDirty)
-            {
-                Interaction = "Pan is dirty";
-            }
-            else if(player.inventory[1].GetComponent<Pan>() != null && player.inventory[1].GetComponent<Pan>().isDirty)
-            {
-                Interaction = "Pan is dirty";
-            }
-            else
-            {
-                Interaction = "Place Pan on Stove";
-            }
+            Interaction = "Place Pan on Stove";
         }
         else
         {

@@ -68,11 +68,7 @@ public class RatController : MonoBehaviour
         }
         if(ratInventory != null)
         {
-            if((ratInventory.TryGetComponent<Tool>(out _) && !ratInventory.GetComponent<Tool>().isDirty) || (ratInventory.TryGetComponent<Ingredients>(out _) && ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled))
-            {
-                MakeInvDirty();
-            }
-           
+            MakeInvDirty();
             UpdateInventoryItemLocation();
         }
     }
