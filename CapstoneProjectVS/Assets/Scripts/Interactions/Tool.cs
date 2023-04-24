@@ -28,6 +28,9 @@ public class Tool : Item, ICollectable, ICookable
     public Sprite clean;
     public Sprite dirty;
 
+    [Header("UX")]
+    public GameObject indicator;
+
     public virtual void IsDirtied()
     {
         timesUsed += 1;
@@ -66,8 +69,20 @@ public class Tool : Item, ICollectable, ICookable
             cleanModel.SetActive(true);
         }
     }
+
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
+    }
+
     public virtual void Collect(PlayerController player = null, RatController rat = null)
     {
+        // turn off indicator display
+        if (indicator != null)
+        {
+            DisplayIndicator(false);
+        }
+
         //check if player is trying to collect this item
         if(player != null)
         {

@@ -68,7 +68,10 @@ public class RatController : MonoBehaviour
         }
         if(ratInventory != null)
         {
-            MakeInvDirty();
+            if ((ratInventory.TryGetComponent<Tool>(out _) && !ratInventory.GetComponent<Tool>().isDirty) || (ratInventory.TryGetComponent<Ingredients>(out _) && ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled))
+            {
+                MakeInvDirty();
+            }
             UpdateInventoryItemLocation();
         }
     }
@@ -140,12 +143,15 @@ public class RatController : MonoBehaviour
         {
             Despawn();
         }
-        //Assign a target from the target list
-        int randTargetNum = Random.Range(0, targetList.Count);
-        currTarget = targetList[randTargetNum];
-        NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
-        navAgent.SetDestination(hit.position);
-        //Debug.Log(currTarget);
+        else
+        {
+            //Assign a target from the target list
+            int randTargetNum = Random.Range(0, targetList.Count);
+            currTarget = targetList[randTargetNum];
+            NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
+            navAgent.SetDestination(hit.position);
+            //Debug.Log(currTarget);
+        }
 
     }
 
@@ -153,8 +159,36 @@ public class RatController : MonoBehaviour
     {
         if (!objectiveComplete)
         {
-            //if currTarget is not valid, assign new target
-            if (currTarget && (!currTarget.activeInHierarchy || (!currTarget.GetComponent<Item>().isValidTarget && !currTarget.GetComponent<Utilities>().isValidTarget)))
+            bool isTargetValid;
+            //Check if current target is valid
+            if (currTarget)
+            {
+                if (currTarget.activeInHierarchy)
+                {
+                    if(currTarget.TryGetComponent<Item>(out Item item) && item.isValidTarget)
+                    {
+                        isTargetValid = true;
+                    }
+                    else if(currTarget.TryGetComponent<Utilities>(out Utilities utility) && utility.isValidTarget)
+                    {
+                        isTargetValid = true;
+                    }
+                    else
+                    {
+                        isTargetValid = false;
+                    }
+                }
+                else
+                {
+                    isTargetValid = false;
+                }
+            }
+            else
+            {
+                isTargetValid = false;
+            }
+            //if current target is not valid, select a new target
+            if (!isTargetValid)
             {
                 AssignTarget();
             }
@@ -301,7 +335,7 @@ public class RatController : MonoBehaviour
         {
             if(ratInventory.GetComponent<Ingredients>().cookingStatus != Ingredients.CookingStatus.spoiled)
             {
-                Results.instance.Ratpoints();
+                //Results.instance.Ratpoints();
                 ratInventory.GetComponent<Ingredients>().cookingStatus = Ingredients.CookingStatus.spoiled;
             }
         }
@@ -313,7 +347,7 @@ public class RatController : MonoBehaviour
                 ratInventory.GetComponent<Tool>().status = Tool.Status.dirty;
                 ratInventory.GetComponent<Tool>().isDirty = true;
                 //ratInventory.GetComponent<Tool>().useBeforeDirty--;
-                Results.instance.Ratpoints();
+                //Results.instance.Ratpoints();
             }
         }
     }

@@ -105,6 +105,7 @@ public class Toaster : Utilities, IUtility, ICookable
             toast.Collect(null, rat);
             if (cookingCheck.activeInHierarchy)
             {
+                cookingCheck.GetComponent<ToastCheck>().StopCooking();
                 cookingCheck.SetActive(false);
             }
             toast.cookingStatus = Ingredients.CookingStatus.spoiled;

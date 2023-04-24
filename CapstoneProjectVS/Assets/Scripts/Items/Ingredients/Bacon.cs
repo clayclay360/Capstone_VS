@@ -70,6 +70,23 @@ public class Bacon : Ingredients
         }
     }
 
+    public override void Collect(PlayerController player = null, RatController rat = null)
+    {
+        base.Collect(player, rat);
+        
+        // if in the tutorial level, if the current setp is 1 then mark it complete
+        if (GameManager.tutorialLevel)
+        {
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+            if (tutorial.currentStepNumber == 6)
+            {
+                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
+                tutorial.currentStepNumber++;
+            }
+        }
+    }
+
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
         player.HelpIndicator(true, "Placing food on Pan");

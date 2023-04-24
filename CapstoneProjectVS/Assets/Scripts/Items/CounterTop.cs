@@ -8,7 +8,8 @@ public class CounterTop : Utilities, IUtility
     public Transform itemPlacement;
     public bool isOccupied;
     public Item item1;
-
+    [Header("UX")]
+    public GameObject indicator;
     // Start is called before the first frame update
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
@@ -66,6 +67,20 @@ public class CounterTop : Utilities, IUtility
                 player.inventory[0] = null; // item in main hand is null
 
                 isOccupied = true;
+
+
+                // Tutorial Level
+                if (GameManager.tutorialLevel)
+                {
+                    Tutorial tutorial = FindObjectOfType<Tutorial>();
+                    DisplayIndicator(false);
+
+                    // if on step four then complete task
+                    if (tutorial.currentStepNumber == 4)
+                    {
+                        tutorial.currentNumberOfTaskCompleted++;
+                    }
+                }
             }
 
             if (itemInMainHand.GetComponent<HashBrown>() != null)
@@ -139,6 +154,10 @@ public class CounterTop : Utilities, IUtility
         outline.enabled = false;
     }
 
+    public void DisplayIndicator(bool condition)
+    {
+        indicator.SetActive(condition);
+    }
     public override void Update()
     {
         base.Update();

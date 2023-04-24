@@ -68,6 +68,18 @@ public class Spatula : Tool
             CheckCounterTop();
             CheckSink();
         }
+
+        // in tutorial level when the cook book is closed, player moves on to the next step
+        if (GameManager.tutorialLevel)
+        {
+            DisplayIndicator(false);
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+            if (tutorial.currentStepNumber == 5)
+            {
+                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
+                tutorial.currentStepNumber++;
+            }
+        }
     }
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
@@ -136,8 +148,6 @@ public class Spatula : Tool
 
         
     }
-
-    
 
     public override void IsDirtied()
     {

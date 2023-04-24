@@ -77,6 +77,34 @@ public class Plate : Tool
         }
     }
 
+    public override void Collect(PlayerController player = null, RatController rat = null)
+    {
+        base.Collect(player, rat);
+
+        // Tutorial Level
+        DisplayIndicator(false);
+
+        if (GameManager.tutorialLevel)
+        {
+            Tutorial tutorial = FindObjectOfType<Tutorial>();
+
+            // if on step four then complete task
+            if (tutorial.currentStepNumber == 7)
+            {
+                tutorial.steps[tutorial.currentStepNumber].isComplete = true;
+                tutorial.currentStepNumber++;
+
+                tutorial.playerTwoText.text = "Dirty dishes must be cleaned in the sink!";
+            }
+        }
+    }
+
+    public IEnumerator TurnOffDisplay()
+    {
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<Tutorial>().playerTwoText.text = "";
+    }
+
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
         player.HelpIndicator(true, "Placing food on Plate");

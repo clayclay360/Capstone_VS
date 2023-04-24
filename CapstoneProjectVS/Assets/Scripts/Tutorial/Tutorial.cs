@@ -9,19 +9,26 @@ public class Tutorial : MonoBehaviour
     [Header("Variables")]
     public bool startTutorial;
     public Step[] steps;
-
     public int currentStepNumber;
+
+    [Header("Items")]
+    public GameObject passCounter;
+
+    private CounterTop counterTop;
     public int currentNumberOfTaskCompleted { set; get; }
 
     // variables of the player
     private PlayerController[] playerControllers;
-    private Text[] playerInteractionTexts;
+
+    [HideInInspector]
+    public Text playerOneText, playerTwoText;
 
     private Main main; // main variable;
 
     public void Start()
     {
         main = FindObjectOfType<Main>();
+        counterTop = passCounter.GetComponent<CounterTop>();
     }
 
     public void StartTutorial()
@@ -33,46 +40,121 @@ public class Tutorial : MonoBehaviour
     public void GetPlayers()
     {
         playerControllers = FindObjectsOfType<PlayerController>();
+        playerOneText = playerControllers[1].interactionText;
+        playerTwoText = playerControllers[0].interactionText;
     }
 
     public IEnumerator TutorialSteps()
     {
-        currentStepNumber = 0;
+        //currentStepNumber = 0;
 
-        yield return new WaitForSeconds(1);
         // show players how to walk
-        foreach(PlayerController playerController in playerControllers)
+        if (currentStepNumber == 0)
         {
-            playerController.interactionText.text = "Use [right stick] to move your character!";
+            yield return new WaitForSeconds(1);
+            foreach (PlayerController playerController in playerControllers)
+            {
+                playerController.interactionText.text = "Use [right stick] to move your character!";
+            }
+            steps[currentStepNumber].isComplete = true;
+            currentStepNumber++;
         }
-        steps[currentStepNumber].isComplete = true;
-        currentStepNumber++;
-        yield return new WaitForSeconds(3);
+
         // show player orderwindow
-        main.TutorialOrder();
-        foreach (PlayerController playerController in playerControllers)
+        if (currentStepNumber == 1)
         {
-            playerController.interactionText.text = "";
+            yield return new WaitForSeconds(3);
+            main.TutorialOrder();
+            foreach (PlayerController playerController in playerControllers)
+            {
+                playerController.interactionText.text = "";
+            }
+            while (!steps[1].isComplete)
+            {
+                yield return null;
+            }
         }
-        while (!steps[1].isComplete)
-        {
-            yield return null;
-        }
+
         // show cook book
-        FindObjectOfType<Cookbook>().DisplayIndicator(true);
-        while (!steps[2].isComplete)
+        if (currentStepNumber == 2)
         {
-            yield return null;
+            FindObjectOfType<Cookbook>().DisplayIndicator(true);
+            while (!steps[2].isComplete)
+            {
+                yield return null;
+            }
         }
+
         // bacon and pan
-        FindObjectOfType<BaconPack>().DisplayIndicator(true);
-        FindObjectOfType<Pan>().DisplayIndicator(true);
-        while(currentNumberOfTaskCompleted < 2)
+        if (currentStepNumber == 3)
         {
-            yield return null;
+            FindObjectOfType<BaconPack>().DisplayIndicator(true);
+            FindObjectOfType<Pan>().DisplayIndicator(true);
+            while (currentNumberOfTaskCompleted < 2)
+            {
+                yield return null;
+            }
+            steps[currentStepNumber].isComplete = true;
+            currentStepNumber++;
+            currentNumberOfTaskCompleted = 0;
+        }  
+        
+        // counter and stove
+        if(currentStepNumber == 4)
+        {
+            counterTop.DisplayIndicator(true);
+            FindObjectOfType<Stove>().DisplayIndicator(true);
+            while (currentNumberOfTaskCompleted < 2)
+            {
+                yield return null;
+            }
+            steps[currentStepNumber].isComplete = true;
+            currentStepNumber++;
+            currentNumberOfTaskCompleted = 0;
         }
-        steps[currentStepNumber].isComplete = true;
-        currentStepNumber++;
+
+        // spatula 
+        if(currentStepNumber == 5)
+        {
+            FindObjectOfType<Spatula>().DisplayIndicator(true);
+            while(currentStepNumber == 5)
+            {
+                yield return null;
+            }
+        }
+
+        // bacon
+        if (currentStepNumber == 6)
+        {
+            FindObjectOfType<Bacon>().DisplayIndicator(true);
+            while (currentStepNumber == 6)
+            {
+                yield return null;
+            }
+        }
+
+        // plate
+        if(currentStepNumber == 7)
+        {
+            FindObjectOfType<Plate>().DisplayIndicator(true);
+            while (currentStepNumber == 7)
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(3);
+            playerTwoText.text = "";
+        }
+
+        // sink
+        if(currentStepNumber == 8)
+        {
+            FindObjectOfType<SinkScript>().DisplayIndicator(true);
+            while (currentStepNumber == 8)
+            {
+                yield return null;
+            }
+        }
+
         Debug.Log("Step Completed");
         //
     }
