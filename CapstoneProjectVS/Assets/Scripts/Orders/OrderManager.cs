@@ -51,7 +51,7 @@ public class OrderManager : Item
                                     if (tutorial.playerTwoCurrentStep == 9)
                                     {
                                         tutorial.playerTwoSteps[9].isComplete = true;
-                                        //tutorial.playerTwoCurrentStep++;
+                                        tutorial.playerTwoCurrentStep++;
                                     }
                                 }
                                 break;
