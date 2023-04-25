@@ -73,6 +73,7 @@ public class Tutorial : MonoBehaviour
         if (playerOneCurrentStep == 1)
         {
             FindObjectOfType<Cookbook>().DisplayIndicator(true);
+            FindObjectOfType<Cookbook>().canInteract = true;
             while (!playerOneSteps[1].isComplete)
             {
                 await Task.Yield();
@@ -83,6 +84,7 @@ public class Tutorial : MonoBehaviour
         if (playerOneCurrentStep == 2)
         {
             FindObjectOfType<Pan>().DisplayIndicator(true);
+            FindObjectOfType<Pan>().canInteract = true;
             while (!playerOneSteps[2].isComplete)
             {
                 await Task.Yield();
@@ -93,6 +95,7 @@ public class Tutorial : MonoBehaviour
         if (playerOneCurrentStep == 3)
         {
             FindObjectOfType<Stove>().DisplayIndicator(true);
+            FindObjectOfType<Stove>().canInteract = true;
             while (!playerOneSteps[3].isComplete)
             {
                 await Task.Yield();
@@ -113,6 +116,7 @@ public class Tutorial : MonoBehaviour
         if (playerOneCurrentStep == 4)
         {
             FindObjectOfType<Spatula>().DisplayIndicator(true);
+            FindObjectOfType<Spatula>().canInteract = true;
             while (!playerOneSteps[4].isComplete)
             {
                 await Task.Yield();
@@ -123,6 +127,7 @@ public class Tutorial : MonoBehaviour
         if (playerOneCurrentStep == 5)
         {
             FindObjectOfType<Bacon>().DisplayIndicator(true);
+            FindObjectOfType<Bacon>().canInteract = true;
             while (!playerOneSteps[5].isComplete)
             {
                 await Task.Yield();
@@ -138,6 +143,7 @@ public class Tutorial : MonoBehaviour
         if (playerOneCurrentStep == 6)
         {
             FindObjectOfType<Pan>().DisplayIndicator(true);
+            FindObjectOfType<Pan>().canInteract = true;
             while (!playerOneSteps[6].isComplete)
             {
                 await Task.Yield();
@@ -177,6 +183,7 @@ public class Tutorial : MonoBehaviour
             playerOneController.isDisplayingInformation = false;
 
             FindObjectOfType<Plate>().DisplayIndicator(true);
+            FindObjectOfType<Plate>().canInteract = true;
             while (!playerOneSteps[9].isComplete)
             {
                 await Task.Yield();
@@ -216,6 +223,7 @@ public class Tutorial : MonoBehaviour
         if (playerTwoCurrentStep == 2)
         {
             FindObjectOfType<BaconPack>().DisplayIndicator(true);
+            FindObjectOfType<Bacon>().canInteract = true;
             while (!playerTwoSteps[2].isComplete)
             {
                 await Task.Yield();
@@ -236,6 +244,7 @@ public class Tutorial : MonoBehaviour
         if(playerTwoCurrentStep == 4)
         {
             FindObjectOfType<Plate>().DisplayIndicator(true);
+            FindObjectOfType<Plate>().canInteract = true;
             while (!playerTwoSteps[4].isComplete)
             {
                 await Task.Yield();
@@ -248,6 +257,7 @@ public class Tutorial : MonoBehaviour
         if (playerTwoCurrentStep == 5)
         {
             FindObjectOfType<SinkScript>().DisplayIndicator(true);
+            FindObjectOfType<SinkScript>().canInteract = true;
             while (!playerTwoSteps[5].isComplete)
             {
                 await Task.Yield();
@@ -298,7 +308,36 @@ public class Tutorial : MonoBehaviour
             {
                 await Task.Yield();
             }
+            Debug.Log("OK");
+            Combat();
         }
+
         Debug.Log("Step Completed");
+    }
+
+    public async void Combat()
+    {
+        #region diplay
+        playerOneController.isDisplayingInformation = true;
+        playerTwoController.isDisplayingInformation = true;
+        playerOneText.text = "Great Job!";
+        playerTwoText.text = "Great Job!";
+        await Task.Delay(3000);
+        playerOneText.text = "";
+        playerTwoText.text = "";
+        await Task.Delay(1000);
+        playerOneText.text = "Watch out for rats! Press [right bumper] top throw knives!";
+        playerTwoText.text = "Watch out for rats! Press [right bumper] top throw knives!";
+        await Task.Delay(3000);
+        playerOneText.text = "";
+        playerTwoText.text = "";
+        playerOneController.isDisplayingInformation = false;
+        playerTwoController.isDisplayingInformation = false;
+        #endregion
+
+        foreach(RatSpawn rs in FindObjectsOfType<RatSpawn>())
+        {
+            rs.enabled = true;
+        }
     }
 }

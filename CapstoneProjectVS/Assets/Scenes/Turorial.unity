@@ -2129,6 +2129,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707365726603931764, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+      propertyPath: maxRats
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
@@ -13546,7 +13554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915878476, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
       propertyPath: canInteract
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 915878476, guid: e319af1b9f8c6784ab1fb317f94b8a1a, type: 3}
       propertyPath: isValidTarget
@@ -20361,7 +20369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Bacon
-  canInteract: 1
+  canInteract: 0
   isValidTarget: 0
   isWashable: 0
   mainSprite: {fileID: 21300000, guid: 526c97170b70ffb4ab0f837dc93306cc, type: 3}
@@ -20730,7 +20738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Stove
-  canInteract: 1
+  canInteract: 0
   isValidTarget: 0
   isWashable: 0
   mainSprite: {fileID: 0}
@@ -21020,7 +21028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Plate
-  canInteract: 1
+  canInteract: 0
   isValidTarget: 0
   isWashable: 0
   mainSprite: {fileID: 21300000, guid: fae0903975bf3284baa51e3f033762e7, type: 3}
@@ -23034,6 +23042,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 292810818963994974, guid: 7d553e0d24f221340a6e7befc5e702eb, type: 3}
     - target: {fileID: 741834894374719149, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 741834894374719149, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
       propertyPath: isValidTarget
       value: 0
       objectReference: {fileID: 0}
@@ -23573,11 +23585,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707365726603931764, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+      propertyPath: maxRats
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: canSpawn
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.size
@@ -38588,6 +38608,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 325709325}
     - target: {fileID: 1048870813, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1048870813, guid: bf5ead34707a2c34d95a652753c5d893, type: 3}
       propertyPath: startLocation.x
       value: -5.58
       objectReference: {fileID: 0}
@@ -41949,6 +41973,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2134369843928847565, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134369843928847565, guid: 4e0f378ce8216b04681c8679ee82820b, type: 3}
       propertyPath: cleaningCheck
       value: 
       objectReference: {fileID: 853032555}
@@ -42750,6 +42778,10 @@ PrefabInstance:
       propertyPath: cookbookUI
       value: 
       objectReference: {fileID: 1989512509}
+    - target: {fileID: 3570161425733208012, guid: 7728c74f842b41a4481021fd3f7ec695, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4097637746862041904, guid: 7728c74f842b41a4481021fd3f7ec695, type: 3}
       propertyPath: m_Name
       value: Cookbook

@@ -338,7 +338,8 @@ public class PlayerController : MonoBehaviour
     //player is ready to interact
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.GetComponent<Item>() != null && !isDisplayingInformation)
+        if(other.gameObject.GetComponent<Item>() != null && !isDisplayingInformation 
+            && other.gameObject.GetComponent<Item>().canInteract)
         {
             if (other.TryGetComponent<IngredientHolder>(out IngredientHolder container))
             {
