@@ -110,7 +110,7 @@ public class Main : MonoBehaviour
         sideRecipe[0] = recipeManager[0].sideRecipes[1];
         GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
 
-        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 120);
+        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 500);
         sideOrder[0] = orderGameObject;
         FindObjectOfType<OrderManager>().DisplayIndicator(true);
     }
@@ -133,7 +133,10 @@ public class Main : MonoBehaviour
                 if(food != null)
                 {
                     sideOrder[i].GetComponent<Order>().StarRating(food.qualityRate);
-                    showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
+                    if (showStars != null)
+                    {
+                        showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
+                    }
                     Score += food.qualityRate;
                 }
                 sideOrder[i]= null;
