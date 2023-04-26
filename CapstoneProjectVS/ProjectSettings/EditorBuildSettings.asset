@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 01fb996f34213c0439bb89a348062b5f
   - enabled: 1
+    path: Assets/Scenes/Turorial.unity
+    guid: 1a31684ea7105b84da6a85845050e617
+  - enabled: 1
     path: Assets/Scenes/Level Redesign.unity
     guid: 81feb7f8bf771fd44973c48dea02314e
   m_configObjects:

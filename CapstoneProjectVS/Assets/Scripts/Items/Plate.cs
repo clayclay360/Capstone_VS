@@ -7,11 +7,17 @@ public class Plate : Tool
     [Header("Plate Variables")]
     public bool Occupied;
     public Transform foodPlacement;
+    public Item newfoodItem;
     public Dictionary<int, Item> foodOnPlate = new Dictionary<int, Item>();
 
     public void Start()
     {
         useBeforeDirty = 1;
+        if (newfoodItem)
+        {
+            foodOnPlate[0] = newfoodItem;
+            newfoodItem.transform.position = foodPlacement.transform.position;
+        }
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)
@@ -175,8 +181,12 @@ public class Plate : Tool
         }
     }
 
+    /// <summary>
+    /// Automatically increments timesUsed and then determines if the plate is dirty yet
+    /// </summary>
     public override void IsDirtied()
     {
+        timesUsed++;
         if (timesUsed >= useBeforeDirty)
         {
             status = Status.dirty;

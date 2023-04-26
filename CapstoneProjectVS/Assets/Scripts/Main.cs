@@ -132,7 +132,7 @@ public class Main : MonoBehaviour
                 Destroy(sideOrder[i],3);
                 if(food != null)
                 {
-                    sideOrder[i].GetComponent<Order>().StarRating(food.qualityRate);
+                    //sideOrder[i].GetComponent<Order>().StarRating(food.qualityRate);
                     if (showStars != null)
                     {
                         showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
@@ -141,7 +141,7 @@ public class Main : MonoBehaviour
                 }
                 sideOrder[i]= null;
                 ordersCompleted++;
-                Results.instance.Points();
+                //Results.instance.Points();
             }
         }
 

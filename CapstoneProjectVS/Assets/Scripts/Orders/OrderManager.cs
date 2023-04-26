@@ -29,16 +29,15 @@ public class OrderManager : Item
                             main.OrderComplete(plate.foodOnPlate[0].Name, plate.foodOnPlate[0].GetComponent<Ingredients>());
                             if (plate.foodOnPlate[0].Name == "Omelet" || plate.foodOnPlate[0].Name == "Bacon" || plate.foodOnPlate[0].Name == "Toast")
                             {
+                                Debug.Log("Name check passed.");
                                 Ingredients ingredient;
                                 ingredient = plate.foodOnPlate[0].GetComponent<Ingredients>();
-                                plate.foodOnPlate[0].transform.parent = null;
+                                plate.foodOnPlate[0].transform.parent = null; //Does this do anything??
                                 plate.foodOnPlate[0].canInteract = true;
                                 plate.foodOnPlate.Remove(0);
-                                //plate.foodOnPlate[0] = null;
                                 plate.IsDirtied();
                                 ingredient.RespawnIngredient();
-                                ingredient.gameObject.SetActive(true);
-                                ingredient.isBeingUsed = false;
+                                ingredient.gameObject.SetActive(false);
                                 plate.timesUsed += 1;
                                 plate.IsDirtied();
 
