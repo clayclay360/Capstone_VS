@@ -2008,6 +2008,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7b988a0a9344a88479badc43bc43f777, type: 3}
   m_PrefabInstance: {fileID: 141363862}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &148467272 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1226673933686166833, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
+  m_PrefabInstance: {fileID: 3807997087144990166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &155064527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14147,6 +14152,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696165455}
   m_CullTransparentMesh: 1
+--- !u!198 &698413558 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6354196459215039881, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
+  m_PrefabInstance: {fileID: 3807997087144990166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &698838954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18255,6 +18265,8 @@ MonoBehaviour:
   outline: {fileID: 0}
   Interaction: 
   doesHaveRatInteraction: 1
+  stoveFirePS: {fileID: 148467272}
+  stoveSmokePS: {fileID: 698413558}
   toolPlacement: {fileID: 1184831526}
   isOccupied: 0
   indicator: {fileID: 0}
@@ -18663,7 +18675,6 @@ MonoBehaviour:
   indicator: {fileID: 0}
   Occupied: 0
   foodPlacement: {fileID: 85301383}
-  newfoodItem: {fileID: 0}
 --- !u!1001 &1271865008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38575,6 +38586,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 4223520185813466808, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4467370415075327568, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -38586,6 +38601,10 @@ PrefabInstance:
     - target: {fileID: 7510593213765265886, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337381484038751744, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3807997087155036452, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Stove : Utilities, IUtility
 {
     [Header("Stove Variables")]
+    public ParticleSystem stoveFirePS;
+    public ParticleSystem stoveSmokePS;
     public Transform toolPlacement;
     public bool isOccupied;
 
@@ -12,6 +14,13 @@ public class Stove : Utilities, IUtility
     public GameObject indicator;
 
     CookingCheckScript cookingCheckScript;
+
+    public override void Start()
+    {
+        base.Start();
+        stoveFirePS.Pause();
+        stoveSmokePS.Pause();
+    }
 
     public void DisplayIndicator(bool condition)
     {
@@ -74,14 +83,25 @@ public class Stove : Utilities, IUtility
         canInteract = Interactivity();
     }
 
+    /// <summary>
+    /// Sets the canInteract variable based off of the isOccupied variable.
+    /// Also sets the Particle Systems.
+    /// </summary>
+    /// <returns></returns>
     public bool Interactivity()
     {
         if (isOccupied)
         {
+            stoveFirePS.Play();
+            stoveSmokePS.Play();
             return false;
         }
         else
         {
+            stoveFirePS.Pause();
+            stoveSmokePS.Pause();
+            stoveFirePS.Clear();
+            stoveSmokePS.Clear();
             return true;
         }
     }
