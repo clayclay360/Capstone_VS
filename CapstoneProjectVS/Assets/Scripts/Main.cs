@@ -38,6 +38,7 @@ public class Main : MonoBehaviour
     private float timeInBetweenOrders;
     private int maxOrdersOfSides = 3;
     private int ordersCompleted;
+    public float orderScore = 0;
 
     private bool startOrders;
 
@@ -118,7 +119,7 @@ public class Main : MonoBehaviour
     public void OrderComplete(string orderName, Ingredients food = null)
     {
         //check to see which order this is
-        if(orderName == mainRecipe.Name)
+        if (orderName == mainRecipe.Name)
         {
             currentMainOrder++;
             Destroy(mainOrder);
@@ -138,10 +139,11 @@ public class Main : MonoBehaviour
                         showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
                     }
                     Score += food.qualityRate;
+                    
                 }
                 sideOrder[i]= null;
                 ordersCompleted++;
-                Results.instance.Points();
+                
             }
         }
 
@@ -151,6 +153,7 @@ public class Main : MonoBehaviour
             FirstStar.color = Color.yellow;
             gameStar.SetActive(true);
             Invoke(nameof(DestroyStar), 2f);
+            orderScore += 1;
         }
         else if(ordersCompleted == 2)
         {
@@ -158,13 +161,12 @@ public class Main : MonoBehaviour
             SecondStar.color = Color.yellow;
             gameStar.SetActive(true);
             Invoke(nameof(DestroyStar), 2f);
+            orderScore += 1;
         }
         else if (ordersCompleted == 3)
         {
             Debug.Log("You got a star");
-            ThirdStar.color = Color.yellow;
-            gameStar.SetActive(true);
-            Invoke(nameof(DestroyStar), 2f);
+            orderScore += 1;
         }
     }
 
