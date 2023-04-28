@@ -302,7 +302,6 @@ public class PlayerController : MonoBehaviour
     //switch hands
    public void OnSwitchHand()
     {
-        Debug.Log("Inventory 1: " + inventory[0] + " Inventory 2: " + inventory[1]);
         inventory[2] = inventory[0];
         inventory[0] = inventory[1];
         inventory[1] = inventory[2];
@@ -344,6 +343,10 @@ public class PlayerController : MonoBehaviour
             if (other.TryGetComponent<IngredientHolder>(out IngredientHolder container))
             {
                 container.CheckHand(itemInMainHand, this);
+                if (container.isCheckingForInteraction)
+                {
+                    container.CheckPlayerInteraction(this);
+                }
                 interactionText.text = container.Interaction;
                 if (!container.CanGetItem())
                 {
@@ -358,6 +361,10 @@ public class PlayerController : MonoBehaviour
             canInteract = true;
             interactableObject = other.gameObject;
             other.gameObject.GetComponent<Item>().CheckHand(itemInMainHand, this);
+            if (other.gameObject.GetComponent<Item>().isCheckingForInteraction)
+            {
+                other.gameObject.GetComponent<Item>().CheckPlayerInteraction(this);
+            }
             interactionText.text = other.gameObject.GetComponent<Item>().Interaction;
 
             //Change highlight of the object to the player color
