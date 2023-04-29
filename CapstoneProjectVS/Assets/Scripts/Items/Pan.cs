@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pan : Tool
 {
     public Dictionary<int, Item> itemsInPan = new Dictionary<int, Item>();
+    
 
     [Header("CookingCheck")]
     public GameObject cookingCheck;

@@ -11,8 +11,7 @@ public class MenuStart : MonoBehaviour
     public int maxButtons;
     public int minButtons;
 
-    public GameObject StartGameBorder;
-    public GameObject QuitGameBorder;
+    public GameObject[] buttonBorders;
 
     public Image FadeOut;
     public Color color;
@@ -22,37 +21,33 @@ public class MenuStart : MonoBehaviour
     {
         menuCounter = 1;
         minButtons = 1;
-        maxButtons = 2;
+        maxButtons = 3;
         Debug.Log(menuCounter);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (menuCounter == 1)
-        { SGBorderActive(); }
-        else if (menuCounter == 2)
-        { QGBorderActive();  }
+        SetBorders();
     }
 
-    public void StartGame()
+    public void StartLevelGivenIndex(int index)
     {
-        Debug.Log("Start Game");
-        StartCoroutine(LoadFirstLevel());
+        StartCoroutine(LoadLevel(index));
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
         Application.Quit();
     }
 
     public void OnInteract()
     {
-        if (menuCounter == 1)
+        if (menuCounter == 1 || menuCounter == 2)
         {
-            StartGame();
-        } else if (menuCounter == 2)
+            StartLevelGivenIndex(menuCounter);
+        } 
+        else if (menuCounter == 3)
         {
             QuitGame();
         }
@@ -76,19 +71,19 @@ public class MenuStart : MonoBehaviour
         }
     }
 
-    public void SGBorderActive()
+    /// <summary>
+    /// Sets all borders to inactive then sets the current border to active
+    /// </summary>
+    private void SetBorders()
     {
-        StartGameBorder.SetActive(true);
-        QuitGameBorder.SetActive(false);
+        foreach (GameObject border in buttonBorders)
+        {
+            border.SetActive(false);
+        }
+        buttonBorders[menuCounter - 1].SetActive(true);
     }
 
-    public void QGBorderActive()
-    {
-        StartGameBorder.SetActive(false);
-        QuitGameBorder.SetActive(true);
-    }
-
-    private IEnumerator LoadFirstLevel()
+    private IEnumerator LoadLevel(int levelIndex)
     {
         bool loadLevelBool = true;
         int subtract = 0;
@@ -106,6 +101,6 @@ public class MenuStart : MonoBehaviour
             }
             yield return null;
         }
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(levelIndex, LoadSceneMode.Single);
     }
 }

@@ -35,7 +35,7 @@ public class ToastCheck : MonoBehaviour
     IEnumerator Toasting(float time)
     {
         float deltaTime = Time.unscaledTime;
-
+        progressSlider.gameObject.SetActive(true);
         while (progressMeter < progressMeterMax)
         {
             progressMeter = (Time.unscaledTime - deltaTime) / time;
@@ -47,6 +47,11 @@ public class ToastCheck : MonoBehaviour
         food.qualityRate = 3;
         food.ChangeStatus();
         food.isCooking = false;
-        
+    }
+
+    public void ResetToastCheck()
+    {
+        progressMeter = 0;
+        progressSlider.value = 0;
     }
 }

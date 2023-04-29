@@ -1798,6 +1798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Animated_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: d507961838679e34fbf2b59efa9776d0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 67bce7bd4e7ad6548a133eeb3f173a36, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d507961838679e34fbf2b59efa9776d0, type: 3}
 --- !u!1001 &1492312960
@@ -1909,7 +1913,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 61
+  field of view: 17.7
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1935,7 +1939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517286701}
   m_LocalRotation: {x: 0.30367658, y: -0.19279404, z: 0.06884369, w: 0.9305222}
-  m_LocalPosition: {x: 2.74, y: 5.21, z: -5.12}
+  m_LocalPosition: {x: 0.7, y: 4.85, z: -6.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

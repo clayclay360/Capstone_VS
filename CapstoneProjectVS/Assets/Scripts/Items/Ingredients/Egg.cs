@@ -21,8 +21,9 @@ public class Egg : Ingredients, IInteractable
         cookingStatus = CookingStatus.uncooked;
     }
 
-    public void Update()
+    public override void Update()
     {
+        base.Update();
         switch (cookingStatus)
         {
             case CookingStatus.uncooked:

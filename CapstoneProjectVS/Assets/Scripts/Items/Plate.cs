@@ -134,49 +134,128 @@ public class Plate : Tool
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
         player.HelpIndicator(true, "Placing food on Plate");
-
-        if (!player.inventory[0] || !player.inventory[1])
+        Interaction = "";
+        //First we check if the main hand is empty
+        if (!player.inventory[0])
         {
             Interaction = "Grab Plate";
-            if (player.isInteracting)
-            {
-                player.isInteracting = false;
-                player.canInteract = false;
-                Interaction = "";
-            }
+            willHideObjectAfterInteraction = true;
+            isCheckingForInteraction = true;
+            return;
         }
-        if(player.inventory[0] && player.inventory[0].TryGetComponent<Toast>(out Toast toast))
+        //Next we check for interactions with items in the main hand.
+        //Toast
+        else if(player.inventory[0].TryGetComponent<Toast>(out Toast mToast))
         {
-            Interaction = $"Add Toast to plate";
-        }
-        //There is no item in the pan(pre-cooking)
-        if (player.inventory[0] && player.inventory[0].TryGetComponent<Pan>(out Pan pan))
-        {
-            if (pan.itemsInPan.Count > 0)
+            if (mToast.cookingStatus != Ingredients.CookingStatus.uncooked)
             {
-                Interaction = $"Add {pan.itemsInPan[0].Name} to plate";
-                if (player.isInteracting)
-                {
-                    player.isInteracting = false;
-                    player.canInteract = false;
-                }
+                Interaction = "Add Toast to plate";
+                willHideObjectAfterInteraction = false;
+                isCheckingForInteraction = true;
                 return;
             }
-            else
+        }
+        //Pan
+        else if (player.inventory[0].TryGetComponent<Pan>(out Pan mPan))
+        {
+            platePanInteraction(mPan);
+            if (Interaction != "") //If the pan method set the text
             {
-                Interaction = "Plate Full";
-
+                Debug.Log(Interaction);
+                return;
             }
         }
-        else if (player.inventoryFull && !player.inventory[0].GetComponent<Ingredients>())
+        //No interactions are possible with the item in the main hand.
+
+        //Now we check if the offhand is empty
+        if (!player.inventory[1])
         {
+            Interaction = "Grab Plate";
+            willHideObjectAfterInteraction = true;
+            isCheckingForInteraction = true;
+            return;
+        }
+        //Next we check for interactions with items in the off hand.
+        //Toast
+        else if (player.inventory[1].TryGetComponent<Toast>(out Toast oToast))
+        {
+            if (oToast.cookingStatus != Ingredients.CookingStatus.uncooked)
+            {
+                Interaction = $"Add Toast to plate";
+                willHideObjectAfterInteraction = false;
+                isCheckingForInteraction = true;
+                return;
+            }
+        }
+        //Pan
+        else if (player.inventory[1].TryGetComponent<Pan>(out Pan oPan))
+        {
+            platePanInteraction(oPan);
+            if (Interaction != "") //If the pan method set the text
+            {
+                Debug.Log(Interaction);
+                return;
+            }
+        }
+        if (player.inventoryFull)
+        {
+            //There is an item in the inventory we can't interact with
             Interaction = "Inventory Full";
             return;
         }
+
     }
 
+    /// <summary>
+    /// Helper function for when the player is holding a pan because god help me
+    /// </summary>
+    /// <param name="pan"></param>
+    private void platePanInteraction(Pan pan)
+    {
+        //There is food in the pan
+        if (pan.itemsInPan.Count > 0)
+        {
+            //There is food on the plate
+            if (foodOnPlate.Count > 0)
+            {
+                Interaction = "Plate full";
+                return;
+            }
+            //There is not food on the plate
+            else
+            {
+                if (pan.itemsInPan[0].GetComponent<Ingredients>().cookingStatus == Ingredients.CookingStatus.burnt ||
+                    pan.itemsInPan[0].GetComponent<Ingredients>().cookingStatus == Ingredients.CookingStatus.cooked ||
+                    pan.itemsInPan[0].GetComponent<Ingredients>().cookingStatus == Ingredients.CookingStatus.spoiled)
+                {
+                    Interaction = $"Add {pan.itemsInPan[0].name} to plate";
+                    willHideObjectAfterInteraction = false;
+                    isCheckingForInteraction = true;
+                    return;
+                }
+                else if (pan.itemsInPan[0].GetComponent<Ingredients>().cookingStatus == Ingredients.CookingStatus.uncooked)
+                {
+                    Interaction = "Food is not done!";
+                    return;
+                }
+                else
+                {
+                    Interaction = "Something is wrong with this food!";
+                    Debug.LogWarning("Hey. Either something that isn't an ingredient is in the pan (you should probably have hit an error before this message" +
+                        "if that's the case), or there's an ingredient in the pan that is not burnt, cooked, spoiled, or uncooked, which should be impossible." +
+                        "If there's a new 5th state, cool, add that. If there isn't one… Godspeed. You'll need all the luck you can get to figure this out.");
+                    return;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Automatically increments timesUsed and then determines if the plate is dirty yet
+    /// </summary>
     public override void IsDirtied()
     {
+        timesUsed++;
         if (timesUsed >= useBeforeDirty)
         {
             status = Status.dirty;

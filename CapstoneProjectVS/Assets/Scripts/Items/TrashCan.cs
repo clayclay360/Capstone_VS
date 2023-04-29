@@ -49,19 +49,31 @@ public class TrashCan : Utilities, IUtility, IInteractable
             }
             plate.RespawnTool();
             trashItem = null;
-        } else if (item.name == "Spatula") //all scripts that derive from Tool must have their item.name added to this if statement for throwing things out
+        } 
+        else if (item.name == "Spatula") //all scripts that derive from Tool must have their item.name added to this if statement for throwing things out
         {
             Tool tool;
             tool = item.GetComponent<Tool>();
             tool.RespawnTool();
             trashItem = null;
-        } else if (item.name == "Egg" || item.name == "Bacon" || item.name == "Toast" || item.name == "Bread")
+        } 
+        else if (item.name == "Egg" || item.name == "Bacon")
         {
             Debug.Log("Name checks out!");
             Ingredients ingredient;
             ingredient = item.GetComponent<Ingredients>();
             ingredient.RespawnIngredient();
+            if (item.TryGetComponent<Egg>(out Egg egg))
+            {
+                egg.SwitchModel(egg.state);
+            }
             trashItem = null;
+        }
+        else if (item.name == "Toast" || item.name == "Bread")
+        {
+            Toast toast = item.GetComponent<Toast>();
+            toast.RespawnIngredient();
+            toast.state = Toast.State.slice;
         }
         //Respawn item
     }

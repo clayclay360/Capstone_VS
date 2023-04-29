@@ -19,6 +19,10 @@ public class Toaster : Utilities, IUtility, ICookable
             if (itemInMainHand.GetComponent<Toast>() != null)
             {
                 toast = itemInMainHand.GetComponent<Toast>();
+                if (toast.state == Toast.State.toasted)
+                {
+                    return;
+                }
                 toast.transform.parent = transform; // have the pan be the parent of egg
                 toast.canInteract = false; // egg can't not be interacted
                 player.inventory[0] = null; // item in main hand is null
@@ -38,6 +42,7 @@ public class Toaster : Utilities, IUtility, ICookable
                 isOccupied = false;
                 toast = null;
                 outline.enabled = false;
+                cookingCheck.GetComponent<ToastCheck>().ResetToastCheck();
             }
         }
     }

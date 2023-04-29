@@ -93,6 +93,9 @@ public class Ingredients : Item, ICollectable
 
     public void RespawnIngredient()
     {
+        //This needs to reset the ingredient state to uncooked and load the default texture
+        cookingStatus = CookingStatus.uncooked;
+        //
         Debug.Log($"{name} is respawning!");
         gameObject.transform.position = startLocation;
         gameObject.SetActive(true);

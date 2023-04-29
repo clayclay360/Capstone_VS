@@ -39,6 +39,8 @@ public class Item : MonoBehaviour, IInteractable
     public Outline outline;
 
     [HideInInspector]public string Interaction;
+    public bool isCheckingForInteraction = false;
+    public bool willHideObjectAfterInteraction = false;
 
     public virtual void Update()
     {
@@ -69,20 +71,30 @@ public class Item : MonoBehaviour, IInteractable
         else if (!player.inventory[0] || !player.inventory[1])
         {
             Interaction = $"Grab {Name}";
-            if (player.isInteracting)
-            {
-                player.isInteracting = false;
-                player.canInteract = false;
-                Interaction = "";
-                gameObject.SetActive(false);
-            }
+            isCheckingForInteraction = true;
+            return;
         }
         else
         {
             Interaction = "";
         }
+    }
 
-
+    public void CheckPlayerInteraction(PlayerController player)
+    {
+        if (player.isInteracting)
+        {
+            player.isInteracting = false;
+            player.canInteract = false;
+            player.canCollect = false;
+            Interaction = "";
+            isCheckingForInteraction = false;
+            if (willHideObjectAfterInteraction)
+            {
+                Debug.LogWarning("Set active from CheckPlayerInteraction");
+                gameObject.SetActive(false);
+            }
+        }
     }
 
     public virtual void Interact(Item item, PlayerController player)

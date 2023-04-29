@@ -14,6 +14,8 @@ public class IngredientHolder : Item, IInteractable
         outline.OutlineColor = Color.white;
         outline.OutlineWidth = 3f;
         outline.enabled = true;
+
+        ingredient.isBeingUsed = false;
     }
 
     public override void Update()
@@ -24,7 +26,7 @@ public class IngredientHolder : Item, IInteractable
 
     private void SetCanBeUsed()
     {
-        canInteract = !CanGetItem();
+        canInteract = CanGetItem();
     }
 
     public bool CanGetItem()

@@ -72,7 +72,10 @@ public class Tool : Item, ICollectable, ICookable
 
     public void DisplayIndicator(bool condition)
     {
-        indicator.SetActive(condition);
+        if (indicator != null)
+        {
+            indicator.SetActive(condition);
+        }
     }
 
     public virtual void Collect(PlayerController player = null, RatController rat = null)
