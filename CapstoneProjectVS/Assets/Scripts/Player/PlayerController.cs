@@ -76,10 +76,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Tutorial")]
     public bool isDisplayingInformation;
+    public GameObject guideArrowObject;
+    public Material blueGuidingMaterial, greenGuidingMaterial;
+    GuideArrow guideArrow;
 
     private bool helpIndicatorOpen;
     private bool helpAvailable;
     private string nameOfGuide;
+    private enum Player { PlayerOne, PlayerTwo };
+    private Player player;
 
     void Awake()
     {
@@ -104,6 +109,12 @@ public class PlayerController : MonoBehaviour
         OnPlayerJoined();
     }
 
+    public void GuideArrow(bool active, Transform target = null)
+    {
+        guideArrow.target = target;
+        guideArrowObject.SetActive(active);
+    }
+
     public void Update()
     {
         foreach (Image img in Icon)
@@ -126,14 +137,17 @@ public class PlayerController : MonoBehaviour
     {
         if(GameManager.numberOfPlayers == 1)
         {
+            guideArrowObject.GetComponentInChildren<MeshRenderer>().material = blueGuidingMaterial;
             transform.position = new Vector3(-3.6f, 0, -4);
         }
         else
         {
+            guideArrowObject.GetComponentInChildren<MeshRenderer>().material = greenGuidingMaterial;
             transform.position = new Vector3(8.5f, 0, 0);
         }
 
         Invoke("EnableNavAgent", 0.5f);
+        guideArrow = guideArrowObject.GetComponent<GuideArrow>();
     }
 
     public void EnableNavAgent()

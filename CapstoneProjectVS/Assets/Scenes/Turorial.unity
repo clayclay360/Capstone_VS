@@ -14046,6 +14046,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
@@ -14227,6 +14229,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   orderWindow: {fileID: 594075718}
   indicator: {fileID: 417774328}
 --- !u!33 &651643510
@@ -16448,6 +16452,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   cookingStatus: 0
   uncooked: {fileID: 0}
   cooked: {fileID: 0}
@@ -16688,6 +16694,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   cookingStatus: 0
   uncooked: {fileID: 0}
   cooked: {fileID: 0}
@@ -19736,6 +19744,8 @@ MonoBehaviour:
   mainSprite: {fileID: 21300000, guid: 526c97170b70ffb4ab0f837dc93306cc, type: 3}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   cookingStatus: 0
   uncooked: {fileID: 21300000, guid: 526c97170b70ffb4ab0f837dc93306cc, type: 3}
   cooked: {fileID: 21300000, guid: 72a954b9adb373b4db5ca1c85a414cbc, type: 3}
@@ -20105,7 +20115,11 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   doesHaveRatInteraction: 1
+  stoveFirePS: {fileID: 0}
+  stoveSmokePS: {fileID: 0}
   toolPlacement: {fileID: 1184831526}
   isOccupied: 0
   indicator: {fileID: 1680583264}
@@ -20395,6 +20409,8 @@ MonoBehaviour:
   mainSprite: {fileID: 21300000, guid: fae0903975bf3284baa51e3f033762e7, type: 3}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   status: 0
   isDirty: 1
   isHot: 0
@@ -22038,6 +22054,7 @@ MonoBehaviour:
   results: {fileID: 1765880174}
   showStars: {fileID: 0}
   gameStar: {fileID: 0}
+  orderScore: 0
 --- !u!4 &1374190583
 Transform:
   m_ObjectHideFlags: 0
@@ -24420,6 +24437,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
@@ -24810,6 +24829,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   cookingStatus: 0
   uncooked: {fileID: 0}
   cooked: {fileID: 0}
@@ -27663,6 +27684,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
@@ -39059,6 +39082,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0
@@ -39893,6 +39918,8 @@ MonoBehaviour:
   mainSprite: {fileID: 0}
   outline: {fileID: 0}
   Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
   doesHaveRatInteraction: 1
   itemPlacement: {fileID: 0}
   isOccupied: 0

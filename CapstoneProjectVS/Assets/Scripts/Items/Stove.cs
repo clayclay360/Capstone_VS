@@ -110,14 +110,13 @@ public class Stove : Utilities, IUtility
     {
         player.HelpIndicator(true, "Cooking");
 
-        if ((player.inventory[0] && player.inventory[0].TryGetComponent<Pan>(out _)) ||
-            (player.inventory[1] && player.inventory[1].TryGetComponent<Pan>(out _))) 
+        if (player.inventory[0] != null || player.inventory[1] !=null) 
         {
-            if (player.inventory[0].GetComponent<Pan>() != null && player.inventory[0].GetComponent<Pan>().isDirty)
+            if (player.inventory[0] != null && player.inventory[0].TryGetComponent<Pan>(out Pan pan) && player.inventory[0].GetComponent<Pan>().isDirty)
             {
                 Interaction = "Pan is dirty";
             }
-            else if (player.inventory[1].GetComponent<Pan>() != null && player.inventory[1].GetComponent<Pan>().isDirty)
+            else if (player.inventory[1] != null && player.inventory[1].TryGetComponent<Pan>(out Pan pan_) && player.inventory[1].GetComponent<Pan>().isDirty)
             {
                 Interaction = "Pan is dirty";
             }
