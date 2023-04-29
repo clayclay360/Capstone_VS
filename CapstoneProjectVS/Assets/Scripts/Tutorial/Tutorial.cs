@@ -72,6 +72,7 @@ public class Tutorial : MonoBehaviour
         // show cook book
         if (playerOneCurrentStep == 1)
         {
+            playerOneController.GuideArrow(true, FindObjectOfType<Cookbook>().transform);
             FindObjectOfType<Cookbook>().DisplayIndicator(true);
             FindObjectOfType<Cookbook>().canInteract = true;
             while (!playerOneSteps[1].isComplete)
@@ -83,6 +84,7 @@ public class Tutorial : MonoBehaviour
         // grab pan
         if (playerOneCurrentStep == 2)
         {
+            playerOneController.GuideArrow(true, FindObjectOfType<Pan>().transform);
             FindObjectOfType<Pan>().DisplayIndicator(true);
             FindObjectOfType<Pan>().canInteract = true;
             while (!playerOneSteps[2].isComplete)
@@ -94,6 +96,7 @@ public class Tutorial : MonoBehaviour
         // place pan on stove
         if (playerOneCurrentStep == 3)
         {
+            playerOneController.GuideArrow(true, FindObjectOfType<Stove>().transform);
             FindObjectOfType<Stove>().DisplayIndicator(true);
             FindObjectOfType<Stove>().canInteract = true;
             while (!playerOneSteps[3].isComplete)
@@ -106,6 +109,7 @@ public class Tutorial : MonoBehaviour
             {
                 playerOneText.text = "Waiting for Player Two";
                 playerOneController.isDisplayingInformation = true;
+                playerOneController.GuideArrow(false);
                 await Task.Yield();
             }
             playerOneText.text = "";
@@ -115,6 +119,7 @@ public class Tutorial : MonoBehaviour
         // grab spatula
         if (playerOneCurrentStep == 4)
         {
+            playerOneController.GuideArrow(true, FindObjectOfType<Spatula>().transform);
             FindObjectOfType<Spatula>().DisplayIndicator(true);
             FindObjectOfType<Spatula>().canInteract = true;
             while (!playerOneSteps[4].isComplete)
@@ -126,14 +131,17 @@ public class Tutorial : MonoBehaviour
         // grab bacon
         if (playerOneCurrentStep == 5)
         {
+            playerOneController.GuideArrow(true, FindObjectOfType<Bacon>().transform);
             FindObjectOfType<Bacon>().DisplayIndicator(true);
             FindObjectOfType<Bacon>().canInteract = true;
             while (!playerOneSteps[5].isComplete)
             {
                 await Task.Yield();
             }
+            playerOneController.GuideArrow(false);
             playerOneController.isDisplayingInformation = true;
             playerOneText.text = "Press [right bumper] or [left bumper] to switch items in your hand!";
+            playerOneController.GuideArrow(false);
             await Task.Delay(3000);
             playerOneText.text = "";
             playerOneController.isDisplayingInformation = false;
@@ -142,12 +150,14 @@ public class Tutorial : MonoBehaviour
         // place bacon on pan
         if (playerOneCurrentStep == 6)
         {
+            playerOneController.GuideArrow(true, FindObjectOfType<Pan>().transform);
             FindObjectOfType<Pan>().DisplayIndicator(true);
             FindObjectOfType<Pan>().canInteract = true;
             while (!playerOneSteps[6].isComplete)
             {
                 await Task.Yield();
             }
+            playerOneController.GuideArrow(false);
         }
 
         // cooking bacon
@@ -162,6 +172,7 @@ public class Tutorial : MonoBehaviour
         // grab pan off stove
         if (playerOneCurrentStep == 8)
         {
+            playerOneController.GuideArrow(true, FindObjectOfType<Pan>().transform);
             FindObjectOfType<Pan>().DisplayIndicator(true);
             while (!playerOneSteps[8].isComplete)
             {
@@ -173,15 +184,17 @@ public class Tutorial : MonoBehaviour
         if (playerOneCurrentStep == 9)
         {
             // waiting for plate on counter
-            while (playerTwoCurrentStep < 7)
+            while (playerTwoCurrentStep < 8)
             {
                 playerOneText.text = "Waiting for Player Two";
                 playerOneController.isDisplayingInformation = true;
+                playerOneController.GuideArrow(false);
                 await Task.Yield();
             }
             playerOneText.text = "";
             playerOneController.isDisplayingInformation = false;
 
+            playerOneController.GuideArrow(true, FindObjectOfType<Plate>().transform);
             FindObjectOfType<Plate>().DisplayIndicator(true);
             FindObjectOfType<Plate>().canInteract = true;
             while (!playerOneSteps[9].isComplete)
@@ -190,6 +203,7 @@ public class Tutorial : MonoBehaviour
             }
         }
 
+        playerOneController.GuideArrow(false);
         Debug.Log("Step Completed");
     }
     public async void PlayerTwo()
@@ -212,6 +226,7 @@ public class Tutorial : MonoBehaviour
         // show player orderwindow
         if (playerTwoCurrentStep == 1)
         {
+            playerTwoController.GuideArrow(true, FindObjectOfType<OrderManager>().transform);
             main.TutorialOrder();
             while (!playerTwoSteps[1].isComplete)
             {
@@ -222,6 +237,7 @@ public class Tutorial : MonoBehaviour
         // grab bacon
         if (playerTwoCurrentStep == 2)
         {
+            playerTwoController.GuideArrow(true, FindObjectOfType<BaconPack>().transform);
             FindObjectOfType<BaconPack>().DisplayIndicator(true);
             FindObjectOfType<Bacon>().canInteract = true;
             while (!playerTwoSteps[2].isComplete)
@@ -233,6 +249,7 @@ public class Tutorial : MonoBehaviour
         // put bacon on counter
         if(playerTwoCurrentStep == 3)
         {
+            playerTwoController.GuideArrow(true, counterTop.transform);
             counterTop.DisplayIndicator(true);
             while (!playerTwoSteps[3].isComplete)
             {
@@ -243,12 +260,14 @@ public class Tutorial : MonoBehaviour
         // grab dirty plate
         if(playerTwoCurrentStep == 4)
         {
+            playerTwoController.GuideArrow(true, FindObjectOfType<Plate>().transform);
             FindObjectOfType<Plate>().DisplayIndicator(true);
             FindObjectOfType<Plate>().canInteract = true;
             while (!playerTwoSteps[4].isComplete)
             {
                 await Task.Yield();
             }
+            playerTwoController.GuideArrow(false);
             await Task.Delay(3000);
             playerTwoText.text = "";
         }
@@ -256,12 +275,14 @@ public class Tutorial : MonoBehaviour
         // place plate in sink
         if (playerTwoCurrentStep == 5)
         {
+            playerTwoController.GuideArrow(true, FindObjectOfType<SinkScript>().transform);
             FindObjectOfType<SinkScript>().DisplayIndicator(true);
             FindObjectOfType<SinkScript>().canInteract = true;
             while (!playerTwoSteps[5].isComplete)
             {
                 await Task.Yield();
             }
+            playerTwoController.GuideArrow(false);
         }
 
         // wait for plate to finish cleaning
@@ -278,22 +299,38 @@ public class Tutorial : MonoBehaviour
             {
                 playerTwoText.text = "Waiting for Player One";
                 playerTwoController.isDisplayingInformation = true;
+                playerTwoController.GuideArrow(false);
                 await Task.Yield();
             }
             playerTwoText.text = "";
             playerTwoController.isDisplayingInformation = false;
 
+            playerTwoController.GuideArrow(true, counterTop.transform);
             counterTop.DisplayIndicator(true);
-            while (!playerTwoSteps[7].isComplete && !playerOneSteps[9].isComplete)
+            while (!playerTwoSteps[7].isComplete)
             {
                 await Task.Yield();
             }
         }
 
         // grab plate
-        if(playerTwoCurrentStep == 8 && playerOneCurrentStep > 8)
+        if(playerTwoCurrentStep == 8)
         {
+            // wait till player one puts plate on counter
+            while(playerOneCurrentStep < 10)
+            {
+                await Task.Yield();
+                playerTwoController.GuideArrow(false);
+                playerTwoText.text = "Waiting for Player One";
+                playerTwoController.isDisplayingInformation = true;
+            }
+
+            Debug.Log(playerOneCurrentStep);
+            playerTwoText.text = "";
+            playerTwoController.isDisplayingInformation = false;
+            playerTwoController.GuideArrow(true, FindObjectOfType<Plate>().transform);
             FindObjectOfType<Plate>().DisplayIndicator(true);
+            
             while (!playerTwoSteps[8].isComplete)
             {
                 await Task.Yield();
@@ -303,12 +340,14 @@ public class Tutorial : MonoBehaviour
         // place order in window
         if (playerTwoCurrentStep == 9)
         {
+            playerTwoController.GuideArrow(true, FindObjectOfType<OrderManager>().transform);
             FindObjectOfType<OrderManager>().DisplayIndicator(true);
             while (!playerTwoSteps[9].isComplete)
             {
                 await Task.Yield();
             }
             Debug.Log("OK");
+            playerTwoController.GuideArrow(false);
             Combat();
         }
 
