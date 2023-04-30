@@ -102,6 +102,7 @@ public class Item : MonoBehaviour, IInteractable
     {
         outline = gameObject.AddComponent<Outline>();
         outline.OutlineMode = Outline.Mode.OutlineVisible;
+        outline.enabled = false;
         //Add a black outline to ingredients and tools
         if (TryGetComponent<Ingredients>(out _) || TryGetComponent<Tool>(out _))
         {
@@ -112,7 +113,7 @@ public class Item : MonoBehaviour, IInteractable
     /// <summary>
     /// Changes the highlight back to normal after the player leaves interact range
     /// </summary>
-    public void ResetHighlight()
+    public virtual void ResetHighlight()
     {
 
         if (TryGetComponent<Ingredients>(out _) || TryGetComponent<Tool>(out _))

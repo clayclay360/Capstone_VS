@@ -9,11 +9,36 @@ public class Spatula : Tool
         Name = "Spatula";
         Interaction = "";
         isWashable = true;
+        status = Status.clean;
     }
 
     public void Start()
     {
-        useBeforeDirty = 2;
+        
+        useBeforeDirty = 1;
+    }
+
+    public void Update()
+    {
+        //if (timesUsed >= useBeforeDirty)
+        //{
+        //    isDirty = true;
+        //}
+        //else
+        //{
+        //    isDirty = false;
+        //}
+
+        switch (status)
+        {
+            case Status.clean:
+                mainSprite = clean;
+                break;
+
+            case Status.dirty: 
+                mainSprite = dirty; 
+                break;
+        }
     }
 
     public override void Interact(Item itemInMainHand, PlayerController player)
@@ -108,7 +133,31 @@ public class Spatula : Tool
                 }
                 break;
         }
+
+        
     }
 
+    
+
+    public override void IsDirtied()
+    {
+        if (timesUsed >= useBeforeDirty)
+        {
+            useBeforeDirty--;
+            isDirty = true;
+            Interaction = "Spatula is dirty";
+        }
+    }
+
+
+    public override void IsClean()
+    {
+        if (isDirty != true)
+        {
+            useBeforeDirty++;
+            timesUsed = 0;
+            isDirty = false;
+        }
+    }
 
 }

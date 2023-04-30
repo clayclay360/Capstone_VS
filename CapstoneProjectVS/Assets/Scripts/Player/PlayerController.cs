@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public float power;
     public float throwCooldown;
     public bool readyToThrow;
+    [SerializeField] private LineRenderer aimLine;
 
     //Inventory
     public enum ItemInMainHand {empty, egg, spatula, pan, bacon, hashbrown, toast };
@@ -92,6 +94,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        OnPlayerJoined();
+    }
+
     public void Update()
     {
         foreach (Image img in Icon)
@@ -108,6 +115,26 @@ public class PlayerController : MonoBehaviour
         CheckInventory();
         GetNameInMain();
         Icons();
+    }
+
+    public void OnPlayerJoined()
+    {
+        if(GameManager.numberOfPlayers == 1)
+        {
+            transform.position = new Vector3(-3.6f, 0, -4);
+        }
+        else
+        {
+            transform.position = new Vector3(8.5f, 0, 0);
+        }
+
+        Invoke("EnableNavAgent", 0.5f);
+    }
+
+    public void EnableNavAgent()
+    {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent.enabled = true;
     }
 
     //Collects input from the controller
@@ -227,6 +254,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory[i] != null)
             {
+                
                 Icon[i].sprite = inventory[i].mainSprite;
             }
             else
@@ -300,6 +328,20 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Item>() != null)
         {
+            if (other.TryGetComponent<IngredientHolder>(out IngredientHolder container))
+            {
+                container.CheckHand(itemInMainHand, this);
+                interactionText.text = container.Interaction;
+                if (!container.CanGetItem())
+                {
+                    return;
+                }
+                SetOutlineToPlayerColor(container.GetComponent<Outline>());
+                canInteract = true;
+                interactableObject = other.gameObject;
+                return;
+            }
+
             canInteract = true;
             interactableObject = other.gameObject;
             other.gameObject.GetComponent<Item>().CheckHand(itemInMainHand, this);
@@ -308,9 +350,7 @@ public class PlayerController : MonoBehaviour
             //Change highlight of the object to the player color
             if (other.TryGetComponent<Outline>(out Outline ol))
             {
-                ol.enabled = true;
-                ol.OutlineColor = highlightColor;
-                ol.OutlineWidth = 3f;
+                SetOutlineToPlayerColor(ol);
             }
 
             if(other.gameObject.GetComponent<ICollectable>() != null)
@@ -329,6 +369,23 @@ public class PlayerController : MonoBehaviour
     //player is not ready to interact
     private void OnTriggerExit(Collider other)
     {
+        if (other.TryGetComponent<CounterTop>(out CounterTop counter))
+        {
+            counter.outline.enabled = false;
+            return;
+        }
+
+        if (other.TryGetComponent<IngredientHolder>(out IngredientHolder container))
+        {
+            interactionText.text = "";
+            isInteracting = false;
+            canInteract = false;
+            interactableObject = null;
+            canCollect = false;
+            container.ResetHighlight();
+            return;
+        }
+
         if (other.gameObject.GetComponent<Item>() != null)
         {
             interactionText.text = "";
@@ -356,12 +413,6 @@ public class PlayerController : MonoBehaviour
         {
             orderManager.orderWindow.GetComponent<CanvasGroup>().alpha = 0;
         }
-
-        else if (other.TryGetComponent<CounterTop>(out CounterTop counter))
-        {
-            counter.outline.enabled = false;
-        }
-
         else if (other.TryGetComponent<Toaster>(out Toaster toaster))
         {
             if (toaster.isOccupied && toaster.toast.cookingStatus == Ingredients.CookingStatus.cooked)
@@ -403,6 +454,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void SetOutlineToPlayerColor(Outline ol)
+    {
+        ol.enabled = true;
+        ol.OutlineColor = highlightColor;
+        ol.OutlineWidth = 3f;
+    }
+
     public void OnKnifeThrow()
     {
         if ((inventory[0] == null || inventory[1] == null) && readyToThrow)
@@ -423,6 +481,11 @@ public class PlayerController : MonoBehaviour
             // implement throwCooldown
             Invoke("ResetThrow", throwCooldown);
         }
+    }
+
+    public void OnAimLine()
+    {
+        aimLine.enabled = !aimLine.enabled;
     }
 
     public void OnHelp()

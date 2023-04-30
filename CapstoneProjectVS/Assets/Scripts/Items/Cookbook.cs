@@ -50,6 +50,8 @@ public class Cookbook : Utilities, IInteractable
 
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
+        player.HelpIndicator(true, "CookBook");
+
         switch (currState)
         {
             case cookBookState.closed: //Switch book from open to closed

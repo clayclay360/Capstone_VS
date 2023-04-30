@@ -6,6 +6,7 @@ public class GameManager
 {
     public static bool gameStarted;
     public static bool assigningOrders;
+    public static bool tutorialLevel;
     public static int currentLevel;
     public static float rating;
 
@@ -19,6 +20,8 @@ public class GameManager
 
     public static int numberOfPlayers = 0;
     public static bool cookBookActive = true;
+
+    public static int ratCount = 0;
 
     public int playerScore;
     public int scoreMultiplier;

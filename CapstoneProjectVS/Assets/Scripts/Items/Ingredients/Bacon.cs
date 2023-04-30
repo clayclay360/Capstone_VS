@@ -2,23 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Egg : Ingredients, IInteractable
+public class Bacon : Ingredients
 {
-    public enum State { shell, omelet, scrambled, yoked };
-    [Header("State")]
-    public State state;
-
     [Header("Models")]
-    public GameObject shellModel;
-    public GameObject omeletModel;
-    public GameObject scrambledModel;
-    public GameObject yokedModel;
+    public GameObject uncookedModel;
+    public GameObject cookedModel;
+    public GameObject burntModel;
 
-    public Egg() 
+    public Bacon()
     {
-        Name = "Egg";
+        Name = "Bacon";
         Interaction = "";
+        cookingStatus = CookingStatus.uncooked;
     }
+
+    public void Update()
+    {
+        switch (cookingStatus)
+        {
+            case CookingStatus.uncooked:
+                mainSprite = uncooked;
+                break;
+
+            case CookingStatus.cooked:
+                mainSprite = cooked;
+                break;
+
+            case CookingStatus.spoiled:
+                mainSprite = spoiled;
+                break;
+
+            case CookingStatus.burnt:
+                mainSprite = burnt;
+                break;
+        }
+    }
+
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
         //check to see if there's anything in the mainhand
@@ -64,7 +83,7 @@ public class Egg : Ingredients, IInteractable
         //switch (item)
         //{
         //    case PlayerController.ItemInMainHand.empty:
-        //        Interaction = "Grab Egg";
+        //        Interaction = "Grab Bacon";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
@@ -74,7 +93,7 @@ public class Egg : Ingredients, IInteractable
         //        }
         //        break;
         //    case PlayerController.ItemInMainHand.pan:
-        //        Interaction = "Grab Egg";
+        //        Interaction = "Grab Bacon";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
@@ -84,7 +103,17 @@ public class Egg : Ingredients, IInteractable
         //        }
         //        break;
         //    case PlayerController.ItemInMainHand.spatula:
-        //        Interaction = "Grab Egg";
+        //        Interaction = "Grab Bacon";
+        //        if (player.isInteracting)
+        //        {
+        //            player.isInteracting = false;
+        //            player.canInteract = false;
+        //            Interaction = "";
+        //            gameObject.SetActive(false);
+        //        }
+        //        break;
+        //    case PlayerController.ItemInMainHand.egg:
+        //        Interaction = "Grab Bacon";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
@@ -94,17 +123,7 @@ public class Egg : Ingredients, IInteractable
         //        }
         //        break;
         //    case PlayerController.ItemInMainHand.hashbrown:
-        //        Interaction = "Grab Egg";
-        //        if (player.isInteracting)
-        //        {
-        //            player.isInteracting = false;
-        //            player.canInteract = false;
-        //            Interaction = "";
-        //            gameObject.SetActive(false);
-        //        }
-        //        break;
-        //    case PlayerController.ItemInMainHand.bacon:
-        //        Interaction = "Grab Egg";
+        //        Interaction = "Grab Bacon";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
@@ -116,32 +135,23 @@ public class Egg : Ingredients, IInteractable
         //}
     }
 
-    public virtual void SwitchModel(State currentState)
-    {
-        switch (currentState)
-        {
-            case State.yoked:
-                shellModel.SetActive(false);
-                yokedModel.SetActive(true);
-                break;
-            case State.omelet:
-                yokedModel.SetActive(false);
-                omeletModel.SetActive(true);
-                break;
-            case State.scrambled:
-                yokedModel.SetActive(false);
-                scrambledModel.SetActive(true);
-                break;
-        }
-        state = currentState;
-    }
+
 
     // this is temporary for now
     public override void ChangeStatus()
     {
-        state = State.omelet;
         cookingStatus = CookingStatus.cooked;
-        Name = "Omelet";
-        SwitchModel(state);
+
+        switch (cookingStatus)
+        {
+            case CookingStatus.cooked:
+                cookedModel.SetActive(true);
+                uncookedModel.SetActive(false);
+                break;
+            case CookingStatus.burnt:
+                cookedModel.SetActive(false);
+                burntModel.SetActive(true);
+                break;
+        }
     }
 }

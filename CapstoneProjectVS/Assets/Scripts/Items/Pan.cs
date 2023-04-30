@@ -23,6 +23,7 @@ public class Pan : Tool
         Interaction = "";
         isWashable = true;
         useBeforeDirty = 1;
+        status = Status.clean;
     }
 
     public void Update()
@@ -30,9 +31,21 @@ public class Pan : Tool
         if (timesUsed >= useBeforeDirty)
         {
             isDirty = true;
+            Interaction = "Pan is dirty!";
         } else
         {
             isDirty = false;
+        }
+
+        switch (status)
+        {
+            case Status.clean:
+                mainSprite = clean;
+                break;
+
+            case Status.dirty:
+                mainSprite = dirty;
+                break;
         }
     }
 
@@ -48,9 +61,9 @@ public class Pan : Tool
                 //if Pan is not empty and is hot
                 if (itemsInPan.Count > 0 && isHot && itemsInPan[0].GetComponent<Ingredients>().cookingStatus == Ingredients.CookingStatus.uncooked)
                 {
-                    Debug.Log("Sptula Used");
+                    Debug.Log("Spatula Used");
                     cookingCheck.GetComponent<CookingCheckScript>().CheckAttempt();
-                    itemInMainHand.GetComponent<Spatula>().isDirtied();
+                    itemInMainHand.GetComponent<Spatula>().IsDirtied();
                 }
                 else
                 {

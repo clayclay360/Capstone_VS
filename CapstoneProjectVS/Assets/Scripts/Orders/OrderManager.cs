@@ -35,7 +35,7 @@ public class OrderManager : Item
                                 plate.foodOnPlate[0].canInteract = true;
                                 plate.foodOnPlate.Remove(0);
                                 //plate.foodOnPlate[0] = null;
-                                plate.isDirtied();
+                                plate.IsDirtied();
                                 ingredient.RespawnIngredient();
                                 ingredient.gameObject.SetActive(true);
                                 ingredient.isBeingUsed = false;

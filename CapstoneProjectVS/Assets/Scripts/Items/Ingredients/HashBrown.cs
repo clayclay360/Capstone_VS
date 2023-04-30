@@ -1,13 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
-public class Bacon : Ingredients
+public class HashBrown : Ingredients, IInteractable
 {
-    [Header("Models")]
-    public GameObject uncookedModel;
-    public GameObject cookedModel;
-    public GameObject burntModel;
+    
+    public HashBrown()
+    {
+        Name = "HashBrown";
+        Interaction = "";
+        cookingStatus = CookingStatus.uncooked;
+    }
+
+    public void Update()
+    {
+        switch(cookingStatus)
+        {
+            case CookingStatus.uncooked:
+                mainSprite = uncooked;
+                break;
+
+            case CookingStatus.cooked:
+                mainSprite = cooked;
+                break;
+
+            case CookingStatus.spoiled: 
+                mainSprite = spoiled; 
+                break;
+
+            case CookingStatus.burnt:
+                mainSprite = burnt;
+                break;
+        }
+    }
 
     public override void Interact(Item itemInMainHand, PlayerController player)
     {
@@ -21,7 +47,7 @@ public class Bacon : Ingredients
                 CheckCounterTop();
             }
             //if pan is in main hand
-            else if (itemInMainHand.GetComponent<Pan>() != null)
+            else if(itemInMainHand.GetComponent<Pan>() != null)
             {
                 Collect(player);
                 CheckCounterTop();
@@ -41,9 +67,8 @@ public class Bacon : Ingredients
         }
     }
 
-    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
+    public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player) 
     {
-        player.HelpIndicator(true, "Placing food on Pan");
         base.CheckHand(item, player);
         //if (player.inventoryFull)
         //{
@@ -54,27 +79,29 @@ public class Bacon : Ingredients
         //switch (item)
         //{
         //    case PlayerController.ItemInMainHand.empty:
-        //        Interaction = "Grab Bacon";
+        //        Interaction = "Grab Potato";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
         //            player.canInteract = false;
         //            Interaction = "";
         //            gameObject.SetActive(false);
+
         //        }
         //        break;
         //    case PlayerController.ItemInMainHand.pan:
-        //        Interaction = "Grab Bacon";
+        //        Interaction = "Grab Potato";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
         //            player.canInteract = false;
         //            Interaction = "";
         //            gameObject.SetActive(false);
+                    
         //        }
         //        break;
         //    case PlayerController.ItemInMainHand.spatula:
-        //        Interaction = "Grab Bacon";
+        //        Interaction = "Grab Potato";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
@@ -84,7 +111,7 @@ public class Bacon : Ingredients
         //        }
         //        break;
         //    case PlayerController.ItemInMainHand.egg:
-        //        Interaction = "Grab Bacon";
+        //        Interaction = "Grab Potato";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
@@ -93,8 +120,8 @@ public class Bacon : Ingredients
         //            gameObject.SetActive(false);
         //        }
         //        break;
-        //    case PlayerController.ItemInMainHand.hashbrown:
-        //        Interaction = "Grab Bacon";
+        //    case PlayerController.ItemInMainHand.bacon:
+        //        Interaction = "Grab Potato";
         //        if (player.isInteracting)
         //        {
         //            player.isInteracting = false;
@@ -106,23 +133,13 @@ public class Bacon : Ingredients
         //}
     }
 
+    //public virtual void SwitchModel(State currentState)
+    //{
 
+    //}
 
-    // this is temporary for now
-    public override void ChangeStatus()
-    {
-        cookingStatus = CookingStatus.cooked;
-
-        switch (cookingStatus)
-        {
-            case CookingStatus.cooked:
-                cookedModel.SetActive(true);
-                uncookedModel.SetActive(false);
-                break;
-            case CookingStatus.burnt:
-                cookedModel.SetActive(false);
-                burntModel.SetActive(true);
-                break;
-        }
-    }
+    //public void Collect(PlayerController player)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }

@@ -8,6 +8,7 @@ public class SinkScript : Utilities, IUtility
     public Tool tool;
     public GameObject sinkGO;
     public GameObject sinkFilledGO;
+    public CleaningCheck cleaningCheck;
 
     public enum State { empty, filled };
     public State state;
@@ -160,10 +161,16 @@ public class SinkScript : Utilities, IUtility
 
     private IEnumerator CleanUtensil(float timer, Tool tool)
     {
+
+        cleaningCheck.gameObject.SetActive(true);
+        cleaningCheck.fillSpeed = 1.0f / timer;
+        cleaningCheck.IncrementProgress(1.0f);
         yield return new WaitForSeconds(timer);
         tool.timesUsed = 0;
         tool.IsClean();
         tool.canInteract = true;
+        cleaningCheck.Reset();
+        cleaningCheck.gameObject.SetActive(false);
         state = State.empty;
         SwitchModel(state);
     }

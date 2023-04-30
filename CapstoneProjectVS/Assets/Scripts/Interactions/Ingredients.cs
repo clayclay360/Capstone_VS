@@ -13,6 +13,8 @@ public class Ingredients : Item, ICollectable
     public Sprite spoiled;
     public Sprite burnt;
 
+    [Header("Spawning")]
+    private IngredientHolder source;
     public bool isBeingUsed;
     public Vector3 startLocation;
     public GameObject counterTop;
@@ -76,7 +78,11 @@ public class Ingredients : Item, ICollectable
 
     public void RespawnIngredient()
     {
+        Debug.Log($"{name} is respawning!");
         gameObject.transform.position = startLocation;
+        gameObject.SetActive(true);
+        isBeingUsed = false;
+        source.SetOutlineColor();
     }
 
     public virtual void ChangeStatus()
@@ -91,5 +97,10 @@ public class Ingredients : Item, ICollectable
             counterTop.GetComponent<CounterTop>().isOccupied = false;
             counterTop = null;
         }
+    }
+
+    public void SetIngredientSource(IngredientHolder holder)
+    {
+        source = holder;
     }
 }
