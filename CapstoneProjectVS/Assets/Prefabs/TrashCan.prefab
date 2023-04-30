@@ -48,8 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   canInteract: 1
-  doesHaveRatInteraction: 1
   isValidTarget: 1
+  isWashable: 0
+  mainSprite: {fileID: 0}
+  outline: {fileID: 0}
+  Interaction: 
+  isCheckingForInteraction: 0
+  willHideObjectAfterInteraction: 0
+  doesHaveRatInteraction: 1
   trashItem: {fileID: 0}
 --- !u!65 &21931889
 BoxCollider:

@@ -44,6 +44,8 @@ public class Stove : Utilities, IUtility
                 player.inventory[0] = null; // item in main hand is null
                 pan.stove = this;
 
+                ResetHighlight();
+
                 isOccupied = true;
                 isValidTarget = true;
 
