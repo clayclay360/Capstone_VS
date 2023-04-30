@@ -243,7 +243,7 @@ public class Pan : Tool
             else
             {
                 //second hand is empty
-                if (itemsInPan == null && !IsCookingFood())
+                if (itemsInPan.Count == 0 && !IsCookingFood())
                 {
                     Collect(player);
                     isHot = false;
@@ -428,6 +428,7 @@ public class Pan : Tool
         {
             status = Status.dirty;
             isDirty = true;
+            mainSprite = dirty;
             Interaction = "Pan is dirty";
         }
     }
@@ -439,7 +440,7 @@ public class Pan : Tool
         status = Status.clean;
         timesUsed = 0;
         isDirty = false;
-
+        mainSprite = clean;
     }
 
     public void Start()

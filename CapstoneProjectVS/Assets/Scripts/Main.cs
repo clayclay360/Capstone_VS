@@ -159,8 +159,11 @@ public class Main : MonoBehaviour
         {
             Debug.Log("You got a star");
             SecondStar.color = Color.yellow;
-            gameStar.SetActive(true);
-            Invoke(nameof(DestroyStar), 2f);
+            if(gameStar != null)
+            {
+                gameStar.SetActive(true);
+                Invoke(nameof(DestroyStar), 2f);
+            }
             orderScore += 1;
         }
         else if (ordersCompleted == 3)

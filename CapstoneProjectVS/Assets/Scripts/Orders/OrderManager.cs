@@ -35,11 +35,10 @@ public class OrderManager : Item
                                 plate.foodOnPlate[0].transform.parent = null; //Does this do anything??
                                 plate.foodOnPlate[0].canInteract = true;
                                 plate.foodOnPlate.Remove(0);
-                                plate.IsDirtied();
                                 ingredient.RespawnIngredient();
                                 ingredient.gameObject.SetActive(false);
-                                plate.timesUsed += 1;
-                                plate.IsDirtied();
+                                //plate.timesUsed += 1;
+                                //plate.IsDirtied();
 
                                 // if in the tutorial level
                                 if (GameManager.tutorialLevel)

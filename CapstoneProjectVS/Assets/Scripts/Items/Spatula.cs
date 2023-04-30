@@ -155,6 +155,7 @@ public class Spatula : Tool
         {
             status = Status.dirty;
             isDirty = true;
+            mainSprite = dirty;
             Interaction = "Spatula is dirty";
         }
     }
@@ -166,6 +167,7 @@ public class Spatula : Tool
         status = Status.clean;
         timesUsed = 0;
         isDirty = false;
+        mainSprite = clean;
         
     }
 

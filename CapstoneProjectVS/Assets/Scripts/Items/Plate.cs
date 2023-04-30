@@ -19,7 +19,7 @@ public class Plate : Tool
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
         {
-            // if item in hand is egg
+            // if item in hand is pan
             if(itemInMainHand.GetComponent<Pan>())
             {
                 //get the food that's in the pan
@@ -52,6 +52,12 @@ public class Plate : Tool
 
                         return;
                     }
+                }
+                else if (!player.inventoryFull)
+                {
+                    Collect(player);
+                    CheckCounterTop();
+                    CheckSink();
                 }
             }
             else if (itemInMainHand.GetComponent<Toast>())
@@ -136,7 +142,7 @@ public class Plate : Tool
         player.HelpIndicator(true, "Placing food on Plate");
         Interaction = "";
         //First we check if the main hand is empty
-        if (!player.inventory[0])
+        if (!player.inventory[0] && !player.isInteracting)
         {
             Interaction = "Grab Plate";
             willHideObjectAfterInteraction = true;
@@ -168,7 +174,7 @@ public class Plate : Tool
         //No interactions are possible with the item in the main hand.
 
         //Now we check if the offhand is empty
-        if (!player.inventory[1])
+        if (!player.inventory[1] && !player.isInteracting)
         {
             Interaction = "Grab Plate";
             willHideObjectAfterInteraction = true;
@@ -260,7 +266,7 @@ public class Plate : Tool
         {
             status = Status.dirty;
             isDirty = true;
-            Interaction = "Pan is dirty";
+            Interaction = "Plate is dirty";
         }
     }
 

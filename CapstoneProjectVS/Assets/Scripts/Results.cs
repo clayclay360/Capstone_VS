@@ -69,6 +69,7 @@ public class Results : MonoBehaviour
     public void Restart()
     {
         Debug.Log("Restarting Game...");
+        GameManager.numberOfPlayers = 0;
         SceneManager.LoadScene("Level Redesign");
     }
 }
