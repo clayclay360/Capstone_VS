@@ -411,6 +411,7 @@ public class PlayerController : MonoBehaviour
             interactableObject = null;
             counter.outline.enabled = false;
             canCollect = false;
+            HelpIndicator(false);
             return;
         }
 
