@@ -507,22 +507,29 @@ public class PlayerController : MonoBehaviour
     {
         if ((inventory[0] == null || inventory[1] == null) && readyToThrow)
         {
+            animator.SetTrigger("KnifeThrown");
             readyToThrow = false;
+            StartCoroutine(ThrowKnifeAfterWait(0.2f)); //Wait the duration of the knife throw animation?
 
-            // instantiate object to throw
-            GameObject projectile = Instantiate(knifePrefab, knifeSpawnTransform.position, transform.rotation);
-
-            // get rigidbody component
-            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-
-            // calculate direction
-            KnifeScript kscript = projectile.GetComponent<KnifeScript>();
-
-            kscript.forward = transform.forward;
-
-            // implement throwCooldown
-            Invoke("ResetThrow", throwCooldown);
         }
+    }
+
+    private IEnumerator ThrowKnifeAfterWait(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        // instantiate object to throw
+        GameObject projectile = Instantiate(knifePrefab, knifeSpawnTransform.position, transform.rotation);
+
+        // get rigidbody component
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        // calculate direction
+        KnifeScript kscript = projectile.GetComponent<KnifeScript>();
+
+        kscript.forward = transform.forward;
+
+        // implement throwCooldown
+        Invoke("ResetThrow", throwCooldown);
     }
 
     public void OnAimLine()
