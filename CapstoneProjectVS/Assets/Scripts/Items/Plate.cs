@@ -142,7 +142,7 @@ public class Plate : Tool
         player.HelpIndicator(true, "Placing food on Plate");
         Interaction = "";
         //First we check if the main hand is empty
-        if (!player.inventory[0] && !player.isInteracting)
+        if (!player.inventory[0])
         {
             Interaction = "Grab Plate";
             willHideObjectAfterInteraction = true;
@@ -174,7 +174,7 @@ public class Plate : Tool
         //No interactions are possible with the item in the main hand.
 
         //Now we check if the offhand is empty
-        if (!player.inventory[1] && !player.isInteracting)
+        if (!player.inventory[1])
         {
             Interaction = "Grab Plate";
             willHideObjectAfterInteraction = true;
