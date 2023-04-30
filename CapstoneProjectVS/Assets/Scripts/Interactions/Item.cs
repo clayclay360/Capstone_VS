@@ -92,7 +92,7 @@ public class Item : MonoBehaviour, IInteractable
             if (willHideObjectAfterInteraction)
             {
                 Debug.LogWarning("Set active from CheckPlayerInteraction");
-                gameObject.SetActive(false);
+                gameObject.SetActive(true);
             }
         }
     }
