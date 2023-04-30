@@ -87,10 +87,10 @@ MonoBehaviour:
   currTarget: {fileID: 0}
   spawnHole: {fileID: 0}
   objectiveComplete: 0
-  ratBraveness: 1
-  scareDistance: 2
+  ratBraveness: 3
+  scareDistance: 0
   scareIgnoreDistance: 0
-  scareTime: 1.5
+  scareTime: 0
   isScared: 0
   scareObject: {fileID: 0}
   health: 2
@@ -99,6 +99,20 @@ MonoBehaviour:
   blood: {fileID: 132958245954323301}
   body: {fileID: 3322549342957063134}
   playerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -786,7 +800,7 @@ PrefabInstance:
     - target: {fileID: -4924354551666590268, guid: 41d2a6d7518ddc245b828275f0b8e38c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 319d7ad1324d0504d8fdfb9a38c921c0, type: 2}
+      objectReference: {fileID: 2100000, guid: db5cbc6fac27070448cf06d066f9bba8, type: 2}
     - target: {fileID: 919132149155446097, guid: 41d2a6d7518ddc245b828275f0b8e38c, type: 3}
       propertyPath: m_Name
       value: Rat_Animated_01

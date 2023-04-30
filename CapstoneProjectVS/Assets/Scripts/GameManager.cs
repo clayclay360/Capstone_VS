@@ -22,6 +22,7 @@ public class GameManager
     public static bool cookBookActive = true;
 
     public static int ratCount = 0;
+    public static int numberOfRatsKilled = 0;
 
     public int playerScore;
     public int scoreMultiplier;
