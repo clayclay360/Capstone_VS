@@ -102,7 +102,10 @@ public class Ingredients : Item, ICollectable
         isBeingUsed = false;
         canInteract = true;
         SetCollider();
-        source.SetOutlineColor();
+        if (!GameManager.tutorialLevel)
+        {
+            source.SetOutlineColor();
+        }
     }
 
     public virtual void ChangeStatus()

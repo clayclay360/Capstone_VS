@@ -403,7 +403,7 @@ public class PlayerController : MonoBehaviour
     //player is not ready to interact
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<CounterTop>(out CounterTop counter))
+        if (other.TryGetComponent<CounterTop>(out CounterTop counter) && canInteract)
         {
             interactionText.text = "";
             isInteracting = false;
@@ -427,7 +427,11 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.GetComponent<Item>() != null)
         {
-            interactionText.text = "";
+            if (canInteract)
+            {
+                Debug.Log("Hello I'm the error");
+                interactionText.text = "";
+            }
             isInteracting = false;
             canInteract = false;
             interactableObject = null;

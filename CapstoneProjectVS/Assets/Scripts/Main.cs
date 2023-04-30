@@ -146,30 +146,32 @@ public class Main : MonoBehaviour
                 
             }
         }
-
-        if(ordersCompleted == 1)
+        if (!GameManager.tutorialLevel)
         {
-            Debug.Log("You got a star");
-            FirstStar.color = Color.yellow;
-            gameStar.SetActive(true);
-            Invoke(nameof(DestroyStar), 2f);
-            orderScore += 1;
-        }
-        else if(ordersCompleted == 2)
-        {
-            Debug.Log("You got a star");
-            SecondStar.color = Color.yellow;
-            if(gameStar != null)
+            if (ordersCompleted == 1)
             {
+                Debug.Log("You got a star");
+                FirstStar.color = Color.yellow;
                 gameStar.SetActive(true);
                 Invoke(nameof(DestroyStar), 2f);
+                orderScore += 1;
             }
-            orderScore += 1;
-        }
-        else if (ordersCompleted == 3)
-        {
-            Debug.Log("You got a star");
-            orderScore += 1;
+            else if (ordersCompleted == 2)
+            {
+                Debug.Log("You got a star");
+                SecondStar.color = Color.yellow;
+                if (gameStar != null)
+                {
+                    gameStar.SetActive(true);
+                    Invoke(nameof(DestroyStar), 2f);
+                }
+                orderScore += 1;
+            }
+            else if (ordersCompleted == 3)
+            {
+                Debug.Log("You got a star");
+                orderScore += 1;
+            }
         }
     }
 

@@ -138,11 +138,13 @@ public class Tutorial : MonoBehaviour
             {
                 await Task.Yield();
             }
+            playerTwoController.canInteract = false;
             playerOneController.GuideArrow(false);
             playerOneController.isDisplayingInformation = true;
             playerOneText.text = "Press [right bumper] or [left bumper] to switch items in your hand!";
             playerOneController.GuideArrow(false);
             await Task.Delay(3000);
+            playerTwoController.canInteract = true;
             playerOneText.text = "";
             playerOneController.isDisplayingInformation = false;
         }
@@ -227,6 +229,7 @@ public class Tutorial : MonoBehaviour
         if (playerTwoCurrentStep == 1)
         {
             playerTwoController.GuideArrow(true, FindObjectOfType<OrderManager>().transform);
+            FindObjectOfType<OrderManager>().canInteract = true;
             main.TutorialOrder();
             while (!playerTwoSteps[1].isComplete)
             {
@@ -346,7 +349,7 @@ public class Tutorial : MonoBehaviour
             {
                 await Task.Yield();
             }
-            Debug.Log("OK");
+            Debug.Log("Combat Time");
             playerTwoController.GuideArrow(false);
             Combat();
         }
@@ -357,6 +360,8 @@ public class Tutorial : MonoBehaviour
     public async void Combat()
     {
         #region diplay
+        playerOneController.canInteract = false;
+        playerTwoController.canInteract = false;
         playerOneController.isDisplayingInformation = true;
         playerTwoController.isDisplayingInformation = true;
         playerOneText.text = "Great Job!";
@@ -364,19 +369,33 @@ public class Tutorial : MonoBehaviour
         await Task.Delay(3000);
         playerOneText.text = "";
         playerTwoText.text = "";
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         playerOneText.text = "Watch out for rats! Press [right bumper] top throw knives!";
         playerTwoText.text = "Watch out for rats! Press [right bumper] top throw knives!";
+        await Task.Delay(1500);
+        playerOneText.text = "Be careful! You can't throw knives when both hands are full";
+        playerTwoText.text = "Be careful! You can't throw knives when both hands are full";
         await Task.Delay(3000);
         playerOneText.text = "";
         playerTwoText.text = "";
+        playerOneController.canInteract = true;
+        playerTwoController.canInteract = true;
         playerOneController.isDisplayingInformation = false;
         playerTwoController.isDisplayingInformation = false;
         #endregion
 
+        // spawn rates
         foreach(RatSpawn rs in FindObjectsOfType<RatSpawn>())
         {
             rs.enabled = true;
         }
+
+        while(GameManager.numberOfRatsKilled < 5)
+        {
+            await Task.Yield();
+        }
+
+        // game ends here display menu
+        GameManager.gameStarted = false;
     }
 }
