@@ -1,0 +1,46 @@
+{
+    "name": "Menu",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "4890dccc-606d-40a4-bb76-bac70c690c0e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "a5067fdf-5d66-4800-a35f-b76bdc4c9641",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "94326b46-c0e8-4e09-9519-0c7f6d53277a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

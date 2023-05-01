@@ -309,6 +309,54 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu Controls"",
+            ""id"": ""f3f17580-3fa6-4ed5-9e39-c5ac4e749c70"",
+            ""actions"": [
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""447bc082-7d98-4fad-8d06-a1669c19fd23"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""11f75e68-8ac5-4374-8186-3cf286acdaa3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""884c1410-9f52-4517-bfa6-e86e2ce570f8"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""795f88ea-b7d9-455e-ace9-b3812e7f2dfa"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -336,6 +384,10 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS_NextRecipe = m_PlayerControlsVS.FindAction("NextRecipe", throwIfNotFound: true);
         m_PlayerControlsVS_PreviousRecipe = m_PlayerControlsVS.FindAction("PreviousRecipe", throwIfNotFound: true);
         m_PlayerControlsVS_AimLine = m_PlayerControlsVS.FindAction("AimLine", throwIfNotFound: true);
+        // Menu Controls
+        m_MenuControls = asset.FindActionMap("Menu Controls", throwIfNotFound: true);
+        m_MenuControls_Up = m_MenuControls.FindAction("Up", throwIfNotFound: true);
+        m_MenuControls_Down = m_MenuControls.FindAction("Down", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -488,6 +540,47 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         }
     }
     public PlayerControlsVSActions @PlayerControlsVS => new PlayerControlsVSActions(this);
+
+    // Menu Controls
+    private readonly InputActionMap m_MenuControls;
+    private IMenuControlsActions m_MenuControlsActionsCallbackInterface;
+    private readonly InputAction m_MenuControls_Up;
+    private readonly InputAction m_MenuControls_Down;
+    public struct MenuControlsActions
+    {
+        private @ControlsVS m_Wrapper;
+        public MenuControlsActions(@ControlsVS wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Up => m_Wrapper.m_MenuControls_Up;
+        public InputAction @Down => m_Wrapper.m_MenuControls_Down;
+        public InputActionMap Get() { return m_Wrapper.m_MenuControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuControlsActions instance)
+        {
+            if (m_Wrapper.m_MenuControlsActionsCallbackInterface != null)
+            {
+                @Up.started -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnUp;
+                @Up.performed -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnUp;
+                @Up.canceled -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnUp;
+                @Down.started -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_MenuControlsActionsCallbackInterface.OnDown;
+            }
+            m_Wrapper.m_MenuControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Up.started += instance.OnUp;
+                @Up.performed += instance.OnUp;
+                @Up.canceled += instance.OnUp;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+            }
+        }
+    }
+    public MenuControlsActions @MenuControls => new MenuControlsActions(this);
     private int m_AllControlsVSSchemeIndex = -1;
     public InputControlScheme AllControlsVSScheme
     {
@@ -508,5 +601,10 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         void OnNextRecipe(InputAction.CallbackContext context);
         void OnPreviousRecipe(InputAction.CallbackContext context);
         void OnAimLine(InputAction.CallbackContext context);
+    }
+    public interface IMenuControlsActions
+    {
+        void OnUp(InputAction.CallbackContext context);
+        void OnDown(InputAction.CallbackContext context);
     }
 }

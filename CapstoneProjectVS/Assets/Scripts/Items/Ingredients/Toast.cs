@@ -65,6 +65,15 @@ public class Toast : Ingredients, IInteractable
         SwitchModel(state);
     }
 
+    //Method used simply for changing the status of food to uncooked
+    public void ChangeToUncooked()
+    {
+        state = State.slice;
+        cookingStatus = CookingStatus.uncooked;
+        Name = "Bread";
+        SwitchModel(state);
+    }
+
     public virtual void SwitchModel(State currentState)
     {
         switch (currentState)
@@ -72,6 +81,11 @@ public class Toast : Ingredients, IInteractable
             case State.toasted:
                 sliceModel.SetActive(false);
                 toastModel.SetActive(true);
+                break;
+
+            case State.slice:
+                sliceModel.SetActive(true);
+                toastModel.SetActive(false);
                 break;
         }
     }

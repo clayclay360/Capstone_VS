@@ -386,8 +386,9 @@ public class RatController : MonoBehaviour
             }
             ratInventory = null;
         }
-        Destroy(gameObject);
+        GameManager.numberOfRatsKilled++;
         GameManager.ratCount--;
+        Destroy(gameObject);
     }
 
     private void UpdateOutline()

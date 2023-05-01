@@ -52,6 +52,7 @@ public class Main : MonoBehaviour
         sideRecipeOne = null;
         sideRecipeTwo = null;
         playersNeededUI.SetActive(false);
+        GameManager.gameStarted = false;
         //showStars.SetActive(true);
         StartCoroutine(SideOrders());
         //MainOrder();
