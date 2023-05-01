@@ -156,6 +156,12 @@ public class Egg : Ingredients, IInteractable
                 yokedModel.SetActive(false);
                 scrambledModel.SetActive(true);
                 break;
+
+            case State.shell:
+                shellModel.SetActive(true);
+                yokedModel.SetActive(false);
+                omeletModel.SetActive(false);
+                break;
         }
         state = currentState;
     }
@@ -166,6 +172,15 @@ public class Egg : Ingredients, IInteractable
         state = State.omelet;
         cookingStatus = CookingStatus.cooked;
         Name = "Omelet";
+        SwitchModel(state);
+    }
+
+    //Method used simply for changing the status of food to uncooked
+    public void ChangeToUncooked()
+    {
+        state = State.shell;
+        cookingStatus = CookingStatus.uncooked;
+        Name = "Egg";
         SwitchModel(state);
     }
 }

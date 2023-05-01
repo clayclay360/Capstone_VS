@@ -34,8 +34,27 @@ public class OrderManager : Item
                                 ingredient = plate.foodOnPlate[0].GetComponent<Ingredients>();
                                 plate.foodOnPlate[0].transform.parent = null; //Does this do anything??
                                 plate.foodOnPlate[0].canInteract = true;
-                                plate.foodOnPlate.Remove(0);
                                 ingredient.RespawnIngredient();
+
+                                //if/else checks for going into the listed scripts to change the cooking status to uncooked
+                                if (plate.foodOnPlate[0].Name == "Omelet")
+                                {
+                                    Egg egg;
+                                    egg = plate.foodOnPlate[0].GetComponent<Egg>();
+                                    egg.ChangeToUncooked();
+                                } else if (plate.foodOnPlate[0].Name == "Bacon")
+                                {
+                                    Bacon bacon;
+                                    bacon = plate.foodOnPlate[0].GetComponent<Bacon>();
+                                    bacon.ChangeToUncooked();
+                                } else if (plate.foodOnPlate[0].Name == "Toast")
+                                {
+                                    Toast toast;
+                                    toast = plate.foodOnPlate[0].GetComponent<Toast>();
+                                    toast.ChangeToUncooked();
+                                }
+
+                                plate.foodOnPlate.Remove(0);
                                 ingredient.gameObject.SetActive(false);
                                 //plate.timesUsed += 1;
                                 //plate.IsDirtied();
@@ -86,7 +105,6 @@ public class OrderManager : Item
         if (player.inventory[0] && player.inventory[0].TryGetComponent<Plate>(out Plate plate))
         {
             plate = player.inventory[0].GetComponent<Plate>();
-            Debug.Log("Plate in Hand");
 
             if(plate.foodOnPlate.Count > 0)
             {

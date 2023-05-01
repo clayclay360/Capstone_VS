@@ -170,4 +170,19 @@ public class Bacon : Ingredients
                 break;
         }
     }
+
+    //Method used simply for changing the status of food to uncooked
+    public void ChangeToUncooked()
+    {
+        cookingStatus = CookingStatus.uncooked;
+
+        switch (cookingStatus)
+        {
+            case CookingStatus.uncooked:
+                uncookedModel.SetActive(true);
+                cookedModel.SetActive(false);
+                burntModel.SetActive(false);
+                break;
+        }
+    }
 }
