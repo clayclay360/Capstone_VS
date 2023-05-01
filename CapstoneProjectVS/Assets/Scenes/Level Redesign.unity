@@ -24138,6 +24138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputManager: {fileID: 1709128253}
+  numberOfPlayersNeededUI: {fileID: 1369860539}
 --- !u!1 &1711812394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149036748829, guid: b1be64a2035c71a4e94c4d78d70aa61b, type: 3}
