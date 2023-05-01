@@ -32,6 +32,26 @@ public class TrashCan : Utilities, IUtility, IInteractable
                 pan.itemsInPan[0].GetComponent<Ingredients>().RespawnIngredient();
                 pan.itemsInPan[0].GetComponent<Ingredients>().transform.parent = null;
                 pan.itemsInPan[0].GetComponent<Ingredients>().isBeingUsed = false;
+
+                //if/else checks for going into the listed scripts to change the cooking status to uncooked
+                if (pan.itemsInPan[0].Name == "Omelet")
+                {
+                    Egg egg;
+                    egg = pan.itemsInPan[0].GetComponent<Egg>();
+                    egg.ChangeToUncooked();
+                }
+                else if (pan.itemsInPan[0].Name == "Bacon")
+                {
+                    Bacon bacon;
+                    bacon = pan.itemsInPan[0].GetComponent<Bacon>();
+                    bacon.ChangeToUncooked();
+                }
+                else if (pan.itemsInPan[0].Name == "Toast")
+                {
+                    Toast toast;
+                    toast = pan.itemsInPan[0].GetComponent<Toast>();
+                    toast.ChangeToUncooked();
+                }
                 pan.itemsInPan.Clear();
             }
             pan.RespawnTool();
@@ -45,6 +65,25 @@ public class TrashCan : Utilities, IUtility, IInteractable
                 plate.foodOnPlate[0].GetComponent<Ingredients>().RespawnIngredient();
                 plate.foodOnPlate[0].GetComponent<Ingredients>().transform.parent = null;
                 plate.foodOnPlate[0].GetComponent<Ingredients>().isBeingUsed = false;
+                //if/else checks for going into the listed scripts to change the cooking status to uncooked
+                if (plate.foodOnPlate[0].Name == "Omelet")
+                {
+                    Egg egg;
+                    egg = plate.foodOnPlate[0].GetComponent<Egg>();
+                    egg.ChangeToUncooked();
+                }
+                else if (plate.foodOnPlate[0].Name == "Bacon")
+                {
+                    Bacon bacon;
+                    bacon = plate.foodOnPlate[0].GetComponent<Bacon>();
+                    bacon.ChangeToUncooked();
+                }
+                else if (plate.foodOnPlate[0].Name == "Toast")
+                {
+                    Toast toast;
+                    toast = plate.foodOnPlate[0].GetComponent<Toast>();
+                    toast.ChangeToUncooked();
+                }
                 plate.foodOnPlate.Clear();
             }
             plate.RespawnTool();
