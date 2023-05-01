@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public PlayerInputManager playerInputManager;
+    public GameObject numberOfPlayersNeededUI;
 
     public void OnPlayerJoined()
     {
@@ -13,7 +14,7 @@ public class PlayerManager : MonoBehaviour
         if(GameManager.numberOfPlayers == 2)
         {
             GameManager.gameStarted = true;
+            numberOfPlayersNeededUI.SetActive(false);
         }
     }
-
 }

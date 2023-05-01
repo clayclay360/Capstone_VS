@@ -430,7 +430,6 @@ public class PlayerController : MonoBehaviour
         {
             if (canInteract)
             {
-                Debug.Log("Hello I'm the error");
                 interactionText.text = "";
             }
             isInteracting = false;
