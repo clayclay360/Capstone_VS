@@ -33,6 +33,7 @@ public class Plate : Tool
                         food.transform.position = foodPlacement.transform.position; // put food on plate
                         food.transform.parent = transform; // have the food be the parent of egg
                         itemInMainHand.GetComponent<Pan>().itemsInPan.Remove(0);
+                        itemInMainHand.GetComponent<Pan>().timesUsed++;
                         itemInMainHand.GetComponent<Pan>().IsDirtied();
 
                         // Tutorial Level

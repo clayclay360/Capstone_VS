@@ -162,7 +162,7 @@ public class CookingCheckScript : MonoBehaviour
         QualityOfFood();
         food.ChangeStatus();
 
-        pan.timesUsed += 1;
+        pan.timesUsed++;
         pan.IsDirtied();
 
         //Reset
