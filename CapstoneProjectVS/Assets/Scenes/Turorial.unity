@@ -2070,7 +2070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.size
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[0]
@@ -2087,35 +2087,35 @@ PrefabInstance:
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1048870812}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[4]
       value: 
-      objectReference: {fileID: 1048870812}
+      objectReference: {fileID: 915878475}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[5]
       value: 
-      objectReference: {fileID: 915878475}
+      objectReference: {fileID: 1266653698}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[6]
       value: 
-      objectReference: {fileID: 1266653698}
+      objectReference: {fileID: 630202327}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[7]
       value: 
-      objectReference: {fileID: 630202327}
+      objectReference: {fileID: 1987341350}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[8]
       value: 
-      objectReference: {fileID: 1987341350}
+      objectReference: {fileID: 1578485477}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[9]
       value: 
-      objectReference: {fileID: 1578485477}
+      objectReference: {fileID: 1789954470}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[10]
       value: 
-      objectReference: {fileID: 1789954470}
+      objectReference: {fileID: 2078117102}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[11]
       value: 
@@ -8331,7 +8331,7 @@ GameObject:
   - component: {fileID: 642502020}
   - component: {fileID: 642502019}
   m_Layer: 6
-  m_Name: StartGameBorder
+  m_Name: RestartTutorialBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8505,15 +8505,15 @@ RectTransform:
   m_GameObject: {fileID: 663101695}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1987498187}
-  m_RootOrder: 1
+  m_Father: {fileID: 925612679}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: -50}
-  m_SizeDelta: {x: 3840, y: 2160}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663101697
 MonoBehaviour:
@@ -9879,6 +9879,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7708841771112720004, guid: 7728c74f842b41a4481021fd3f7ec695, type: 3}
   m_PrefabInstance: {fileID: 8714125742964185729}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &729361430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 729361431}
+  - component: {fileID: 729361433}
+  - component: {fileID: 729361432}
+  m_Layer: 0
+  m_Name: TutorialCompleteText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &729361431
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729361430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1987498187}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1650, y: 147.8}
+  m_SizeDelta: {x: 1300, y: 300}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &729361432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729361430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Tutorial Complete
+--- !u!222 &729361433
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729361430}
+  m_CullTransparentMesh: 1
 --- !u!1001 &734767405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10146,7 +10225,7 @@ GameObject:
   - component: {fileID: 773852926}
   - component: {fileID: 773852925}
   m_Layer: 5
-  m_Name: StartGame
+  m_Name: RestartTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10204,9 +10283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Start Tutorial
-
-'
+  m_Text: Restart Tutorial
 --- !u!222 &773852926
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11776,6 +11853,7 @@ RectTransform:
   - {fileID: 1989512512}
   - {fileID: 1369860540}
   - {fileID: 1987498187}
+  - {fileID: 663101696}
   m_Father: {fileID: 941259636}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16350,6 +16428,7 @@ MonoBehaviour:
     isComplete: 0
   currentStepNumber: 10
   passCounter: {fileID: 630202327}
+  gameMenu: {fileID: 1987498186}
   playerOneController: {fileID: 0}
   playerTwoController: {fileID: 0}
   playerOneText: {fileID: 953938119}
@@ -17090,7 +17169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.size
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[0]
@@ -17107,35 +17186,35 @@ PrefabInstance:
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1048870812}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[4]
       value: 
-      objectReference: {fileID: 1048870812}
+      objectReference: {fileID: 915878475}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[5]
       value: 
-      objectReference: {fileID: 915878475}
+      objectReference: {fileID: 1266653698}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[6]
       value: 
-      objectReference: {fileID: 1266653698}
+      objectReference: {fileID: 630202327}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[7]
       value: 
-      objectReference: {fileID: 630202327}
+      objectReference: {fileID: 1987341350}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[8]
       value: 
-      objectReference: {fileID: 1987341350}
+      objectReference: {fileID: 1578485477}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[9]
       value: 
-      objectReference: {fileID: 1578485477}
+      objectReference: {fileID: 1789954470}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[10]
       value: 
-      objectReference: {fileID: 1789954470}
+      objectReference: {fileID: 2078117102}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.data[11]
       value: 
@@ -20206,7 +20285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669347593}
   m_Layer: 5
-  m_Name: StartTutorial
+  m_Name: RestartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24587,6 +24666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1987498187}
+  - component: {fileID: 1987498188}
   m_Layer: 0
   m_Name: GameMenu
   m_TagString: Untagged
@@ -24606,7 +24686,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1908794351}
-  - {fileID: 663101696}
+  - {fileID: 729361431}
   m_Father: {fileID: 925612679}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24615,6 +24695,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 1830}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1987498188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987498186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40cf67b5324c5714e81de1e1de2459d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuCounter: 0
+  maxButtons: 0
+  minButtons: 0
+  buttonBorders:
+  - {fileID: 642502017}
+  - {fileID: 1432265766}
+  - {fileID: 1780088075}
+  FadeOut: {fileID: 663101697}
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1988599510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25115,7 +25216,7 @@ GameObject:
   - component: {fileID: 2031639902}
   - component: {fileID: 2031639901}
   m_Layer: 5
-  m_Name: StartGameButton
+  m_Name: RestartTutorialButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26480,6 +26581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3807997087155036452, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
+    - {fileID: 4140904141464232830, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 874db3dec4c040d4d8e03708505955b0, type: 3}
 --- !u!1001 &8714125742964185729
 PrefabInstance:

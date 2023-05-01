@@ -15,6 +15,9 @@ public class Tutorial : MonoBehaviour
 
     [Header("Items")]
     public GameObject passCounter;
+    
+    [Header("UI")]
+    public GameObject gameMenu;
 
     private CounterTop counterTop;
     public int currentNumberOfTaskCompleted { set; get; }
@@ -372,7 +375,7 @@ public class Tutorial : MonoBehaviour
         await Task.Delay(1500);
         playerOneText.text = "Watch out for rats! Press [right bumper] top throw knives!";
         playerTwoText.text = "Watch out for rats! Press [right bumper] top throw knives!";
-        await Task.Delay(1500);
+        await Task.Delay(3000);
         playerOneText.text = "Be careful! You can't throw knives when both hands are full";
         playerTwoText.text = "Be careful! You can't throw knives when both hands are full";
         await Task.Delay(3000);
@@ -390,12 +393,18 @@ public class Tutorial : MonoBehaviour
             rs.enabled = true;
         }
 
-        while(GameManager.numberOfRatsKilled < 5)
+        while(GameManager.numberOfRatsKilled < 3)
         {
             await Task.Yield();
         }
 
         // game ends here display menu
+        Debug.Log("Game Over");
+        foreach (RatSpawn rs in FindObjectsOfType<RatSpawn>())
+        {
+            rs.enabled = false;
+        }
         GameManager.gameStarted = false;
+        gameMenu.SetActive(true);
     }
 }
