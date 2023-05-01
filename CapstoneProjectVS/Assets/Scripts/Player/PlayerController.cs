@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     public bool isDisplayingInformation;
     public GameObject guideArrowObject;
     public Material blueGuidingMaterial, greenGuidingMaterial;
+    MenuStart menuStartScript;
     GuideArrow guideArrow;
 
     private bool helpIndicatorOpen;
@@ -346,6 +347,12 @@ public class PlayerController : MonoBehaviour
             item.DropOnGround(gameObject);
             inventory[0] = null;
         }
+
+        if (GameManager.tutorialLevel && !GameManager.gameStarted)
+        {
+            menuStartScript = FindObjectOfType<Tutorial>().gameMenu.GetComponent<MenuStart>();
+            menuStartScript.OnInteract();
+        }
     }
 
     //player is ready to interact
@@ -585,7 +592,13 @@ public class PlayerController : MonoBehaviour
         {
             cookbook.OnNextRecipe();
         }
-        
+
+        if (GameManager.tutorialLevel && !GameManager.gameStarted)
+        {
+            menuStartScript = FindObjectOfType<Tutorial>().gameMenu.GetComponent<MenuStart>();
+            menuStartScript.OnNextRecipe();
+        }
+
     }
 
     /// <summary>
@@ -598,6 +611,12 @@ public class PlayerController : MonoBehaviour
         if (cookbook)
         {
             cookbook.OnPreviousRecipe();
+        }
+
+        if (GameManager.tutorialLevel && !GameManager.gameStarted)
+        {
+            menuStartScript = FindObjectOfType<Tutorial>().gameMenu.GetComponent<MenuStart>();
+            menuStartScript.OnPreviousRecipe();
         }
     }
 
