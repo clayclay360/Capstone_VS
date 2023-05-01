@@ -336,7 +336,7 @@ public class PlayerController : MonoBehaviour
                 item.Interact(inventory[0], this);
                 HelpIndicator(false);
                 interactableObject = null;
-                
+                animator.SetTrigger("ItemInteracted");
             }
         }
 
