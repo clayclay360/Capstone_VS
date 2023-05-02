@@ -58,6 +58,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
             trashItem = null;
         } else if (item.name == "Plate")
         {
+            Debug.Log("Item name is plate");
             Plate plate;
             plate = item.GetComponent<Plate>();
             if (plate.foodOnPlate.Count != 0)

@@ -445,6 +445,7 @@ public class Pan : Tool
 
     public void Start()
     {
+        base.Start();
         useBeforeDirty = 1;
     }
 }

@@ -14,7 +14,7 @@ public class Spatula : Tool
 
     public void Start()
     {
-        
+        base.Start();
         useBeforeDirty = 2;
     }
 
