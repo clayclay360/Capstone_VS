@@ -114,23 +114,24 @@ public class Stove : Utilities, IUtility
 
         if (player.inventory[0] != null || player.inventory[1] !=null) 
         {
-            if (player.inventory[0] != null && player.inventory[0].TryGetComponent<Pan>(out Pan pan) && player.inventory[0].GetComponent<Pan>().isDirty)
+            if (player.inventory[0])
             {
-                Interaction = "Pan is dirty";
+                if (player.inventory[0].TryGetComponent<Pan>(out Pan panMH))
+                {
+                    Interaction = panMH.isDirty ? "Pan is dirty" : "Place Pan on stove";
+                    return;
+                }
             }
-            else if (player.inventory[1] != null && player.inventory[1].TryGetComponent<Pan>(out Pan pan_) && player.inventory[1].GetComponent<Pan>().isDirty)
+            if (player.inventory[1])
             {
-                Interaction = "Pan is dirty";
-            }
-            else
-            {
-                Interaction = "Place Pan on Stove";
+                if (player.inventory[1].TryGetComponent<Pan>(out Pan panOH))
+                {
+                    Interaction = panOH.isDirty ? "Pan is dirty" : "Place Pan on stove";
+                    return;
+                }
             }
         }
-        else
-        {
-            Interaction = "";
-        }
+        Interaction = "";
     }
 
     public void RatInteraction(RatController rat)

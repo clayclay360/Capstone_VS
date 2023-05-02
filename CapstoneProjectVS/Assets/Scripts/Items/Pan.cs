@@ -146,24 +146,25 @@ public class Pan : Tool
             }
             else if(itemInMainHand.GetComponent<Toast>() != null)
             {
-                toast = itemInMainHand.GetComponent<Toast>();
+                //LOL
+                //toast = itemInMainHand.GetComponent<Toast>();
 
-                if (itemsInPan.Count < containerSize && toast.cookingStatus == Ingredients.CookingStatus.uncooked)// if pan is not full and toast is not toasted
-                {
-                    itemsInPan.Add(itemsInPan.Count, toast); // add toast to pan inventory
-                    toast.transform.position = transform.position; // put toast on pan
-                    toast.transform.parent = transform; // make toast child of pan
-                    toast.gameObject.SetActive(true); // display toast
-                    toast.canInteract = false; // make toast uninteractable
-                    player.inventory[0] = null; // item in main hand null
-                    player.isInteracting = false; //player is no longer interacting
-                    player.canCollect = false; //player cannot collect items
-                }
+                //if (itemsInPan.Count < containerSize && toast.cookingStatus == Ingredients.CookingStatus.uncooked)// if pan is not full and toast is not toasted
+                //{
+                //    itemsInPan.Add(itemsInPan.Count, toast); // add toast to pan inventory
+                //    toast.transform.position = transform.position; // put toast on pan
+                //    toast.transform.parent = transform; // make toast child of pan
+                //    toast.gameObject.SetActive(true); // display toast
+                //    toast.canInteract = false; // make toast uninteractable
+                //    player.inventory[0] = null; // item in main hand null
+                //    player.isInteracting = false; //player is no longer interacting
+                //    player.canCollect = false; //player cannot collect items
+                //}
 
-                if (isHot)
-                {
-                    CookingCheck(cookingCheck, 2, toast); // start cooking // the cook time is 2 temporary
-                }
+                //if (isHot)
+                //{
+                //    CookingCheck(cookingCheck, 2, toast); // start cooking // the cook time is 2 temporary
+                //}
 
             }
             else if (itemInMainHand.GetComponent<HashBrown>() != null)
@@ -322,6 +323,11 @@ public class Pan : Tool
 
             else if (player.inventory[0] && player.inventory[0].TryGetComponent<Ingredients>(out Ingredients ingredientMH) && !isDirty)
                 {
+                    if (ingredientMH.TryGetComponent<Toast>(out _))
+                    {
+                        Interaction = "Bread goes in the toaster!";
+                        return;
+                    }
                     Interaction = $"Add {ingredientMH.Name} to pan";
                     if (player.isInteracting)
                     {
