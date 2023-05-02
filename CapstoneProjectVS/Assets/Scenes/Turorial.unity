@@ -13976,7 +13976,7 @@ MonoBehaviour:
   indicator: {fileID: 694870628}
   uncookedModel: {fileID: 1711812394}
   cookedModel: {fileID: 659260954}
-  burntModel: {fileID: 0}
+  burntModel: {fileID: 1805746255}
 --- !u!4 &1143437328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2051176884005050768, guid: b1be64a2035c71a4e94c4d78d70aa61b, type: 3}
@@ -22732,6 +22732,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 569710dc8af417648a56e488f054ad3f, type: 3}
   m_PrefabInstance: {fileID: 1801403355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1805746255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5015188893686880993, guid: b1be64a2035c71a4e94c4d78d70aa61b, type: 3}
+  m_PrefabInstance: {fileID: 1307880531}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1806858997
 PrefabInstance:
