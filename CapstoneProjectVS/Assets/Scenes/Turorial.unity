@@ -16428,6 +16428,8 @@ MonoBehaviour:
     isComplete: 0
   currentStepNumber: 10
   passCounter: {fileID: 630202327}
+  xButtonSprite: {fileID: 21300000, guid: c15c48d9a3b3cd2468d1e666a67c5022, type: 3}
+  analogSprite: {fileID: 21300000, guid: 57b4062e0e19dfc439b7bc6a310e0e9e, type: 3}
   gameMenu: {fileID: 1987498186}
   playerOneController: {fileID: 0}
   playerTwoController: {fileID: 0}

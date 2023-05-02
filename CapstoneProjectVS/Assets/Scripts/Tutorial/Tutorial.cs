@@ -15,7 +15,11 @@ public class Tutorial : MonoBehaviour
 
     [Header("Items")]
     public GameObject passCounter;
-    
+
+    [Header("Sprites")]
+    public Sprite xButtonSprite;
+    public Sprite analogSprite;
+
     [Header("UI")]
     public GameObject gameMenu;
 
@@ -62,7 +66,8 @@ public class Tutorial : MonoBehaviour
         {
             await Task.Delay(1000); // wait one sec
             playerOneController.isDisplayingInformation = true;
-            playerOneText.text = "Use [right stick] to move your character!";
+            playerOneController.interactButtonIcon.sprite = analogSprite;
+            playerOneText.text = "Use Right Stick to move your character!";
             playerOneSteps[playerOneCurrentStep].isComplete = true;
             playerOneCurrentStep++;
         }
@@ -71,6 +76,7 @@ public class Tutorial : MonoBehaviour
         await Task.Delay(3000);
         playerOneController.isDisplayingInformation = false;
         playerOneText.text = "";
+        playerOneController.interactButtonIcon.sprite = xButtonSprite;
 
         // show cook book
         if (playerOneCurrentStep == 1)
@@ -144,7 +150,7 @@ public class Tutorial : MonoBehaviour
             playerTwoController.canInteract = false;
             playerOneController.GuideArrow(false);
             playerOneController.isDisplayingInformation = true;
-            playerOneText.text = "Press [right bumper] or [left bumper] to switch items in your hand!";
+            playerOneText.text = "Press Right Bumper or Left Bumper to switch items in your hand!";
             playerOneController.GuideArrow(false);
             await Task.Delay(3000);
             playerTwoController.canInteract = true;
@@ -218,7 +224,8 @@ public class Tutorial : MonoBehaviour
         {
             await Task.Delay(1000);
             playerTwoController.isDisplayingInformation = true;
-            playerTwoText.text = "Use [right stick] to move your character!";
+            playerTwoController.interactButtonIcon.sprite = analogSprite;
+            playerTwoText.text = "Use Right Stick to move your character!";
             playerTwoSteps[playerTwoCurrentStep].isComplete = true;
             playerTwoCurrentStep++;
         }
@@ -227,6 +234,7 @@ public class Tutorial : MonoBehaviour
         await Task.Delay(3000);
         playerTwoController.isDisplayingInformation = false;
         playerTwoText.text = "";
+        playerTwoController.interactButtonIcon.sprite = xButtonSprite;
 
         // show player orderwindow
         if (playerTwoCurrentStep == 1)
