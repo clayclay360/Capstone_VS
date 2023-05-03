@@ -45,6 +45,8 @@ public class Main : MonoBehaviour
     private void Start()
     {
         GameManager.tutorialLevel = isTutorialLevel;
+        GameManager.numberOfPlayers = 0;
+        GameManager.numberOfRatsKilled = 0;
     }
 
     public void StartGame()
