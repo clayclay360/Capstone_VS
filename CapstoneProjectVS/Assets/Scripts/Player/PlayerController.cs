@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
     MenuStart menuStartScript;
     GuideArrow guideArrow;
 
+    private PauseMenu pauseScript;
+
     private bool helpIndicatorOpen;
     private bool helpAvailable;
     private string nameOfGuide;
@@ -97,6 +99,8 @@ public class PlayerController : MonoBehaviour
         inventory.Add(2, null); // this is just for the player to be able to switch hand
 
         AssignHighlightColor();
+
+        pauseScript = FindObjectOfType<PauseMenu>();
 
         RatSpawn[] holeList = FindObjectsOfType<RatSpawn>();
         foreach(RatSpawn hole in holeList)
@@ -617,6 +621,18 @@ public class PlayerController : MonoBehaviour
         {
             menuStartScript = FindObjectOfType<Tutorial>().gameMenu.GetComponent<MenuStart>();
             menuStartScript.OnPreviousRecipe();
+        }
+    }
+
+    public void OnPause()
+    {
+        if (!GameManager.gameIsPaused)
+        {
+            pauseScript.Paused();
+        }
+        else
+        {
+            pauseScript.Resume();
         }
     }
 

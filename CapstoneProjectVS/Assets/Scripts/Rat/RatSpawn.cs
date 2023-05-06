@@ -13,7 +13,7 @@ public class RatSpawn : MonoBehaviour
     public int maxRats;
     public int ratCounter;
 
-    private const float SPAWNTIME = 7.5f;
+    private const float SPAWNTIME = 10f;
     public float spawnTimer = 0f;
     private bool canSpawn = true;
 
@@ -32,7 +32,7 @@ public class RatSpawn : MonoBehaviour
     void Update()
     {
         ratCounter = GameManager.ratCount;
-        if(GameManager.ratCount < maxRats)
+        if(GameManager.gameStarted && GameManager.ratCount < maxRats)
         {
             SpawnTimer();
         }

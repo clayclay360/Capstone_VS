@@ -41,6 +41,7 @@ public class SinkScript : Utilities, IUtility
                 pan.transform.position = gameObject.transform.position; // position pan
                 pan.gameObject.SetActive(true); // activate pan
                 pan.canInteract = false;
+                pan.isValidTarget = false;
                 pan.sink = gameObject;
                 tool = pan;
                 player.inventory[0] = null; // item in main hand is null
@@ -59,6 +60,7 @@ public class SinkScript : Utilities, IUtility
                 spatula.transform.position = gameObject.transform.position; // position pan
                 spatula.gameObject.SetActive(true); // activate pan
                 spatula.canInteract = false;
+                spatula.isValidTarget = false;
                 spatula.sink = gameObject;
                 tool = spatula;
                 player.inventory[0] = null; // item in main hand is null
@@ -77,6 +79,7 @@ public class SinkScript : Utilities, IUtility
                 plate.transform.position = gameObject.transform.position;
                 plate.gameObject.SetActive(true); // activate pan
                 plate.canInteract = false;
+                plate.isValidTarget = false;
                 plate.sink = gameObject;
                 tool = plate;
                 player.inventory[0] = null; // item in main hand is null
@@ -104,14 +107,16 @@ public class SinkScript : Utilities, IUtility
             }
         }
         player.isInteracting = false;
-        isValidTarget = true;
     }
 
     public override void Update()
     {
         base.Update();
         canInteract = Interactivity();
-        isValidTarget = !Interactivity();
+        if (!isOccupied)
+        {
+            isValidTarget = false;
+        }
         gameObject.GetComponent<BoxCollider>().enabled = Interactivity();
 
         if (isOccupied)
@@ -191,6 +196,7 @@ public class SinkScript : Utilities, IUtility
         yield return new WaitForSeconds(timer);
         tool.timesUsed = 0;
         tool.IsClean();
+        isValidTarget = true;
         tool.canInteract = true;
         cleaningCheck.Reset();
         cleaningCheck.gameObject.SetActive(false);

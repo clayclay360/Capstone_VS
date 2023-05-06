@@ -107,6 +107,15 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2d72cee-c0d2-4135-97d1-8bd70c01b1b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -307,6 +316,17 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                     ""action"": ""AimLine"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96c7939c-d301-4b59-83d3-3f1e187dd7f1"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -384,6 +404,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         m_PlayerControlsVS_NextRecipe = m_PlayerControlsVS.FindAction("NextRecipe", throwIfNotFound: true);
         m_PlayerControlsVS_PreviousRecipe = m_PlayerControlsVS.FindAction("PreviousRecipe", throwIfNotFound: true);
         m_PlayerControlsVS_AimLine = m_PlayerControlsVS.FindAction("AimLine", throwIfNotFound: true);
+        m_PlayerControlsVS_Pause = m_PlayerControlsVS.FindAction("Pause", throwIfNotFound: true);
         // Menu Controls
         m_MenuControls = asset.FindActionMap("Menu Controls", throwIfNotFound: true);
         m_MenuControls_Up = m_MenuControls.FindAction("Up", throwIfNotFound: true);
@@ -456,6 +477,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControlsVS_NextRecipe;
     private readonly InputAction m_PlayerControlsVS_PreviousRecipe;
     private readonly InputAction m_PlayerControlsVS_AimLine;
+    private readonly InputAction m_PlayerControlsVS_Pause;
     public struct PlayerControlsVSActions
     {
         private @ControlsVS m_Wrapper;
@@ -469,6 +491,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         public InputAction @NextRecipe => m_Wrapper.m_PlayerControlsVS_NextRecipe;
         public InputAction @PreviousRecipe => m_Wrapper.m_PlayerControlsVS_PreviousRecipe;
         public InputAction @AimLine => m_Wrapper.m_PlayerControlsVS_AimLine;
+        public InputAction @Pause => m_Wrapper.m_PlayerControlsVS_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControlsVS; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -505,6 +528,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @AimLine.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnAimLine;
                 @AimLine.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnAimLine;
                 @AimLine.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnAimLine;
+                @Pause.started -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerControlsVSActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerControlsVSActionsCallbackInterface = instance;
             if (instance != null)
@@ -536,6 +562,9 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
                 @AimLine.started += instance.OnAimLine;
                 @AimLine.performed += instance.OnAimLine;
                 @AimLine.canceled += instance.OnAimLine;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -601,6 +630,7 @@ public partial class @ControlsVS : IInputActionCollection2, IDisposable
         void OnNextRecipe(InputAction.CallbackContext context);
         void OnPreviousRecipe(InputAction.CallbackContext context);
         void OnAimLine(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IMenuControlsActions
     {

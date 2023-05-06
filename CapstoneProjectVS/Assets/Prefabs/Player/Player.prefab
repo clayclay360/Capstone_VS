@@ -4815,6 +4815,7 @@ MonoBehaviour:
   guideArrowObject: {fileID: 2488259752773901845}
   blueGuidingMaterial: {fileID: 2100000, guid: 9f406fdb2d41ad5479f05d3eece3e6af, type: 2}
   greenGuidingMaterial: {fileID: 2100000, guid: 20397b7e7a408b14cad36487b89aa520, type: 2}
+  pauseScript: {fileID: 0}
 --- !u!114 &8313516844159529844
 MonoBehaviour:
   m_ObjectHideFlags: 0
