@@ -29,7 +29,6 @@ public class OrderManager : Item
                             main.OrderComplete(plate.foodOnPlate[0].Name, plate.foodOnPlate[0].GetComponent<Ingredients>());
                             if (plate.foodOnPlate[0].Name == "Omelet" || plate.foodOnPlate[0].Name == "Bacon" || plate.foodOnPlate[0].Name == "Toast")
                             {
-                                Debug.Log("Name check passed.");
                                 Ingredients ingredient;
                                 ingredient = plate.foodOnPlate[0].GetComponent<Ingredients>();
                                 plate.foodOnPlate[0].transform.parent = null; //Does this do anything??
@@ -104,7 +103,7 @@ public class OrderManager : Item
     {
         if (player.inventory[0] && player.inventory[0].TryGetComponent<Plate>(out Plate plate))
         {
-            plate = player.inventory[0].GetComponent<Plate>();
+            //Just replacing this line with HEY WHAT THE FUCK??
 
             if(plate.foodOnPlate.Count > 0)
             {
