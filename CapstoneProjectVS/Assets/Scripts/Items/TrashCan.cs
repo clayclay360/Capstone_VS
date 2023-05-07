@@ -22,7 +22,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
     {
         Debug.Log($"Trash can called with {item.name}");
         trashItem = item;
-        player.inventory[0] = null;
+        //player.inventory[0] = null; Whoever added this line: I hate you.
         if (item.name == "Pan")
         {
             Pan pan;
@@ -55,9 +55,11 @@ public class TrashCan : Utilities, IUtility, IInteractable
                 pan.itemsInPan.Clear();
             }
             pan.RespawnTool();
+            player.inventory[0] = null;
             trashItem = null;
         } else if (item.name == "Plate")
         {
+            Debug.Log("Item name is plate");
             Plate plate;
             plate = item.GetComponent<Plate>();
             if (plate.foodOnPlate.Count != 0)
@@ -71,22 +73,32 @@ public class TrashCan : Utilities, IUtility, IInteractable
                     Egg egg;
                     egg = plate.foodOnPlate[0].GetComponent<Egg>();
                     egg.ChangeToUncooked();
+                    egg.RespawnIngredient();
+                    plate.foodOnPlate.Clear();
+                    return;
                 }
                 else if (plate.foodOnPlate[0].Name == "Bacon")
                 {
                     Bacon bacon;
                     bacon = plate.foodOnPlate[0].GetComponent<Bacon>();
                     bacon.ChangeToUncooked();
+                    bacon.RespawnIngredient();
+                    plate.foodOnPlate.Clear();
+                    return;
                 }
-                else if (plate.foodOnPlate[0].Name == "Toast")
+                else if (plate.foodOnPlate[0].Name == "Toast" || plate.foodOnPlate[0].Name == "Bread")
                 {
                     Toast toast;
                     toast = plate.foodOnPlate[0].GetComponent<Toast>();
                     toast.ChangeToUncooked();
+                    toast.RespawnIngredient();
+                    plate.foodOnPlate.Clear();
+                    return;
                 }
                 plate.foodOnPlate.Clear();
             }
             plate.RespawnTool();
+            player.inventory[0] = null;
             trashItem = null;
         } 
         else if (item.name == "Spatula") //all scripts that derive from Tool must have their item.name added to this if statement for throwing things out
@@ -94,6 +106,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
             Tool tool;
             tool = item.GetComponent<Tool>();
             tool.RespawnTool();
+            player.inventory[0] = null;
             trashItem = null;
         } 
         else if (item.name == "Egg" || item.name == "Bacon")
@@ -106,6 +119,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
             {
                 egg.SwitchModel(egg.state);
             }
+            player.inventory[0] = null;
             trashItem = null;
         }
         else if (item.name == "Toast" || item.name == "Bread")
@@ -113,6 +127,7 @@ public class TrashCan : Utilities, IUtility, IInteractable
             Toast toast = item.GetComponent<Toast>();
             toast.RespawnIngredient();
             toast.state = Toast.State.slice;
+            player.inventory[0] = null;
         }
         //Respawn item
     }

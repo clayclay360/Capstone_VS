@@ -97,7 +97,7 @@ public class Main : MonoBehaviour
             sideRecipe[i] = recipeManager[GameManager.currentLevel].sideRecipes[i];
 
             GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
-            orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120);
+            orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120, i);
 
             sideOrder[i] = orderGameObject;
 
@@ -114,7 +114,7 @@ public class Main : MonoBehaviour
         sideRecipe[0] = recipeManager[0].sideRecipes[1];
         GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
 
-        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 500);
+        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 500, 0);
         sideOrder[0] = orderGameObject;
         FindObjectOfType<OrderManager>().DisplayIndicator(true);
     }
@@ -146,28 +146,37 @@ public class Main : MonoBehaviour
                 }
                 sideOrder[i]= null;
                 ordersCompleted++;
+                StartCoroutine(Complete());
                 
             }
         }
+       
+    }
+
+    IEnumerator Complete()
+    {
         if (!GameManager.tutorialLevel)
         {
             if (ordersCompleted == 1)
             {
                 Debug.Log("You got a star");
+                showStars.SetActive(true);
                 FirstStar.color = Color.yellow;
                 gameStar.SetActive(true);
-                Invoke(nameof(DestroyStar), 2f);
+                yield return new WaitForSeconds(3);
+                showStars.SetActive(false);
+                gameStar.SetActive(false);
                 orderScore += 1;
             }
             else if (ordersCompleted == 2)
             {
                 Debug.Log("You got a star");
+                showStars.SetActive(true);
                 SecondStar.color = Color.yellow;
-                if (gameStar != null)
-                {
-                    gameStar.SetActive(true);
-                    Invoke(nameof(DestroyStar), 2f);
-                }
+                gameStar.SetActive(true);
+                yield return new WaitForSeconds(3);
+                showStars.SetActive(false);
+                gameStar.SetActive(false);
                 orderScore += 1;
             }
             else if (ordersCompleted == 3)
@@ -176,11 +185,6 @@ public class Main : MonoBehaviour
                 orderScore += 1;
             }
         }
-    }
-
-    void DestroyStar()
-    {
-        Destroy(gameStar);
     }
 
     public IEnumerator CheckGameStatus()

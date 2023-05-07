@@ -9,8 +9,9 @@ public class Plate : Tool
     public Transform foodPlacement;
     public Dictionary<int, Item> foodOnPlate = new Dictionary<int, Item>();
 
-    public void Start()
+    public override void Start()
     {
+        base.Start();
         useBeforeDirty = 1;
     }
 

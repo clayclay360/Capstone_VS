@@ -141,6 +141,7 @@ public class Tool : Item, ICollectable, ICookable
     public void RespawnTool()
     {
         gameObject.transform.position = startLocation;
+        ResetHighlight();
         gameObject.SetActive(true);
     }
 

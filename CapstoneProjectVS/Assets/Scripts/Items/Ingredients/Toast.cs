@@ -62,6 +62,7 @@ public class Toast : Ingredients, IInteractable
         state = State.toasted;
         cookingStatus = CookingStatus.cooked;
         Name = "Toast";
+        name = "Toast";
         SwitchModel(state);
     }
 
@@ -71,6 +72,7 @@ public class Toast : Ingredients, IInteractable
         state = State.slice;
         cookingStatus = CookingStatus.uncooked;
         Name = "Bread";
+        name = "Bread";
         SwitchModel(state);
     }
 
