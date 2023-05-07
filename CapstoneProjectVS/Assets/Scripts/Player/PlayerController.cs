@@ -179,8 +179,26 @@ public class PlayerController : MonoBehaviour
     {
         //Set the animator to be 0 if the player is still or to the movement speed
         //Movement speed slows when player is in front of objects
-        float animatorSpeed = moveVec.magnitude <= 0.05f ? 0 : movingSpeed;
+        float animatorSpeed = moveVec.magnitude <= 0.05f ? 0 : movingSpeed / MOVESPEED;
         animator.SetFloat("BlendX", animatorSpeed);
+
+        //Okat let's write something that's going to work now.
+        float animatorRotation = 0f;
+        float dotProd = Mathf.Abs(Vector3.Dot(transform.forward.normalized, moveVec.normalized));
+        if (dotProd >= 0)
+        {
+            animatorRotation = 1f - dotProd;
+        }
+        else
+        {
+            //DOTPROD ABS is going to be between 0 and 1, closer to 1 is further away from the player.
+            //So we take half of that to get the first half (1 = .5) and add the .5 from the player facing the other direction.
+            //Voila! Number between 0 and 1 for the rotation float. Except it's always at least .5 because we're turning that far.
+            animatorRotation = .5f + (Mathf.Abs(dotProd) / 2);
+        }
+        animatorRotation = moveVec.magnitude <= 0.05f ? 0 : animatorRotation;
+        animator.SetFloat("BlendY", animatorRotation);
+
 
         #region Raycast Set Speed
         //Raycast checks for an object in front of the player and its distance
@@ -223,8 +241,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
         //Rotation
         rotateVec = rightAnalogMagnitude < 0.05f ? moveVec : rotateVec;
+
+
         if (Mathf.Abs(rotateVec.x) > 0 || Mathf.Abs(rotateVec.z) > 0)
         {
             Vector3 rotateDirection = (Vector3.right * rotateVec.x) + (Vector3.forward * rotateVec.z);
