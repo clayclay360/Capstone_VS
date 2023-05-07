@@ -45,7 +45,7 @@ public class Order : MonoBehaviour
             TImer.value = maxTime - orderTime;
         }
 
-        main.OrderComplete(Name.text);
+        //main.OrderComplete(Name.text);
         Destroy(gameObject);
     }
 
