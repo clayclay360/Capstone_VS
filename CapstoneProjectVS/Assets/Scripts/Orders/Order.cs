@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
+using UnityEngine.Video;
 public class Order : MonoBehaviour
 {
     public bool Complete;
@@ -11,6 +12,9 @@ public class Order : MonoBehaviour
     public Text Name;
     public Slider TImer;
     public Image[] starImages;
+    public RawImage videoRend;
+    public VideoPlayer timerVideo;
+    public RenderTexture[] rawRends;
 
     private Main main;
 
@@ -24,10 +28,12 @@ public class Order : MonoBehaviour
         }
     }
 
-    public void AssignOrder(string name, int time)
+    public void AssignOrder(string name, int time, int orderNum)
     {
         Name.text = name;
         TImer.maxValue = time;
+        videoRend.texture = rawRends[orderNum];
+        timerVideo.targetTexture = rawRends[orderNum];
         StartCoroutine(Timer());
     }
 

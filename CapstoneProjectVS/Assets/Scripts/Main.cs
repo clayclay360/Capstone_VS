@@ -95,7 +95,7 @@ public class Main : MonoBehaviour
             sideRecipe[i] = recipeManager[GameManager.currentLevel].sideRecipes[i];
 
             GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
-            orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120);
+            orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[i].Name, 120, i);
 
             sideOrder[i] = orderGameObject;
 
@@ -112,7 +112,7 @@ public class Main : MonoBehaviour
         sideRecipe[0] = recipeManager[0].sideRecipes[1];
         GameObject orderGameObject = Instantiate(orderPrefab, sideOrderWindow);
 
-        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 500);
+        orderGameObject.GetComponent<Order>().AssignOrder(sideRecipe[0].Name, 500, 0);
         sideOrder[0] = orderGameObject;
         FindObjectOfType<OrderManager>().DisplayIndicator(true);
     }
