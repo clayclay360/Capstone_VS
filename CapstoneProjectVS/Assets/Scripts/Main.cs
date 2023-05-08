@@ -28,6 +28,7 @@ public class Main : MonoBehaviour
     [HideInInspector]
     public Recipe mainRecipe, sideRecipeOne, sideRecipeTwo, sideRecipeThree;
     public Recipe[] sideRecipe;
+    public GameObject playerManager;
     private GameObject mainOrder, sideOrderOne, sideOrderTwo, sideOrderThree;
     public GameObject[] sideOrder;
     public GameObject results;
@@ -83,7 +84,7 @@ public class Main : MonoBehaviour
         // 
         if (!GameManager.gameStarted)
         {
-            playersNeededUI.GetComponentInChildren<Text>().text = " Players Needed: " + (2 - GameManager.numberOfPlayers);
+            playersNeededUI.GetComponentInChildren<Text>().text = " Players Needed: " + (playerManager.GetComponent<PlayerManager>().playersNeeded - GameManager.numberOfPlayers);
         }
     }
 
