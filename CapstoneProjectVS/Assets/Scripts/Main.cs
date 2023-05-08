@@ -203,6 +203,7 @@ public class Main : MonoBehaviour
                 results.SetActive(true);
                 results.GetComponent<Results>().DisplayResults(Score / maxOrdersOfSides);
                 GameManager.gameStarted = false;
+                Time.timeScale = 0;
             }
         }
     }
