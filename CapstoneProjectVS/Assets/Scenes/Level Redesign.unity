@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 669787355}
-  m_IndirectSpecularColor: {r: 0.29237485, g: 0.4023685, b: 0.49856877, a: 1}
+  m_IndirectSpecularColor: {r: 0.29237604, g: 0.402369, b: 0.49856833, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27215,6 +27215,7 @@ MonoBehaviour:
   results: {fileID: 1765880174}
   showStars: {fileID: 2143948791}
   gameStar: {fileID: 1106267984}
+  ordersCompleted: 0
   orderScore: 0
 --- !u!4 &1374190583
 Transform:
