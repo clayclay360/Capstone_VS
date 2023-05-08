@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 669787355}
-  m_IndirectSpecularColor: {r: 0.29237583, g: 0.40236878, b: 0.49856746, a: 1}
+  m_IndirectSpecularColor: {r: 0.29237604, g: 0.402369, b: 0.49856833, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2380,6 +2380,10 @@ PrefabInstance:
     - target: {fileID: 3832381486221213659, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735852428540289413, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 6792238377814780398, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
       propertyPath: m_NavMeshLayer
@@ -26867,6 +26871,10 @@ PrefabInstance:
     - target: {fileID: 3832381486221213659, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735852428540289413, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 6792238377814780398, guid: a1a2977cdc941334e8143d5ea44de933, type: 3}
       propertyPath: m_NavMeshLayer
