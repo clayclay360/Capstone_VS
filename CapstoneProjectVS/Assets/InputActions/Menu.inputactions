@@ -6,9 +6,27 @@
             "id": "4890dccc-606d-40a4-bb76-bac70c690c0e",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Interact Down",
                     "type": "Button",
                     "id": "a5067fdf-5d66-4800-a35f-b76bdc4c9641",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact Up",
+                    "type": "Button",
+                    "id": "ae05faa0-4578-464b-ad19-7f01757367d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "d6a4b742-e04a-4b14-a6cb-daa4812f48c9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -19,11 +37,33 @@
                 {
                     "name": "",
                     "id": "94326b46-c0e8-4e09-9519-0c7f6d53277a",
-                    "path": "",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "New control scheme",
-                    "action": "New action",
+                    "action": "Interact Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6899f7ef-2432-447b-9ff2-12408acec474",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89f47097-2a68-4b94-b924-746fc5687980",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
