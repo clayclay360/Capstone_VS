@@ -17,5 +17,7 @@ public class PlayerManager : MonoBehaviour
             GameManager.gameStarted = true;
             numberOfPlayersNeededUI.SetActive(false);
         }
+
+        Debug.Log(GameManager.numberOfPlayers);
     }
 }

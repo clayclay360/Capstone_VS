@@ -378,6 +378,24 @@ public class PlayerController : MonoBehaviour
             menuStartScript = FindObjectOfType<Tutorial>().gameMenu.GetComponent<MenuStart>();
             menuStartScript.OnInteract();
         }
+
+        if (GameManager.gameIsPaused)
+        {
+            if (pauseScript.pauseMenuCounter == 1)
+            {
+                pauseScript.Resume();
+            }
+            else if (pauseScript.pauseMenuCounter == 2)
+            {
+                pauseScript.LoadMenu();
+            }
+            else if (pauseScript.pauseMenuCounter == 3)
+            {
+                pauseScript.QuitGame();
+            }
+        }
+
+        Debug.Log("I'm interacting");
     }
 
     //player is ready to interact
@@ -624,6 +642,16 @@ public class PlayerController : MonoBehaviour
             menuStartScript.OnNextRecipe();
         }
 
+        if (GameManager.gameIsPaused)
+        {
+            if (pauseScript.pauseMenuCounter < pauseScript.maxButtons)
+            {
+                pauseScript.pauseMenuCounter += 1;
+                Debug.Log(pauseScript.pauseMenuCounter);
+            }
+            Debug.Log("counter up");
+        }
+
     }
 
     /// <summary>
@@ -642,6 +670,16 @@ public class PlayerController : MonoBehaviour
         {
             menuStartScript = FindObjectOfType<Tutorial>().gameMenu.GetComponent<MenuStart>();
             menuStartScript.OnPreviousRecipe();
+        }
+
+        if (GameManager.gameIsPaused)
+        {
+            if (pauseScript.pauseMenuCounter > pauseScript.minButtons)
+            {
+                pauseScript.pauseMenuCounter -= 1;
+                Debug.Log(pauseScript.pauseMenuCounter);
+            }
+            Debug.Log("counter down");
         }
     }
 

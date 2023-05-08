@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 669787355}
-  m_IndirectSpecularColor: {r: 0.29237604, g: 0.402369, b: 0.49856833, a: 1}
+  m_IndirectSpecularColor: {r: 0.29237583, g: 0.40236878, b: 0.49856746, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20394,7 +20394,6 @@ MonoBehaviour:
   - {fileID: 1326063822}
   - {fileID: 656863860}
   - {fileID: 1355976646}
-  FadeOut: {fileID: 1475616335}
   color: {r: 0, g: 0, b: 0, a: 0}
   pauseMenuUI: {fileID: 1675623041}
   pauseMenuUI2: {fileID: 1867856476}
@@ -31298,7 +31297,6 @@ GameObject:
   - component: {fileID: 1675623042}
   - component: {fileID: 1675623044}
   - component: {fileID: 1675623043}
-  - component: {fileID: 1675623045}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -31367,36 +31365,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675623041}
   m_CullTransparentMesh: 1
---- !u!114 &1675623045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675623041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2eb6c617c77922b4c9ab7aa08500b032, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: New control scheme
-  m_DefaultActionMap: New action map
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1683385196
 GameObject:
   m_ObjectHideFlags: 0
