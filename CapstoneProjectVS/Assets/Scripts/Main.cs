@@ -38,7 +38,8 @@ public class Main : MonoBehaviour
 
     private float timeInBetweenOrders;
     private int maxOrdersOfSides = 3;
-    private int ordersCompleted;
+    [HideInInspector]
+    public int ordersCompleted;
     public float orderScore = 0;
 
     private bool startOrders;
@@ -55,7 +56,7 @@ public class Main : MonoBehaviour
         sideRecipeOne = null;
         sideRecipeTwo = null;
         playersNeededUI.SetActive(false);
-        GameManager.gameStarted = false;
+        //GameManager.gameStarted = false;
         //showStars.SetActive(true);
         StartCoroutine(SideOrders());
         //MainOrder();
@@ -63,7 +64,7 @@ public class Main : MonoBehaviour
 
     public void Update()
     {
-        StartCoroutine(CheckGameStatus());
+        
 
         // start the orders
         if(GameManager.gameStarted && !startingOrders)
@@ -77,6 +78,7 @@ public class Main : MonoBehaviour
             else // start normal game orders
             {
                 StartGame();
+                StartCoroutine(CheckGameStatus());
                 startingOrders = true;
             }
         }
@@ -185,6 +187,7 @@ public class Main : MonoBehaviour
                 Debug.Log("You got a star");
                 orderScore += 1;
             }
+            Debug.Log(ordersCompleted);
         }
     }
 
@@ -195,6 +198,7 @@ public class Main : MonoBehaviour
             yield return null;
             if(ordersCompleted == 3)
             {
+                Debug.Log("Game Over");
                 showStars.SetActive(false);
                 results.SetActive(true);
                 results.GetComponent<Results>().DisplayResults(Score / maxOrdersOfSides);

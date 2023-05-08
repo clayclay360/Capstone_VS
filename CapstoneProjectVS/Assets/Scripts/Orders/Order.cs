@@ -52,6 +52,8 @@ public class Order : MonoBehaviour
         }
 
         //main.OrderComplete(Name.text);
+        main.ordersCompleted++;
+        Debug.Log(main.ordersCompleted);
         Destroy(gameObject);
     }
 
