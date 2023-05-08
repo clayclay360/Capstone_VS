@@ -5,6 +5,7 @@ using UnityEngine;
 public class SinkScript : Utilities, IUtility
 {
     public bool isOccupied;
+    public enum Status { clean, dirty }
     public Tool tool;
     public GameObject sinkGO;
     public GameObject sinkFilledGO;
@@ -34,7 +35,7 @@ public class SinkScript : Utilities, IUtility
         //check to see if there's anything in the mainhand
         if (itemInMainHand != null)
         {
-            if (itemInMainHand.GetComponent<Pan>() != null && itemInMainHand.GetComponent<Pan>().isDirty && itemInMainHand.GetComponent<Pan>().itemsInPan.Count == 0)
+            if (itemInMainHand.GetComponent<Pan>() != null && itemInMainHand.GetComponent<Pan>().status == Tool.Status.dirty && itemInMainHand.GetComponent<Pan>().itemsInPan.Count == 0)
             {
                 Pan pan = itemInMainHand.GetComponent<Pan>();
 
@@ -53,7 +54,7 @@ public class SinkScript : Utilities, IUtility
                 SwitchModel(state);
             }
 
-            if (itemInMainHand.GetComponent<Spatula>() != null && itemInMainHand.GetComponent<Spatula>().isDirty)
+            if (itemInMainHand.GetComponent<Spatula>() != null && itemInMainHand.GetComponent<Spatula>().status == Tool.Status.dirty)
             {
                 Spatula spatula = itemInMainHand.GetComponent<Spatula>();
 
@@ -72,7 +73,7 @@ public class SinkScript : Utilities, IUtility
                 SwitchModel(state);
             }
 
-            if (itemInMainHand.GetComponent<Plate>() != null && itemInMainHand.GetComponent<Plate>().isDirty)
+            if (itemInMainHand.GetComponent<Plate>() != null && itemInMainHand.GetComponent<Plate>().status == Tool.Status.dirty)
             {
                 Plate plate = itemInMainHand.GetComponent<Plate>();
 
