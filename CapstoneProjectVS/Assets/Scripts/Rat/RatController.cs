@@ -148,7 +148,7 @@ public class RatController : MonoBehaviour
             //Assign a target from the target list
             int randTargetNum = Random.Range(0, targetList.Count);
             currTarget = targetList[randTargetNum];
-            NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1.5f, NavMesh.AllAreas);
+            NavMesh.SamplePosition(currTarget.transform.position, out NavMeshHit hit, 1f, NavMesh.AllAreas);
             navAgent.SetDestination(hit.position);
             //Debug.Log(currTarget);
         }
