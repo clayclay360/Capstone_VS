@@ -26,7 +26,10 @@ public class KnifeScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if(collision.collider.gameObject.name != "PlayerControler")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
