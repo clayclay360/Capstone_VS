@@ -144,7 +144,7 @@ public class Main : MonoBehaviour
                     {
                         showStars.GetComponent<Star>().DisplayStars(ordersCompleted);
                     }
-                    Score += food.qualityRate;
+                    Score ++/*= food.qualityRate*/;
                     
                 }
                 sideOrder[i]= null;
@@ -201,7 +201,7 @@ public class Main : MonoBehaviour
                 Debug.Log("Game Over");
                 showStars.SetActive(false);
                 results.SetActive(true);
-                results.GetComponent<Results>().DisplayResults(Score / maxOrdersOfSides);
+                results.GetComponent<Results>().DisplayResults(Score);
                 GameManager.gameStarted = false;
             }
         }

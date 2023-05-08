@@ -31,28 +31,28 @@ public class Results : MonoBehaviour
         for (int i = 0; i < score; i++)
         {
             starImages[i].color = Color.yellow;
-            finalScore = score + main.orderScore;
+            finalScore = score /*+ main.orderScore*/;
         }
 
         if (score == 3)
         {
             content.text = "Perfect!";
-            scoreText.text = finalScore.ToString();
+            //scoreText.text = finalScore.ToString();
         }
         else if (score == 2)
         {
             content.text = "Good";
-            scoreText.text = finalScore.ToString();
+            //scoreText.text = finalScore.ToString();
         }
         else if(score == 1) 
         {
             content.text = "Mediocre";
-            scoreText.text = finalScore.ToString();
+            //scoreText.text = finalScore.ToString();
         }
         else
         {
             content.text = "Eww";
-            scoreText.text = finalScore.ToString();
+            //scoreText.text = finalScore.ToString();
         }
 
         Time.timeScale = 0;
