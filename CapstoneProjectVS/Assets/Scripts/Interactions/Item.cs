@@ -143,7 +143,7 @@ public class Item : MonoBehaviour, IInteractable
 
     }
 
-    public void DropOnGround(GameObject player)
+    public virtual void DropOnGround(GameObject player)
     {
         gameObject.transform.position = player.transform.position;
         gameObject.SetActive(true);

@@ -92,6 +92,12 @@ public class Toast : Ingredients, IInteractable
         }
     }
 
+    public override void DropOnGround(GameObject player)
+    {
+        base.DropOnGround(player);
+        canInteract = true;
+    }
+
     public override void CheckHand(PlayerController.ItemInMainHand item, PlayerController player)
     {
         base.CheckHand(item, player);
