@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject[] buttonBorders;
 
-    public Image FadeOut;
+    //public Image FadeOut;
     public Color color;
 
 
@@ -35,29 +35,32 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (gamepad.startButton.isPressed)
-        //{
-        //    Paused();
-        //}
         SetBorders();
     }
 
     public void StartLevelGivenIndex(int index)
     {
-        StartCoroutine(LoadLevel(index));
+        //StartCoroutine(LoadLevel(index));
     }
 
-    public void OnInteract()
-    {
-        if (pauseMenuCounter == 1 || pauseMenuCounter == 2)
-        {
-            StartLevelGivenIndex(pauseMenuCounter);
-        }
-        else if (pauseMenuCounter == 3)
-        {
-            QuitGame();
-        }
-    }
+    //public void OnInteract()
+    //{
+    //    if (GameManager.gameIsPaused)
+    //    {
+    //        if (pauseMenuCounter == 1)
+    //        {
+    //            Resume();
+    //        }
+    //        else if (pauseMenuCounter == 2)
+    //        {
+    //            LoadMenu();
+    //        }
+    //        else if (pauseMenuCounter == 3)
+    //        {
+    //            QuitGame();
+    //        }
+    //    }
+    //}
 
 
     #region Controls
@@ -114,23 +117,31 @@ public class PauseMenu : MonoBehaviour
 
     //}
 
-    public void OnNextRecipe()
-    {
-        if (pauseMenuCounter < maxButtons)
-        {
-            pauseMenuCounter += 1;
-            Debug.Log(pauseMenuCounter);
-        }
-    }
+    //public void OnNextRecipe()
+    //{
+    //    if (GameManager.gameIsPaused)
+    //    {
+    //        if (pauseMenuCounter < maxButtons)
+    //        {
+    //            pauseMenuCounter += 1;
+    //            Debug.Log(pauseMenuCounter);
+    //        }
+    //        Debug.Log("counter up");
+    //    }
+    //}
 
-    public void OnPreviousRecipe()
-    {
-        if (pauseMenuCounter > minButtons)
-        {
-            pauseMenuCounter -= 1;
-            Debug.Log(pauseMenuCounter);
-        }
-    }
+    //public void OnPreviousRecipe()
+    //{
+    //    if (GameManager.gameIsPaused)
+    //    {
+    //        if (pauseMenuCounter > minButtons)
+    //        {
+    //            pauseMenuCounter -= 1;
+    //            Debug.Log(pauseMenuCounter);
+    //        }
+    //        Debug.Log("counter down");
+    //    }
+    //}
 
     /// <summary>
     /// Sets all borders to inactive then sets the current border to active
@@ -167,34 +178,34 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    private IEnumerator LoadLevel(int levelIndex)
-    {
-        bool loadLevelBool = true;
-        int subtract = 0;
-
-        while (loadLevelBool)
-        {
-            if (subtract < 300)
-            {
-                color.a += 0.005f;
-                FadeOut.color = color;
-                subtract += 1;
-            }
-            else
-            {
-                loadLevelBool = false;
-            }
-            yield return null;
-        }
-        SceneManager.LoadScene(levelIndex, LoadSceneMode.Single);
-    }
-
-
-    //public void LoadMenu()
+    //private IEnumerator LoadLevel(int levelIndex)
     //{
-    //    Debug.Log("Loading Menu...");
-    //    SceneManager.LoadScene("MainMenu");
+    //    bool loadLevelBool = true;
+    //    int subtract = 0;
+
+    //    while (loadLevelBool)
+    //    {
+    //        if (subtract < 300)
+    //        {
+    //            color.a += 0.005f;
+    //            //FadeOut.color = color;
+    //            subtract += 1;
+    //        }
+    //        else
+    //        {
+    //            loadLevelBool = false;
+    //        }
+    //        yield return null;
+    //    }
+    //    SceneManager.LoadScene(levelIndex, LoadSceneMode.Single);
     //}
+
+
+    public void LoadMenu()
+    {
+        Debug.Log("Loading Menu...");
+        SceneManager.LoadScene("StartMenu");
+    }
 
 
     public void QuitGame()
