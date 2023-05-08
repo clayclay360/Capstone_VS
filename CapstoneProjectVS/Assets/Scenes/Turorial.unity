@@ -12301,13 +12301,12 @@ MonoBehaviour:
   maxButtons: 0
   minButtons: 0
   buttonBorders:
-  - {fileID: 1430308547}
-  - {fileID: 1571539711}
-  - {fileID: 862842537}
-  - {fileID: 1141871529}
-  - {fileID: 1086974169}
-  - {fileID: 408902677}
-  FadeOut: {fileID: 0}
+  - {fileID: 674466373}
+  - {fileID: 614097619}
+  - {fileID: 1451722269}
+  - {fileID: 1319762763}
+  - {fileID: 1217077593}
+  - {fileID: 785051674}
   color: {r: 0, g: 0, b: 0, a: 0}
   pauseMenuUI: {fileID: 1130102645}
   pauseMenuUI2: {fileID: 2061632392}
@@ -15058,7 +15057,7 @@ MonoBehaviour:
   Interaction: 
   isCheckingForInteraction: 0
   willHideObjectAfterInteraction: 0
-  status: 0
+  status: 1
   isDirty: 1
   isHot: 0
   useBeforeDirty: 0
@@ -16913,6 +16912,7 @@ MonoBehaviour:
   results: {fileID: 0}
   showStars: {fileID: 0}
   gameStar: {fileID: 0}
+  ordersCompleted: 0
   orderScore: 0
 --- !u!4 &1374190583
 Transform:
@@ -25184,7 +25184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1000, y: 0}
+  m_AnchoredPosition: {x: -1000, y: 144}
   m_SizeDelta: {x: 820, y: 510}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1989512513

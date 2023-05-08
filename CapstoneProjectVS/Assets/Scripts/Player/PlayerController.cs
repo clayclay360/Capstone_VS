@@ -112,6 +112,10 @@ public class PlayerController : MonoBehaviour
     public void Start()
     {
         OnPlayerJoined();
+        if (GameManager.gameIsPaused) // I put this in to fix the issue of the camera focusing on the PlayerManager in the levels
+        {
+            OnPause();
+        }
     }
 
     public void GuideArrow(bool active, Transform target = null)
