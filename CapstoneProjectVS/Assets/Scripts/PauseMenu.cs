@@ -121,6 +121,7 @@ public class PauseMenu : MonoBehaviour
             pauseMenuCounter += 1;
             Debug.Log(pauseMenuCounter);
         }
+        Debug.Log("counter up");
     }
 
     public void OnPreviousRecipe()
@@ -130,6 +131,7 @@ public class PauseMenu : MonoBehaviour
             pauseMenuCounter -= 1;
             Debug.Log(pauseMenuCounter);
         }
+        Debug.Log("counter down");
     }
 
     /// <summary>
