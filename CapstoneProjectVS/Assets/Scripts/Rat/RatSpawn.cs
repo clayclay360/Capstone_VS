@@ -8,6 +8,7 @@ public class RatSpawn : MonoBehaviour
     public GameObject ratSpawnLoc;
     public List<GameObject> targetList;
     public List<GameObject> playerList; //We'll add players to this list when they spawn
+    public GameObject playerManager;
     private GameObject closestPlayer;
     private float distToPlayer;
     public int maxRats;
@@ -32,7 +33,7 @@ public class RatSpawn : MonoBehaviour
     void Update()
     {
         ratCounter = GameManager.ratCount;
-        if(GameManager.gameStarted && GameManager.ratCount < maxRats)
+        if(playerList.Count == playerManager.GetComponent<PlayerManager>().playersNeeded && GameManager.ratCount < maxRats)
         {
             SpawnTimer();
         }

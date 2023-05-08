@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 669787355}
-  m_IndirectSpecularColor: {r: 0.29237652, g: 0.4023701, b: 0.49856958, a: 1}
+  m_IndirectSpecularColor: {r: 0.29237604, g: 0.402369, b: 0.49856833, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2013,6 +2013,10 @@ PrefabInstance:
       propertyPath: spawnTimer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 1709128252}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.size
       value: 7
@@ -26185,6 +26189,7 @@ MonoBehaviour:
   - Name: 
     Steps: []
     stars: 0
+  playerManager: {fileID: 1709128252}
   sideOrder:
   - {fileID: 0}
   - {fileID: 0}
@@ -26734,6 +26739,10 @@ PrefabInstance:
       propertyPath: canSpawn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 1709128252}
     - target: {fileID: 3028634875627913776, guid: 4110c9e3944c6cb44887054f528eeefa, type: 3}
       propertyPath: targetList.Array.size
       value: 7
@@ -31291,6 +31300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputManager: {fileID: 1709128253}
   numberOfPlayersNeededUI: {fileID: 1369860539}
+  playersNeeded: 2
 --- !u!1001 &1710818570
 PrefabInstance:
   m_ObjectHideFlags: 0
